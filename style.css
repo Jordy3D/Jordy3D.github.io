@@ -14,6 +14,8 @@
     background: #252525;
 }
 
+
+/*
 .styleCard:nth-child(odd) {
     clip-path: polygon(98% 0%, 100% 50%, 98% 100%, 0% 100%, 2% 50%, 0% 0%);
     transform: translateX(1em);
@@ -35,16 +37,17 @@
     transform: translateX(-2em);
     transition: transform 200ms;
 }
+*/
 
 .styleData {
-    background-color: #363639;
+    background-color: #2e2e2f;
     border-radius: 4px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
     display: flex;
     height: 172px !important;
     margin: 20px 0;
-    padding: 8px 0 8px 2em;
+    padding: 8px 0 8px .5em;
     /*Shadow*/
     -webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
     -moz-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
@@ -91,7 +94,8 @@
 
 body,
 html {
-    background: #3d3d3f;
+    background-image: repeating-linear-gradient(0deg, rgb(32, 32, 32) 0px, rgb(32, 32, 32) 2px, rgb(33, 33, 33) 2px, rgb(33, 33, 33) 4px, rgb(34, 34, 34) 4px, rgb(34, 34, 34) 6px, rgb(33, 33, 33) 6px, rgb(33, 33, 33) 8px, rgb(36, 36, 36) 8px, rgb(36, 36, 36) 10px, rgb(35, 35, 35) 10px, rgb(35, 35, 35) 12px, rgb(33, 33, 33) 12px, rgb(33, 33, 33) 14px, rgb(32, 32, 32) 14px, rgb(32, 32, 32) 16px, rgb(36, 36, 36) 16px, rgb(36, 36, 36) 18px, rgb(34, 34, 34) 18px, rgb(34, 34, 34) 20px, rgb(35, 35, 35) 20px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 24px);
+    margin: 0;
 }
 
 * {
@@ -107,7 +111,7 @@ html {
 }
 
 .header {
-    background: #2e2e2f !important;
+    background: #0000 !important;
     display: inline-flex;
     width: 100%;
 }
