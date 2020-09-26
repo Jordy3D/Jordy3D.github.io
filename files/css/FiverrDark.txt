@@ -1,0 +1,164 @@
+/*Dark Scrollbar*/
+::-webkit-scrollbar { width: 10px !important; }
+::-webkit-scrollbar-track { background: #fff0 !important; }
+::-webkit-scrollbar-thumb { background: #2e2e2f !important; }
+::-webkit-scrollbar-thumb:hover { background: #363639 !important; }
+
+body, html,
+.logged-out-homepage,
+
+.MODAL__modal-content-body-u24ff77bf, .MODAL__modal-content-ucd41f96e,
+
+.body-home #main-wrapper, .logged-in-homepage-wrapper,
+
+body.with-white-back #main-wrapper,
+
+#main-wrapper, .mp-box, body #main-wrapper,
+
+.popup-base.educational, .popup-base.educational>header,
+
+.popup-introduction, .popup-introduction header,
+
+.mp-box.mp-box-white-noborder,
+
+.MODAL__modal-content-body-u1d30ea0b,
+
+.MODAL__modal-content-header-uee67e847, .MODAL__modal-content-u606f05f1
+{
+  background: #3d3d3f;
+}
+
+.logged-out-homepage .hero .hero-main-wrapper,
+.base-header.logged-out-homepage-header .categories_menu-package,
+
+.MODAL__modal-content-footer-u4f6b2380,
+
+.standalone-nav-bar, .standalone-nav-bar>div .categories-menu-package,
+.homepage-pro-gigs,
+.gig-card-base.mp-gig-card,
+.logged-in-homepage-wrapper .top-section .user-box,
+
+.category-page>footer,
+
+.categories-menu-package .categories>li.open>ul,
+
+.seller-card, .fiverr-learn, .mp-seller-profile article, .buyer-profile .create-a-gig, .buyer-profile-form-wrapper, .buyer-profile-form-wrapper .buyer-profile-form,
+.user-page-perseus .seller-profile,
+.mp-box.mp-box-white, .db-sidebar.todo-sidebar .content, .db-new-main-table table tbody tr,
+
+.db-content,
+
+.route,
+
+.popover-notifications-drawer .scroll-wrapper,
+.popover-notifications-drawer .drawer-item,
+
+.mp-start-selling .education .box-row, .mp-start-selling .buyers-stories ul li,
+
+body ul.component-accordion li,
+
+.seller-onboarding table th,
+
+.almost-done ul
+{
+    background: #363639;
+}
+
+.base-header.logged-out-homepage-header.transparent-header, .base-header,
+.site-footer,
+
+.fiverr-header,
+
+.homepage-pro-gigs .react-gig-cards-slider .gig-item.medium > div,
+
+.toggler-popover aside,
+
+.buyer-profile-form-wrapper .top-section,
+.mp-seller-profile .form-thin article .inner-row section .form-wrapper,
+.recommendation-wrapper ul li,
+.user-page-perseus .seller-profile .skills li,
+
+body.pro-experience .db-new-main-table table tbody tr:hover td,
+
+.index-route .contacts-container,
+
+.popover-notifications-drawer .tab-switch,
+
+.full-name .full-name-inputs input[type=text], .description textarea
+{
+    background: #2e2e2f !important;
+}
+
+.logged-in-homepage-wrapper .carousels-section .mp-box,
+.category-page>header .inner .explanation-video .btn-play,
+
+.mp-seller-profile .form-thin article .inner-row.social-account ul li:hover, .mp-seller-profile .form-thin article .inner-row.social-account ul li.is-selected,
+
+.seller-card .oneliner-wrapper form input, .seller-card .oneliner-wrapper form input:active, .seller-card .oneliner-wrapper form input:focus
+{
+  background-color: #0000;
+}
+
+.toggler-popover aside.bottom .tip, .toggler-popover aside.bottom .tip:after
+{
+  display: none;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+
+.logged-out-homepage .categories-list li>a, .logged-out-homepage .made-on-fiverr .project-card .project-info .gig-info a,
+.gig-card-base .gig-seller-info a,
+
+.category-page .main-content a, .category-page .side-menu li.selected-category, .homepage-pro-gigs h2 small,
+
+.categories-menu-package .multi-panel .section-list>li a, .categories-menu-package .multi-panel .section-list>li p, .categories-menu-package .sub-menu-item.linked-title>a, .categories-menu-package .sub-menu-item.linked-title>p, .categories-menu-package .menu-bucket a,
+.categories-menu-package .tab-panel h3, .categories-menu-package .tab-panel h3>a, .categories-menu-package .tab-panel h3>a:hover, .categories-menu-package .tab-panel p,
+
+.buyer-profile-form-wrapper .question-container .question-title,
+.seller-card .seller-link,
+.mp-seller-profile .form-thin article .inner-row.description textarea,
+.seller-card .oneliner-wrapper form input, .seller-card .oneliner-wrapper form input:active, .seller-card .oneliner-wrapper form input:focus,
+
+.db-content.todo-content .db-new-main-table td.task a,
+.db-sidebar .db-nav.nav-grey a.sel,
+.popup-base.popup-phone-verify .popup-content .form-phone-verify-section header p, .db-top-nav-bar .box-row>ul>li a.sel,
+.popup-introduction strong,
+
+body ul.component-accordion li *,
+
+.full-name .full-name-inputs input[type=text], .description textarea,
+.seller-onboarding .skills-checkbox>span,
+.seller-onboarding .online-presence .field-title, .onboarding-popup span, .seller-onboarding-leave-modal p
+{
+  color: #ccc !important;
+}
+
+.logged-out-homepage .signup .content h2
+{
+  color: #333 !important;
+}
+
+*
+{
+  border-color: #0000 !important;
+  box-shadow: none !important;
+}
+
+.logged-out-homepage .hero .hero-background.pink-triangle 
+{
+  border-bottom-color: #f192ad !important;
+}
+
+.mp-start-selling .buyers-stories ul li.buyer1:before, .mp-start-selling .buyers-stories ul li.buyer2:before{
+  border-right: 25px #363639 solid !important;
+}
+.mp-start-selling .buyers-stories ul li.buyer3:before, .mp-start-selling .buyers-stories ul li.buyer4:before
+{
+  border-left: 25px #363639 solid !important;
+}
+
+.popup-introduction img 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+    mix-blend-mode: color-dodge;
+}

@@ -1,0 +1,69 @@
+body, html
+{
+  background: #3d3d3f;
+}
+
+.mpc-modal
+{
+  background: #3d3d3f !important;
+}
+
+.primary-nav, .global-nav .nav-item-link.is-active,
+
+.nav-drop-down,
+
+.nickname.ng-star-inserted > app-nickname > div, .delivery-choices.ng-star-inserted > app-delivery-choices > div, .tracking-details.ng-star-inserted > app-tracking-details > div, .notification-subscription.ng-star-inserted > app-notification-subscription > div, .delivery-details.ng-star-inserted > app-delivery-details > section > div, .help-and-support.ng-star-inserted > app-help-and-support > div
+
+{
+    background: #363639;
+}
+
+app-static-tiles > section,
+
+.global-nav .nav-item-link:hover
+
+{
+    background: #363639 !important;
+}
+
+.global-nav, 
+
+.nav-drop-down .drop-down-tertiary, ap-global-nav-login .mypost-account-menu .am-account-options, ap-global-nav-login .mypost-account-menu .am-products,
+
+ap-contextual-footer > nav,
+ap-global-footer > div,
+
+.tracking-details.ng-star-inserted > app-tracking-details > app-tracking-history-master > section, app-onboarding-banner > div,
+
+ .tracking-history .accordion-button,
+
+.help-and-support-list-item:hover
+
+{
+    background: #2e2e2f !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, p,
+.global-nav *, .primary-nav *,
+
+.delivery-options[_ngcontent-fwg-c13] .header[_ngcontent-fwg-c13] .content[_ngcontent-fwg-c13], 
+
+ap-contextual-footer > nav *,
+ap-global-footer > div *,
+
+ .tracking-history .accordion-button
+{
+  color: #ccc !important;
+}
+
+*
+{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+clearImage 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+    mix-blend-mode: color-dodge;
+}
