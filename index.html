@@ -155,7 +155,7 @@
                                 <div class="styleButtonDownload"><span>Get style from Userstyles</span></div>
                             </a>
 
-                            <p id="buymeacola-dl" onclick="buymeacolaDownload(this)" style="color: #3a9cd6;">Get style directly</a>
+                            <a id="buymeacola-dl" onclick="buymeacolaDownload()" style="color: #3a9cd6;">Get style directly</a>
                         </div>
 
                     </div>
@@ -200,3 +200,9 @@
     </div>
 
 </html>
+
+<script>
+    function buymeacolaDownload() {
+        window.location.href = "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/buymeacola.user.css";
+    }
+</script>
