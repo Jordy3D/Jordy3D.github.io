@@ -55,25 +55,18 @@
     min-width: 380px;
 }
 
-.styleImageHolder,
-.styleImage {
-    left: 0;
-    position: relative;
-    height: 156px;
-    width: 200px;
-}
-
 .styleImageHolder {
     background-size: cover;
     height: 156px;
     width: 300px;
+    background-position-x: 50%;
 }
 
 .styleInfo {
     left: 10px;
     position: relative;
     width: 100%;
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 .styleTitle {
