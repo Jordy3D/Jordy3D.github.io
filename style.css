@@ -96,6 +96,7 @@
 
 .styleData {
     min-width: 600px;
+    height: fit-content !important;
 }
 
 body,
