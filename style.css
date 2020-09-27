@@ -163,6 +163,6 @@ Extra content
     margin-left: 20px;
 }
 
-.supportLinks>* {
-    display: inline-block;
+.supportLinks {
+    display: block;
 }
