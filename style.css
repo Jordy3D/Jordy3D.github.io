@@ -1,3 +1,7 @@
+/* ==========
+Scrollbars
+========== */
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -13,6 +17,69 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #252525;
 }
+
+
+/* ==========
+Main Body / General Settings
+========== */
+
+body,
+html {
+    background-image: repeating-linear-gradient(0deg, rgb(32, 32, 32) 0px, rgb(32, 32, 32) 2px, rgb(33, 33, 33) 2px, rgb(33, 33, 33) 4px, rgb(34, 34, 34) 4px, rgb(34, 34, 34) 6px, rgb(33, 33, 33) 6px, rgb(33, 33, 33) 8px, rgb(36, 36, 36) 8px, rgb(36, 36, 36) 10px, rgb(35, 35, 35) 10px, rgb(35, 35, 35) 12px, rgb(33, 33, 33) 12px, rgb(33, 33, 33) 14px, rgb(32, 32, 32) 14px, rgb(32, 32, 32) 16px, rgb(36, 36, 36) 16px, rgb(36, 36, 36) 18px, rgb(34, 34, 34) 18px, rgb(34, 34, 34) 20px, rgb(35, 35, 35) 20px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 24px);
+    margin: 0;
+    background-color: #1d1d1d;
+    color: #ccc;
+}
+
+* {
+    font-family: 'VCR OSD Mono';
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    color: #8e8edf;
+    text-decoration: none;
+}
+
+.content {
+    width: 60%;
+    margin: 0 auto;
+    min-width: 600px;
+}
+
+
+/* ==========
+Header
+========== */
+
+.header {
+    background: #0000 !important;
+    display: inline-flex;
+    width: 100%;
+}
+
+.header>* {
+    display: inline-block;
+    margin: 5px;
+}
+
+.NavBar {
+    float: right;
+    right: 10px;
+    position: absolute;
+    width: 40%;
+    height: auto;
+}
+
+.NavBar a {
+    float: right;
+}
+
+
+/* ==========
+Style Cards
+========== */
 
 
 /*
@@ -42,17 +109,25 @@
 .styleData {
     background-color: #2e2e2f;
     border-radius: 4px;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
+    color: #ccc;
     display: flex;
-    height: 172px !important;
     margin: 20px 0;
     padding: 8px 0 8px .5em;
     /*Shadow*/
     -webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
     -moz-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
     box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
-    min-width: 380px;
+    min-width: 600px;
+    height: fit-content !important;
+    /* Transitions*/
+    transition: color 200ms;
+}
+
+.styleData:hover {
+    color: #fff;
+    /* Transitions*/
+    transition: color 200ms;
 }
 
 .styleImageHolder {
@@ -75,78 +150,19 @@
     font-size: 30pt;
 }
 
-.NOstyleButton {
-    right: 0;
-    position: relative;
-    height: 156px;
+.styleButton {
+    display: grid;
 }
 
-.content {
-    width: 60%;
-    margin: 0 auto;
-    min-width: 600px;
-}
 
-.styleData {
-    min-width: 600px;
-    height: fit-content !important;
-}
+/* ==========
+Extra content
+========== */
 
-body,
-html {
-    background-image: repeating-linear-gradient(0deg, rgb(32, 32, 32) 0px, rgb(32, 32, 32) 2px, rgb(33, 33, 33) 2px, rgb(33, 33, 33) 4px, rgb(34, 34, 34) 4px, rgb(34, 34, 34) 6px, rgb(33, 33, 33) 6px, rgb(33, 33, 33) 8px, rgb(36, 36, 36) 8px, rgb(36, 36, 36) 10px, rgb(35, 35, 35) 10px, rgb(35, 35, 35) 12px, rgb(33, 33, 33) 12px, rgb(33, 33, 33) 14px, rgb(32, 32, 32) 14px, rgb(32, 32, 32) 16px, rgb(36, 36, 36) 16px, rgb(36, 36, 36) 18px, rgb(34, 34, 34) 18px, rgb(34, 34, 34) 20px, rgb(35, 35, 35) 20px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 24px);
-    margin: 0;
-    background-color: #1d1d1d;
-}
-
-* {
-    font-family: 'VCR OSD Mono';
-    font-weight: normal;
-    font-style: normal;
-}
-
-#styleImg {
-    border-radius: 15px 15px 0 0;
-    padding: 5px;
-    width: 92%;
-}
-
-.header {
-    background: #0000 !important;
-    display: inline-flex;
-    width: 100%;
-}
-
-body {
-    color: #ccc !important;
-}
-
-a {
-    color: #8e8edf;
-    text-decoration: none;
+.section-content {
+    margin-left: 20px;
 }
 
 .supportLinks>* {
     display: inline-block;
-}
-
-.header>* {
-    display: inline-block;
-    margin: 5px;
-}
-
-.NavBar {
-    float: right;
-    right: 10px;
-    position: absolute;
-    width: 40%;
-    height: auto;
-}
-
-.NavBar a {
-    float: right;
-}
-
-.section-content {
-    margin-left: 20px;
 }
