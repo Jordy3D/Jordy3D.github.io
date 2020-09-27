@@ -126,7 +126,9 @@ g-inner-card, .qmv19b,
 
 .lqQNEe,
 
-.cu-container .mnr-c
+.cu-container .mnr-c,
+
+.bKi57NPaiJ5__tab-carousel
 {
     background: #363639;
 }
@@ -242,7 +244,10 @@ textarea,.bzPMYzFI66P__outer-circle,
 
 .Pvpvv,
 
-.ojyYHb
+.ojyYHb,
+
+.XPTlsd, 
+.pxG6i
 {
     background: #2e2e2f !important;
 }
@@ -412,7 +417,9 @@ a, .HRfe0e, .O8Q2Ie,
 
 p[style*="color: rgb(26, 13, 171);"],
 
-.Y92sLc *, .ZbgEX *
+.Y92sLc *, .ZbgEX *,
+
+.kojJ7d
 {
     color: #786df1 !important;
 }
@@ -421,7 +428,9 @@ p[style*="color: rgb(26, 13, 171);"],
     color: #ba55ed;
 }
 .a, cite, cite a:link, cite a:visited, .cite, .cite:link, #nygTcd>i, .bc a:link,
-.e8fRJf, .cJzOGc, .wqg8ad
+.e8fRJf, .cJzOGc, .wqg8ad,
+
+.fHujJ
 {
     color: #397e4f !important;
 }
@@ -570,7 +579,10 @@ d, .rsir2d,
 .WF4CUc, .o5GQac img,
 
 .Ee92ae,
-.L4Xh0b
+.L4Xh0b,
+
+.DiHeCb, .eYvkic,
+.amFhOb
 {
     color: #ccc;
 }
@@ -774,9 +786,7 @@ li.sbsb_c:first-child .sbse,
     border-color: #3367d6;
 }
 
-#isr_chc,
-
-.MXl0lf
+#isr_chc
 {
     margin-top: -20px;
 }
@@ -785,9 +795,14 @@ div.sfbg
     margin-top: -18px !important;
 }
 
+.MXl0lf
+{
+  margin-top: 5px;
+}
+
 .mw #rhs
 {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .obe4Gd
@@ -1225,4 +1240,5 @@ img.gb_va
 {
   color: #ccc !important;
 }
+
 }

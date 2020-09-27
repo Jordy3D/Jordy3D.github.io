@@ -107,8 +107,10 @@ Style Cards
 */
 
 .styleData {
-    background-color: #2e2e2f;
-    border-radius: 4px;
+    background-color: #202020;
+    border-radius: 15px;
+    min-width: 600px;
+    height: fit-content !important;
     box-sizing: border-box;
     color: #ccc;
     display: flex;
@@ -118,8 +120,6 @@ Style Cards
     -webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
     -moz-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
     box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
-    min-width: 600px;
-    height: fit-content !important;
     /* Transitions*/
     transition: color 200ms;
 }
@@ -135,13 +135,17 @@ Style Cards
     height: 156px;
     width: 300px;
     background-position-x: 50%;
+    border-radius: 10px 0 0 10px;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 80%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 80%);
 }
 
 .styleInfo {
-    left: 10px;
+    left: -50px;
     position: relative;
     width: 100%;
     padding-right: 20px;
+    text-shadow: -5px 5px 15px black;
 }
 
 .styleTitle {
