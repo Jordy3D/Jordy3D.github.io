@@ -1,0 +1,220 @@
+:root {
+    --middleTop: 40%;
+    --middleBottom: 30%;
+  }
+
+
+  /* ==========
+Scrollbars
+========== */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(48, 47, 47);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #252525;
+}
+
+
+/* ==========
+Main Body / General Settings
+========== */
+
+body,
+html {
+    background-image: repeating-linear-gradient(0deg, rgb(32, 32, 32) 0px, rgb(32, 32, 32) 2px, rgb(33, 33, 33) 2px, rgb(33, 33, 33) 4px, rgb(34, 34, 34) 4px, rgb(34, 34, 34) 6px, rgb(33, 33, 33) 6px, rgb(33, 33, 33) 8px, rgb(36, 36, 36) 8px, rgb(36, 36, 36) 10px, rgb(35, 35, 35) 10px, rgb(35, 35, 35) 12px, rgb(33, 33, 33) 12px, rgb(33, 33, 33) 14px, rgb(32, 32, 32) 14px, rgb(32, 32, 32) 16px, rgb(36, 36, 36) 16px, rgb(36, 36, 36) 18px, rgb(34, 34, 34) 18px, rgb(34, 34, 34) 20px, rgb(35, 35, 35) 20px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 24px);
+    margin: 0;
+    background-color: #1d1d1d;
+    color: #ccc;
+
+}
+
+.content
+{
+
+    min-height: 100vh;
+    display: grid;
+    place-items: center;   
+}
+
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('./files/fonts/VCROSDMono.woff') format('woff'),
+    url('./files/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+* {
+    font-family: 'VCR OSD Mono';
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    color: #8e8edf;
+    text-decoration: none;
+}
+  
+/* ==========
+Header
+========== */
+
+.header {
+    background: #0000 !important;
+    display: inline-flex;
+    width: 100%;
+}
+
+.header>* {
+    display: inline-block;
+    margin: 5px;
+}
+
+.NavBar {
+    float: right;
+    right: 10px;
+    position: absolute;
+    width: 40%;
+    height: auto;
+}
+
+.NavBar a {
+    float: right;
+}
+  
+
+/* ==========
+Glitch
+========== */
+  .glitch {
+    font-size: 10rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+  
+    width: 900px;
+  
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  
+    animation: glitch 500ms infinite;
+  
+    position: absolute;
+    width: 100%;
+    height: 200px;
+
+    display: grid;
+    place-items: center;
+  }
+  
+  .glitch span {
+    position: absolute;
+    top: 0;
+  }
+  
+  .glitch span:first-child {
+    animation: glitch 500ms infinite;
+    animation-delay: 200ms;
+    clip-path: inset(0 0 calc(100% - var(--middleTop)) 0);
+  
+    transform: translate(-0.05em, -0.0025em);
+    animation: slide 600ms infinite;
+  }
+  
+  .glitch span:nth-child(2) {
+    clip-path: inset(var(--middleTop) 0 var(--middleBottom) 0);
+  
+    transform: translate(-0.0725em, 0em);
+    animation: slide 800ms infinite;
+  }
+  
+  .glitch span:last-child {
+    animation: glitch 400ms infinite;
+    animation-delay: -200ms;
+    clip-path: inset(calc(100% - var(--middleBottom)) 0 0 0);
+  
+    transform: translate(0.0125em, 0.0025em);
+    animation: slide 1000ms infinite;
+  }
+  
+  /* https://web.dev/prefers-reduced-motion/#(bonus)-forcing-reduced-motion-on-all-websites */
+  
+  @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+        -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    14% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+        -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    15% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+        0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+        0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    50% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+        0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    99% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+        0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    100% {
+      text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+        -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translateX(-0.0725em);
+    }
+    2% {
+      transform: translateX(-0.0925em);
+    }
+    3% {
+      transform: translateX(0.00225em);
+    }
+    50% {
+      transform: translateX(0.00925em);
+    }
+    51% {
+      transform: translateX(-0.0725em);
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+  }
+  
