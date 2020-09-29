@@ -1,0 +1,452 @@
+/* ==UserStyle==
+@name           GitHub Dark by Bane
+@namespace      https://github.com/Jordy3D/jordy3d.github.io
+@version		1.0.0
+@description    Dark mode for GitHub
+@author         Bane
+@homepageURL    https://jordy3d.github.io/
+==/UserStyle== */
+
+@-moz-document domain("github.com") {
+/*Dark Scrollbar*/
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff0; }
+::-webkit-scrollbar-thumb { background: #222; }
+::-webkit-scrollbar-thumb:hover { background: #252525; }
+
+body, html,
+
+.Box-row--focus-gray.navigation-focus,
+
+.page-responsive .previewable-comment-form .comment-form-head.tabnav
+{
+  background: #3d3d3f;
+}
+
+main .border-bottom
+{
+  background: #3d3d3f !important;
+}
+
+.Box,
+
+.flash,
+
+.menu,
+
+.auth-form-body,
+
+.graph-before-activity-overview,
+
+.select-menu-modal, .select-menu-item,
+
+.subnav-item,
+
+.filter-bar,
+
+.timeline-comment,
+
+.review-thread-reply .inline-comment-form,
+
+.full-commit,
+.commit-sha, .blob-code-hunk, .file-diff-split .empty-cell,
+
+.previewable-comment-form .comment-body,
+
+.tint-box, .capped-card-content,
+
+.SideNav-item,
+
+
+.gitzip-collect-dash 
+{
+    background: #363639;
+}
+
+input, textarea, select,
+
+.Header, .dropdown-menu,
+
+.bg-white,
+
+.Box-header,
+
+.btn,
+
+.social-count,
+
+.Progress,
+
+.delete-topic-button, .delete-topic-link,
+
+.menu-item:focus, .menu-item:hover,.menu-heading,
+.bg-blue-light,
+
+.user-status-circle-badge,
+.discussion-item-icon,
+
+.label, .Label,
+
+.select-menu-filters, .select-menu-header,
+
+.subnav-item:hover,
+
+article .border-bottom,
+
+.branch-name,
+
+.markdown-body table tr,
+.markdown-body kbd,
+.markdown-body .highlight pre, .markdown-body pre,
+
+.signed-commit-badge.verified,
+
+.timeline-comment-header,
+
+.gh-header .gh-header-sticky.is-stuck+.gh-header-shadow,
+
+.commit-ref,
+
+.file-header,
+.review-thread-reply-button,
+
+.cm-s-github-light.CodeMirror,
+.cm-s-github-light .CodeMirror-lines,
+
+.full-commit .commit-meta,
+.blob-num-expandable, .blob-num-hunk,
+
+.blankslate code,
+
+.community-checklist .progress,
+
+.SideNav-item[aria-current]:not([aria-current=false]), .SideNav-item[aria-selected=true], .SideNav-item:focus, .SideNav-item:hover,
+.SideNav,
+
+.table-list-header,
+
+
+
+.gitzip-header
+{
+    background: #2e2e2f !important;
+}
+
+.bg-gray-light, .bg-gray,
+
+.topic-tag-action,
+.suggester *,
+
+.filter-item:hover,
+
+.cm-s-github-light .CodeMirror-gutters,
+
+.tabnav-tab.selected, .tabnav-tab[aria-current]:not([aria-current=false]), .tabnav-tab[aria-selected=true],
+.page-responsive .previewable-comment-form .comment-form-head.tabnav .toolbar-commenting
+{
+    background: #363639 !important;
+}
+
+.hx_avatar_stack_commit .AvatarStack-body,
+
+.session-authentication,
+
+.profile-timeline-year-list,
+
+.profile-timeline-month-heading,
+
+.header-search-current .header-search-wrapper input,
+
+.markdown-body img,
+.gh-header,
+
+.thread-subscription-status,
+.discussion-timeline-actions,
+
+.drag-and-drop,
+
+.AvatarStack-body
+{
+  background: #0000 !important;
+}
+
+.topic-tag,
+
+.task-progress .progress-bar,
+
+.markdown-body blockquote,
+
+.Counter
+{
+    background: #18181982 !important;
+}
+
+article div[style*="background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));"]
+{
+  background: linear-gradient(to top, #2e2e2f, rgba(255,255,255,0)) !important;
+}
+
+.blob-num-deletion, .blob-code-deletion .x
+{
+    background-color: #42151a8a;  
+}
+.blob-code-deletion
+{
+    background-color: #571f258a;  
+}
+
+.blob-num-addition {
+    background-color: #0123088a;
+}
+.blob-code-addition {
+    background-color: #0f451c8a;
+}
+
+.calendar-graph rect.day[fill*="#ebedf0"],
+.js-diff-placeholder
+{
+  fill: #2e2e2f;
+}
+
+text,
+.dot text, circle.focus
+{
+  fill: #ccc;
+}
+.graph-canvas .axis line
+{
+  stroke: #ccc1;
+}
+
+body, input, textarea, select,
+
+.text-gray-dark,
+
+.UnderlineNav-item,
+
+.Box-header--blue *,
+.link-gray-dark,
+
+.btn,
+
+.social-count,
+
+.flash,
+
+.bg-white,
+
+.menu-item,.menu-heading,
+
+.session-authentication .header-logo,
+.session-authentication .auth-form-header,
+
+.filter-item,
+
+.discussion-item-icon,
+
+.table-list-header-toggle .btn-link,
+
+.select-menu-filters, .select-menu-header *,
+.select-menu-modal,
+.select-menu-item.selected, details-menu .select-menu-item[aria-checked=true], details-menu .select-menu-item[aria-selected=true],
+
+.dropdown-menu *,
+
+.subnav-item,
+
+.tabnav-tab.selected, .tabnav-tab,
+
+.subnav-link.selected,
+
+.markdown-body kbd,
+
+.timeline-comment-header, .timeline-comment,
+
+.discussion-sidebar-heading, .TimelineItem-body,
+
+.team-mention, .user-mention,
+.review-comment,
+
+.blob-num,
+
+.cm-s-github-light.CodeMirror,
+
+.full-commit p.commit-title,
+.full-commit .sha-block,
+
+.text-emphasized,
+
+.SideNav-item,
+
+.breadcrumb strong.final-path,
+
+.Counter,
+
+.gitzip-check-mark, .gitzip-header
+{
+  color: #ccc !important;
+}
+
+.blob-code-inner, .pl-s .pl-s1, .pl-smi
+{
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 0 5px black;
+}
+.pl-c1, .pl-s .pl-v
+{
+    color: #0f3663;
+  font-weight: 800;
+  text-shadow: 0 0 5px black;
+}
+
+.pl-pds, .pl-s, .pl-s .pl-pse .pl-s1, .pl-sr, .pl-sr .pl-cce, .pl-sr .pl-sra, .pl-sr .pl-sre,
+
+.cm-s-github-light .cm-string
+{
+    color: #2165b3;
+  font-weight: 800;
+  text-shadow: 0 0 5px black;}
+.pl-c1, .pl-s .pl-v
+{
+    color: #6dacf4;
+  text-shadow: 0 0 5px black;
+}
+.pl-k {
+    color: #ffaeb6;
+  font-weight: 800;
+  text-shadow: 0 0 5px black;
+}
+.pl-e, .pl-en {
+    color: #b591f6;
+  font-weight: 800;
+  text-shadow: 0 0 5px black;
+}
+
+.link-gray,
+.text-gray-light,
+
+.text-gray,
+
+.note,
+
+.Subhead-description,
+
+.vcard-username,
+
+.muted-link,
+
+.Label--gray, .Label--outline,
+
+.subnav-link,
+
+.news div.message, .news li blockquote,
+
+.gh-header-meta,
+
+.discussion-sidebar-item,
+
+.task-progress,
+
+.markdown-body blockquote,
+
+.commit-branches *,
+.full-commit .sha-block>.sha
+{
+  color: #959595 !important;
+}
+
+a,
+.topic-tag-action,.delete-topic-button, .delete-topic-link,
+
+a.branch-name,
+
+.delete-topic-button, .topic-tag, .topic-tag-action,
+
+.commit-ref,
+
+.btn-link
+{
+  color: #94b1ff;
+}
+
+.Label--green, .Label--outline-green,
+.signed-commit-badge.verified
+{
+  color: #53b472;
+}
+
+*,
+.suggester *, .suggester,
+.border-gray-light,
+
+.bg-blue-light,
+
+.avatar-user,
+
+.border-bottom,
+.border,
+.ajax-pagination-form .ajax-pagination-btn,
+
+.dropdown-menu:after,.dropdown-menu:before,
+
+.timeline-comment--caret:before,.timeline-comment--caret:after,
+
+.border-top, .border-md-top, .border-md,
+
+.comment-form-error,
+
+.SideNav-item
+{
+  border-color: #0000 !important;
+  box-shadow: none !important;
+}
+
+.border
+{
+  border: none !important;
+}
+
+.UnderlineNav-item.selected, .UnderlineNav-item[aria-current]:not([aria-current=false]), .UnderlineNav-item[role=tab][aria-selected=true],
+
+.subnav-primary.selected
+{
+    border-bottom-color: #94b1ff !important;
+}
+
+.markdown-body blockquote {
+    border-left: .25em solid #dfe2e5 !important;
+}
+
+.dropdown-menu:after,
+
+.avatar-user
+{
+  border-radius: 5px !important;
+}
+
+#js-pjax-container > .mt-4
+{
+  margin: 0 !important;
+}
+
+.pagination-loader-container
+{
+  filter: invert(1) brightness(1.5);
+    mix-blend-mode: screen;
+}
+
+.pagination-loader-container .Box
+{
+  filter: invert(1) brightness(1.2);
+}
+
+div#network.network > div > canvas {
+    -webkit-filter: invert(90%) hue-rotate(180deg)!important;
+    filter: invert(90%) hue-rotate(180deg)!important;
+}
+
+#network canvas {
+    background: #fff!important;
+}
+}
