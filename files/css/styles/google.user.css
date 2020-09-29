@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.0
+@version	1.0.1
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -1224,21 +1224,17 @@ img.gb_va
 @-moz-document regexp("[\\s\\S]+") {
 .jfk-bubble
 {
-  background: #363639 !important;
-  border-radius: 20px;
-  box-shadow: 0 0 5px 3px #0006 !important;
-  color: #ccc;
+  filter: invert(1) !important;
+  border-radius: 10px;
+  border-color: #0000 !important;
+  box-shadow: 0 0 5px 5px white;
+  
+  background: #e8e8e8;
 }
 
-.jfk-bubble .gtx-lang-selector,
-::slotted
-{
-    background: #2e2e2f !important;
-}
+.jfk-bubble-arrowdown .jfk-bubble-arrowimplafter, .jfk-bubble-arrowup .jfk-bubble-arrowimplafter, .jfk-bubble-arrowdown .jfk-bubble-arrowimplbefore, .jfk-bubble-arrowup .jfk-bubble-arrowimplbefore {
 
-.gtx-content *
-{
-  color: #ccc !important;
+  border-color: #e8e8e8 transparent;
 }
 
 }
