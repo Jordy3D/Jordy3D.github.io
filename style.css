@@ -33,11 +33,10 @@ html {
 
 @font-face {
     font-family: 'VCR OSD Mono';
-    src: url('./files/fonts/VCROSDMono.woff') format('woff'),
-    url('./files/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+    src: url('./files/fonts/VCROSDMono.woff') format('woff'), url('./files/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    }
+}
 
 * {
     font-family: 'VCR OSD Mono';
@@ -123,7 +122,7 @@ Style Cards
     color: #ccc;
     display: flex;
     margin: 20px 0;
-    padding: 8px 0 8px .5em;
+    padding: 0px 0 0px 0em;
     /*Shadow*/
     -webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
     -moz-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
@@ -133,9 +132,17 @@ Style Cards
 }
 
 .styleData:hover {
-    color: #fff;
+    color: #fff !important;
     /* Transitions*/
     transition: color 200ms;
+}
+
+.styleBGFilter {
+    border-radius: 15px;
+    display: flex;
+    width: 100%;
+    padding: 8px;
+    backdrop-filter: brightness(0.4) blur(8px);
 }
 
 .styleImageHolder {
@@ -144,16 +151,25 @@ Style Cards
     width: 300px;
     background-position-x: 50%;
     border-radius: 10px 0 0 10px;
-    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 80%);
-    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 80%);
+    margin-right: -150px;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 60%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 60%);
+    z-index: -100;
+}
+
+.styleImageHolder img {
+    height: 156px;
+    width: 300px;
+    left: -70px;
+    position: relative;
 }
 
 .styleInfo {
-    left: -50px;
-    position: relative;
     width: 100%;
     padding-right: 20px;
-    text-shadow: -5px 5px 15px black;
+    text-shadow: -5px 5px 8px black;
+    box-shadow: inset 0 0 35px -10px black;
+    border-radius: inherit;
 }
 
 .styleTitle {
