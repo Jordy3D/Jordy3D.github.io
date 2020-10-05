@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           GitHub Dark by Bane
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version		1.0.0
+@version		1.0.1
 @description    Dark mode for GitHub
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -20,12 +20,12 @@ body, html,
 
 .page-responsive .previewable-comment-form .comment-form-head.tabnav
 {
-  background: #3d3d3f;
+  background: #36393F;
 }
 
 main .border-bottom
 {
-  background: #3d3d3f !important;
+  background: #36393F !important;
 }
 
 .Box,
@@ -57,10 +57,12 @@ main .border-bottom
 
 .SideNav-item,
 
+.orghead,
+
 
 .gitzip-collect-dash 
 {
-    background: #363639;
+    background: #2F3136;
 }
 
 input, textarea, select,
@@ -125,11 +127,13 @@ article .border-bottom,
 
 .table-list-header,
 
+.TimelineItem:before,
+.TimelineItem-badge,
 
 
 .gitzip-header
 {
-    background: #2e2e2f !important;
+    background: #202225 !important;
 }
 
 .bg-gray-light, .bg-gray,
@@ -144,7 +148,7 @@ article .border-bottom,
 .tabnav-tab.selected, .tabnav-tab[aria-current]:not([aria-current=false]), .tabnav-tab[aria-selected=true],
 .page-responsive .previewable-comment-form .comment-form-head.tabnav .toolbar-commenting
 {
-    background: #363639 !important;
+    background: #2F3136 !important;
 }
 
 .hx_avatar_stack_commit .AvatarStack-body,
@@ -396,7 +400,9 @@ a.branch-name,
 
 .comment-form-error,
 
-.SideNav-item
+.SideNav-item,
+
+.border-gray-dark
 {
   border-color: #0000 !important;
   box-shadow: none !important;

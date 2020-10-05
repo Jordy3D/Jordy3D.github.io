@@ -81,6 +81,8 @@ Header
 
 .NavBar a {
     float: right;
+    margin-left: 2ch;
+    color: #ccc;
 }
 
 
@@ -192,4 +194,12 @@ Extra content
 
 .supportLinks {
     display: block;
+}
+
+#inProgress {
+    list-style-type: none;
+}
+
+#inProgress li {
+    margin-top: 5px;
 }
