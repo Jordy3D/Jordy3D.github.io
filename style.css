@@ -29,6 +29,7 @@ html {
     margin: 0;
     background-color: #1d1d1d;
     color: #ccc;
+    zoom: 1.1;
 }
 
 @font-face {
@@ -53,6 +54,7 @@ a {
     width: 60%;
     margin: 0 auto;
     min-width: 600px;
+    padding-top: 60px;
 }
 
 
@@ -61,22 +63,43 @@ Header
 ========== */
 
 .header {
-    background: #0000 !important;
+    background: #000d !important;
     display: inline-flex;
     width: 100%;
+    height: 3em;
+    position: fixed;
+    z-index: 100;
+    /*clip-path: polygon(0 0, 100% 0%, 100% 80%, 0% 100%);*/
+}
+
+.header,
+.logoImg {
+    box-shadow: 0 0 10px 2px #000;
 }
 
 .header>* {
-    display: inline-block;
+    display: flex;
     margin: 5px;
+}
+
+.logo {
+    transform: scale(1.5);
+    transform-origin: 0 0;
+}
+
+.logo h1 {
+    font-size: x-large;
+    margin-left: 5px;
 }
 
 .NavBar {
     float: right;
     right: 10px;
     position: absolute;
-    width: 40%;
     height: auto;
+    top: 42%;
+    font-size: large;
+    /*transform: rotateZ(-1deg);*/
 }
 
 .NavBar a {
