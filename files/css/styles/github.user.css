@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           GitHub Dark by Bane
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version		1.0.1
+@version		1.0.2
 @description    Dark mode for GitHub
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -58,6 +58,8 @@ main .border-bottom
 .SideNav-item,
 
 .orghead,
+
+.py-0,
 
 
 .gitzip-collect-dash 
@@ -169,7 +171,9 @@ article .border-bottom,
 
 .drag-and-drop,
 
-.AvatarStack-body
+.AvatarStack-body,
+
+.new-discussion-timeline .text-right
 {
   background: #0000 !important;
 }
@@ -180,7 +184,9 @@ article .border-bottom,
 
 .markdown-body blockquote,
 
-.Counter
+.Counter,
+
+.label-select-menu .select-menu-item.navigation-focus, .label-select-menu .select-menu-item:focus, .label-select-menu .select-menu-item:hover, .label-select-menu .select-menu-item[aria-selected=true]
 {
     background: #18181982 !important;
 }
@@ -285,6 +291,8 @@ body, input, textarea, select,
 .breadcrumb strong.final-path,
 
 .Counter,
+
+.branch-name,
 
 .gitzip-check-mark, .gitzip-header
 {
