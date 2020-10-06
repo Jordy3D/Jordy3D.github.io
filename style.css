@@ -226,3 +226,9 @@ Extra content
 #inProgress li {
     margin-top: 5px;
 }
+
+.discordContent p {
+    width: 70%;
+    margin: 10px auto;
+    text-align: center;
+}
