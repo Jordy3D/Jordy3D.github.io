@@ -143,7 +143,9 @@ g-inner-card, .qmv19b,
 .g3VIld,
 
 .NnEw9,
-.EkeHle
+.EkeHle,
+
+.Bd04C
 {
     background: #363639;
 }
@@ -295,7 +297,7 @@ footer, html.hcfe,
 .zJKIV,
 .vQkMlb.o04Q9e .oJeWuf::-webkit-scrollbar-track, .vQkMlb.o04Q9e .oJeWuf::-webkit-scrollbar-thumb, .gpcwnc::-webkit-scrollbar-thumb, .gpcwnc::-webkit-scrollbar-track,
 .K3U03c .WvJxMd, .CUYlKf,
-
+.UNaUJe .iXS7ld,
 
 .rlGvde .KgqTrc:hover .VfPpkd-Jh9lGc, .rlGvde .KgqTrc:focus .VfPpkd-Jh9lGc,
 .jcukd .VfPpkd-Jh9lGc:before,
@@ -665,6 +667,7 @@ d, .rsir2d,
 .HVJNrc,
 
 .P4z3kc .KJackd, .PH4Kgc,
+.Bd04C *,
 
 .tfB0Bf input[type="submit"], .gbqfba
 {
@@ -1038,15 +1041,11 @@ div.sfbg
 
 .gws-flights__hero-header img,
 .gpcwnc.TbgiRe .lM3nGb,
-.StYgtd
+.StYgtd,
+.soKt7b
 {
   mix-blend-mode: screen;
     filter: invert(1) hue-rotate(195deg) saturate(2) brightness(2);
-}
-
-.t50xE
-{
-  
 }
 
 .section-info-action-icon-button:last-of-type
