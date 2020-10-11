@@ -1,13 +1,13 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.1
+@version	1.0.2
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
 ==/UserStyle== */
 
-@-moz-document domain("images.google.com"), domain("www.google.com"), domain("translate.google.com") {
+@-moz-document url-prefix("https://www.google"), domain("images.google.com"), domain("www.google.com"), domain("translate.google.com"), domain("support.google.com") {
 /*Dark Scrollbar*/
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #fff0; }
@@ -40,7 +40,10 @@ form .RNNXgb,
 
 .directions-mode-separator .directions-mode-distance-time,
 
-.widget-pane-visible
+.widget-pane-visible,
+
+.hcfe, [data-page-type="SUPPORT_FORUM_THREAD"] .hcfe,
+.page
 {
     background: #3d3d3f;
 }
@@ -128,14 +131,28 @@ g-inner-card, .qmv19b,
 
 .cu-container .mnr-c,
 
-.bKi57NPaiJ5__tab-carousel
+.bKi57NPaiJ5__tab-carousel,
+
+.material-card,
+
+.G9CET,
+
+.gws-travel-header__side-nav,
+.G5cKqf,
+.BzMuNd,
+.g3VIld,
+
+.NnEw9,
+.EkeHle
 {
     background: #363639;
 }
 
 .EHzcec,
 
-.k24kee[style*="background-color: rgb(241, 243, 244);"]
+.k24kee[style*="background-color: rgb(241, 243, 244);"],
+
+.tfB0Bf input[type="submit"], .gbqfba
 {
     background: #363639 !important;
 }
@@ -247,7 +264,16 @@ textarea,.bzPMYzFI66P__outer-circle,
 .ojyYHb,
 
 .XPTlsd, 
-.pxG6i
+.pxG6i,
+
+.footer-notice,
+footer, html.hcfe,
+
+.s8GCU, .sfbgg,
+
+.section-omnibox-spacer,
+
+.mfOzie
 {
     background: #2e2e2f !important;
 }
@@ -255,9 +281,29 @@ textarea,.bzPMYzFI66P__outer-circle,
 .aajZCb,
 .sbdd_b,.sbsb_a,
 .spch,
-.fAwjXaCTMo5__container
+.fAwjXaCTMo5__container,
+
+.gb_5e,
+
+.KQRYIb,
+.JcqPK,
+.sh-dr__prs,
+
+.VvrH3b,
+
+.RHWUyb .H28TSc.Rj2Mlf:not(:disabled),
+.zJKIV,
+.vQkMlb.o04Q9e .oJeWuf::-webkit-scrollbar-track, .vQkMlb.o04Q9e .oJeWuf::-webkit-scrollbar-thumb, .gpcwnc::-webkit-scrollbar-thumb, .gpcwnc::-webkit-scrollbar-track,
+.K3U03c .WvJxMd, .CUYlKf,
+
+
+.rlGvde .KgqTrc:hover .VfPpkd-Jh9lGc, .rlGvde .KgqTrc:focus .VfPpkd-Jh9lGc,
+.jcukd .VfPpkd-Jh9lGc:before,
+
+.fFqfw .OXZ8S:hover, .fFqfw .OXZ8S:focus,
+.fFqfw .OXZ8S.qs41qe
 {
-    background: #363639d1 !important;
+    background: #12121354 !important;
 }
 
 #kbqVne, #XOyNzd,
@@ -273,7 +319,9 @@ textarea,.bzPMYzFI66P__outer-circle,
     background: #3d3d3f !important;
 }
 
-#tw-source-text-container .tw-ta, #tw-source-rmn-container .tw-ta
+#tw-source-text-container .tw-ta, #tw-source-rmn-container .tw-ta,
+
+#kbqVne, #XOyNzd, .ksb.mini, .aajZCb, .sbdd_b, .sbsb_a, .section-layout.section-cardbox, .section-layout-root, .OxYkzd li:hover, .OxYkzd .lubh-sel, .lV0vqc
 {
     background: #363639 !important;
 }
@@ -419,7 +467,9 @@ p[style*="color: rgb(26, 13, 171);"],
 
 .Y92sLc *, .ZbgEX *,
 
-.kojJ7d
+.kojJ7d,
+
+.user-info-role *
 {
     color: #786df1 !important;
 }
@@ -430,12 +480,14 @@ p[style*="color: rgb(26, 13, 171);"],
 .a, cite, cite a:link, cite a:visited, .cite, .cite:link, #nygTcd>i, .bc a:link,
 .e8fRJf, .cJzOGc, .wqg8ad,
 
-.fHujJ
+.fHujJ,
+
+.cc code
 {
     color: #397e4f !important;
 }
 
-body,
+body, 
 input, select, textarea,
 d, .rsir2d,
 #foot #navcnt .cur,
@@ -582,7 +634,39 @@ d, .rsir2d,
 .L4Xh0b,
 
 .DiHeCb, .eYvkic,
-.amFhOb
+.amFhOb,
+
+.IsZvec, .aCOpRe em, .st em,
+
+.hcfe,
+.hcfe h1, .hcfe h2, .hcfe h3, .hcfe h4, .hcfe h5,
+.thread-message__vote-box,
+.alert-locked-alert,
+.gb_5e,
+
+.tYZdQJV9xeh__title,
+.section-text-secondary,
+
+.CV7Lzb,
+.sh-dgr__grid-result, .sh-dgr__grid-result *, .sh-dgr__grid-result, .sh-dgr__grid-result a *,
+
+.cmlJmd,
+.VvrH3b *,
+
+.CQYfx,
+.OXZ8S .KJackd, .KgqTrc .KJackd, .QwCDkd,
+.HX4vvd,.eoY5cb,
+.g1MG1e, .xyGai,
+.gTp8rc,.l1kGMc,
+
+.fFqfw .OXZ8S .T7XnYe,
+.BgYkof, .sSHqwe,
+.pJYzRb,
+.HVJNrc,
+
+.P4z3kc .KJackd, .PH4Kgc,
+
+.tfB0Bf input[type="submit"], .gbqfba
 {
     color: #ccc;
 }
@@ -633,7 +717,9 @@ a.scCTtb div,
 .qhH8z,
 
 .wgwTbe,
-.section-profile-header-subtext, .section-review-subtitle, .section-tab-info
+.section-profile-header-subtext, .section-review-subtitle, .section-tab-info,
+
+.footer-notice
 {
     color: #999;
 }
@@ -654,7 +740,9 @@ a.scCTtb div,
 
 div.knowledge-panel.kp-blk .mod *,
 
-.xoSnVb, .eOrBxe, .afwNad, .YXluh, .a9H3ec
+.xoSnVb, .eOrBxe, .afwNad, .YXluh, .a9H3ec,
+
+.hcfe input, .hcfe select, .hcfe textarea
 {
     color: #ccc !important;
 }
@@ -667,7 +755,9 @@ div.knowledge-panel.kp-blk .mod *,
     color: #555;
 }
 
-.LXtP0 .ZXb90b
+.LXtP0 .ZXb90b, 
+
+.hcfe ::placeholder
 {
   filter: invert(1);
   color: #777 !important;
@@ -753,12 +843,22 @@ li.sbsb_c:first-child .sbse,
 
 .wob_ds,
 .KjyTCd,.vk_arc, .dw-sb-cont .dw-sb-btn, .gstl_50 .sbdd_b,
-*
+*,
+
+.vQkMlb.o04Q9e .oJeWuf::-webkit-scrollbar-thumb,
+.gpcwnc::-webkit-scrollbar-thumb,
+
+.frame:before
 {
     border-color: red;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+}
+
+.gws-travel-header__side-nav
+{
+  height: 100%;
 }
 
 .gstl_50 .sbdd_b
@@ -786,13 +886,14 @@ li.sbsb_c:first-child .sbse,
     border-color: #3367d6;
 }
 
-#isr_chc
+.xtSCL
 {
-    margin-top: -20px;
+  margin: 0;
 }
+#isr_chc,
 div.sfbg
 {
-    margin-top: -18px !important;
+    margin-top: -20px;
 }
 
 .MXl0lf
@@ -819,6 +920,12 @@ div.sfbg
 {
     border-radius: 0px 0px 8px 8px;
 }
+
+.erkvQe
+{
+    border-radius: 0px 0px 15px 15px;
+}
+
 .faJige
 {
     border-radius: 8px 8px 0px 0px;
@@ -845,7 +952,9 @@ div.sfbg
   border-radius: 50%;
 }
 
-.ojyYHb *, .ojyYHb
+.ojyYHb *, .ojyYHb,
+
+.tfB0Bf input[type="submit"], .gbqfba
 {
   border-radius: 25px;
 }
@@ -884,9 +993,23 @@ div.sfbg
 
 .gb_C .gb_D,
 
-.pDyGF
+.pDyGF,
+
+.searchbox-icon,
+.n7lv7yjyC35__button-previous-icon, .n7lv7yjyC35__button-next-icon,
+
+.qFRZdb .F5z5N,
+
+.gws-flights-form__swapper.gws-flights-form__disabled>svg
 {
     filter: invert(1);
+}
+
+.google-logo,
+
+.t50xE
+{
+  filter: invert() hue-rotate(195deg) saturate(5) brightness(1.5);
 }
 
 .het5x .m6cn6 .nm8ICe, .ZfSAad .m6cn6 .nm8ICe,
@@ -902,11 +1025,6 @@ div.sfbg
     filter: invert(1) hue-rotate(180deg);
 }
 
-.qFRZdb .F5z5N
-{
-  filter: invert();
-}
-
 .mWyH1d
 {
   padding-left: 10px;
@@ -918,15 +1036,148 @@ div.sfbg
   mix-blend-mode: exclusion;
 }
 
+.gws-flights__hero-header img,
+.gpcwnc.TbgiRe .lM3nGb,
+.StYgtd
+{
+  mix-blend-mode: screen;
+    filter: invert(1) hue-rotate(195deg) saturate(2) brightness(2);
+}
+
+.t50xE
+{
+  
+}
+
 .section-info-action-icon-button:last-of-type
 {
   background-image: linear-gradient(to right,rgba(247,247,247,0) 0px,#363639 24px);
 }
 }
 
-@-moz-document domain("translate.google.com") {
+@-moz-document domain("trends.google.com") {
 /*Dark Scrollbar*/
 ::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff0; }
+::-webkit-scrollbar-thumb { background: #222; }
+::-webkit-scrollbar-thumb:hover { background: #252525; }
+
+body, html
+{
+  background: #3d3d3f;
+}
+
+.explore-header ng-transclude, .sticky-legend-bar-wrapper,
+.pill-outline, .compare-terms .add-term-button,
+.fe-atoms-generic-container,
+
+md-dialog.md-default-theme, md-dialog
+{
+    background: #363639;
+}
+
+.explore-header .header-topbar,
+.explore-header .header-topbar:not(.toolbar-shadow):not(.home-page-shadow),
+
+.md-autocomplete-suggestions-container.md-default-theme, .md-autocomplete-suggestions-container,
+.md-autocomplete-suggestions-container.term-repeat,
+
+md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content, md-sidenav md-content
+{
+    background: #2e2e2f !important;
+}
+
+.fe-related-queries .item:hover, .fe-related-queries .item:focus,
+.fe-related-queries .progress-bar-wrapper,
+
+.md-autocomplete-suggestions-container.md-default-theme li:hover, .md-autocomplete-suggestions-container li:hover, .md-autocomplete-suggestions-container.md-default-theme li.selected, .md-autocomplete-suggestions-container li.selected
+{
+    background: #12121354 !important;
+}
+
+.fe-explore-container
+{
+  background: #0000 !important;
+}
+
+.bar-chart-content rect[fill*="#ffffff"]
+{
+  fill: #f000 !important; 
+}
+
+body,
+
+.fe-line-chart .fe-line-chart-header-container .fe-line-chart-header-title,
+.fe-atoms-generic-header-container,
+
+.fe-related-queries .progress-label,
+.fe-low-search-volume,
+.pagination,
+
+.sticky-legend-filters-description,
+
+.material-icons-extended.gray,
+.fe-related-queries .bullets-view-selector-container .bullets-view-selector ._md-select-value,
+.resolution-selector-container .resolution-selector ._md-select-value,
+
+.compare-pickers md-select span:first-child, .compare-pickers .hierarchy-select span:first-child,
+.compare-pickers md-select span:last-child, .compare-pickers .hierarchy-select span:last-child,
+
+.layout-row>.flex, .layout-lg-row>.flex,
+
+.md-autocomplete-suggestions-container.term-repeat .autocomplete-title,
+.md-autocomplete-suggestions-container.term-repeat .autocomplete-desc,
+.search-term-wrapper .search-term-entity-wrapper .search-term-entity-desc,
+
+.compare-terms .add-term-button,
+
+.fe-multi-heat-map-legend-item-text,
+.multi-heat-map-explanation,
+.multi-heat-sort-container ._md-select-value, .multi-heat-sort-container .multi-heat-sort-label,
+
+.fe-explore-container .fe-atoms-generic-content-container .fe-explore-container-content,
+
+.fe-text .explore-note-text-container,
+
+.widget-error,
+
+.fe-side-nav-bar .fe-sidenav-list-group:first-child,
+.fe-side-nav-bar .fe-sidenav-list-group,
+
+.help-dialog .help-dialog-content
+{
+  color: #ccc !important;
+}
+
+geo-chart path
+{
+  stroke: #12121354;
+}
+.compare-terms .add-term-button .add-term-icon>svg,
+md-icon svg
+{
+  fill: #ccc;
+}
+
+*
+{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.list-image,
+
+.logo-container .sidenav-logo
+{
+  filter: invert() hue-rotate(195deg) saturate(5) brightness(1.5);
+ ;
+}
+}
+
+@-moz-document domain("translate.google.com") {
+/*Dark Scrollbar*/
+::-webkit-scrollba
+Applies tor { width: 10px; }
 ::-webkit-scrollbar-track { background: #fff0; }
 ::-webkit-scrollbar-thumb { background: #222; }
 ::-webkit-scrollbar-thumb:hover { background: #252525; }
@@ -1214,14 +1465,35 @@ img.gb_va
 {
     background: #2e2e2f !important;
 }
-
-.EHzcec *
-{
-  color: #ccc;
-}
 }
 
 @-moz-document regexp("[\\s\\S]+") {
+.EHzcec
+{
+    background: #363639;
+}
+
+.tX9u1b:hover,
+.NQV3m
+{
+    background: #2e2e2f !important;
+}
+
+.tX9u1b:hover .Rq5Gcb
+{
+  background: #0000;
+}
+
+.Rq5Gcb
+{
+  color: #ccc;
+}
+
+.EHzcec, .EHzcec *
+{
+  border: none !important;
+}
+
 .jfk-bubble
 {
   filter: invert(1) !important;
@@ -1236,5 +1508,4 @@ img.gb_va
 
   border-color: #e8e8e8 transparent;
 }
-
 }

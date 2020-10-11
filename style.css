@@ -141,7 +141,7 @@ Style Cards
 .styleData {
     background-color: #202020;
     border-radius: 15px;
-    min-width: 600px;
+    min-width: 300px;
     height: fit-content !important;
     box-sizing: border-box;
     color: #ccc;
