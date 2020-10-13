@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.2
+@version	1.0.3
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -275,7 +275,10 @@ footer, html.hcfe,
 
 .section-omnibox-spacer,
 
-.mfOzie
+.mfOzie,
+.gb_Ab.gb_Ab,
+
+.gb_a.gb_b-b
 {
     background: #2e2e2f !important;
 }
@@ -303,7 +306,13 @@ footer, html.hcfe,
 .jcukd .VfPpkd-Jh9lGc:before,
 
 .fFqfw .OXZ8S:hover, .fFqfw .OXZ8S:focus,
-.fFqfw .OXZ8S.qs41qe
+.fFqfw .OXZ8S.qs41qe,
+
+.gb_wb.gb_wb,
+.gb_Rb>.gb_Qb:hover,
+.gb_Ib.gb_Ib, .gb_Jb.gb_Jb,
+
+.gb_a.gb_b-b-c
 {
     background: #12121354 !important;
 }
@@ -669,7 +678,10 @@ d, .rsir2d,
 .P4z3kc .KJackd, .PH4Kgc,
 .Bd04C *,
 
-.tfB0Bf input[type="submit"], .gbqfba
+.tfB0Bf input[type="submit"], .gbqfba,
+
+.gb_l .gb_qb,
+.gb_5b
 {
     color: #ccc;
 }
@@ -1452,6 +1464,132 @@ img.gb_va
 }
 }
 
+@-moz-document domain("fonts.google.com") {
+/*Dark Scrollbar*/
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff0; }
+::-webkit-scrollbar-thumb { background: #222; }
+::-webkit-scrollbar-thumb:hover { background: #252525; }
+
+body, html,
+
+.full-page
+{
+  background: #3d3d3f;
+}
+
+.sticky-navbar-tab-bar[_ngcontent-tlm-c15],
+.collection-drawer-content[_ngcontent-tlm-c5],
+
+.menu-item.active-selection, .menu-item.active-selection:focus, .menu-item.active-selection:hover, .menu-item.mat-menu-item.active-selection, .menu-item.mat-menu-item.active-selection:focus, .menu-item.mat-menu-item.active-selection:hover
+{
+    background: #363639;
+}
+
+.gf-header-content,
+.sticky-header-fixed[_nghost-tlm-c14],
+
+[_nghost-tlm-c5],
+.review-card[_ngcontent-tlm-c9],
+
+.gmat-button .mat-button.text-only-menu-button[aria-expanded=true],
+.gmat-button .mat-button.text-only-menu-button:focus,
+.mat-menu-panel,
+
+.global-bar-fixed-to-top[_nghost-tlm-c38] .global-toolbar-top-area[_ngcontent-tlm-c38]
+{
+    background: #2e2e2f !important;
+}
+
+.gmat-button .mat-button.text-only-menu-button:hover,
+.gmat-button .mat-button.mat-primary:not([disabled]):hover, .gmat-button .mat-button.mat-secondary:not([disabled]):hover, .mat-icon-button.mat-primary:not([disabled]):hover, .mat-icon-button.mat-secondary:not([disabled]):hover,
+.custom-tab.mat-tab-label-active:hover, .nav__list-item .nav__link--active:hover,
+.custom-tab:hover, .nav__list-item .nav__link:hover,
+
+.code-block, .early-access-font>pre,
+
+.gmat-button .mat-button.outlined-menu-button:hover, .gmat-button .text-only-menu-button:hover,
+
+[_nghost-tlm-c41]
+{
+    background: #12121354 !important;
+}
+
+[_nghost-tlm-c14],
+.mat-tab-header
+{
+  background: #0000;
+}
+
+.specimen-variants-preview-variant[_ngcontent-tlm-c16] .font-render-wrapper[_ngcontent-tlm-c16]:before
+{
+  background: linear-gradient(to left, #3d3d3f 0%, transparent 100%);
+}
+
+body,
+.mat-drawer, .mat-drawer-container,
+
+.custom-tab.mat-tab-link, .nav__list-item .nav__link,
+
+.mat-title-text,
+
+.gmat-button .mat-button.outlined-menu-button:not([disabled]), .gmat-button .mat-button.text-only-menu-button:not([disabled]),
+
+.gmat-button .mat-button.mat-primary:not([disabled]):hover, .gmat-button .mat-button.mat-secondary:not([disabled]):hover, .mat-icon-button.mat-primary:not([disabled]):hover, .mat-icon-button.mat-secondary:not([disabled]):hover,
+.custom-tab.mat-tab-label-active:hover, .nav__list-item .nav__link--active:hover,
+
+.collection-drawer-header[_ngcontent-tlm-c5],
+.review-card__family-style[_ngcontent-tlm-c9],
+.collection-drawer-help-text[_ngcontent-tlm-c10],
+.code-block, .early-access-font>pre,
+
+.mat-menu-item
+{
+  color: #ccc;
+}
+
+.mat-secondary-text,
+.custom-tab:hover, .nav__list-item .nav__link:hover
+{
+  color: #999;
+}
+
+.mat-tab-link.mat-tab-label-active,
+.custom-tab.mat-tab-label-active:active, .nav__list-item .nav__link--active:active,
+.custom-tab.mat-tab-label-active:focus, .nav__list-item .nav__link--active:focus
+{
+  color: #1a73e8;
+}
+
+.centered[_nghost-tlm-c7] .icon[_ngcontent-tlm-c7]
+{
+  fill: #ccc;
+}
+
+*
+{
+  border-color:#0000 !important;
+  box-shadow: none !important;
+}
+
+.sticky-navbar-tab-bar[_ngcontent-tlm-c15]
+{
+  max-width: 100%;
+}
+
+.is-collection-expanded .gf-sticky-header.sticky-header-fixed, .is-collection-expanded .sticky-header-fixed+.sticky-header-contained-content .sticky-navbar 
+{
+    padding-right: 300px;
+    padding-left: 0px;
+}
+
+.lockup-logo 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+    mix-blend-mode: color-dodge;
+}
+}
+
 @-moz-document domain("ogs.google.com") {
 .NQV3m,
 
@@ -1463,6 +1601,77 @@ img.gb_va
 .EHzcec
 {
     background: #2e2e2f !important;
+}
+}
+
+@-moz-document url-prefix("https://docs.google.com/picker?") {
+/*Dark Scrollbar*/
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff0; }
+::-webkit-scrollbar-thumb { background: #222; }
+::-webkit-scrollbar-thumb:hover { background: #252525; }
+
+body, html
+{
+  background: #3d3d3f;
+}
+
+.d-u-Q,
+.ve-Ym-kf-Ym-mh,
+
+.ve-Ai-Ve .ve-Bi-Zb-ie
+{
+    background: #363639;
+}
+
+.ve-Ei-ie,
+
+.ve-Gf-ie
+{
+    background: #2e2e2f !important;
+}
+
+.d-Rb
+{
+    background: #12121354 !important;
+}
+
+body,
+
+.ve-Bi-Zb-Ci-Yb-ih .a-Ci-w,
+.ve-Bi-Zb-Ci-Yb-ih .a-Ci, .ve-Bi-Zb-Ci-Yb-ih .a-kb-u,
+
+.d-u-Q,
+
+.ve-Ym-kf,
+.ve-Ym-kf-cb,
+
+.d-Rb
+{
+  color: #ccc !important;
+}
+
+.ve-vn-yi .ve-wj-yi
+{
+  color: #999;
+}
+
+.ve-Ai-Ve .ve-Bi-Zb-ie,
+.ve-Ym-kf, .ve-Ym-kf-Ym-mh,
+
+.d-Rb,
+
+.ve-Ei-ie
+{
+  border-color: #0000 !important;
+  box-shadow: none !important;
+}
+
+.ve-Fo.ve-Wg-Qd-Go .ve-rj-xl-Ye-Ak,
+.ve-fk-db-Ci
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+    mix-blend-mode: color-dodge;
 }
 }
 
@@ -1507,4 +1716,6 @@ img.gb_va
 
   border-color: #e8e8e8 transparent;
 }
+
+/*Old regex? [\\s\\S]*/
 }
