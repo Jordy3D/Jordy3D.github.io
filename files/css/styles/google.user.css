@@ -1590,6 +1590,322 @@ body,
 }
 }
 
+@-moz-document domain("mail.google.com") {
+/*Dark Scrollbar*/
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff0; }
+::-webkit-scrollbar-thumb { background: #222; }
+::-webkit-scrollbar-thumb:hover { background: #252525; }
+
+body, html,
+#loading,
+
+.aAT, .aAU,
+.aeJ, .iY .Bu,
+
+.zE,
+
+div.Kj-JD,
+
+.UG,
+
+.r4
+{
+  background: #3d3d3f;
+}
+
+.aeH,
+
+.J-M,
+
+.aKh,
+
+.ajA,
+
+.Tm .ya,
+
+.ah.aiv
+{
+    background: #363639;
+}
+
+.w-asV,
+.aj5.J-KU-J,
+
+.bkL>.no,
+
+.yO,
+
+.brC-aT5-aOt-Jw,
+
+.iM3vKf,
+
+.bhZ.bym, .bhZ.bjB,
+
+.IU,
+
+.aaZ,
+
+.iN tbody
+{
+    background: #2e2e2f !important;
+}
+
+.gb_5e,
+.ZF-z6, .ZF-zT, .ZF-Av .lJ, .ZF-Av .lN,
+
+.ah .Jd-Je,
+
+.Hy .m
+{
+  background: #252526;
+}
+
+.as .at
+{
+  background: #252526 !important;
+}
+
+.qY,
+
+.TO.NQ, .n6 .ah9:hover, .n6 .ah9.aiu:hover, .n6 .ah9:focus, .CL.NQ, .CL:hover, .CL:focus,
+
+.J-N-JT, .J-N-JW,
+
+.z0>.L3,
+
+.brC-dA-I.aT5-aOt-I-Jp.aT5-aOt-I-JW .aT5-aOt-I-JX-atM, .brC-aMv-bta .brC-dA-I.aT5-aOt-I-Jp.aT5-aOt-I-JW .aT5-aOt-I-JX-atM,
+.brC-dA-I.aT5-aOt-I-Jp .aT5-aOt-I-JX-atM, .brC-aMv-bta .brC-dA-I.aT5-aOt-I-Jp .aT5-aOt-I-JX-atM,
+.aT5-aOt-I-JW .aT5-aOt-I-JX-atM, .aT5-aOt-I-Kq .aT5-aOt-I-JX-atM, .brC-aMv-bta .aT5-aOt-I-KO .aT5-aOt-I-JX-atM, .brC-aMv-bta .aT5-aOt-I-JO .aT5-aOt-I-JX-atM,
+
+.amn>.ams,
+
+.aj5.J-KU-Jg,
+
+.bra,
+
+.boo .nr, .boo .nr:focus,
+
+.vR>.vN
+{
+    background: #12121354 !important;
+}
+
+.apc .aeZ, .apc .ae0
+{
+    background: #a8a8b07d !important;
+}
+
+.x7
+{
+    background: #6132143d !important;
+}
+
+.wT>.n3 .byl:first-child .aim:first-child .nZ
+{
+    background-color: #2d1f1e;
+}
+.TK .TO:active, .n6 .ah9.aiu:active, .CL:active, .TO.nZ, .TO.ol
+{
+    background-color: #1f1e2d;
+}
+
+.nr,
+
+.hx .ii *[style*="#fff"],
+
+.TD,
+
+.aoP .Ar, div.ajR, .Ap, .Am, .aoT,
+
+.vO
+{
+  background: #0000 !important;
+}
+
+body, body.td .kr, ::placeholder,
+
+.ha>.hP,
+.hx, .vU,
+
+.YI, .YV,
+.TO .nU>.n0, .TO.NQ .nU>.n0, .TO.nZ .nU>.n0, .ah9>.CJ, .n3>.CL>.CK,
+
+.zE,
+
+.Di>.amH *,
+.J-N, .J-N-JT *,
+
+.z0>.L3,
+
+div.Kj-JD-Jz,
+
+.apf, .apb,
+
+.hx .gD,
+
+.amn>.ams,
+
+.gb_5e *,
+.boo .nr, .boo .nr:focus,
+.boo .aQl>.J-JN-M-I-Jm, .boo .aaa>.J-JN-M-I-Jm, .boo .ZE>.J-JN-M-I-Jm,
+.bs1+.bs3, .btj+.aD,
+
+span.Kj-JD-K7-K0,
+
+.TD,
+
+.Q0,
+.OG, .Q2, .Vo, .Q5, .ST,
+
+.as .at,
+
+.aoT, .Am,
+.aiv .aq, .aiv .am>.ao5,
+.az9,
+
+.vO,
+
+.dt
+{
+  color: #ccc !important;
+}
+
+.aKx>.aKz,
+
+.aKw>.aKs
+{
+  color: #ccc;
+}
+
+.yO,
+.J-N-JE .J-N-atj, .J-N-JE .J-N-Jz, 
+.J-KU-JW:not(.aDO) .aKz,
+
+.go, .ig .g3, .hI .g3, .iv .g3,
+
+.hx .ii *
+{
+  color: #999 !important;
+}
+
+.ii a[href],
+.r7 .e, .sA
+{
+    color: #786df1 !important;
+}
+.ii a[href]:visited, a:visited
+{
+    color: #ba55ed;
+}
+
+.hx .ii *[style*="color:#444"],
+.ii a[href][style*="#fff"]
+{
+  color: #ccc !important;
+}
+
+*,
+
+.aj5.J-KU-Jg
+{
+  border-color: #0000 !important;
+  box-shadow: none !important;
+}
+
+.brC-aT5-aOt-Jw,
+
+.IU
+{
+  border-left: 1px solid #12121354 !important;
+}
+.aeN
+{
+  border-right: 1px solid #12121354 !important;
+}
+
+.Hy .m
+{
+  border: 1px solid #12121354 !important;
+}
+
+.I5 .fX, .I5 .hl, .I5 .az6
+{
+  border-bottom: 1px solid #ccc2 !important;
+}
+
+.vO
+{
+  border: 1px solid #ccc2 !important;
+}
+
+.boo .nr, .boo .nr:focus
+{
+  border-radius: 25px;
+}
+
+.QZ, .Vm, .XK
+{
+  border-radius: 10px;
+}
+
+.tl,
+.T-KT, .T-I .T-I-J3,
+
+.aAy>.aKp
+{
+    filter: invert(1) hue-rotate(180deg) saturate(4) brightness(1);
+}
+
+.nZ>.aHS-bnt .qj, .aHS-bnt .qj::before,
+
+.Vo::before,
+
+.QZ, .Vm, .XK
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+}
+
+
+.zA>td.oZ-x3,
+.zA>.xY.bq4,
+.zA>.WA
+{
+    filter: invert(1) hue-rotate(185deg) saturate(4) brightness(2);
+}
+
+.qr,
+
+.G-Ni .T-Jo, .d-Na-JX-I, .asa.bjy,
+
+.ams.bkH::before, .ams.bkG::before,
+.ha .pH-A7, .ha .aoj, .ajy>.ajz,
+
+.aj5.J-KU-Jg-Zc .J-KU,
+
+.T-axO .J-JN-M-I-JG,
+.bs5::after,
+.bs1+.bs3::before, .btj+.aD::before,
+
+.n4 .G-asx, .apG>.G-asx,
+.bhZ:not(.bym) .Y5 .YV, .bhZ:not(.bym) .Zk .YV, 
+.bhZ:not(.bym) .aND .YI,
+
+span.Kj-JD-K7-Jq,
+.SV, .OB,
+
+.J-N > div > div,
+
+.zA>.yf,
+
+.J-Z-I-J6-H, .J-Z-M-I-J6-H,
+
+.vN.bfK.a3q .vM
+{
+    filter: invert(1) brightness(4);
+}
+}
+
 @-moz-document domain("ogs.google.com") {
 .NQV3m,
 
