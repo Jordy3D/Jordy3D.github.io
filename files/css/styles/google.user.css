@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.3
+@version	1.0.4
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -145,7 +145,11 @@ g-inner-card, .qmv19b,
 .NnEw9,
 .EkeHle,
 
-.Bd04C
+.Bd04C,
+
+.MGqjK,
+
+.act-switch-area, .act-tim-fs-cnt:fullscreen
 {
     background: #363639;
 }
@@ -278,9 +282,21 @@ footer, html.hcfe,
 .mfOzie,
 .gb_Ab.gb_Ab,
 
-.gb_a.gb_b-b
+.gb_a.gb_b-b,
+
+.LpN4Jc,
+.uVGhGc,
+
+.gWUzU,
+
+#act-card
 {
     background: #2e2e2f !important;
+}
+
+.X61Xb select
+{
+    background-color: #2e2e2f !important;
 }
 
 .aajZCb,
@@ -312,9 +328,20 @@ footer, html.hcfe,
 .gb_Rb>.gb_Qb:hover,
 .gb_Ib.gb_Ib, .gb_Jb.gb_Jb,
 
-.gb_a.gb_b-b-c
+.gb_a.gb_b-b-c,
+
+.FAl3Ic,
+
+.WpKAof:hover,
+
+.fw-ch-sel .KWk7r.qUjgX
 {
-    background: #12121354 !important;
+    background-color: #12121354 !important;
+}
+
+.WGYX8
+{
+    background: #12121354;
 }
 
 #kbqVne, #XOyNzd,
@@ -404,7 +431,15 @@ div.sfbg, div.sfbgg,
 
 .BA0A6c,
 
-.n3VNCb, .qdnLaf
+.n3VNCb, .qdnLaf,
+
+.HskPDe, .dr1yeb,
+.Z8r5Gb,
+
+.hqwb1b,
+.uWmgv,
+
+.act-tim-txt-cnt *
 {
     background: none !important;
 }
@@ -420,7 +455,8 @@ body > #searchform > div.sfbg,
 .EsIlz,
 
 .Y92sLc, .ZbgEX,
-.MXl0lf
+.MXl0lf,
+.R9zNe, .uWmgv
 {
   background: #2e2e2f !important;
 }
@@ -681,7 +717,26 @@ d, .rsir2d,
 .tfB0Bf input[type="submit"], .gbqfba,
 
 .gb_l .gb_qb,
-.gb_5b
+.gb_5b,
+
+.lQ6Auc, .O43kK,
+.WGYX8,
+.QsV5nc .yF4Rkc,
+.FAl3Ic *,
+.n5o6rd,
+
+.cfBJGe,
+
+.esuhec, .PVsnzc, .fUflyc,
+.VJwspe,
+
+.LMMXP,
+.mus_tt17,
+.NDTw3e.K7R36c,
+
+.hqwb1b,
+
+.act-tim-txt-cnt
 {
     color: #ccc;
 }
@@ -757,7 +812,11 @@ div.knowledge-panel.kp-blk .mod *,
 
 .xoSnVb, .eOrBxe, .afwNad, .YXluh, .a9H3ec,
 
-.hcfe input, .hcfe select, .hcfe textarea
+.hcfe input, .hcfe select, .hcfe textarea,
+
+.xt8Uw, .aKcFGd,
+
+.Ak3kIe *
 {
     color: #ccc !important;
 }
@@ -786,13 +845,14 @@ div.knowledge-panel.kp-blk .mod *,
 .clm-ob-xaxis-label, .clm-ob-label-under, .clm-ob-label-above,
 .clm-ob-xaxis-lgnd-lbl, .clm-ob-clm-label, .clm-ob-extra-xaxis-label,
 
-.H1KrKd, .H1KrKd.KKjvXb
+.H1KrKd, .H1KrKd.KKjvXb,
+
+.YIMUJb
 {
   fill: #ccc;
 }
 
 .clm-ob-min-series-fill,  .clm-ob-max-series-fill
-
 {
   fill: #363639;  
 }
@@ -896,6 +956,11 @@ li.sbsb_c:first-child .sbse,
   border-bottom-color: #363639;
 }
 
+.act-active-tab 
+{
+    border-bottom: 2px solid #4285f4 !important;
+}
+
 .section-directions-trip.selected:before
 {
     border-color: #3367d6;
@@ -962,7 +1027,9 @@ div.sfbg
     border-radius: 0 50% 50% 0;
 }
 
-#rhs .OOijTb .kno-vrt-t  .BA0A6c > img
+#rhs .OOijTb .kno-vrt-t  .BA0A6c > img,
+
+.F0ivUc img
 {
   border-radius: 50%;
 }
@@ -1020,9 +1087,17 @@ div.sfbg
     filter: invert(1);
 }
 
+.qFRZdb .LsYFnd
+{
+  filter: unset !important;
+}
+
 .google-logo,
 
-.t50xE
+.t50xE, .D1MTm,
+
+.act-hide, .act-tim-sep.act-hide,
+#act-tab-header .act-icon-img
 {
   filter: invert() hue-rotate(195deg) saturate(5) brightness(1.5);
 }
@@ -1045,7 +1120,9 @@ div.sfbg
   padding-left: 10px;
 }
 
-#tsuid6 .xpdxpnd
+#tsuid6 .xpdxpnd,
+
+.xpdxpnd img
 {
   filter: invert() brightness(3);
   mix-blend-mode: exclusion;
@@ -1686,7 +1763,9 @@ div.Kj-JD,
 
 .boo .nr, .boo .nr:focus,
 
-.vR>.vN
+.vR>.vN,
+
+.hx .ii *[style*="#faf"], .hx .ii *[bgcolor*="#faf"], .hx .ii *[style*="#ecf5fb"],  .hx .ii *[bgcolor*="#f1f"], .hx .ii *[style*="fef"]
 {
     background: #12121354 !important;
 }
@@ -1712,7 +1791,7 @@ div.Kj-JD,
 
 .nr,
 
-.hx .ii *[style*="#fff"],
+.hx .ii *[style*="#fff"], .hx .ii *[bgcolor*="#fff"], .hx .ii *[style*="#f7f"], .hx .ii *[bgcolor*="#f8f"], .hx .ii *[style*="#f9f"], .hx .ii *[bgcolor*="#f9f"],  .hx .ii *[style*="email"], .hx .ii *[style*="#f2f"], .hx .ii *[style*="#f3f"] *, .hx .ii *[style*="#f3f"], .hx .ii *[style*="f9f"], .hx .ii *[style*="f6f"],  .hx .ii *[style*="white"],  .hx .ii *[bgcolor*="#edf"],  .hx .ii *[bgcolor*="#eee"],
 
 .TD,
 
@@ -1720,7 +1799,7 @@ div.Kj-JD,
 
 .vO
 {
-  background: #0000 !important;
+  background-color: #0000 !important;
 }
 
 body, body.td .kr, ::placeholder,

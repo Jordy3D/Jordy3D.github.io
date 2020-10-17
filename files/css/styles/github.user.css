@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           GitHub Dark by Bane
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version		1.0.2
+@version		1.0.3
 @description    Dark mode for GitHub
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -18,7 +18,9 @@ body, html,
 
 .Box-row--focus-gray.navigation-focus,
 
-.page-responsive .previewable-comment-form .comment-form-head.tabnav
+.page-responsive .previewable-comment-form .comment-form-head.tabnav,
+
+.TimelineItem-break
 {
   background: #36393F;
 }
@@ -132,6 +134,8 @@ article .border-bottom,
 .TimelineItem:before,
 .TimelineItem-badge,
 
+.pinned-item-checkbox:checked+.pinned-item-name,
+
 
 .gitzip-header
 {
@@ -148,7 +152,10 @@ article .border-bottom,
 .cm-s-github-light .CodeMirror-gutters,
 
 .tabnav-tab.selected, .tabnav-tab[aria-current]:not([aria-current=false]), .tabnav-tab[aria-selected=true],
-.page-responsive .previewable-comment-form .comment-form-head.tabnav .toolbar-commenting
+.page-responsive .previewable-comment-form .comment-form-head.tabnav .toolbar-commenting,
+
+.bg-purple-light,
+.js-support-banner
 {
     background: #2F3136 !important;
 }
@@ -173,7 +180,11 @@ article .border-bottom,
 
 .AvatarStack-body,
 
-.new-discussion-timeline .text-right
+.new-discussion-timeline .text-right,
+
+.article-grid-toc.border-bottom.border-xl-0.pb-4.mb-5.pb-xl-0.mb-xl-0,
+
+.d-flex.flex-wrap.bg-gray
 {
   background: #0000 !important;
 }
@@ -203,6 +214,11 @@ article div[style*="background: linear-gradient(to top, rgba(255,255,255,1), rgb
 .blob-code-deletion
 {
     background-color: #571f258a;  
+}
+
+.extended-markdown.warning
+{
+    background-color: #571f258a !important;  
 }
 
 .blob-num-addition {
@@ -294,6 +310,15 @@ body, input, textarea, select,
 
 .branch-name,
 
+.graph-canvas .activity,
+
+.pinned-item-name,
+
+.markdown-body .lead-mktg p,
+.token-scope,
+
+
+
 .gitzip-check-mark, .gitzip-header
 {
   color: #ccc !important;
@@ -377,7 +402,9 @@ a.branch-name,
 
 .commit-ref,
 
-.btn-link
+.btn-link,
+
+h3 a
 {
   color: #94b1ff;
 }
@@ -429,7 +456,12 @@ a.branch-name,
 }
 
 .markdown-body blockquote {
-    border-left: .25em solid #dfe2e5 !important;
+    border-left: .25em solid #18181982 !important;
+}
+
+.TimelineItem-break
+{
+  border-top-color: #18181982 !important
 }
 
 .dropdown-menu:after,
@@ -444,7 +476,17 @@ a.branch-name,
   margin: 0 !important;
 }
 
-.pagination-loader-container
+.octicon.octicon-mark-github.CircleBadge-icon.text-white
+{
+  fill: #000;
+}
+
+.pagination-loader-container,
+
+.news .commits li img,
+.CircleBadge-icon,
+
+.github-jobs-logo strong
 {
   filter: invert(1) brightness(1.5);
     mix-blend-mode: screen;
