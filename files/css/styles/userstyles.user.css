@@ -1,13 +1,13 @@
 /* ==UserStyle==
 @name           UserStyles, how it should have been
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.0
+@version	1.0.1
 @description    Dark mode for UserStyles
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
 ==/UserStyle== */
 
-@-moz-document domain("userstyles.org") {
+@@-moz-document domain("userstyles.org") {
 /*Dark Scrollbar*/
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #f3000000; }
@@ -160,6 +160,11 @@ tr > td.obsolete
 {
   font-size: 30px;
   content: "Let's create a style!";
+}
+
+#header, .navigation .links-box .navigation-link:hover, #stylish-code, #footer, thead, .author-styles, input, textarea, select, .white_button:hover
+{
+  max-width: 100%;
 }
 
 #footer .logo,

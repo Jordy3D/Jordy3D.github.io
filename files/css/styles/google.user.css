@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.4
+@version	1.1.6
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -43,7 +43,9 @@ form .RNNXgb,
 .widget-pane-visible,
 
 .hcfe, [data-page-type="SUPPORT_FORUM_THREAD"] .hcfe,
-.page
+.page,
+
+.lcorif
 {
     background: #3d3d3f;
 }
@@ -149,7 +151,11 @@ g-inner-card, .qmv19b,
 
 .MGqjK,
 
-.act-switch-area, .act-tim-fs-cnt:fullscreen
+.act-switch-area, .act-tim-fs-cnt:fullscreen,
+
+.sh-dlr__list-result,
+
+.k8XOCe
 {
     background: #363639;
 }
@@ -289,7 +295,11 @@ footer, html.hcfe,
 
 .gWUzU,
 
-#act-card
+#act-card,
+
+.gstl_50 .sbdd_b, .wwfboe,
+
+.BYb9Nc
 {
     background: #2e2e2f !important;
 }
@@ -334,7 +344,12 @@ footer, html.hcfe,
 
 .WpKAof:hover,
 
-.fw-ch-sel .KWk7r.qUjgX
+.fw-ch-sel .KWk7r.qUjgX,
+
+.oLLmo,
+.WGYX8:hover,
+
+.tw-bilingual-marked
 {
     background-color: #12121354 !important;
 }
@@ -372,7 +387,9 @@ footer, html.hcfe,
 .gb_Ec,
 
 .Gxz0Fe, .EASEnb:link, .EASEnb:visited,
-.e3sOrb
+.e3sOrb,
+
+.mWyH1d
 {
     background-color: #363639 !important;
 }
@@ -439,7 +456,9 @@ div.sfbg, div.sfbgg,
 .hqwb1b,
 .uWmgv,
 
-.act-tim-txt-cnt *
+.act-tim-txt-cnt *,
+
+.gb_Rc .gb_5e, .gb_be .gb_5e
 {
     background: none !important;
 }
@@ -736,7 +755,23 @@ d, .rsir2d,
 
 .hqwb1b,
 
-.act-tim-txt-cnt
+.act-tim-txt-cnt,
+
+.mDj5wd,
+
+.BYb9Nc,
+#rhs .nGydZ .garHBe,
+
+.VUGnzb,
+.wrsf, .WGYX8:hover,
+.QV3IV, .Jtu6Td,
+
+.U9URNb,
+.QXzCSe,
+.tw-bilingual-pos,
+.SvKTZc,
+.MaH2Hf,
+.gt-is-sg
 {
     color: #ccc;
 }
@@ -816,7 +851,8 @@ div.knowledge-panel.kp-blk .mod *,
 
 .xt8Uw, .aKcFGd,
 
-.Ak3kIe *
+.Ak3kIe *,
+.k4DMHe .xXEKkb
 {
     color: #ccc !important;
 }
@@ -936,9 +972,20 @@ li.sbsb_c:first-child .sbse,
   height: 100%;
 }
 
-.gstl_50 .sbdd_b
+.wwfboe
+{
+  width: 100%;
+}
+
+.gstl_50 .sbdd_b,
+.wwfboe
 {
     padding: 0;
+}
+
+.dfiEbb
+{
+  padding: 0 16px 16px 16px !important; 
 }
 
 .sh-dp__arrow,
@@ -1046,6 +1093,11 @@ div.sfbg
   overflow: hidden !important;
 }
 
+.gmYxHe svg
+{
+  fill: #ccc;
+}
+
 .bw4eZb, .YRQ7vd,
 .gfGtvb, .ZfDFMe .SUEuld,
 .gb_y .gb_z,
@@ -1128,10 +1180,18 @@ div.sfbg
   mix-blend-mode: exclusion;
 }
 
+.aXBZVd
+{
+  background-color: #0000 !important;
+    filter: invert() !important;
+}
+
 .gws-flights__hero-header img,
 .gpcwnc.TbgiRe .lM3nGb,
 .StYgtd,
-.soKt7b
+.soKt7b,
+
+#dimg_13
 {
   mix-blend-mode: screen;
     filter: invert(1) hue-rotate(195deg) saturate(2) brightness(2);
@@ -1140,6 +1200,332 @@ div.sfbg
 .section-info-action-icon-button:last-of-type
 {
   background-image: linear-gradient(to right,rgba(247,247,247,0) 0px,#363639 24px);
+}
+}
+
+@-moz-document domain("docs.google.com") {
+/*Dark Scrollbar*/
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #ff090900; }
+::-webkit-scrollbar-thumb { background: #222; }
+.docs-gm ::-webkit-scrollbar-thumb { background: #222; }
+::-webkit-scrollbar-thumb:hover { background: #252525; }
+.docs-gm ::-webkit-scrollbar-thumb:hover { background: #252525; }
+
+body::-webkit-scrollbar-track-piece { background: #ff090900; }
+
+
+body, html,
+
+.docs-gm .goog-menuitem.goog-menuitem-highlight,
+
+
+#docs-instant-button-bubble,
+
+.docs-gm .modal-dialog, .docs-gm .docs-offline-optinpromo.jfk-bubble, .docs-gm .docs-sync-indicator-popup.jfk-bubble,
+.modal-dialog-title, .modal-dialog-content,
+
+/* Docs */
+.docs-homescreen-container,
+
+.docs-gm #docs-editor, .docs-gm #docs-editor-container,
+
+.docs-gm #kix-vertical-ruler,
+.docs-gm .docs-horizontal-ruler,
+
+/* Slides */
+.docs-gm #workspace-container,
+.docs-gm #sketchy-horizontal-ruler,
+.docs-gm #sketchy-vertical-ruler,
+
+.docs-gm .grid-view .punch-filmstrip-scroll
+{
+  background: #3d3d3f;
+}
+
+.docs-gm #docs-toolbar-wrapper,
+
+.docs-gm .docos-anchoreddocoview,
+.docos-anchoreddocoview .docos-replyview-first.docos-anchoredreplyview,
+.docs-gm .docos-anchoredreplyview, .docs-gm .docos-showrepliesbutton, .docs-gm .docos-anchoreddocoview-input-pane,
+.docs-gm .docos-anchoreddocoview .docos-show-more, .docs-gm .docos-anchoreddocoview .docos-show-less, .docs-gm .docos-anchoreddocoview.docos-docoview-active .docos-show-more, .docs-gm .docos-anchoreddocoview.docos-docoview-active .docos-show-less, .docs-gm .docos-replyview-first .docos-show-more, .docs-gm .docos-anchoreddocoview.docos-docoview-tesla-conflict:hover .docos-show-more,
+
+/* Docs */
+.docs-homescreen-floater-header, .docs-homescreen-floater-header-shadow,
+.docs-homescreen-list-item,
+
+.docs-homescreen-grid-item,
+
+.gb_Fc,
+
+/* Slides */
+.docs-gm .filmstrip,
+
+#speakernotes
+{
+    background: #363639;
+}
+
+#docs-chrome,
+.docs-material #docs-header .docs-titlebar-buttons,
+.goog-menu,
+
+/* Docs */
+/*Good stuff*/
+/*.docs-gm #docs-editor *[style*="background-color: rgb(255, 255, 255)"],*/
+.companion-app-switcher-container,
+.docs-companion-app-switcher-container,
+
+header.gb_ta,
+.docs-homescreen-templates-bar,
+
+.gb_Rc,
+
+/* Sheets */
+.grid-container,
+
+/* Slides */
+#speakernotes-dragger
+{
+    background: #2e2e2f !important;
+}
+
+.docs-title-input,
+.docs-gm .docs-menubar .goog-control-hover,
+.goog-toolbar-combo-button-input:focus,
+
+.docs-material .goog-toolbar-button, .docs-material .goog-toolbar-combo-button, .docs-material .goog-toolbar-menu-button,
+
+.docs-explore-widget,
+
+.app-switcher-button-hover .app-switcher-button-icon-background, .app-switcher-button-open .app-switcher-button-icon-background, .companion-theme-light .app-switcher-button-selected .app-switcher-button-icon-background, .companion-theme-light .app-switcher-button-focused .app-switcher-button-icon-background,
+.companion-collapser-button.app-switcher-button-checked .app-switcher-button-icon-background, .companion-theme-light .companion-collapser-button.app-switcher-button-checked .app-switcher-button-icon-background,
+
+.docs-parent-collections-container:hover, .docs-parent-collections-container:focus,
+
+/* Docs */
+.gb_6e,
+.docs-homescreen-list-item.goog-control-hover, .docs-homescreen-list-item.goog-control-focused,
+.docs-homescreen-owner-filter-button,
+
+/* Slides */
+.docs-gm .docs-material #punch-start-presentation-right.goog-flat-menu-button,
+.docs-gm #filmstrip-controls
+{
+    background: #12121354 !important;
+}
+
+#docs-instant-button-bubble:hover,
+
+.punch-filmstrip-controls-active-indicator::after
+{
+  background: #6d6d6f;
+}
+
+
+.outline-refresh #navigation-widget-bottom-fade 
+{
+    background: linear-gradient(rgba(255, 255, 255, 0) 0%, #363639 100%);
+}
+
+.outline-refresh:not([class*="docs-hc"]) #navigation-widget-top-shadow::after {
+    background: linear-gradient(270deg, #363639 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.docs-ruler-background-inner
+{
+    background: #787878 !important;
+}
+
+.punch-start-presentation-container
+{
+  background: #035a03 !important;
+}
+
+/* Docs */
+.docs-homescreen-grid-header, .docs-homescreen-list-header,
+
+.docs-homescreen-floater-header-cell .docsshared-menu-bubble,
+
+.docs-homescreen-material-bar-enabled .docs-homescreen-leftmenu,
+
+/* Slides */
+.docs-gm .docs-material #punch-start-presentation-left.jfk-button
+{
+  background: #0000 !important;
+}
+
+body, ::placeholder,
+
+/*Good stuff*/
+/**[style*="000"],*/
+
+.docs-parent-collections-container-prefix, .docs-parent-collections-container-text,
+.docs-parent-collections-container-folder-name,
+
+.docs-material-gm-labeled-checkbox .docs-material-gm-labeled-checkbox-label,
+
+/* Docs */ 
+#docs-chrome,
+.docs-title-input,
+.docs-gm .docs-menubar .goog-control,
+.docs-material .goog-toolbar-button, .docs-material .goog-toolbar-combo-button, .docs-material .goog-toolbar-menu-button,
+.docs-material .goog-toolbar-combo-button-input,
+.goog-menu *,
+
+.docs-gm #kix-vertical-ruler *,
+.docs-gm .docs-horizontal-ruler *,
+
+.docs-gm .docos-anchoredreplyview-header .docos-anchoredreplyview-author,
+.docs-gm .docos-anchoredreplyview-header .docos-anchoredreplyview-timestamp,
+.docs-gm .docos-anchoredreplyview .docos-anchoredreplyview-body,
+
+.outline-refresh .navigation-item.goog-button-hover,
+.docs-explore-widget-text,
+
+.modal-dialog-title *, .modal-dialog-content,
+
+.gb_ta,
+.docs-homescreen-grid-header, .docs-homescreen-list-header,
+.docs-homescreen-floater-header,
+.docs-homescreen-list-item,
+
+.docs-homescreen-owner-filter-button,
+.docs-homescreen-grid-item,
+.docs-homescreen-grid-item-title,
+
+/* Slides */
+#speakernotes *,
+.docs-gm .docs-material #punch-start-presentation-left.jfk-button
+{
+  color: #ccc !important;
+}
+
+.outline-refresh .navigation-item, .outline-refresh .navigation-widget-empty-content
+{
+  color: #999;
+}
+
+.outline-refresh .location-indicator-highlight.navigation-item,.outline-refresh .location-indicator-highlight.navigation-item *
+{
+  color: #1a73e8;
+  font-weight: 700 !important;
+}
+
+*[style="red"],
+
+#docs-chrome *,
+.companion-app-switcher-container,
+
+/* Docs */
+
+.docs-gm #kix-vertical-ruler,
+.docs-gm .docs-horizontal-ruler,
+
+#docs-instant-button-bubble,
+
+.docs-explore-widget,
+
+.docs-homescreen-list-item.goog-control-hover, .docs-homescreen-list-item.goog-control-focused,
+
+.docsshared-menu-bubble,
+.docs-homescreen-item-section .docsshared-menu-bubble,
+
+.docs-homescreen-grid-item,
+
+/* Slides */
+#speakernotes-dragger,
+
+.punch-start-presentation-container *,
+.docs-gm .docs-material #punch-start-presentation-left.jfk-button,
+.docs-gm .docs-material #punch-start-presentation-right.goog-flat-menu-button,
+
+#filmstrip-controls,
+
+.docs-gm .canvas
+{
+  border-color: #0000 !important;
+  box-shadow: none !important;
+}
+
+.goog-menu
+{
+  border: 2px solid #3d3d3f !important;
+}
+
+.docs-homescreen-list-item,
+.docs-homescreen-list-item-icon
+{
+  border-bottom-color: #3d3d3f
+}
+
+.kix-cursor-caret
+{
+  border-color: #ccc !important;  
+}
+
+.docs-gm #punch-start-presentation-right .goog-flat-menu-button-dropdown
+{
+  border-color: #ccc #0000 !important;  
+}
+
+.docs-explore-icon *,
+
+/* Slides */
+.docs-gm .punch-filmstrip-selected-thumbnail-pagenumber,
+.docs-gm .punch-filmstrip-thumbnail-pagenumber,
+
+#speakernotes *,
+.sketchy-text-content-text > text,
+.punch-filmstrip-controls .punch-filmstrip-controls-icon *[fill*="000"]
+{
+  fill: #ccc !important;
+}
+/* Slides */
+.punch-filmstrip-thumbnail-background[fill*="feefc3"]
+{
+  fill: #2e2e2f;
+}
+
+.docs-gm .punch-filmstrip-thumbnail-border,
+.punch-filmstrip-thumbnail-border-inner
+{
+  stroke: #2e2e2f;
+}
+
+.docs-homescreen-list-item.goog-control-hover, .docs-homescreen-list-item.goog-control-focused
+{
+  border-radius: 0;
+}
+.docs-homescreen-list-item.goog-control-hover, .docs-homescreen-list-item.goog-control-focused
+{
+  outline: 0;
+}
+
+.docos-icon-img::before,
+
+.docs-gm #punch-start-presentation-left .docs-icon,
+
+.goog-menu .goog-option-selected .goog-menuitem-checkbox
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(5);
+}
+
+/*Good stuff*/
+.kix-zoomdocumentplugin-outer
+{
+  filter: invert(1) hue-rotate(190deg) saturate(1.3) brightness(1.5);
+}
+
+.kix-embeddedobject-view
+{
+  filter: invert(1) hue-rotate(180deg) saturate(1.3) brightness(1) !important;
+}
+
+.docs-homescreen-floater-header-cell .docsshared-menu-bubble,
+.docs-homescreen-item-section .docsshared-menu-bubble
+{
+  filter: invert(0) !important;
 }
 }
 
@@ -1723,7 +2109,10 @@ div.Kj-JD,
 
 .aaZ,
 
-.iN tbody
+.iN tbody,
+
+.IG,.GQ,
+.HM .aDi::after
 {
     background: #2e2e2f !important;
 }
@@ -1797,7 +2186,9 @@ div.Kj-JD,
 
 .aoP .Ar, div.ajR, .Ap, .Am, .aoT,
 
-.vO
+.vO,
+
+.aC3,.HM .aDi::after
 {
   background-color: #0000 !important;
 }
@@ -1979,7 +2370,12 @@ span.Kj-JD-K7-Jq,
 
 .J-Z-I-J6-H, .J-Z-M-I-J6-H,
 
-.vN.bfK.a3q .vM
+.vN.bfK.a3q .vM,
+
+.hB, .mL,
+.SB,
+.Un::after,
+div.ajR .ajT, .Xv.T-I.J-JN-M-I>.J-JN-M-I-JG
 {
     filter: invert(1) brightness(4);
 }
