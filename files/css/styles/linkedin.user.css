@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           LinkedDark
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.0
+@version	1.0.16
 @description    Dark mode for LinkedIn
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -83,7 +83,11 @@ artdeco-dropdown-content,
 .msg-form, .msg-form__attachment-drag-and-drop,
 .msg-form__compose-error, .msg-form__footer,
 
-.comments-comment-item-content-body, .comments-highlighted-comment-item-content-body, .comments-reply-item-content-body, .comments-post-meta__profile-link
+.comments-comment-item-content-body, .comments-highlighted-comment-item-content-body, .comments-reply-item-content-body, .comments-post-meta__profile-link,
+
+.reader, .reader-author-info__container,
+
+.author-info
 {
     background: #162228 !important;
 }
@@ -204,7 +208,10 @@ artdeco-dropdown-item:not([disabled]):focus, artdeco-dropdown-item:not([disabled
 
 .comments-comments-list,
 
-.share-box-feed-entry__article-cta
+.share-box-feed-entry__article-cta,
+
+.reader-social-bar-v2, .reader-social-bar-v2__sticky-container.is-stuck>:first-child::before,
+.reader-social-bar-v2__sticky-container.is-stuck>:first-child::after, .reader-social-bar-v2__sticky-container.is-stuck>:first-child::before
 {
     background: #1a2a33 !important;
 }
@@ -494,7 +501,18 @@ footer p,
 
 .global-nav__secondary-faux-link, a.global-nav__secondary-link, a.global-nav__secondary-link:visited,
 
-.top-card-link__description
+.top-card-link__description,
+
+.reader-article-content ol, .reader-article-content p, .reader-article-content ul, .reader-article-content>div,
+
+.article-head__timestamp,
+.mini-profile__title-link, .mini-profile__title-link:hover, .mini-profile__title-link:visited,
+.article-body>div, .article-body p, .article-body ol, .article-body ul,
+.article-comment__text,
+.article-comment__like-button, .article-comment__reply-button,
+.article-comment__left-control-wrapper, .article-comment__right-control-wrapper,
+
+.article-card__meta-info-item
 {
     color: #ccc;
 }
@@ -813,7 +831,14 @@ li-icon svg[data-supported-dps="24x24"]
   margin-top: 30px
 }
 
-li-icon[type=linkedin-logo] svg
+.reader-social-bar-v2__sticky-container.is-stuck>:first-child::after, .reader-social-bar-v2__sticky-container.is-stuck>:first-child::before
+{
+  display: none;
+}
+
+li-icon[type=linkedin-logo] svg,
+
+.social-ctas
 {
   filter: invert(1) hue-rotate(180deg);
 }

@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           StackSuite Just Answers
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.1
+@version	1.0.6
 @description    Dark mode and simplification for the StackOverflow suite
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -21,7 +21,9 @@
 #post-form, .bottom-notice,
 .site-footer, .site-header,
 .py24,
-.bc-black-3
+.bc-black-3,
+
+.bg-black-025, .h\:bg-black-025:hover, .f\:bg-black-025:focus
 {
   display: none !important;
 }
@@ -70,7 +72,9 @@ pre, code,
 
 .bc-black-3,
 
-.s-btn__filled
+.s-btn__filled,
+
+.bg-black-025, .h\:bg-black-025:hover, .f\:bg-black-025:focus
 {
     background: #242729 !important;
 }

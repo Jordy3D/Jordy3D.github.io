@@ -184,9 +184,17 @@ article .border-bottom,
 
 .article-grid-toc.border-bottom.border-xl-0.pb-4.mb-5.pb-xl-0.mb-xl-0,
 
-.d-flex.flex-wrap.bg-gray
+.d-flex.flex-wrap.bg-gray,
+
+.previewable-comment-form,
+.write-content
 {
   background: #0000 !important;
+}
+
+.profile-timeline-month-heading
+{
+  background: #36393F !important;
 }
 
 .topic-tag,
@@ -197,7 +205,11 @@ article .border-bottom,
 
 .Counter,
 
-.label-select-menu .select-menu-item.navigation-focus, .label-select-menu .select-menu-item:focus, .label-select-menu .select-menu-item:hover, .label-select-menu .select-menu-item[aria-selected=true]
+.label-select-menu .select-menu-item.navigation-focus, .label-select-menu .select-menu-item:focus, .label-select-menu .select-menu-item:hover, .label-select-menu .select-menu-item[aria-selected=true],
+
+.flash.flash-full.flash-notice,
+
+.drag-and-drop span, .drag-and-drop
 {
     background: #18181982 !important;
 }
@@ -228,10 +240,15 @@ article div[style*="background: linear-gradient(to top, rgba(255,255,255,1), rgb
     background-color: #0f451c8a;
 }
 
-.calendar-graph rect.day[fill*="#ebedf0"],
+.calendar-graph rect.day[fill*="graph-day-bg"],
 .js-diff-placeholder
 {
-  fill: #2e2e2f;
+  fill: #202225;
+}
+
+.contrib-legend .legend li[style*="graph-day-bg"]
+{
+  background-color: #202225 !important;
 }
 
 text,
@@ -317,6 +334,9 @@ body, input, textarea, select,
 .markdown-body .lead-mktg p,
 .token-scope,
 
+.flash .octicon,
+
+.commit-desc pre,
 
 
 .gitzip-check-mark, .gitzip-header
@@ -341,7 +361,7 @@ body, input, textarea, select,
 
 .cm-s-github-light .cm-string
 {
-    color: #2165b3;
+    color: #3282de;
   font-weight: 800;
   text-shadow: 0 0 5px black;}
 .pl-c1, .pl-s .pl-v
@@ -443,7 +463,9 @@ h3 a
   box-shadow: none !important;
 }
 
-.border
+.border,
+
+.drag-and-drop
 {
   border: none !important;
 }
@@ -479,6 +501,12 @@ h3 a
 .octicon.octicon-mark-github.CircleBadge-icon.text-white
 {
   fill: #000;
+}
+
+.calendar-graph text.month,
+.calendar-graph text.wday
+{
+  fill: #ccc;
 }
 
 .pagination-loader-container,

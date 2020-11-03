@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.1.6
+@version	1.0.17
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -155,7 +155,15 @@ g-inner-card, .qmv19b,
 
 .sh-dlr__list-result,
 
-.k8XOCe
+.k8XOCe,
+
+.notification-container,
+
+.z2QsLb .ep3ODe,
+
+.accordion-homepage h2,
+
+.fWfAye
 {
     background: #363639;
 }
@@ -299,7 +307,15 @@ footer, html.hcfe,
 
 .gstl_50 .sbdd_b, .wwfboe,
 
-.BYb9Nc
+.BYb9Nc,
+
+.swap.jfk-button,
+
+.accordion-homepage .parent.selected,
+.accordion-homepage .parent,
+.accordion-homepage .parent:not(.selected) h2:hover,
+
+.Ntw4te
 {
     background: #2e2e2f !important;
 }
@@ -349,7 +365,9 @@ footer, html.hcfe,
 .oLLmo,
 .WGYX8:hover,
 
-.tw-bilingual-marked
+.tw-bilingual-marked,
+
+.accordion-homepage .parent a:hover
 {
     background-color: #12121354 !important;
 }
@@ -458,7 +476,10 @@ div.sfbg, div.sfbgg,
 
 .act-tim-txt-cnt *,
 
-.gb_Rc .gb_5e, .gb_be .gb_5e
+.gb_Rc .gb_5e, .gb_be .gb_5e,
+.gb_5e,
+
+.ep3ODe .lgJJud
 {
     background: none !important;
 }
@@ -771,7 +792,18 @@ d, .rsir2d,
 .tw-bilingual-pos,
 .SvKTZc,
 .MaH2Hf,
-.gt-is-sg
+.gt-is-sg,
+
+.xRxmxc,
+.gsfi, .lst,
+
+.notification-container .title,
+.detect_language,
+
+.z2QsLb .ep3ODe .V2Zq0e,
+.n20qOb .s75CSd,
+
+.accordion-homepage .parent.selected h2
 {
     color: #ccc;
 }
@@ -1134,7 +1166,9 @@ div.sfbg
 
 .qFRZdb .F5z5N,
 
-.gws-flights-form__swapper.gws-flights-form__disabled>svg
+.gws-flights-form__swapper.gws-flights-form__disabled>svg,
+
+.P4Anqf
 {
     filter: invert(1);
 }
@@ -1191,7 +1225,12 @@ div.sfbg
 .StYgtd,
 .soKt7b,
 
-#dimg_13
+#dimg_13,
+
+.ita-kd-img,
+.trans-verified-button,
+.swap>.jfk-button-img,
+.language_list_item_wrapper.item-emphasized:not(.item-selected) .language_list_item_icon
 {
   mix-blend-mode: screen;
     filter: invert(1) hue-rotate(195deg) saturate(2) brightness(2);
@@ -1772,9 +1811,19 @@ body, h1, h2, h3, h4, h5, h6,
 
 .d2laFc .w1I7fb,
 .BHzsHc,
-.u7land .B9IrJb
+.u7land .B9IrJb,
+
+.ZxXxWb .kHn9Lb,
+.s2n8Rd .wLBAL,
+.vxx8jf,
+.yxE0kd
 {
   color: #ccc !important;
+}
+
+.vwtvsf
+{
+  color: #999;
 }
 
 *,
@@ -2180,7 +2229,7 @@ div.Kj-JD,
 
 .nr,
 
-.hx .ii *[style*="#fff"], .hx .ii *[bgcolor*="#fff"], .hx .ii *[style*="#f7f"], .hx .ii *[bgcolor*="#f8f"], .hx .ii *[style*="#f9f"], .hx .ii *[bgcolor*="#f9f"],  .hx .ii *[style*="email"], .hx .ii *[style*="#f2f"], .hx .ii *[style*="#f3f"] *, .hx .ii *[style*="#f3f"], .hx .ii *[style*="f9f"], .hx .ii *[style*="f6f"],  .hx .ii *[style*="white"],  .hx .ii *[bgcolor*="#edf"],  .hx .ii *[bgcolor*="#eee"],
+.gs *[style*="background:#fff"], .hx .ii *[style*="background-color:#fff"], .hx .ii *[bgcolor*="#ffffff"], .hx .ii *[style*="#f7f"], .hx .ii *[bgcolor*="#f8f"], .hx .ii *[style*="#f9f"], .hx .ii *[bgcolor*="#f9f"],  .hx .ii *[style*="email"], .hx .ii *[style*="#f2f"], .hx .ii *[style*="#f3f"] *, .hx .ii *[style*="#f3f"], .hx .ii *[style*="f9f"], .hx .ii *[style*="f6f"],  .hx .ii *[style*="white"],  .hx .ii *[bgcolor*="#edf"],  .hx .ii *[bgcolor*="#eee"], .hx .ii *[style*="#dfd"], .hx .ii *[style*="background-color:#eeeeee"], .hx .ii *[style*="background-color:#e4e4e4"], .hx .ii *[style*="background:#f5f5f5"], .hx .ii *[bgcolor*="#f5f5f5"], .hx .ii *[bgcolor*="d9d9d6"], .hx .ii *[style*="background-color:#dedede"],  .nH *[style*="background-color:rgb(240,240,240)"],  .hx .ii *[style*="background-color:#f0f0f0"], #\:3e9 *,  .hx .ii *[bgcolor*="f3f3f3"],
 
 .TD,
 
@@ -2188,11 +2237,22 @@ div.Kj-JD,
 
 .vO,
 
-.aC3,.HM .aDi::after
+.aC3,.HM .aDi::after,
+
+.gb_5e
 {
   background-color: #0000 !important;
 }
 
+ .hx .ii *[style*="email"],
+
+.LW-KX .J-KU-Jz, .LW-KX .J-KU-Jg,
+.LW-KX-Jm, .LW-KX .J-KU,
+
+.aDg>.aDj
+{
+  background: #0000 !important;
+}
 body, body.td .kr, ::placeholder,
 
 .ha>.hP,
@@ -2236,7 +2296,9 @@ span.Kj-JD-K7-K0,
 
 .vO,
 
-.dt
+.dt,
+
+.LW-KX .J-KU-KO
 {
   color: #ccc !important;
 }
@@ -2270,9 +2332,15 @@ span.Kj-JD-K7-K0,
 }
 
 .hx .ii *[style*="color:#444"],
-.ii a[href][style*="#fff"]
+.ii a[href][style*="#fff"],
+.hx .ii *[style*="color:white"]
 {
   color: #ccc !important;
+}
+
+.ii a[href]
+{
+  color: unset !important;
 }
 
 *,
@@ -2317,6 +2385,16 @@ span.Kj-JD-K7-K0,
 .QZ, .Vm, .XK
 {
   border-radius: 10px;
+}
+
+#\:2k *[src*="circle_top"]
+{
+  height: 44px !important;
+}
+
+#\:2k *[src*="circle_left"]
+{
+  width: 22px !important;
 }
 
 .tl,
@@ -2375,7 +2453,10 @@ span.Kj-JD-K7-Jq,
 .hB, .mL,
 .SB,
 .Un::after,
-div.ajR .ajT, .Xv.T-I.J-JN-M-I>.J-JN-M-I-JG
+div.ajR .ajT, .Xv.T-I.J-JN-M-I>.J-JN-M-I-JG,
+
+.hx img[src*="header_icon"],
+.hx img[src*="itchio-black"]
 {
     filter: invert(1) brightness(4);
 }
