@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Buy Me a Cola
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.0
+@version	1.0.5
 @description    Dark mode for Buy Me a Coffee
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -27,7 +27,9 @@ body, html,
 .subdomainPost .postContainer,
 .accountModal,
 
-.box-bg-f2
+.box-bg-f2,
+
+.creator-pg-bg-web
 {
   background: #3d3d3f;
 }
@@ -137,7 +139,9 @@ input, textarea, select,
 
 .editor__content,
 .bmc-dropdown-with-pop:after,
-.payment-tab-disable
+.payment-tab-disable,
+
+.bmc-input-box
 {
     background: #2e2e2f !important;
 }
@@ -164,7 +168,9 @@ input, textarea, select,
 .payment-tab-disable
 
 /*New stuff*/
-.editor-title
+.editor-title,
+
+.support-pay-section .v-center-text-p
 {
   background: #0000 !important;
 }
@@ -186,7 +192,7 @@ input, textarea, select,
   opacity: .25;
 }
 
-body, input, textarea, select,
+body, input, textarea, select, ::placeholder,
 .emoji-wysiwyg-editor,
 .small-text,
 .ctr-pg-head,
@@ -261,9 +267,21 @@ body, input, textarea, select,
 .bmc-dropdown-style-menu ul li:hover *,
 
 .post-title, .update-msg-edit p,
-.post-creator .dash-dropdown li a
+.post-creator .dash-dropdown li a,
+
+.bio-para-creator p, .bio-para-creator div,
+.clr-dark,
+.custom-color-page .active-option,
+.orange-on-hover.active-creator-tab,
+
+.x-icon
 {
   color: #ccc !important;
+}
+
+.lead.emoji-picker-container .emoji-wysiwyg-editor:empty:before
+{
+  color: #999 !important;
 }
 
 .side-bar-tabs,
@@ -395,6 +413,7 @@ body > div.home-container.m-0a.bmc-header > div > div.flex.w-65.md-w-auto > a > 
   background-image: url(https://i.imgur.com/3pzrYd7.png);
   background-size: contain;
   background-color: #0000;
+    background-repeat: no-repeat;
 }
 
 .bmc-logo
