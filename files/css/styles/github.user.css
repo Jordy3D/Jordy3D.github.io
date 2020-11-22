@@ -1,13 +1,13 @@
 /* ==UserStyle==
 @name           GitHub Dark by Bane
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version		1.0.3
+@version		1.0.5
 @description    Dark mode for GitHub
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
 ==/UserStyle== */
 
-@-moz-document domain("github.com") {
+@-moz-document domain("github.com"), domain("gist.githubusercontent.com") {
 /*Dark Scrollbar*/
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #fff0; }
@@ -20,12 +20,16 @@ body, html,
 
 .page-responsive .previewable-comment-form .comment-form-head.tabnav,
 
-.TimelineItem-break
+.TimelineItem-break,
+
+.timeline-comment.current-user .previewable-comment-form .comment-form-head.tabnav
 {
   background: #36393F;
 }
 
-main .border-bottom
+main .border-bottom,
+
+.color-bg-canvas-inset
 {
   background: #36393F !important;
 }
@@ -62,6 +66,10 @@ main .border-bottom
 .orghead,
 
 .py-0,
+
+.boxed-group-inner,
+
+.module>.inner, .module.highlighted>.inner, .module, .module.highlighted,
 
 
 .gitzip-collect-dash 
@@ -136,6 +144,10 @@ article .border-bottom,
 
 .pinned-item-checkbox:checked+.pinned-item-name,
 
+.Popover-message.Box,
+
+.boxed-group .heading, .boxed-group>h3,
+
 
 .gitzip-header
 {
@@ -155,7 +167,9 @@ article .border-bottom,
 .page-responsive .previewable-comment-form .comment-form-head.tabnav .toolbar-commenting,
 
 .bg-purple-light,
-.js-support-banner
+.js-support-banner,
+
+#footer
 {
     background: #2F3136 !important;
 }
@@ -187,7 +201,16 @@ article .border-bottom,
 .d-flex.flex-wrap.bg-gray,
 
 .previewable-comment-form,
-.write-content
+.write-content,
+
+.color-bg-primary,
+.js-profile-timeline-year-list,
+
+.conversation-list-heading .inner,
+
+#page,
+
+.pr-3
 {
   background: #0000 !important;
 }
@@ -209,7 +232,14 @@ article .border-bottom,
 
 .flash.flash-full.flash-notice,
 
-.drag-and-drop span, .drag-and-drop
+.drag-and-drop span, .drag-and-drop,
+
+kbd,
+
+.CopyBlock:active, .CopyBlock:focus, .CopyBlock:hover,
+
+table.capped-list th,
+table.capped-list tr:nth-child(2n)
 {
     background: #18181982 !important;
 }
@@ -261,7 +291,7 @@ text,
   stroke: #ccc1;
 }
 
-body, input, textarea, select,
+body, input, textarea, select, h1, h2, h3, h4, h5, h6, p,
 
 .text-gray-dark,
 
@@ -337,6 +367,18 @@ body, input, textarea, select,
 .flash .octicon,
 
 .commit-desc pre,
+
+.protip strong,
+kbd,
+
+.color-text-primary,
+
+.boxed-group-inner,
+.conversation-list-heading .inner,
+.graph-filter .info,
+.blankslate p,
+.color-text-secondary,
+.protip,
 
 
 .gitzip-check-mark, .gitzip-header
@@ -457,7 +499,9 @@ h3 a
 
 .SideNav-item,
 
-.border-gray-dark
+.border-gray-dark,
+
+.comment-form-head.tabnav
 {
   border-color: #0000 !important;
   box-shadow: none !important;
@@ -475,6 +519,12 @@ h3 a
 .subnav-primary.selected
 {
     border-bottom-color: #94b1ff !important;
+}
+
+.Popover-message:before,
+.Popover-message:after
+{
+    border-bottom-color: #202225 !important;
 }
 
 .markdown-body blockquote {
@@ -496,6 +546,11 @@ h3 a
 #js-pjax-container > .mt-4
 {
   margin: 0 !important;
+}
+
+.tabnav
+{
+  margin-bottom: 0;
 }
 
 .octicon.octicon-mark-github.CircleBadge-icon.text-white
@@ -520,14 +575,27 @@ h3 a
     mix-blend-mode: screen;
 }
 
-.pagination-loader-container .Box
+.pagination-loader-container .Box,
+
+#footer .invertocat
 {
   filter: invert(1) brightness(1.2);
 }
 
-div#network.network > div > canvas {
+div#network.network > div > canvas,
+
+#search a,
+
+.avatar-user[alt="Avatar"]
+{
     -webkit-filter: invert(90%) hue-rotate(180deg)!important;
     filter: invert(90%) hue-rotate(180deg)!important;
+}
+
+img[src*="profile-first-pr"]
+{
+    filter: invert(1) hue-rotate(175deg) saturate(3) brightness(2);
+    mix-blend-mode: exclusion;
 }
 
 #network canvas {

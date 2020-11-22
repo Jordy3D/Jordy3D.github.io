@@ -80,7 +80,17 @@ body, html,
 .pe-checkmark,
 
 .pe-menubar,
-.bmc-dropdown-style-menu ul li:hover
+.bmc-dropdown-style-menu ul li:hover,
+
+.h-100p,
+
+.bmc-ctr-main-wrapper,
+
+.custom-color-page .orange-dim-bg-border,
+.custom-color-page .sup-comment-curved-arrow,
+
+.creator-each,
+.tags:first-child, .tags:nth-child(2), .tags:nth-child(3)
 {
     background: #363639 !important;
 }
@@ -141,7 +151,15 @@ input, textarea, select,
 .bmc-dropdown-with-pop:after,
 .payment-tab-disable,
 
-.bmc-input-box
+.bmc-input-box,
+
+.cover-img-wrap,
+
+.br-r-12,
+
+.br-dark-05-2px,
+
+.creator-each:hover
 {
     background: #2e2e2f !important;
 }
@@ -154,6 +172,22 @@ input, textarea, select,
 .emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn:hover
 {
     background: #363639 !important;
+}
+
+.custom-color-page .comment-add-wrap .flex-v-center,
+
+.modal.in .modal-dialog,
+
+.tp-locations-bg,
+
+.add-comment-sec .emoji-wysiwyg-editor
+{
+    background-color: #12121354 !important;
+}
+
+.bg-0D0, .bg-0D0-h
+{
+  background: #ccc;
 }
 
 .gradient-your-story
@@ -170,7 +204,9 @@ input, textarea, select,
 /*New stuff*/
 .editor-title,
 
-.support-pay-section .v-center-text-p
+.support-pay-section .v-center-text-p,
+
+.bg-fff
 {
   background: #0000 !important;
 }
@@ -274,7 +310,16 @@ body, input, textarea, select, ::placeholder,
 .custom-color-page .active-option,
 .orange-on-hover.active-creator-tab,
 
-.x-icon
+.x-icon,
+
+.post-s-header-sub .curved-label-own-color,
+
+.cover-img-tab.active,
+.orange-on-hover:hover, .orange-on-hover:focus,
+
+.supp-wrapper a,
+
+.clr-grey
 {
   color: #ccc !important;
 }
@@ -292,8 +337,16 @@ body, input, textarea, select, ::placeholder,
   color: #ccc;
 }
 
+.close-btn-pos path,
+.br-r-8 path, .br-r-8 polygon[fill*="000000"]
+{
+  fill: #ccc;
+}
+
 *,
-.dash-navbar
+.dash-navbar,
+
+.custom-color-page .sup-comment-box:after
 {
   border-color: #0000 !important;
   box-shadow: none !important;
@@ -305,16 +358,18 @@ body, input, textarea, select, ::placeholder,
     box-shadow: 0 1px 2px rgb(24, 24, 24) !important;
 }
 
-.m-r-8,
-
-.payment-tab-disable svg
+.cover-img-tab.active
 {
-  filter: invert(1);
+  border-bottom: 1px solid #ccc !important;
 }
 
-.add-comment-sec .emoji-wysiwyg-editor
+.m-r-8,
+
+.payment-tab-disable svg,
+
+.cover-img-tab.active svg
 {
-  background: #f6f6f6 !important;
+  filter: invert(1);
 }
 
 .extra-temp-each img,
@@ -408,12 +463,20 @@ body > div.home-container.m-0a.bmc-header > div > div.flex.w-65.md-w-auto > a > 
   stroke: #0000 !important;
 }
 
+.post-s-header-sub .curved-label-own-color svg path,
+
+* path[fill*="#0D0C22"], * path[fill*="black"]
+{
+  fill: #ccc
+}
+
 .head-logo
 {
   background-image: url(https://i.imgur.com/3pzrYd7.png);
   background-size: contain;
   background-color: #0000;
     background-repeat: no-repeat;
+    background-position-y: center;
 }
 
 .bmc-logo
@@ -422,6 +485,7 @@ body > div.home-container.m-0a.bmc-header > div > div.flex.w-65.md-w-auto > a > 
   background-size: contain;
   background-color: #0000;
   background-repeat: no-repeat;
+    background-position-y: center;
 }
 
 .logo-text svg > *,

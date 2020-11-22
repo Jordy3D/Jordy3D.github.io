@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           LinkedDark
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	2.0.16
+@version	2.0.20
 @description    Dark mode for LinkedIn
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -19,6 +19,12 @@
 .theme--mercado .msg-overlay-bubble-header,
 .artdeco-modal, .modal-wormhole-content,
 
+#component-container,
+
+.msg-spinmail-thread__top-banner,
+
+.news-storyline__update-outlet,
+
 /*Loading*/
 #app-boot-bg .line, .loading-bg .line,
 #app-boot-bg .circle, #app-boot-bg .rect, .loading-bg .circle, .loading-bg .rect,
@@ -27,9 +33,19 @@
 .wrapper,
 
 /*Not Signed In*/
-#app__container
+#app__container,
+
+/*Business*/
+.resource.feature-story,
+
+.site-header .primary-navigation
 {
     background: #162228 !important;
+}
+
+.feed-shared-poll-option__button
+{
+    background: #162228;
 }
 
 .theme--mercado .launchpad,
@@ -69,6 +85,23 @@
 
 .cp-card, .cp-card-new,
 
+.theme--mercado .share-box__footer,
+.feed-shared-mini-update-v2,
+
+.msg-form__msg-content-container,
+.msg-overlay-conversation-bubble,
+
+.global-footer__upper-row-wrapper,
+.global-footer__lower-row-wrapper,
+
+.feed-shared-update-detail-viewer__content,
+
+.org-sticky-top-card--is-showing,
+
+.theme--mercado .pv-accomplishments-block--expanded,
+
+.news-storyline__update-overlay,
+
 /*Loading*/
 #app-boot-bg .feed-profile, .loading-bg .feed-profile,
 
@@ -92,7 +125,10 @@
 
 .result-card--with-hover-state:hover,
 
-.base-search-card:hover, .base-search-card:focus
+.base-search-card:hover, .base-search-card:focus,
+
+/*Business*/
+.banner-component .banner-content
 {
     background: #1a2a33 !important;
 }
@@ -143,6 +179,12 @@
 
 .toast,
 
+.feed-shared-update-detail-viewer__right-panel,
+theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor.active, .theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor:focus, .theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor:hover,
+.theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor.active, .theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor:focus, .theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor:hover,
+
+.artdeco-toast-item,
+
 /*Not Signed In*/
 .learning-cta__label,
 
@@ -155,7 +197,10 @@
 /*Learning*/
 .flexible-column-frame-component .flexible-column-frame-background,
 
-.site-header .primary-navigation-wrapper
+.site-header .primary-navigation-wrapper,
+
+/*Business*/
+.site-header .site-title
 { 
     background: #1f2f38 !important;
 }
@@ -190,6 +235,18 @@ select,
 .right-rail .controls-form__setting-toggle,
 .right-rail .setting-toggle__name, .right-rail .toggle,
 
+.pv-entity__position-group-pager,
+.pv-profile-section.background-section.artdeco-container-card.pv-profile-section--reorder-enabled .pv-profile-section .pv-profile-section__section-info,
+
+.core-rail,
+.neptune-grid .right-rail,
+.pv-deferred-area .pv-deferred-area__content,
+.artdeco-card .pv-browsemap-section,
+.pv-profile-wrapper .profile-view-grid .core-rail,
+.pv-content__right-rail.right-rail .pv-deferred-area,
+.pt5.pb3.ph4.mt5, 
+.pt4.ph4, #ember195,
+
 /*Learning*/
 .index-body__recommendations.container,
 
@@ -204,6 +261,8 @@ select,
 
 .facet-fieldset__toggle-expanded-button,
 
+.news-storyline__info-card,
+
 /*Not Signed In*/
 .results, 
 .description,
@@ -212,6 +271,7 @@ select,
 {
   background: #0000 !important;
 }
+
 
 .feed-shared-image__container,
 
@@ -268,6 +328,21 @@ input, textarea,
 {
     background-color: #0073b1 !important;
 }
+
+
+.inkwell-content-carousel-pagination>li.selected
+{
+  background: #ccc;
+}
+
+.inkwell-content-carousel-pagination>li:not(.selected)>a, .inkwell-content-carousel-pagination>li:not(.selected)>button
+{
+  background: #ccc5;
+}
+
+.theme--mercado .psa-occupations-card .artdeco-completeness-meter-linear__progress-element::-webkit-progress-bar {background-color: #0d1b22a3;}
+
+
 
 body, h1, h2, h3, h4, h5, h6, p, li, label,
 
@@ -336,6 +411,14 @@ li-icon,
 
 .feed-shared-contextual-header .feed-shared-text-view__hashtag, .feed-shared-contextual-header .feed-shared-text-view__mention,
 
+.nav-accordion .accordion-item .accordion-header, .nav-accordion .accordion-item .nav-link,
+.global-footer__lower-row-item-link, .privacy-dropdown__button,
+
+.artdeco-pill--choice, .artdeco-pill--choice:hover, .artdeco-pill--choice:visited, .artdeco-pill--dismiss, .artdeco-pill--dismiss:hover, .artdeco-pill--dismiss:visited, .artdeco-pill--input, .artdeco-pill--input:hover, .artdeco-pill--input:visited, .artdeco-pill--toggle, .artdeco-pill--toggle:hover, .artdeco-pill--toggle:visited,
+.EntityLockup-circle-2 dd:not(.badge), .EntityLockup-circle-2-ghost-person dd:not(.badge), .EntityLockup-circle-3-ghost-person dd:not(.badge), .EntityLockup-circle-4-ghost-company dd:not(.badge), .EntityLockup-circle-4-ghost-person dd:not(.badge), .EntityLockup-square-2-company dd:not(.badge), .EntityLockup-square-2-ghost-company dd:not(.badge), .EntityLockup-square-2-ghost-school dd:not(.badge), .EntityLockup-square-4 dd:not(.badge), .EntityLockup-square-4-ghost-company dd:not(.badge), .EntityLockup-square-4-ghost-school dd:not(.badge), .EntityLockup-square-5 dd:not(.badge), .EntityLockup-square-5-ghost-company dd:not(.badge), .EntityLockup-square-5-ghost-school dd:not(.badge),
+
+.artdeco-toast-item p,
+
 /*Learning*/
 .secondary-nav-bar__link,
 
@@ -377,12 +460,20 @@ li-icon,
 
 #app__container .app__change-email-v3,
 
-.footer__base .footer__base__nav-list a
+.footer__base .footer__base__nav-list a,
+
+/*Business*/
+.site-header .site-title-link,
+.footer-social-icon-link>svg, .footer-social-icon-link li-icon>svg,
+
+.site-header .primary-navigation-link,
+.utility-navigation .free-links .free-link a
 {
   color: #ccc !important;
 }
 
-.artdeco-tabs .artdeco-tab.artdeco-tab--selected {
+.artdeco-tabs .artdeco-tab.artdeco-tab--selected
+{
     color: #0073b1 !important;
 }
 
@@ -421,7 +512,9 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
 
 .list .expander .state,
 #setting-two-step-verification #settings-two-step-with-authenticator .authenticator-key,
-#setting-email .actions .is-primary
+#setting-email .actions .is-primary,
+
+.msg-spinmail-thread__legal-text a
 {
   color: #999 !important;
 }
@@ -505,6 +598,11 @@ input[type=checkbox]:not(:checked):hover+label:before, input[type=radio]:not(:ch
 .linkedin-text path, .linkedin-text polygon
 {
   fill: #ccc;
+}
+
+.footer-social-icon-link use
+{
+  fill: #ccc !important;
 }
 
 clearImage 
