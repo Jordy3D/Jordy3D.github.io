@@ -2,7 +2,7 @@
 
 For CSS that betters your internet experience, look here!
 
-This shit might (read, probably will) change a lot in the future, however the CSS will still always be available!
+This might (read; probably will) change a lot in the future, however the CSS will still always be available!
 
 ### //Usage
 In order to download and use these styles, you need to install Stylus first.  
