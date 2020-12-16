@@ -34,6 +34,7 @@
 
 /*Not Signed In*/
 #app__container,
+.login-form, .join-form,
 
 /*Business*/
 .resource.feature-story,
@@ -102,6 +103,9 @@
 
 .news-storyline__update-overlay,
 
+.theme--mercado .me-wvmp-pills-tab-carousel, .theme--mercado .me-wvmp-pills-tab-carousel__button--right,
+.me-wvmp-viewer-card,
+
 /*Loading*/
 #app-boot-bg .feed-profile, .loading-bg .feed-profile,
 
@@ -126,6 +130,8 @@
 .result-card--with-hover-state:hover,
 
 .base-search-card:hover, .base-search-card:focus,
+
+.form-title,
 
 /*Business*/
 .banner-component .banner-content
@@ -184,6 +190,13 @@ theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-pa
 .theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor.active, .theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor:focus, .theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-page-navigation__item-anchor:hover,
 
 .artdeco-toast-item,
+
+.me-wvmp-viewer-card:hover,
+.me-wvmp-pills-tab,
+
+.pv-treasury-item--compact .pv-treasury-item__info,
+
+.pv-skills-prompt__canditate:hover,
 
 /*Not Signed In*/
 .learning-cta__label,
@@ -247,6 +260,8 @@ select,
 .pt5.pb3.ph4.mt5, 
 .pt4.ph4, #ember195,
 
+.pv-entity__position-group-role-item, .pv-entity__position-group-role-item-fading-timeline,
+
 /*Learning*/
 .index-body__recommendations.container,
 
@@ -297,6 +312,10 @@ input, textarea,
     background-color: #0d1b22a3 !important;
 }
 
+.theme--mercado .me-wvmp-pills-tab--active {
+    background-color: #057642 !important;
+}
+
 .pv-about__summary-text .lt-line-clamp__ellipsis::before
 {
     background-image: linear-gradient(to right,rgba(255,255,255,0),#1a2a33);
@@ -322,7 +341,13 @@ input, textarea,
 
 .show-more-less-html__markup--clamp-after-5::after
 {
-    background: linear-gradient(0deg, #162228, rgba(255,255,255,0) 100%);}
+    background: linear-gradient(0deg, #162228, rgba(255,255,255,0) 100%);
+}
+
+.pv-entity__fading-timeline-gradient
+{
+    background: linear-gradient(0deg, #1a2a33, rgba(255,255,255,0) 100%);
+}
 
 .alert-banner--promo div
 {
@@ -462,6 +487,9 @@ li-icon,
 
 .footer__base .footer__base__nav-list a,
 
+.form-title,
+.join-form__form-body-agreement,
+
 /*Business*/
 .site-header .site-title-link,
 .footer-social-icon-link>svg, .footer-social-icon-link li-icon>svg,
@@ -517,6 +545,11 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
 .msg-spinmail-thread__legal-text a
 {
   color: #999 !important;
+}
+
+.me-wvmp-premium-upsell .artdeco-button--premium
+{
+  color: #000 !important;
 }
 
 *
@@ -621,7 +654,9 @@ clearImage
   opacity: .25;
 }
 
-.flexible-column-frame.parbase.section .flexible-column-frame-background
+.flexible-column-frame.parbase.section .flexible-column-frame-background,
+
+.profile-background-image--loading
 {
   filter: invert() hue-rotate(180deg) brightness(.8);
   mix-blend-mode: screen;
