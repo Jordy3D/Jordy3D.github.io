@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           LinkedDark
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	2.0.20
+@version	2.0.24
 @description    Dark mode for LinkedIn
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -24,6 +24,10 @@
 .msg-spinmail-thread__top-banner,
 
 .news-storyline__update-outlet,
+
+.container-with-shadow, .search-reusables__filters-bar-grouping,
+
+.theme--mercado .pv-top-card__edit-photo,
 
 /*Loading*/
 #app-boot-bg .line, .loading-bg .line,
@@ -106,8 +110,17 @@
 .theme--mercado .me-wvmp-pills-tab-carousel, .theme--mercado .me-wvmp-pills-tab-carousel__button--right,
 .me-wvmp-viewer-card,
 
+.search-results-loader__filter-block,
+
+.theme--mercado .social-details-first-prompt-block,
+
+.pe-add-featured-item__item,
+.pab-featured-item-detail__image-container, .pab-featured-item-detail__image-icon, .pab-featured-item__image-icon,
+
 /*Loading*/
 #app-boot-bg .feed-profile, .loading-bg .feed-profile,
+
+.search-result-loader__container,
 
 /*Learning*/
 .secondary-nav-bar,
@@ -198,6 +211,13 @@ theme--mercado .org-page-navigation--vertical .org-page-navigation__item .org-pa
 
 .pv-skills-prompt__canditate:hover,
 
+.search-typeahead-v2 .basic-typeahead__triggered-content,
+.theme--mercado .pab-featured-item-detail,
+
+button.mt3,
+
+.artdeco-button--inverse.artdeco-button, .artdeco-button--inverse.artdeco-button--primary, .artdeco-button--inverse.artdeco-button--primary:focus, .artdeco-button--inverse.artdeco-button--primary:hover, .artdeco-button--inverse.artdeco-button--primary:visited, .artdeco-button--inverse.artdeco-button--primary:visited:hover, .artdeco-button--inverse.artdeco-button:focus, .artdeco-button--inverse.artdeco-button:hover, .artdeco-button--inverse.artdeco-button:visited, .artdeco-button--inverse.artdeco-button:visited:hover, .artdeco-button--inverse.peek-carousel-controls__button, .artdeco-button--inverse.peek-carousel-controls__button:focus, .artdeco-button--inverse.peek-carousel-controls__button:hover, .artdeco-button--inverse.peek-carousel-controls__button:visited, .artdeco-button--inverse.peek-carousel-controls__button:visited:hover,
+
 /*Not Signed In*/
 .learning-cta__label,
 
@@ -235,7 +255,15 @@ select,
 
 .artdeco-hoverable-content__shell,
 
-#setting-two-step-verification .activation-instructions .password-prompt-container .password-prompt
+#setting-two-step-verification .activation-instructions .password-prompt-container .password-prompt,
+
+.theme--mercado .search-global-typeahead--focused input.search-global-typeahead__input,
+
+.theme--mercado .search-global-typeahead--focused .search-global-typeahead__search-icon-container,
+
+.basic-typeahead__selectable--hover, .basic-typeahead__selectable--hover .search-typeahead-v2__hit,
+
+[class*=".artdeco-entity-pile__image--circle"], [class*=".artdeco-entity-pile__image--square"], [class*=artdeco-entity-lockup__image--type-circle] img, [class*=artdeco-entity-lockup__image--type-square] img, [class*=EntityPhoto-circle], [class*=EntityPhoto-square]
 {
     background-color: #293c46 !important;
 }
@@ -258,9 +286,10 @@ select,
 .pv-profile-wrapper .profile-view-grid .core-rail,
 .pv-content__right-rail.right-rail .pv-deferred-area,
 .pt5.pb3.ph4.mt5, 
-.pt4.ph4, #ember195,
 
 .pv-entity__position-group-role-item, .pv-entity__position-group-role-item-fading-timeline,
+
+.neptune-grid.two-column-with-left-rail .core-rail, .neptune-grid.two-column .core-rail,
 
 /*Learning*/
 .index-body__recommendations.container,
@@ -349,11 +378,16 @@ input, textarea,
     background: linear-gradient(0deg, #1a2a33, rgba(255,255,255,0) 100%);
 }
 
+.search-results-loader__block
+{
+    background-color: #1f2f38;
+    background-image: linear-gradient(rgba(255,255,255,0) 40%,#1f2f38 50%,rgba(255,255,255,0) 60%);
+}
+
 .alert-banner--promo div
 {
     background-color: #0073b1 !important;
 }
-
 
 .inkwell-content-carousel-pagination>li.selected
 {
@@ -365,9 +399,9 @@ input, textarea,
   background: #ccc5;
 }
 
-.theme--mercado .psa-occupations-card .artdeco-completeness-meter-linear__progress-element::-webkit-progress-bar {background-color: #0d1b22a3;}
-
-
+.theme--mercado .psa-occupations-card .artdeco-completeness-meter-linear__progress-element::-webkit-progress-bar {
+  background-color: #0d1b22a3;
+}
 
 body, h1, h2, h3, h4, h5, h6, p, li, label,
 
@@ -443,6 +477,10 @@ li-icon,
 .EntityLockup-circle-2 dd:not(.badge), .EntityLockup-circle-2-ghost-person dd:not(.badge), .EntityLockup-circle-3-ghost-person dd:not(.badge), .EntityLockup-circle-4-ghost-company dd:not(.badge), .EntityLockup-circle-4-ghost-person dd:not(.badge), .EntityLockup-square-2-company dd:not(.badge), .EntityLockup-square-2-ghost-company dd:not(.badge), .EntityLockup-square-2-ghost-school dd:not(.badge), .EntityLockup-square-4 dd:not(.badge), .EntityLockup-square-4-ghost-company dd:not(.badge), .EntityLockup-square-4-ghost-school dd:not(.badge), .EntityLockup-square-5 dd:not(.badge), .EntityLockup-square-5-ghost-company dd:not(.badge), .EntityLockup-square-5-ghost-school dd:not(.badge),
 
 .artdeco-toast-item p,
+
+.entity-result__title-text--black a, .entity-result__title-text--black a:visited,
+
+.label-16dp, .label-inverse,
 
 /*Learning*/
 .secondary-nav-bar__link,
@@ -578,6 +616,11 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
   border-bottom:  3px solid #057642 !important;
 }
 
+.artdeco-completeness-meter-circular--color-positive .artdeco-completeness-meter-circular__fill-ring
+{
+  border-color: #057642 !important;
+}
+
 #voyager-feed
 {
   padding-top: 25px !important;
@@ -596,7 +639,9 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
   padding: 5px;
 }
 
-.recommendation-carousel-card
+.recommendation-carousel-card,
+
+.pv-top-card__edit-photo .profile-photo-edit__preview
 {
   border-radius: 10px;
 }
