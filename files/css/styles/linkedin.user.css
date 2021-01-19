@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           LinkedDark
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	2.0.24
+@version	2.0.25
 @description    Dark mode for LinkedIn
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -28,6 +28,8 @@
 .container-with-shadow, .search-reusables__filters-bar-grouping,
 
 .theme--mercado .pv-top-card__edit-photo,
+
+.theme--mercado .jobs-premium-applicant-insights__obfuscated-value, .theme--mercado .jobs-premium-applicant-insights__long-obfuscated-value, .theme--mercado .jobs-premium-obfuscated-upsell .applicant-rank-value,
 
 /*Loading*/
 #app-boot-bg .line, .loading-bg .line,
@@ -116,6 +118,14 @@
 
 .pe-add-featured-item__item,
 .pab-featured-item-detail__image-container, .pab-featured-item-detail__image-icon, .pab-featured-item__image-icon,
+
+.jobs-box,
+
+.theme--mercado .inline-show-more-text__link-container-collapsed,
+
+.jobs-premium-applicant-insights__applicant-rank-inner-circle,
+
+.org-life-target-selection-tabs__tab,
 
 /*Loading*/
 #app-boot-bg .feed-profile, .loading-bg .feed-profile,
@@ -218,6 +228,11 @@ button.mt3,
 
 .artdeco-button--inverse.artdeco-button, .artdeco-button--inverse.artdeco-button--primary, .artdeco-button--inverse.artdeco-button--primary:focus, .artdeco-button--inverse.artdeco-button--primary:hover, .artdeco-button--inverse.artdeco-button--primary:visited, .artdeco-button--inverse.artdeco-button--primary:visited:hover, .artdeco-button--inverse.artdeco-button:focus, .artdeco-button--inverse.artdeco-button:hover, .artdeco-button--inverse.artdeco-button:visited, .artdeco-button--inverse.artdeco-button:visited:hover, .artdeco-button--inverse.peek-carousel-controls__button, .artdeco-button--inverse.peek-carousel-controls__button:focus, .artdeco-button--inverse.peek-carousel-controls__button:hover, .artdeco-button--inverse.peek-carousel-controls__button:visited, .artdeco-button--inverse.peek-carousel-controls__button:visited:hover,
 
+.jobs-premium-applicant-insights-obfuscated-socialproof-upsell,
+
+.org-life-module__container--bubble, .org-life-module__text-container,
+.tb-featured-members-module__card,
+
 /*Not Signed In*/
 .learning-cta__label,
 
@@ -289,7 +304,7 @@ select,
 
 .pv-entity__position-group-role-item, .pv-entity__position-group-role-item-fading-timeline,
 
-.neptune-grid.two-column-with-left-rail .core-rail, .neptune-grid.two-column .core-rail,
+.neptune-grid.two-column-with-left-rail .core-rail, .neptune-grid.two-column .core-rail
 
 /*Learning*/
 .index-body__recommendations.container,
@@ -373,7 +388,9 @@ input, textarea,
     background: linear-gradient(0deg, #162228, rgba(255,255,255,0) 100%);
 }
 
-.pv-entity__fading-timeline-gradient
+.pv-entity__fading-timeline-gradient,
+
+.jobs-description--is-truncated .jobs-description__container::after
 {
     background: linear-gradient(0deg, #1a2a33, rgba(255,255,255,0) 100%);
 }
@@ -482,6 +499,13 @@ li-icon,
 
 .label-16dp, .label-inverse,
 
+.jobs-upsell__feature-description,
+
+.jobs-details-premium-insight--rank-title-obfuscated, .jobs-details-premium-insight--rank-title-obfuscated .jobs-details-premium-insights__rank-title-highlight,
+
+.EntityLockup-circle-2 .badge, .EntityLockup-circle-2-ghost-person .badge, .EntityLockup-circle-3-ghost-person .badge, .EntityLockup-circle-4-ghost-company .badge, .EntityLockup-circle-4-ghost-person .badge, .EntityLockup-square-2-company .badge, .EntityLockup-square-2-ghost-company .badge, .EntityLockup-square-2-ghost-school .badge, .EntityLockup-square-4 .badge, .EntityLockup-square-4-ghost-company .badge, .EntityLockup-square-4-ghost-school .badge, .EntityLockup-square-5 .badge, .EntityLockup-square-5-ghost-company .badge, .EntityLockup-square-5-ghost-school .badge,
+.organization-outlet .org-top-card-secondary-content__link--black, .organization-outlet .org-top-card-secondary-content__link--black:visited,
+
 /*Learning*/
 .secondary-nav-bar__link,
 
@@ -585,7 +609,9 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
   color: #999 !important;
 }
 
-.me-wvmp-premium-upsell .artdeco-button--premium
+.me-wvmp-premium-upsell .artdeco-button--premium,
+
+.artdeco-button--premium.artdeco-button, .artdeco-button--premium.artdeco-button--primary, .artdeco-button--premium.artdeco-button--primary:visited, .artdeco-button--premium.artdeco-button--primary:visited:hover, .artdeco-button--premium.artdeco-button:visited, .artdeco-button--premium.artdeco-button:visited:hover, .artdeco-button--premium.peek-carousel-controls__button, .artdeco-button--premium.peek-carousel-controls__button:visited, .artdeco-button--premium.peek-carousel-controls__button:visited:hover
 {
   color: #000 !important;
 }
