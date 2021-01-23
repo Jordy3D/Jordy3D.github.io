@@ -107,7 +107,7 @@ Header
 Style Cards
 ========== */
     
-    .objectCard {
+    .objectCardData {
         background-color: #202020;
         border-radius: 15px;
         min-width: 300px;
@@ -125,7 +125,7 @@ Style Cards
         transition: color 200ms;
     }
     
-    .objectCard:hover {
+    .objectCardData:hover {
         color: #fff !important;
         /* Transitions*/
         transition: color 200ms;
