@@ -1,0 +1,252 @@
+/* ==========
+Scrollbars
+========== */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(48, 47, 47);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #252525;
+}
+
+
+/* ==========
+Main Body / General Settings
+========== */
+
+body,
+html {
+    background-image: repeating-linear-gradient(0deg, rgb(32, 32, 32) 0px, rgb(32, 32, 32) 2px, rgb(33, 33, 33) 2px, rgb(33, 33, 33) 4px, rgb(34, 34, 34) 4px, rgb(34, 34, 34) 6px, rgb(33, 33, 33) 6px, rgb(33, 33, 33) 8px, rgb(36, 36, 36) 8px, rgb(36, 36, 36) 10px, rgb(35, 35, 35) 10px, rgb(35, 35, 35) 12px, rgb(33, 33, 33) 12px, rgb(33, 33, 33) 14px, rgb(32, 32, 32) 14px, rgb(32, 32, 32) 16px, rgb(36, 36, 36) 16px, rgb(36, 36, 36) 18px, rgb(34, 34, 34) 18px, rgb(34, 34, 34) 20px, rgb(35, 35, 35) 20px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 24px);
+    margin: 0;
+    background-color: #1d1d1d;
+    color: #ccc;
+    zoom: 1.1;
+}
+
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('./files/fonts/VCROSDMono.woff') format('woff'), url('./files/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'VCR OSD Mono';
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    color: #8e8edf;
+    text-decoration: none;
+}
+
+.content {
+    width: 60%;
+    margin: 0 auto;
+    min-width: 600px;
+    padding-top: 60px;
+}
+
+
+/* ==========
+Header
+========== */
+
+.header {
+    background: #000d !important;
+    display: inline-flex;
+    width: 100%;
+    height: 3em;
+    position: fixed;
+    z-index: 100;
+    /*clip-path: polygon(0 0, 100% 0%, 100% 80%, 0% 100%);*/
+}
+
+.header,
+.logoImg {
+    box-shadow: 0 0 10px 2px #000;
+}
+
+.header>* {
+    display: flex;
+    margin: 5px;
+}
+
+.logo {
+    transform: scale(1.5);
+    transform-origin: 0 0;
+}
+
+.logo h1 {
+    font-size: x-large;
+    margin-left: 5px;
+}
+
+.NavBar {
+    float: right;
+    right: 10px;
+    position: absolute;
+    height: auto;
+    top: 42%;
+    font-size: large;
+    /*transform: rotateZ(-1deg);*/
+}
+
+.NavBar a {
+    float: right;
+    margin-left: 2ch;
+    color: #ccc;
+}
+
+
+/* ==========
+Style Cards
+========== */
+
+
+/*
+.styleCard:nth-child(odd) {
+    clip-path: polygon(98% 0%, 100% 50%, 98% 100%, 0% 100%, 2% 50%, 0% 0%);
+    transform: translateX(1em);
+    transition: transform 100ms;
+}
+
+.styleCard:nth-child(even) {
+    clip-path: polygon(100% 0%, 98% 50%, 100% 100%, 2% 100%, 0% 50%, 2% 0%);
+    transform: translateX(-1em);
+    transition: transform 100ms;
+}
+
+.styleCard:nth-child(odd):hover {
+    transform: translateX(2em);
+    transition: transform 200ms;
+}
+
+.styleCard:nth-child(even):hover {
+    transform: translateX(-2em);
+    transition: transform 200ms;
+}
+*/
+
+.styleData {
+    background-color: #202020;
+    border-radius: 15px;
+    min-width: 300px;
+    height: fit-content !important;
+    box-sizing: border-box;
+    color: #ccc;
+    display: flex;
+    margin: 20px 0;
+    padding: 0px 0 0px 0em;
+    /*Shadow*/
+    -webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
+    box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
+    /* Transitions*/
+    transition: color 200ms;
+}
+
+.styleData:hover {
+    color: #fff !important;
+    /* Transitions*/
+    transition: color 200ms;
+}
+
+.styleBGFilter {
+    border-radius: 15px;
+    display: flex;
+    width: 100%;
+    padding: 8px;
+    backdrop-filter: brightness(0.4) blur(8px);
+}
+
+.styleImageHolder {
+    background-size: cover;
+    height: 156px;
+    width: 300px;
+    background-position-x: 50%;
+    border-radius: 10px 0 0 10px;
+    margin-right: -150px;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 60%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 60%);
+    z-index: -100;
+}
+
+.styleImageHolder img {
+    height: 156px;
+    width: 300px;
+    left: -70px;
+    position: relative;
+}
+
+.styleInfo {
+    width: 100%;
+    padding-right: 20px;
+    text-shadow: -5px 5px 8px black;
+    border-radius: inherit;
+}
+
+.styleHeader {
+    padding-top: 5px;
+    ;
+}
+
+.styleTitle {
+    font-size: 30pt;
+    display: inline;
+}
+
+.styleVersion {
+    font-size: 14pt;
+    display: inline;
+}
+
+.styleButton {
+    display: grid;
+}
+
+
+/* ==========
+Extra content
+========== */
+
+.section-content {
+    margin-left: 20px;
+}
+
+.supportLinks {
+    display: block;
+}
+
+#inProgress {
+    list-style-type: none;
+}
+
+#inProgress li {
+    margin-top: 5px;
+}
+
+.discordContent p {
+    width: 70%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.linkSpan {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}

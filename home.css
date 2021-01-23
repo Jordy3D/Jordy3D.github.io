@@ -106,6 +106,29 @@ Header
     /* ==========
 Style Cards
 ========== */
+    /*
+.styleCard:nth-child(odd) {
+    clip-path: polygon(98% 0%, 100% 50%, 98% 100%, 0% 100%, 2% 50%, 0% 0%);
+    transform: translateX(1em);
+    transition: transform 100ms;
+}
+
+.styleCard:nth-child(even) {
+    clip-path: polygon(100% 0%, 98% 50%, 100% 100%, 2% 100%, 0% 50%, 2% 0%);
+    transform: translateX(-1em);
+    transition: transform 100ms;
+}
+
+.styleCard:nth-child(odd):hover {
+    transform: translateX(2em);
+    transition: transform 200ms;
+}
+
+.styleCard:nth-child(even):hover {
+    transform: translateX(-2em);
+    transition: transform 200ms;
+}
+*/
     
     .objectCard {
         background-color: #202020;
@@ -173,6 +196,10 @@ Style Cards
     .objectCardTitle {
         font-size: 30pt;
         display: inline;
+    }
+    
+    .styleButton {
+        display: grid;
     }
     /* ==========
 Extra content
