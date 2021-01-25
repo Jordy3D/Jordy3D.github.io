@@ -1,10 +1,7 @@
-# [Home](https://jordy3d.github.io)
-
+# [Home](https://jordy3d.github.io)  
 >Will likely grow over time, assuming I can be bothered to do so.
 
-
-# [BaneCSS](https://jordy3d.github.io/banecss.html)
-
+# [BaneCSS](https://jordy3d.github.io/banecss.html)  
 >For CSS that betters your internet experience, look here!  
 >This might (read; probably will) change a lot in the future, however the CSS will still always be available!
 >### //Usage
