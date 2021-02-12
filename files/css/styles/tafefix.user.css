@@ -1,8 +1,8 @@
 /* ==UserStyle==
 @name           TAFE Fix
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version		1.0.0
-@description    Fix for the text box on the Moodle
+@version		1.0.1
+@description    Fix for the text box and Edit Link windows in Moodle. Frankly, this is ridiculous.
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
 ==/UserStyle== */
@@ -11,5 +11,19 @@
 body:not(.format-onetopic.pagelayout-course):not(.mod-scorm):not(.path-mod-scorm) iframe
 {
   visibility: unset;
+  display: unset;
+  
+  max-width: 100%;
+}
+
+.clearlooks2
+{
+  width: 450px !important;
+  height: 200px !important;
+}
+
+body
+{
+  margin: 0;
 }
 }
