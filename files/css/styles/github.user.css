@@ -1,20 +1,20 @@
 /* ==UserStyle==
 @name           GitHub Dark by Bane
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version		1.0.5
+@version		1.0.6
 @description    Dark mode for GitHub
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
 ==/UserStyle== */
 
-@-moz-document domain("github.com"), domain("gist.githubusercontent.com") {
+@-moz-document domain("github.com"), domain("gist.githubusercontent.com"), domain("raw.githubusercontent.com") {
 /*Dark Scrollbar*/
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #fff0; }
 ::-webkit-scrollbar-thumb { background: #222; }
 ::-webkit-scrollbar-thumb:hover { background: #252525; }
 
-body, html,
+body, html, [data-color-mode],
 
 .Box-row--focus-gray.navigation-focus,
 
@@ -29,7 +29,14 @@ body, html,
 
 main .border-bottom,
 
-.color-bg-canvas-inset
+.color-bg-canvas-inset,
+
+.project-header,
+.project-columns.bg-white,
+
+.tabnav-tab.selected, .tabnav-tab[aria-current]:not([aria-current=false]), .tabnav-tab[aria-selected=true],
+
+main > div[style*="fcfdfd"]
 {
   background: #36393F !important;
 }
@@ -45,6 +52,7 @@ main .border-bottom,
 .graph-before-activity-overview,
 
 .select-menu-modal, .select-menu-item,
+.SelectMenu-modal, .SelectMenu-item, .SelectMenu-item, .SelectMenu-list,
 
 .subnav-item,
 
@@ -71,10 +79,39 @@ main .border-bottom,
 
 .module>.inner, .module.highlighted>.inner, .module, .module.highlighted,
 
+.signup-prompt-bg,
+
+.project-column,
+
+.commit-form,
+
+.branch-action-body,
+
+.tabnav-tab,
+
+.footer,
+
+.code-list .file-box,
+
+.repository-og-image,
+
+.dashboard-sidebar,
+
 
 .gitzip-collect-dash 
 {
     background: #2F3136;
+}
+
+.project-pane.js-project-pane,
+
+.color-bg-secondary,
+
+.color-bg-canvas,
+
+.color-bg-tertiary
+{
+    background: #2F3136 !important;
 }
 
 input, textarea, select,
@@ -137,6 +174,8 @@ article .border-bottom,
 .SideNav-item[aria-current]:not([aria-current=false]), .SideNav-item[aria-selected=true], .SideNav-item:focus, .SideNav-item:hover,
 .SideNav,
 
+.SelectMenu-item:hover, body:not(.intent-mouse) .SelectMenu-item:focus,
+
 .table-list-header,
 
 .TimelineItem:before,
@@ -147,6 +186,19 @@ article .border-bottom,
 .Popover-message.Box,
 
 .boxed-group .heading, .boxed-group>h3,
+
+.project-card,
+
+.merge-status-item,
+
+.pr-toolbar.is-stuck,
+
+.Box-row--gray,
+
+.file,
+.container-preview .tabnav-tabs .selected,
+
+#user-content-toc td,
 
 
 .gitzip-header
@@ -163,7 +215,6 @@ article .border-bottom,
 
 .cm-s-github-light .CodeMirror-gutters,
 
-.tabnav-tab.selected, .tabnav-tab[aria-current]:not([aria-current=false]), .tabnav-tab[aria-selected=true],
 .page-responsive .previewable-comment-form .comment-form-head.tabnav .toolbar-commenting,
 
 .bg-purple-light,
@@ -210,12 +261,24 @@ article .border-bottom,
 
 #page,
 
-.pr-3
+.pr-3,
+
+.diffbar,
+
+.AvatarStack-body .avatar,
+
+.table-list-header-meta,
+
+.SelectMenu-modal .pl-sm-5,
+
+.footer
 {
   background: #0000 !important;
 }
 
-.profile-timeline-month-heading
+.profile-timeline-month-heading,
+
+.CircleBadge
 {
   background: #36393F !important;
 }
@@ -239,14 +302,27 @@ kbd,
 .CopyBlock:active, .CopyBlock:focus, .CopyBlock:hover,
 
 table.capped-list th,
-table.capped-list tr:nth-child(2n)
+table.capped-list tr:nth-child(2n),
+
+.copyable-terminal,
+
+.form-select,
+
+.divider .blob-num, .divider .blob-code
 {
     background: #18181982 !important;
 }
 
-article div[style*="background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));"]
+article div[style*="background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));"],
+
+.project-issue-body-blur
 {
   background: linear-gradient(to top, #2e2e2f, rgba(255,255,255,0)) !important;
+}
+
+.project-issue-body-blur {
+  background: linear-gradient(to top, #2f3136, rgba(255,255,255,0)) !important;
+
 }
 
 .blob-num-deletion, .blob-code-deletion .x
@@ -270,15 +346,39 @@ article div[style*="background: linear-gradient(to top, rgba(255,255,255,1), rgb
     background-color: #0f451c8a;
 }
 
-.calendar-graph rect.day[fill*="graph-day-bg"],
-.js-diff-placeholder
+.js-diff-placeholder,
+
+.ContributionCalendar-day, .ContributionCalendar-day[data-level="0"]
 {
   fill: #202225;
 }
-
+.ContributionCalendar-day, .ContributionCalendar-day[data-level="1"]
+{
+  fill: #01311f;
+  background: #01311f !important;
+}
+.ContributionCalendar-day, .ContributionCalendar-day[data-level="2"]
+{
+  fill: #034525;
+  background: #034525 !important;
+}
+.ContributionCalendar-day, .ContributionCalendar-day[data-level="3"]
+{
+  fill: #0f6d31;
+  background: #0f6d31 !important;
+}
+.ContributionCalendar-day, .ContributionCalendar-day[data-level="4"]
+{
+  fill: #00c647;
+  background: #00c647 !important;
+}
 .contrib-legend .legend li[style*="graph-day-bg"]
 {
   background-color: #202225 !important;
+}
+
+.gist-banner, .gist-banner.gist-detail-intro {
+    background-image: linear-gradient(180deg, #0000,#36393f),linear-gradient(70deg,#2f3136 50%,#03390f);
 }
 
 text,
@@ -291,7 +391,7 @@ text,
   stroke: #ccc1;
 }
 
-body, input, textarea, select, h1, h2, h3, h4, h5, h6, p,
+body, input, textarea, select, h1, h2, h3, h4, h5, h6, p, ::placeholder,
 
 .text-gray-dark,
 
@@ -322,6 +422,7 @@ body, input, textarea, select, h1, h2, h3, h4, h5, h6, p,
 .select-menu-filters, .select-menu-header *,
 .select-menu-modal,
 .select-menu-item.selected, details-menu .select-menu-item[aria-checked=true], details-menu .select-menu-item[aria-selected=true],
+.SelectMenu-item,
 
 .dropdown-menu *,
 
@@ -380,6 +481,19 @@ kbd,
 .color-text-secondary,
 .protip,
 
+.jump-to-suggestions-path, .jump-to-field-active,
+
+.Link--primary, .link-gray-dark,
+
+.radio-label,
+
+.pagehead-actions>li,
+
+.oauth-permissions-details .permission-title,
+.oauth-permissions-details .permission-summary .access-details,
+
+.Link--muted, .muted-link,
+.Link--secondary, .link-gray,
 
 .gitzip-check-mark, .gitzip-header
 {
@@ -450,9 +564,11 @@ kbd,
 .markdown-body blockquote,
 
 .commit-branches *,
-.full-commit .sha-block>.sha
+.full-commit .sha-block>.sha,
+
+mark
 {
-  color: #959595 !important;
+  color: #aaa !important;
 }
 
 a,
@@ -527,13 +643,21 @@ h3 a
     border-bottom-color: #202225 !important;
 }
 
-.markdown-body blockquote {
+.markdown-body blockquote,
+
+.project-pane.js-project-pane
+{
     border-left: .25em solid #18181982 !important;
 }
 
 .TimelineItem-break
 {
   border-top-color: #18181982 !important
+}
+
+.dropdown-caret
+{
+  border-top: 4px solid #ccc !important;
 }
 
 .dropdown-menu:after,
@@ -543,14 +667,42 @@ h3 a
   border-radius: 5px !important;
 }
 
+.AvatarStack-body .avatar, .AvatarStack-body .avatar img
+{
+  border-radius: 0px !important;
+}
+
 #js-pjax-container > .mt-4
 {
   margin: 0 !important;
 }
 
-.tabnav
+.container-preview .tabnav-tabs 
 {
-  margin-bottom: 0;
+    margin: -6px 0 -6px 45px;
+}
+
+.markdown-body blockquote 
+{
+    padding: 1em 1em;
+}
+
+.prose-diff .rich-diff-level-zero.changed {
+    box-shadow: inset 4px 0 0 #f9c513 !important;
+}
+.prose-diff .markdown-body>ins
+{
+    box-shadow: inset 4px 0 0 #34d058 !important;
+}
+.prose-diff .markdown-body>del
+{
+    box-shadow: inset 4px 0 0 #d73a49 !important;
+}
+
+.repository-og-image
+{
+  background-position: 50%;
+  background-size: cover;
 }
 
 .octicon.octicon-mark-github.CircleBadge-icon.text-white
@@ -582,20 +734,22 @@ h3 a
   filter: invert(1) brightness(1.2);
 }
 
+.CircleBadge img
+{
+  filter: invert(0) brightness(1.2);
+}
+
+.task-list-item-checkbox
+{
+  filter: invert(.8) contrast(2) brightness(4);
+}
+
 div#network.network > div > canvas,
 
-#search a,
-
-.avatar-user[alt="Avatar"]
+#search a
 {
     -webkit-filter: invert(90%) hue-rotate(180deg)!important;
     filter: invert(90%) hue-rotate(180deg)!important;
-}
-
-img[src*="profile-first-pr"]
-{
-    filter: invert(1) hue-rotate(175deg) saturate(3) brightness(2);
-    mix-blend-mode: exclusion;
 }
 
 #network canvas {
