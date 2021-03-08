@@ -1,0 +1,115 @@
+{
+    "styleList": [{
+            "title": "LinkedIn",
+            "version": "v2.0.27",
+            "desc": "LinkedIn, but dark!",
+            "url1": "https://userstyles.org/styles/173399/linkeddark",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/linkedin.user.css",
+            "imageURL": "./files/css/images/LinkedDark.png"
+        },
+        {
+            "title": "Google",
+            "version": "v1.0.20",
+            "desc": "My dark Google collection. <br>May your searching not hurt your eyes.",
+            "url1": "https://userstyles.org/styles/174098/dark-google-collection",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/google.user.css",
+            "imageURL": "./files/css/images/google.png"
+        },
+        {
+            "title": "GitHub",
+            "version": "v1.0.6",
+            "desc": "LinkedIn, but dark!",
+            "url1": "https://userstyles.org/styles/173399/linkeddark",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/linkedin.user.css",
+            "imageURL": "./files/css/images/github.png"
+        },
+        {
+            "title": "UserStyles",
+            "version": "v1.0.1",
+            "desc": "LinkedIn, but dark!",
+            "url1": "https://userstyles.org/styles/173399/linkeddark",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/linkedin.user.css",
+            "imageURL": "./files/css/images/UserStyles.png"
+        },
+        {
+            "title": "English Light Novels",
+            "version": "v1.0.6",
+            "desc": "Dark, cleaned up, and less amateur.",
+            "url1": "https://userstyles.org/styles/186916/english-ln-dark",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/eln.user.css",
+            "imageURL": "./files/css/images/EnglishLN.png"
+        },
+        {
+            "title": "Quora",
+            "version": "v1.0.0",
+            "desc": "Dark, and just the answers. <br>Who needs all the boring stuff?",
+            "url1": "https://userstyles.org/styles/185971/quora-just-answers",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/quora.user.css",
+            "imageURL": "./files/css/images/quora.png"
+        },
+        {
+            "title": "Stack Exchange",
+            "version": "v1.0.6",
+            "desc": "ALSO dark, and just the answers. <br>Who needs all the boring stuff again?",
+            "url1": "https://userstyles.org/styles/181633/stacksuite-just-answers",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/stack.user.css",
+            "imageURL": "./files/css/images/StackAnswers.png"
+        },
+        {
+            "title": "Ko-Fi",
+            "version": "v1.0.7",
+            "desc": "Ko-fi? <br>Nah, Ko-la!",
+            "url1": "https://userstyles.org/styles/176278/ko-la",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/ko-fi.user.css",
+            "imageURL": "./files/css/images/Ko-la.png"
+        },
+        {
+            "title": "Buy Me a Coffee",
+            "version": "v1.0.5",
+            "desc": "Don't buy me some dirt water, buy me a cool and refreshing beverage instead!",
+            "url1": "https://userstyles.org/styles/176276/buy-me-a-cola",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/buymeacoffee.user.css",
+            "imageURL": "./files/css/images/buymeacola.png"
+        },
+        {
+            "title": "Centrelink",
+            "version": "v1.0.0",
+            "desc": "Dark Centrelink and myGov. <br>Supports the new Beta!",
+            "url1": "https://userstyles.org/styles/173401/centrelink-dark",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/centrelink.user.css",
+            "imageURL": "./files/css/images/centrelink.png"
+        },
+        {
+            "title": "ToS;DR",
+            "version": "v1.0.1",
+            "desc": "You may not read the ToS, but if you were to, you'd want to do it like this.",
+            "url1": "https://userstyles.org/styles/188898/tos-dark",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/tosdr.user.css",
+            "imageURL": "./files/css/images/tosdr.png"
+        },
+        {
+            "title": "Sketchfab",
+            "version": "v1.0.0",
+            "desc": "Sketchfab needs a little love too. <br>At night, of course.",
+            "url1": "https://userstyles.org/styles/173209/darkfab",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/sketchfab.user.css",
+            "imageURL": "./files/css/images/sketchfab.png"
+        },
+        {
+            "title": "EZGIF",
+            "version": "v1.0.0",
+            "desc": "EZGIF, now EZ on the eyes!",
+            "url1": "https://userstyles.org/styles/190136",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/ezgif.user.css",
+            "imageURL": "./files/css/images/ezgif.png"
+        },
+        {
+            "title": "Behance",
+            "version": "v1.0.0",
+            "desc": "Behold! Behance!",
+            "url1": "https://userstyles.org/styles/190969/behance-dark-by-bane",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/behance.user.css",
+            "imageURL": "./files/css/images/behance.png"
+        }
+    ]
+}
