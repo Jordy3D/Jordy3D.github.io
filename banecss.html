@@ -135,7 +135,7 @@
     let styleCardContainer = $("#styleCardContainer");
 
     // Get the information from the JSON catalogue
-    let styleInfoJson = $.getJSON("./files/css/stylecatalogue.json", function(result) {
+    let styleInfoJson = $.getJSON("https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/stylecatalogue.json", function(result) {
         for (i = 0; i < result.styleList.length; i++) {
             // Clone the template
             let clone = styleCardTemplate.clone();
