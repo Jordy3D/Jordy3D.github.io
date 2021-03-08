@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           EnglishLightNovels Dark
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.0
+@version	1.0.6
 @description    Dark mode for EnglishLightNovels
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -14,7 +14,9 @@
 ::-webkit-scrollbar-thumb { background: #222; }
 ::-webkit-scrollbar-thumb:hover { background: #252525; }
 
-body, html
+body, html,
+
+body.custom-background
 {
   background: #3d3d3f;
 }
@@ -197,7 +199,6 @@ input[type="search"].search-field,
   
   transition: right .2s, opacity .2s;
 }
-
 
 body, html
 {
