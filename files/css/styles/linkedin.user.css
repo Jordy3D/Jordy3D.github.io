@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           LinkedDark
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	2.0.26
+@version	2.0.27
 @description    Dark mode for LinkedIn
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -31,7 +31,19 @@
 
 .theme--mercado .jobs-premium-applicant-insights__obfuscated-value, .theme--mercado .jobs-premium-applicant-insights__long-obfuscated-value, .theme--mercado .jobs-premium-obfuscated-upsell .applicant-rank-value,
 
+.search-basic-typeahead .basic-typeahead__triggered-content,
+.search-basic-typeahead .basic-typeahead__selectable,
+
+.carousel-body,
+
 .pv-entity__position-group-pager,
+
+.scaffold-layout-toolbar,
+
+.entity-result__embedded-object,
+
+.share-content-type-drawer__content,
+.share-creation-state__comment-controls-tooltip.ui-inline-tooltip,
 
 /*Loading*/
 #app-boot-bg .line, .loading-bg .line,
@@ -133,6 +145,17 @@
 
 .pv-profile-section.background-section.pv-profile-section--reorder-enabled .pv-profile-section .pv-profile-section__sortable-card-item,
 .pv-profile-section.background-section.pv-profile-section--reorder-enabled .pv-profile-section .pv-profile-section__card-item, .pv-profile-section.background-section.pv-profile-section--reorder-enabled .pv-profile-section .pv-profile-section__card-item-v2,
+
+.reusable-search-show-more-link.reusable-search-show-more-link,
+
+.share-creation-state, .share-creation-state__share-box-v2,
+.share-creation-state__footer,
+.share-content-type-button,
+
+.share-actor-toggle, .share-visibility-options__main-content, .share-box-footer,
+.share-generic-list, .share-generic-list--scroll,
+
+.carousel-header,
 
 /*Loading*/
 #app-boot-bg .feed-profile, .loading-bg .feed-profile,
@@ -244,6 +267,14 @@ button.mt3,
 
 .carousel-form .carousel-header,
 
+.osmosis-toggle,
+
+.pe-artdeco-typeahead .basic-typeahead__selectable.basic-typeahead__selectable--active .pe-basic-typeahead-hit, .pe-artdeco-typeahead .basic-typeahead__selectable:hover .pe-basic-typeahead-hit,
+
+.scaffold-layout-toolbar,
+
+.global-nav__logo-hoverable,
+
 /*Not Signed In*/
 .learning-cta__label,
 
@@ -317,6 +348,14 @@ select,
 
 .neptune-grid.two-column-with-left-rail .core-rail, .neptune-grid.two-column .core-rail,
 
+.pv-profile-section.background-section.pv-profile-section--reorder-enabled .pv-profile-section .pv-profile-section__section-info,
+
+.search-reusables__filters-bar-grouping,
+
+.ge-base-flow__task-card,
+
+.pe-detail-featured-list__item,
+
 /*Learning*/
 .index-body__recommendations.container,
 
@@ -360,6 +399,8 @@ input, textarea,
 #setting-sessions #current-session,
 
 .artdeco-completeness-meter-linear__progress-element,
+
+.feed-follows-module-recommendation__follow-btn,
 
 /*Not Signed In*/
 .search-bar,
@@ -436,7 +477,7 @@ input, textarea,
   background-color: #0d1b22a3;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, li, label,
+body, h1, h2, h3, h4, h5, h6, p, li, label, ::placeholder,
 
 .t-black,
 .mr1, .mr2,
@@ -525,6 +566,13 @@ li-icon,
 .jobs-details-premium-insight--skill-subtitle-obfuscated .jobs-details-premium-insights__apl-subtitle,
 
 .theme--mercado .pv-entity__extra-details .inline-show-more-text__button:hover,
+
+.comments-comment-box-comment__text-editor .ql-editor.ql-blank:after,
+
+.top-card-link,
+
+.share-creation-state__comment-controls-tooltip.ui-inline-tooltip,
+.share-generic-list__item--active,
 
 /*Learning*/
 .secondary-nav-bar__link,
@@ -681,7 +729,13 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
   border-color: #057642 !important;
 }
 
-#voyager-feed
+.share-content-type-drawer__arrow--bottom::after,
+.share-creation-state__comment-controls-tooltip.ui-inline-tooltip--arrow-bottom .ui-inline-tooltip__caret
+{
+  border-color: #162228 transparent !important;
+}
+
+ff#voyager-feed
 {
   padding-top: 25px !important;
 }
@@ -692,6 +746,11 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
 
 .authentication-outlet {
     padding-top: 100px;
+}
+
+#voyager-feed
+{
+  padding-top: 34px !important;
 }
 
 .recommendation-carousel-card
@@ -710,6 +769,10 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
 
 .pv-profile-sticky-header--is-showing,
 
+.global-nav__logo-hoverable,
+
+.theme--mercado .msg-overlay-list-bubble,
+
 /*Learning*/
 .secondary-nav-bar, 
 .me__content,
@@ -717,7 +780,7 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
 /*Not Signed In*/
 .cta-modal
 {
-  box-shadow: 3px 0 0 1px rgba(0,0,0,.15), 2px 6px 9px rgba(0,0,0,.2) !important;
+  box-shadow: 3px 0 0 1px #0000007a, 2px 6px 9px #00000091 !important;
 }
 
 input[type=checkbox]:not(:checked)+label:before, input[type=radio]:not(:checked)+label:before,
