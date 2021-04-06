@@ -18,7 +18,7 @@
         {
             "title": "GitHub",
             "version": "v1.0.6",
-            "desc": "LinkedIn, but dark!",
+            "desc": "GitHub has their own. <br>I have mine.",
             "url1": "https://userstyles.org/styles/173399/linkeddark",
             "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/github.user.css",
             "imageURL": "./files/css/images/github.png"
@@ -26,7 +26,7 @@
         {
             "title": "UserStyles",
             "version": "v1.0.1",
-            "desc": "LinkedIn, but dark!",
+            "desc": "How is this not how it is anyway?",
             "url1": "https://userstyles.org/styles/173399/linkeddark",
             "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/userstyles.user.css",
             "imageURL": "./files/css/images/UserStyles.png"
