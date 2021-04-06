@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.21
+@version	1.0.22
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -52,7 +52,12 @@ form .RNNXgb,
 
 .ExHZLe, .Ot9r0,
 .worN4e,
-.z0Mzpf:not(:disabled)
+.z0Mzpf:not(:disabled),
+
+.SmeuHe,
+
+.imso-fpm, .qJnhT,
+.liveresults-sports-immersive__empty-tile
 {
     background: #3d3d3f;
 }
@@ -207,7 +212,9 @@ ul.top-nav,
 .rqTuzc,
 
 .drive__customers,
-.glue-tile, .glue-tile__container
+.glue-tile, .glue-tile__container,
+
+.tb_c
 {
     background: #363639;
 }
@@ -391,7 +398,11 @@ footer, html.hcfe,
 
 .drive__customers .glue-carousel__wrap,
 
-.glue-tile:hover, .glue-tile__container:hover
+.glue-tile:hover, .glue-tile__container:hover,
+
+.Hg3mWc,
+
+.jTw2d
 {
     background: #2e2e2f !important;
 }
@@ -474,7 +485,9 @@ footer, html.hcfe,
 
 .tw-bilingual-entry:hover,
 
-.neICle:hover
+.neICle:hover,
+
+.imso-hov:hover, .imso-hov:focus
 {
     background: #12121354;
 }
@@ -1099,7 +1112,18 @@ a .SuDEy, a:visited .SuDEy,
 
 .wwUB2c, .wwUB2c .chJdMe,
 
-.J3Tg1d .tmS4cc .gadasb
+.J3Tg1d .tmS4cc .gadasb,
+
+.Gm3B1b,
+
+.imso_mh__mh-bd,
+.imso_mh__tm-nm,
+.imspo_mt__dt-t,
+.imspo_mt__game-status,
+.imspo_mt__pm-infc,
+.SXBRcc,
+.YIikAd,
+.GVj7ae
 {
     color: #ccc;
 }
@@ -1199,7 +1223,9 @@ div.knowledge-panel.kp-blk .mod *,
 .glue-button--high-emphasis.glue-social__copy-btn, .glue-button--high-emphasis.glue-social__title.glue-social__title--zippy.glue-expansion-panel-toggle, .glue-button.glue-button--high-emphasis,
 .glue-headline, .glue-tile .glue-tile__headline, .glue-tile__container .glue-tile__headline,
 
-.hdtb-mitem .GOE98c, .hdtb-mitem a, .hdtb-mitem.hdtb-msel, .t2vtad
+.hdtb-mitem .GOE98c, .hdtb-mitem a, .hdtb-mitem.hdtb-msel, .t2vtad,
+
+.Hg3mWc, .Hg3mWc:focus
 {
     color: #ccc !important;
 }
@@ -1454,6 +1480,11 @@ li.sbsb_c:first-child .sbse,
 {
   border: solid #ccc !important;
   border-width: 0 2px 2px 0 !important;
+}
+
+.We6bVe .tb_st, .AAhKnb .tb_st
+{
+  border-bottom: solid 3px #ccc !important;
 }
 
 .xtSCL,
@@ -5196,6 +5227,134 @@ clearImage
 }
 }
 
+@-moz-document domain("calendar.google.com") {
+/*Calendar*/
+body, html,
+
+.tNDBE,
+
+.p9lUpf
+{
+  background: #3d3d3f;
+}
+
+.ef2wWc,
+
+.JtukPc,
+
+.I7OXgf,
+
+.QQYuzf
+{
+    background: #363639;
+}
+
+.Kk7lMc-DWWcKd-OomVLb-haAclf,
+
+.wmCMbe,
+
+.fFW7wc.XKSfm-Sx9Kwc-xJ5Hnf,
+.VIpgJd-TUo6Hb, .XKSfm-Sx9Kwc,
+
+.gb_Kd,
+
+.VOEIyf .jBmls
+{
+    background: #2e2e2f !important;
+}
+
+.W0m3G .r4nke,
+
+.g3dbUc.smECzc:hover, .g3dbUc.KCIIIb:hover,
+.yzYBvd:hover,
+
+.t8qpF:hover,
+
+.XOE24,
+
+.pQdjpb.shor6 .nXeosb,
+.ULpymb,
+.DyOaYd,
+.Erb9le:not(.RDPZE) .qmMNRc.y7OZL,
+
+.oKubKe[aria-selected="true"]
+{
+    background: #12121354 !important;
+}
+
+.gb_qa,
+
+.J09ahd,
+
+.hEtGGf::after,
+
+.W0m3G::before
+{
+  background: #0000 !important;
+}
+
+.TUH0Sd.i8dSE .r4nke, .TUH0Sd.i8dSE.uGtG7d .r4nke
+{
+  background: #1a73e8 !important;
+}
+
+body, input, textarea, ::placeholder,
+
+.gb_qa,
+.GXlaye .snByac, .rSoRzd, .Cd9hpd .snByac,
+
+.NI2kfb, .uQ1ixe .snByac,
+
+.W0m3G,
+.MSZkRb .r4nke,
+
+.YK7obe .yzYBvd,
+.g3dbUc.smECzc,
+
+.s6I1Kd,
+.qmMNRc,
+
+.agOyMd .JAPzS,
+.agOyMd div.DN1TJ,
+
+.j3nyw
+{
+  color: #ccc !important;
+}
+
+.nZC2Ae, .iSSROb
+{
+  color: #ccc2;
+}
+
+.VIpgJd-TUo6Hb, .XKSfm-Sx9Kwc
+{
+  border: none !important;
+}
+.wmCMbe
+{
+  box-shadow: none;
+}
+
+.PhLhOd, .QIadxc, .t8qpF,
+
+.SGWAac, .tNDBE:not(.Wyo4Qe)
+{
+  border-color: #12121354 !important;
+}
+.ef2wWc
+{
+  border: 1px solid #1a73e8 !important;
+}
+
+clearImage 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+    mix-blend-mode: color-dodge;
+}
+
+}
+
 @-moz-document domain("domains.google.com") {
 /*Dark Scrollbar*/
 ::-webkit-scrollbar { width: 10px; }
@@ -5359,7 +5518,9 @@ clearImage
 ::-webkit-scrollbar-thumb { background: #222; }
 ::-webkit-scrollbar-thumb:hover { background: #252525; }
 
-body, html
+body, html,
+
+.Nd-gg-Kc .Nd-jg-Kc
 {
   background: #3d3d3f;
 }
@@ -5370,7 +5531,9 @@ body, html
 .ve-Ai-Ve .ve-Bi-Zb-ie,
 
 .Od-mh-nh,
-.Nd-eg-Kc .Nd-hg-Kc
+.Nd-eg-Kc .Nd-hg-Kc,
+
+.Nd-gg-Df
 {
     background: #363639;
 }
@@ -5379,7 +5542,9 @@ body, html
 
 .ve-Gf-ie,
 
-.Nd-eg-Cf
+.Nd-eg-Cf,
+
+.ee-Li-ie
 {
     background: #2e2e2f !important;
 }
@@ -5419,7 +5584,13 @@ body,
 .Nd-eg,
 .Nd-eg-Kc .Nd-hg-Kc,
 .Od-eg-Oc-cb > .Od-Ff-Oc-tc, .Nd-eg-nc,
-.Nd-eg-Cf-qg
+.Nd-eg-Cf-qg,
+
+.Nd-gg-nc,
+.Od-gg-Oc-cb>.Od-Gf-Oc-tc,
+
+.ee-Ii-Zb-Ji-Yb-mh .a-Ji-w,
+.ee-Ii-Zb-Ji-Yb-mh .a-Ji, .ee-Ii-Zb-Ji-Yb-mh .a-kb-u
 {
   color: #ccc !important;
 }
