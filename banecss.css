@@ -138,15 +138,31 @@ Style Cards
 }
 */
 
+@media screen and (min-width: 500px) {
+    #styleCardContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px 10px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    #styleCardContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 10px;
+        margin: 0 auto;
+    }
+}
+
 .styleData {
     background-color: #202020;
-    border-radius: 15px;
-    min-width: 300px;
+    border-radius: 25px;
     height: fit-content !important;
     box-sizing: border-box;
     color: #ccc;
     display: flex;
-    margin: 20px 0;
     padding: 0px 0 0px 0em;
     /*Shadow*/
     -webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
@@ -154,6 +170,13 @@ Style Cards
     box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
     /* Transitions*/
     transition: color 200ms;
+}
+
+@media screen and (max-width: 500px) {
+    .styleCard,
+    .styleData {
+        height: 180px !important;
+    }
 }
 
 .styleData:hover {
@@ -166,13 +189,13 @@ Style Cards
     border-radius: 15px;
     display: flex;
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     backdrop-filter: brightness(0.4) blur(8px);
 }
 
 .styleImageHolder {
     background-size: cover;
-    height: 156px;
+    height: 100%;
     width: 300px;
     background-position-x: 50%;
     border-radius: 10px 0 0 10px;
@@ -183,9 +206,9 @@ Style Cards
 }
 
 .styleImageHolder img {
-    height: 156px;
-    width: 300px;
-    left: -70px;
+    height: 200px;
+    width: auto;
+    left: -20%;
     position: relative;
 }
 
