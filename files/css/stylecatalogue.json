@@ -24,6 +24,14 @@
             "imageURL": "./files/css/images/github.png"
         },
         {
+            "title": "Unity",
+            "version": "v1.0.0",
+            "desc": "Unity, at last",
+            "url1": "https://userstyles.org/styles/201551/unity-dark-by-bane",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/unity.user.css",
+            "imageURL": "./files/css/images/unity.png"
+        },
+        {
             "title": "UserStyles",
             "version": "v1.0.1",
             "desc": "How is this not how it is anyway?",

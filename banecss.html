@@ -71,8 +71,8 @@
                         <h6 class="styleVersion">%version%</h6>
                         <p>%desc%</p>
                         <div class="styleButton">
-                            <a href="%url1%">Get style from Userstyles</a>
-                            <a href="%url2%" target="_blank" style="color: #3a9cd6;">Get style directly</a>
+                            <a href="%url1%" id="userstylelink">Get style from Userstyles</a>
+                            <a href="%url2%" id="banestylelink" target="_blank" style="color: #3a9cd6;">Get style directly</a>
                         </div>
                     </div>
                 </div>
@@ -138,19 +138,29 @@
 
     // Get the information from the JSON catalogue
     let styleInfoJson = $.getJSON("https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/stylecatalogue.json", function(result) {
+        //let styleInfoJson = $.getJSON("./files/css/stylecatalogue.json", function(result) {
         for (i = 0; i < result.styleList.length; i++) {
             // Clone the template
             let clone = styleCardTemplate.clone();
             // Attach the clone to the container
             clone.appendTo(styleCardContainer);
 
+            styleCardTemplate.id = result.styleList[i].title;
+            $("#styleCardTemplate").id = "FUCK";
+
             // Set up the clone's info from the JSON catalogue
             let clonesHtml = clone.html();
+
+            clonesHtml.id = "#test";
 
             clonesHtml = clonesHtml.replace("%title%", result.styleList[i].title);
             clonesHtml = clonesHtml.replace("%version%", result.styleList[i].version);
             clonesHtml = clonesHtml.replace("%desc%", result.styleList[i].desc);
-            clonesHtml = clonesHtml.replace("%url1%", result.styleList[i].url1);
+            // I don't get why this doesn't work...
+            if (result.styleList[i].url1 != "")
+                clonesHtml = clonesHtml.replace("%url1%", result.styleList[i].url1);
+            else
+                clone.find("#userstylelink").remove();
             clonesHtml = clonesHtml.replace("%url2%", result.styleList[i].url2);
             clonesHtml = clonesHtml.replace("%imageURL%", result.styleList[i].imageURL);
             clonesHtml = clonesHtml.replace("%imageURL%", result.styleList[i].imageURL);
