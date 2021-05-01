@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.23
+@version	1.0.24
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -402,7 +402,9 @@ footer, html.hcfe,
 
 .Hg3mWc,
 
-.jTw2d
+.jTw2d,
+
+.gEYEQc
 {
     background: #2e2e2f !important;
 }
@@ -474,7 +476,9 @@ footer, html.hcfe,
 
 .c93Gbe,
 
-.MEdqYd, .feqqG
+.MEdqYd, .feqqG,
+
+.gEYEQc:hover
 {
     background-color: #12121354 !important;
 }
@@ -624,7 +628,9 @@ div.sfbg, div.sfbgg,
 
 .FalWJb,
 
-.aypzV *
+.aypzV *,
+
+.YPxNKd
 {
     background: none !important;
 }
@@ -1127,7 +1133,9 @@ a .SuDEy, a:visited .SuDEy,
 .YIikAd,
 .GVj7ae,
 
-.aypzV
+.aypzV,
+
+.bVj5Zb
 {
     color: #ccc;
 }
@@ -1410,6 +1418,11 @@ li.sbsb_c:first-child .sbse,
 .f196ee
 {
   padding: 10px;
+}
+
+.I6TXqe
+{
+  padding: 10px !important
 }
 
 .vnLNtd.mnr-c, .InNVqc, .e3sOrb, .sL6Rbf.R36Kq,
@@ -2608,6 +2621,11 @@ body, ::placeholder,
 .docs-material-button-hairline-default.docs-material-button .docs-icon-img
 {
     filter: invert(1) hue-rotate(180deg) saturate(1.2) brightness(3);
+}
+
+.docs-colormenuitems.goog-menu div:nth-child(2)
+{
+  filter: invert(1);
 }
 
 /*Good stuff*/
@@ -4215,7 +4233,9 @@ body.xp,
 
 .O6,
 
-.V6.CL
+.V6.CL,
+
+.gb_Wd.gb_Pe .gb_He .gb_Ue
 {
     background: #12121354 !important;
 }
@@ -5331,7 +5351,11 @@ body, html,
 
 .I7OXgf,
 
-.QQYuzf
+.QQYuzf,
+
+.MDfQ7,
+
+.xWId8e
 {
     background: #363639;
 }
@@ -5345,7 +5369,12 @@ body, html,
 
 .gb_Kd,
 
-.VOEIyf .jBmls
+.VOEIyf .jBmls,
+
+.jZ0DTb,
+.Kb2sf,
+
+.cAYGed.KKjvXb .Ioup7e, .cAYGed.KKjvXb .BMQm1d
 {
     background: #2e2e2f !important;
 }
@@ -5404,7 +5433,16 @@ body, input, textarea, ::placeholder,
 .agOyMd .JAPzS,
 .agOyMd div.DN1TJ,
 
-.j3nyw
+.j3nyw,
+
+.nxPHec,
+.MDfQ7, .uFmiXb.RDPZE .snByac,
+.OspAke,
+
+.jgvuAb,
+.MocG8c,
+
+.gb_Vc.gb_Wc span
 {
   color: #ccc !important;
 }
