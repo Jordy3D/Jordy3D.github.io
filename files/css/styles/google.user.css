@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.26
+@version	1.0.27
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -220,7 +220,11 @@ ul.top-nav,
 
 .J6UZg,
 
-.card:not(:empty), .mnr-c:not(:empty)
+.card:not(:empty), .mnr-c:not(:empty),
+
+.i0X6df,
+
+.uMdZh
 {
     background: #363639;
 }
@@ -415,7 +419,13 @@ footer, html.hcfe,
 .qomYCd,
 .J6UZg .goog-date-picker,
 
-.KPV9xf, .HErFVb
+.KPV9xf, .HErFVb,
+
+.Xz5tfb.aID8W,
+
+.eJIuwd,
+
+#searchform.minidiv
 {
     background: #2e2e2f !important;
 }
@@ -498,7 +508,9 @@ footer, html.hcfe,
 
 .o6juZc,
 
-.KPV9xf:hover, .HErFVb:hover
+.KPV9xf:hover, .HErFVb:hover,
+
+.uMdZh:active, .rllt__local-item-selected
 {
     background-color: #12121354 !important;
 }
@@ -652,7 +664,15 @@ div.sfbg, div.sfbgg,
 
 .aypzV *,
 
-.YPxNKd
+.YPxNKd,
+
+.VkpGBb a:active,
+
+.fAt9Jd,
+
+.SME0md,
+
+.gb_bd:first-child, #gbsfw:first-child+.gb_bd
 {
     background: none !important;
 }
@@ -671,7 +691,11 @@ body > #searchform > div.sfbg,
 .MXl0lf,
 .R9zNe, .uWmgv,
 
-.glue-carousel__paginate-wrap:before
+.glue-carousel__paginate-wrap:before,
+
+.zbTRdb,
+
+.FClGRd
 {
   background: #2e2e2f !important;
 }
@@ -700,7 +724,9 @@ body > #searchform > div.sfbg,
 
 .GhpATe,
 
-.glue-footer__link, .glue-footer__link:hover
+.glue-footer__link, .glue-footer__link:hover,
+
+.zjoqD, .zjoqD .qdnLaf
 {
     background-color: #0000;
 }
@@ -1190,7 +1216,14 @@ a .SuDEy, a:visited .SuDEy,
 .pZMdO .ELcVZ,
 .VZTCjd h3, .VZTCjd:link, .VZTCjd:visited,
 
-.yDYNvb.lyLwlc, .yXK7lf em
+.yDYNvb.lyLwlc, .yXK7lf em,
+
+.vbr5i,
+
+.vWB2ve,
+.zbTRdb, .eJIuwd,
+
+.fQXfKc
 {
     color: #ccc;
 }
@@ -1301,7 +1334,10 @@ div.knowledge-panel.kp-blk .mod *,
 .rOVRL,
 .O3JH7,
 
-.fqgGwb
+.fqgGwb,
+
+.Tf4gIb,
+.C2tMte
 {
     color: #ccc !important;
 }
@@ -1495,9 +1531,16 @@ li.sbsb_c:first-child .sbse,
   padding: 10px;
 }
 
-.HSryR .Kot7x
+.HSryR .Kot7x,
+
+.C7r6Ue > div:last-child .uMdZh
 {
   padding-bottom: 10px !important;
+}
+
+#searchform.minidiv
+{
+  padding-bottom: 2px;
 }
 
 .vnLNtd.mnr-c, .InNVqc, 
@@ -1613,7 +1656,9 @@ li.sbsb_c:first-child .sbse,
 .SMqeCb,
 
 .k24kee, .ogOaY,
-.s2TyX
+.s2TyX,
+
+.uMdZh
 {
   margin-bottom: 10px;
 }
@@ -1663,7 +1708,11 @@ li.sbsb_c:first-child .sbse,
 
 .mnr-c.Mkyyff,
 
-.LorSAd
+.LorSAd,
+
+.uMdZh,
+
+.eJIuwd
 {
     border-radius: 8px !important;
 }
@@ -1679,7 +1728,9 @@ li.sbsb_c:first-child .sbse,
 
 #rhs .OOijTb .kno-vrt-t  .BA0A6c > img,
 
-.F0ivUc img
+.F0ivUc img,
+
+.CbhyJe img
 {
   border-radius: 50%;
 }
@@ -1878,6 +1929,12 @@ div#hplogo a img[alt*="Holidays"] ,
 .section-info-action-icon-button:last-of-type
 {
   background-image: linear-gradient(to right,rgba(247,247,247,0) 0px,#363639 24px);
+}
+
+.FClGRd {
+    position: absolute;
+    top: 98px;
+    width: 80%;
 }
 }
 
@@ -4109,7 +4166,9 @@ gpb-library-card,
 
 .JPdR6b,
 
-.LVQB0b
+.LVQB0b,
+
+.gb_Hf
 {
     background: #2e2e2f !important;
 }
@@ -4134,7 +4193,9 @@ gpb-library-card,
 .SPjN1:focus, .SPjN1:hover,
 .HT0Bpf,
 
-.navbar-item:hover
+.navbar-item:hover,
+
+.gbqfqw
 {
     background: #222222b0 !important;
 }
@@ -4187,8 +4248,7 @@ body, h1, h2, h3,
 
 .k8Lt0 .bSIuKf, .nzJrHc,
 
-.iZhiic .pvVVcb,
-
+.iZhiic .pvVVcb
 /*Books stuff*/
 .navbar-link, .app-bar-link.selected,
 
@@ -4253,7 +4313,9 @@ body, h1, h2, h3,
 
 img.gb_va,
 
-img.gb_uc
+img.gb_uc,
+
+a[title="Google Play Logo"]
 {
     filter: invert(1) hue-rotate(185deg) saturate(5) brightness(2);
 }
@@ -4270,7 +4332,9 @@ img.gb_uc
 
 .rBxrEe,
 
-.closebox
+.closebox,
+
+.gb_B .gb_C
 {
   filter: invert(1);
 }
@@ -5461,7 +5525,12 @@ body, html,
 
 .b3-info-message-body1,
 .b3-info-message-amount-debit,
-.b3-info-message-amount-credit
+.b3-info-message-amount-credit,
+
+.b3-buy-flow .b3-section.ordered-list .b3-section-header,
+.b3-form-header .b3-info-message-component,
+.b3-expanding-form-selector .b3-existing-customer-option-description, .b3-single-option-form-selector .b3-existing-customer-option-description,
+.b3-info-message-detail-info, .b3-info-message-detail-info-non-header
 {
   color: #ccc;
 }
@@ -6446,6 +6515,179 @@ body
 #lang-icon 
 {
     filter: invert(1) hue-rotate(180deg) saturate(2) brightness(2);
+    mix-blend-mode: color-dodge;
+}
+}
+
+@-moz-document url-prefix("https://console.cloud.google.com"), domain("cloud.google.com"), domain("console.cloud.google.com") {
+/*Google Cloud*/
+body, html,
+
+.devsite-book-nav-bg:after, body[layout=docs],
+
+.pcc-default-theme, .central-page.pcc-default-theme,
+.pcc-default-theme, .central-page.pcc-default-theme[class],
+
+.cfc-panel-color-white[class][sandboxuid="1"]
+{
+  background: #3d3d3f;
+}
+
+devsite-header .devsite-collapsible-section,
+
+body[layout=docs] .devsite-article,
+
+body[ready] devsite-book-nav[fixed],
+
+.cloud-card,
+
+.mat-dialog-container[class],
+
+.cfc-panel-color-white[class],
+
+.mat-card[sandboxuid="1"]
+{
+    background: #363639;
+}
+
+.cloud-grid--alternate .is-6__large, .cloud-grid .is-6__large,
+
+.devsite-footer,
+
+.mat-form-field-label *
+{
+    background: #363639 !important;
+}
+
+body[theme=cloud-theme] .devsite-top-logo-row, body[theme=cloud-theme] .upper-tabs,
+
+cloudx-tabs-nav::part(overflow-cover),
+devsite-header cloudx-tabs-nav.upper-tabs .devsite-tabs-wrapper, devsite-header devsite-tabs.upper-tabs .devsite-tabs-wrapper,
+
+.cfc-ng2-region .cfc-background-base[sandboxuid="1"],
+
+.cfc-menu-panel,
+
+.ace-overlay-content
+{
+    background: #2e2e2f !important;
+}
+
+devsite-book-nav .devsite-nav-title.devsite-nav-active,
+devsite-book-nav .devsite-nav-item:not(.devsite-nav-accordion):not(.devsite-nav-heading)>.devsite-nav-title:not(.devsite-nav-active):focus, devsite-book-nav .devsite-nav-item:not(.devsite-nav-accordion):not(.devsite-nav-heading)>.devsite-nav-title:not(.devsite-nav-active):hover, devsite-book-nav .devsite-nav-item:not(.devsite-nav-accordion)>devsite-expandable-nav>.devsite-nav-title-no-path:focus, devsite-book-nav .devsite-nav-item:not(.devsite-nav-accordion)>devsite-expandable-nav>.devsite-nav-title-no-path:hover,
+
+.cloud-table-wrapper--alternate .cloud-table tr:nth-child(odd), cloudx-table[alternate] .cloud-table tr:nth-child(odd),
+.cloud-table-wrapper--alternate .cloud-table thead th, cloudx-table[alternate] .cloud-table thead th,
+
+.pre-style, code, pre,
+devsite-selector,
+
+.cloud-card:not(.cloud-card--no-hover),
+.snippet-card-content__right,
+
+.cfc-ng2-region .mat-form-field,
+.mat-checkbox-inner-container,
+
+.cfc-notification-header, .cfc-notification-footer
+{
+    background: #12121354 !important;
+}
+
+.cloud-table-wrapper--alternate .cloud-table tr.cloud-table__row-sub-header, cloudx-table[alternate] .cloud-table tr.cloud-table__row-sub-header
+{
+    background: #121213a3 !important;
+}
+
+.caution, .caution :link, .caution :visited, .caution code
+{
+    background: #44180254 !important;
+}
+
+cloudx-tabs,
+
+.overflow-cover
+{
+  background: #0000 !important;
+}
+
+body, p, h2, h3, h4, h5, h6, ol, li,
+
+.devsite-landing-row-item-description h3, .devsite-landing-row h2, h1,
+
+.devsite-nav-heading>.devsite-nav-title,
+.devsite-nav-title,
+
+.cloud-jump-menu__eyebrow, .cloud-jump-menu__toggle,
+.cloud-jump-menu__item--active:link .cloud-jump-menu__item__main, .cloud-jump-menu__item--active:visited .cloud-jump-menu__item__main,
+
+.cloud-table-wrapper--alternate .cloud-table tbody p, .cloud-table-wrapper--alternate .cloud-table tbody td, .cloud-table-wrapper--alternate .cloud-table tbody th, cloudx-table[alternate] .cloud-table tbody p, cloudx-table[alternate] .cloud-table tbody td, cloudx-table[alternate] .cloud-table tbody th,
+.cloud-table-wrapper--alternate .cloud-table thead th, cloudx-table[alternate] .cloud-table thead th,
+
+.cloud-card__headline,
+.cloud-body-text, p,
+
+cloudx-tabs devsite-tabs tab[active] a:link, cloudx-tabs devsite-tabs tab[active] a:visited,
+
+.pre-style, code, pre,
+
+devsite-header cloudx-tabs-nav.lower-tabs tab[active]>a, devsite-header devsite-tabs.lower-tabs tab[active]>a,
+cloudx-tabs-nav.lower-tabs>.devsite-tabs-wrapper>tab>a:focus, cloudx-tabs-nav.lower-tabs>.devsite-tabs-wrapper>tab>a:hover, cloudx-tabs-nav.upper-tabs>.devsite-tabs-wrapper>tab>a:focus, cloudx-tabs-nav.upper-tabs>.devsite-tabs-wrapper>tab>a:hover,
+
+.signup-form-page-title,
+.freetrial-callout-container h3,
+.name-block *,
+.cfc-text-title-4,
+.mat-form-field-appearance-outline .mat-form-field-flex *,
+
+a.cfc-signup-footer-link,
+
+cfc-step-header .cfc-step-header-title.cfc-stepper-heading-5,
+
+.cfc-menu-panel *,
+
+.cfc-ng2-region .mat-button, .cfc-ng2-region .mat-icon-button,
+
+.cfc-notification-title,
+.cfc-notification-timestamp
+{
+  color: #ccc !important;
+}
+
+devsite-footer-linkboxes .devsite-footer-linkbox-link,
+devsite-footer-utility .devsite-footer-utility-link,
+
+.cfc-ng2-region .cfc-text-title-5, .cfc-ng2-region .cfc-text-body-large,
+[class] .category-title[class],
+
+.cfc-ng2-region .cfc-text-headline[sandboxuid="1"],
+.cfc-ng2-region .cfc-text-title-5[sandboxuid="1"], .cfc-ng2-region .cfc-text-body-large[sandboxuid="1"],
+.mat-card[sandboxuid="1"]
+{
+  color: #ccc;
+}
+
+.devsite-nav-active, .devsite-nav-active.devsite-nav-title, .devsite-nav-active.devsite-nav-title>.devsite-nav-icon:before, .devsite-nav-deprecated .devsite-nav-active.devsite-nav-title
+{
+  color: #1a73e8 !important
+}
+
+*
+{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+devsite-selector
+{
+  padding-bottom: 10px;
+}
+
+cloudx-tabs>section[active] img,
+#tutorial-content img,
+
+#_0rif_billing-iframe iframey
+{
+    filter: invert(1) hue-rotate(180deg) brightness(1.2);
     mix-blend-mode: color-dodge;
 }
 }
