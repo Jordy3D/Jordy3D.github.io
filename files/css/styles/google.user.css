@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dark Google Collection
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	1.0.27
+@version	1.0.28
 @description    Dark mode for a number of Google Sites
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -209,8 +209,6 @@ ul.top-nav,
 .Jb0Zif .cLjAic,
 .Si5xMe,
 
-.FoDaAb,
-
 .rqTuzc,
 
 .drive__customers,
@@ -224,7 +222,12 @@ ul.top-nav,
 
 .i0X6df,
 
-.uMdZh
+.uMdZh,
+
+.XKnPEd,
+
+.x9Yddf, 
+.AlKDIb, .iBsHqb
 {
     background: #363639;
 }
@@ -425,7 +428,12 @@ footer, html.hcfe,
 
 .eJIuwd,
 
-#searchform.minidiv
+#searchform.minidiv,
+
+.j1iyq,
+.zaokob,
+
+.DIdn9:hover
 {
     background: #2e2e2f !important;
 }
@@ -510,7 +518,11 @@ footer, html.hcfe,
 
 .KPV9xf:hover, .HErFVb:hover,
 
-.uMdZh:active, .rllt__local-item-selected
+.uMdZh:active, .rllt__local-item-selected,
+
+.tw-lliw:hover, .tw-lliw:focus,
+
+.minidiv .BsbaEc
 {
     background-color: #12121354 !important;
 }
@@ -726,7 +738,9 @@ body > #searchform > div.sfbg,
 
 .glue-footer__link, .glue-footer__link:hover,
 
-.zjoqD, .zjoqD .qdnLaf
+.zjoqD, .zjoqD .qdnLaf,
+
+.uch-svg > div:last-child
 {
     background-color: #0000;
 }
@@ -1223,7 +1237,23 @@ a .SuDEy, a:visited .SuDEy,
 .vWB2ve,
 .zbTRdb, .eJIuwd,
 
-.fQXfKc
+.fQXfKc,
+
+.hhB0V,
+
+.language_list_item,
+
+.xP45xc, .k1lpKd, .ECcrpf, .N04zib, .YcotIe,
+.s80L3d, .c07z9, .tBWBtb,
+.gm-style .gm-style-iw-c,
+.D51jpe,
+.daNT9b,
+
+.c8d6zd,
+.z8gr9e, .FpiMuf,
+
+.wob_loc,
+.usJj9c .st
 {
     color: #ccc;
 }
@@ -1712,7 +1742,9 @@ li.sbsb_c:first-child .sbse,
 
 .uMdZh,
 
-.eJIuwd
+.eJIuwd,
+
+.DIdn9
 {
     border-radius: 8px !important;
 }
@@ -1910,7 +1942,9 @@ img[src*="lockups"],
 img[src*="etymology"],
 img[id*="lr_dct_img_origin_OK1"],
 
-.Gwgzqd
+.Gwgzqd,
+
+xpdpnd > div > div:nth-child(2)
 {
   filter: invert(1) brightness(3) !important;
   mix-blend-mode: exclusion;
@@ -1994,7 +2028,9 @@ body, html
 
 .mapsConsumerUiSubviewSectionGm2Reviewchart__bucket-background,
 
-.carousel-card
+.carousel-card,
+
+div[jsaction*="ane.place.carousel.card"]
 {
     background: #12121354 !important;
 }
@@ -2045,7 +2081,16 @@ body,
 .carousel-card-title-text, .carousel-card-body-text,
 .mapsConsumerUiSubviewSectionGm2ReviewcarouselcardReviewcarouselcardlarge__review-author,
 
-.CthZrc, .r1JIJb
+.CthZrc, .r1JIJb,
+
+.suggest-query *,
+.x3AX1-LfntMc-header-title-ij8cu-haAclf,
+
+.gm2-body-2,
+.ODSEW-ShBeI-RgZmSc-date, .ODSEW-ShBeI-VdSJob,
+.ODSEW-ShBeI-KFwaDe-V67aGc,
+
+div[jsaction*="ane.place.carousel.card"] span
 {
   color: #ccc !important;
 }
@@ -2113,6 +2158,108 @@ hold.onegoogle #gb a[href*="products"]
 }
 
 @-moz-document domain("google.com") {
+/*Travel
+THIS IS SPECIFICALLY FOR TRAVEL WHEN IT IS HANDLED UNDER GOOGLE.COM/TRAVEL*/
+body, html
+{
+  background: #3d3d3f;
+}
+
+.nCOOmf:not(:disabled)
+{
+    background: #363639;
+}
+
+.pAxGRc,
+
+.nCOOmf.KKjvXb:not(:disabled),
+
+.A8nfpe
+{
+    background: #2e2e2f !important;
+}
+
+.BobFtf:not(:disabled),
+
+.YfmZeb,
+
+.Kn4yub,
+
+.HKbote, .cUWMrd, .uBcopf,
+
+.Rj2Mlf:not(:disabled),
+
+.pWXB0b
+{
+    background: #12121354 !important;
+}
+
+.P2wJPb.RgtwTe.VfPpkd-XPtOyb-OWXEXe-gk6SMd
+{
+    background: #1a73e8 !important;
+}
+
+.plvncb
+{
+  background: #0000 !important;
+}
+
+body,
+
+.pnukcf.CCDcoc .mxXqs,
+
+.nCOOmf:not(:disabled), .nCOOmf:not(:disabled).VfPpkd-ksKsZd-mWPk3d-OWXEXe-AHe6Kc-XpnDCe, .nCOOmf:not(:disabled):active, .nCOOmf:not(:disabled):hover, .nCOOmf:not(:disabled):not(.VfPpkd-ksKsZd-mWPk3d):focus,
+
+.P2wJPb.RgtwTe.VfPpkd-XPtOyb-OWXEXe-gk6SMd
+{
+  color: #ccc !important;
+}
+
+.oLD7Od
+{
+  color: black;
+}
+
+*
+{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.Dy1Pdc::before
+{
+  content: "";
+  font-size: 0;
+  color: #0000 !important;
+  background: linear-gradient(to bottom, #00000038, #0000);
+  width: 400px !important;
+  height: 10px;
+  
+  left: 96px;
+  display: block;
+  position: fixed;
+  
+  z-index: 100
+}
+
+.Dy1Pdc
+{
+  padding: 0;
+}
+
+.yP0obc
+{
+  padding: 16px;
+}
+
+clearImage 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+    mix-blend-mode: color-dodge;
+}
+}
+
+@-moz-document domain("google.com") {
 /*Misc*/
 /* THIS IS SPECIFICALLY FOR POPUPS ON OTHER PAGES */
 
@@ -2126,6 +2273,30 @@ hold.onegoogle #gb a[href*="products"]
 .vQdbib
 {
     background: #2e2e2f !important;
+}
+
+/*This is for Preferences*/
+
+.URIeEf,
+
+.checkbox-label, .jfk-radiobutton-label
+{
+  color: #ccc !important;
+}
+
+.UVgjof .jfk-radiobutton-radio
+{
+    background: #12121354 !important;
+}
+
+.slmarker, .slmarker:after
+{
+  content: "";
+  border-left: 1px solid #ccc !important;
+}
+.goog-slider-horizontal .goog-slider-scale
+{
+  border-top: 1px solid #ccc !important;
 }
 }
 
@@ -2151,7 +2322,14 @@ body, html
 .cc .nice-table td,
 
 .forum-container .root-msg,
-.forum-container .all-replies
+.forum-container .all-replies,
+
+.ts .question,
+.ts .terminal .answer,
+
+.article.page.no-article-survey,
+
+.cc .pull-nextstep
 {
     background: #363639;
 }
@@ -2181,9 +2359,19 @@ a.user-feedback-link:hover,
 
 .forum-container .survey .as .as-button,
 
-.thread-list-thread:hover
+.thread-list-thread:hover,
+
+.ts .question input[type="radio"]+span,
+.material-radio .material-radio__circle, .material-radio .material-radio__fill,
+
+.cf input[type="text"]
 {
     background: #12121354 !important;
+}
+
+.material-radio__input:checked+.material-radio__label-text .material-radio__circle
+{
+  background: #1a73e8 !important;
 }
 
 .cc>.zippy-overflow .zippy,
@@ -2204,7 +2392,12 @@ body,
 .forum-locked-alert,
 
 .thread-list-thread__title,
-.ask-community-card__text
+.ask-community-card__text,
+
+.ts .question.answered,
+
+.scSearchSearch_results_listSearchresultslistsearch-for,
+.scSearchSearch_results_listSearchresultslisttitle
 {
   color: #ccc !important;
 }
@@ -2215,9 +2408,19 @@ body,
   box-shadow: none !important;
 }
 
-clearImage 
+.cc .pull-nextstep
 {
-    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(.8);
+  padding-bottom: 32px;
+}
+
+.cc .pull-nextstep
+{
+  border-radius: .625rem;
+}
+
+.hcfe img:not([class^="gb_"]) 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(3) brightness(1.2);
     mix-blend-mode: color-dodge;
 }
 }
@@ -2306,7 +2509,10 @@ body, html,
 .ita-hwt-candidates,
 .ita-hwt-buttons,
 
-.ooArgc:focus
+.ooArgc:focus,
+
+.qSb8Pe:hover, .qSb8Pe.KKjvXb,
+.fMHXgc
 {
     background: #12121354 !important;
 }
@@ -2389,7 +2595,9 @@ body,
 .ZTPlmc,
 .nYkDR, .RSggmb,
 
-.a88hkc
+.a88hkc,
+
+.qSb8Pe
 {
   color: #ccc !important;
 }
@@ -2842,6 +3050,23 @@ body, ::placeholder,
   border-top: 2px solid #363639 !important;
 }
 
+.selection
+{
+  opacity: 1 !important;
+  background-color: rgba(14, 101, 235, .2) !important;
+}
+
+.active-cell-border[style*="border-top"] {border-top: 2px solid #499ad9 !important; }
+.active-cell-border[style*="border-bottom"] {border-bottom: 2px solid #499ad9 !important; }
+.active-cell-border[style*="border-left"] {border-left: 2px solid #499ad9 !important; }
+.active-cell-border[style*="border-right"] {border-right: 2px solid #499ad9 !important; }
+
+.selection-border[style*="border-top"] {border-top: 1px solid #499ad9 !important; }
+.selection-border[style*="border-bottom"] {border-bottom: 1px solid #499ad9 !important; }
+.selection-border[style*="border-left"] {border-left: 1px solid #499ad9 !important; }
+.selection-border[style*="border-right"] {border-right: 1px solid #499ad9 !important; }
+
+
 .docs-homescreen-list-item,
 .docs-homescreen-list-item-icon
 {
@@ -2856,6 +3081,11 @@ body, ::placeholder,
 .docs-gm #punch-start-presentation-right .goog-flat-menu-button-dropdown
 {
   border-color: #ccc #0000 !important;  
+}
+
+.kix-cursor-caret
+{
+  border-left: 2px solid #1a73e8 !important;
 }
 
 .docs-gm .docos-streampane-container .streampane-dragger:hover
@@ -3002,7 +3232,7 @@ hold.docs-gm .modal-dialog-title
   line-height: 0 !important;
   font-size: 0 !important;
   
-  transform: rotatez(45deg);
+  transform: rotate(45deg);
 }
 
 /* Alternate Dark Mode 2
@@ -4248,7 +4478,7 @@ body, h1, h2, h3,
 
 .k8Lt0 .bSIuKf, .nzJrHc,
 
-.iZhiic .pvVVcb
+.iZhiic .pvVVcb,
 /*Books stuff*/
 .navbar-link, .app-bar-link.selected,
 
@@ -4938,7 +5168,9 @@ span.Kj-JD-K7-K0,
 
 .zA>td.oZ-x3,
 .zA>.xY.bq4,
-.zA>.WA
+.zA>.WA,
+
+.qj
 {
     filter: invert(1) hue-rotate(185deg) saturate(4) brightness(2);
 }
@@ -6689,6 +6921,50 @@ cloudx-tabs>section[active] img,
 {
     filter: invert(1) hue-rotate(180deg) brightness(1.2);
     mix-blend-mode: color-dodge;
+}
+}
+
+@-moz-document domain("surveys.google.com") {
+/*Surveys*/
+body, html
+{
+  background: #3d3d3f;
+}
+
+.gor-section--howitworks .gor-greybox
+{
+    background: #363639;
+}
+
+.h-c-header__bar,
+
+footer
+{
+    background: #2e2e2f !important;
+}
+
+three
+{
+    background: #12121354 !important;
+}
+
+body,
+
+.h-c-headline
+{
+  color: #ccc !important;
+}
+
+*
+{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.glue-flexbox img 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(1);
+    mix-blend-mode: screen;
 }
 }
 
