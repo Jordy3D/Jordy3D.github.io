@@ -118,6 +118,14 @@
             "url1": "https://userstyles.org/styles/190969/behance-dark-by-bane",
             "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/behance.user.css",
             "imageURL": "./files/css/images/behance.png"
+        },
+        {
+            "title": "Skeb",
+            "version": "v1.0.0",
+            "desc": "Skebbity bop bop, boo!",
+            "url1": "",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/skeb.user.css",
+            "imageURL": "./files/css/images/skeb.png"
         }
     ]
 }

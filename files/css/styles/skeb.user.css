@@ -1,0 +1,136 @@
+/* ==UserStyle==
+@name           Skeb Dark
+@namespace      https://github.com/Jordy3D/jordy3d.github.io
+@version		1.0.0
+@description    Dark mode for Skeb
+@author         Bane
+@homepageURL    https://jordy3d.github.io/
+==/UserStyle== */
+
+@-moz-document domain("skeb.jp") {
+/*Dark Scrollbar*/
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff0; }
+::-webkit-scrollbar-thumb { background: #222; }
+::-webkit-scrollbar-thumb:hover { background: #252525; }
+::-webkit-scrollbar-corner { background: #0000; }
+
+body, html
+{
+  background: #3d3d3f;
+}
+
+.is-box,
+
+.footer
+{
+    background: #363639;
+}
+
+.hero-foot
+{
+    background: #363639 !important;
+}
+
+.navbar,
+
+.navbar-dropdown
+{
+    background: #2e2e2f !important;
+}
+
+
+.navbar input,
+
+.card,
+
+.navbar-dropdown a.navbar-item:focus, .navbar-dropdown a.navbar-item:hover,
+.navbar-divider,
+
+.tag:not(body).is-dark,
+
+.image img.is-rounded
+{
+    background: #12121354 !important;
+}
+
+.navbar-link.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, a.navbar-item.is-active, a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover,
+.navbar-item.has-dropdown.is-active .navbar-link, .navbar-item.has-dropdown:focus .navbar-link, .navbar-item.has-dropdown:hover .navbar-link
+{
+  background: #0000;
+}
+
+body, input,
+
+.title,
+
+.navbar-link.is-active, a.navbar-item.is-active,
+
+.navbar-item, .navbar-link,
+
+.tabs li.is-active a,
+
+.input, .select select, .textarea,
+
+.label
+{
+  color: #ccc !important;
+}
+
+.tabs a
+{
+  color: #666;
+}
+.tabs a:hover
+{
+  color: #31b497;
+}
+
+a,
+.breadcrumb a,
+
+.subtitle
+{
+  color: #31b497;
+}
+
+.navbar input,
+.navbar-dropdown,
+
+.is-divider,
+
+.image img.is-rounded
+{
+  border-color: #12121354 !important;
+  box-shadow: none !important;
+}
+
+.logo img 
+{
+    filter: invert(1) hue-rotate(180deg) saturate(2) brightness(1);
+    mix-blend-mode: screen;
+}
+
+
+
+
+.image img.is-rounded { border-radius: 13%; }
+
+
+.columns.has-cards .column a:hover { 
+  transform: scale(1.2); 
+  transform-origin: center center;;
+  
+  z-index: 100;
+  border-radius: 3% !important;
+  overflow: hidden;
+  
+  box-shadow: 0 0 15px 5px #0009;
+}
+.columns.has-cards .column a { transition: all .05s linear; }
+
+.see-more { overflow: visible; }
+
+.see-more__list::after { display: none !important; }
+
+}
