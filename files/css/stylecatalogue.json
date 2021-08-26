@@ -126,6 +126,14 @@
             "url1": "https://jordy3d.github.io/404.html",
             "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/skeb.user.css",
             "imageURL": "./files/css/images/skeb.png"
+        },
+        {
+            "title": "MyAnimeList",
+            "version": "v1.0.0",
+            "desc": "MAL... AL-ified!",
+            "url1": "https://userstyles.world/style/873/al-mal",
+            "url2": "https://raw.githubusercontent.com/Jordy3D/Jordy3D.github.io/master/files/css/styles/mal.user.css",
+            "imageURL": "./files/css/images/mal.jpg"
         }
     ]
 }
