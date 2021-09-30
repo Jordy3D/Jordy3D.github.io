@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           LinkedDark
 @namespace      https://github.com/Jordy3D/jordy3d.github.io
-@version	2.0.28
+@version	2.5.29
 @description    Dark mode for LinkedIn
 @author         Bane
 @homepageURL    https://jordy3d.github.io/
@@ -49,6 +49,8 @@
 
 .launchpad-v2-card-with-image-2,
 
+.pv-open-to-carousel .artdeco-carousel__item-container .artdeco-card,
+
 /*Loading*/
 #app-boot-bg .line, .loading-bg .line,
 #app-boot-bg .circle, #app-boot-bg .rect, .loading-bg .circle, .loading-bg .rect,
@@ -63,14 +65,18 @@
 /*Business*/
 .resource.feature-story,
 
-.site-header .primary-navigation
+.site-header .primary-navigation,
+
+/*Sales*/
+.premium-chooser__minimal-nav, .premium-custom-nav,
+.premium-chooser__welcome-header--atlas, .premium-chooser__social-proof-container
 {
-    background: #162228 !important;
+    background: var(--linkedDarkMainBG) !important;
 }
 
 .feed-shared-poll-option__button
 {
-    background: #162228;
+    background: var(--linkedDarkMainBG);
 }
 
 .theme--mercado .launchpad,
@@ -197,9 +203,12 @@
 .card-layout,
 
 /*Business*/
-.banner-component .banner-content
+.banner-component .banner-content,
+
+/*Sales*/
+.premium-chooser-redeem-atlas-features__section
 {
-    background: #1a2a33 !important;
+    background: var(--linkedDarkLift1) !important;
 }
 
 .global-nav,
@@ -287,6 +296,8 @@ button.mt3,
 .jobs-search__right-rail, 
 .jobs-search__job-details--container .jobs-box,
 
+.message-card,
+
 /*Not Signed In*/
 .learning-cta__label,
 
@@ -304,7 +315,7 @@ button.mt3,
 /*Business*/
 .site-header .site-title
 { 
-    background: #1f2f38 !important;
+    background: var(--linkedDarkLift2) !important;
 }
 
 .launchpad-card--is-selected:before,
@@ -313,9 +324,11 @@ a.view-more, button.view-more,
 
 .info-not-shared,
 
-.artdeco-dropdown__item--selected
+.artdeco-dropdown__item--selected,
+
+.feed-shared-carousel__navigation-button
 {
-    background: #293c46 !important;
+    background: var(--linkedDarkLift3) !important;
 }
 
 select,
@@ -332,9 +345,11 @@ select,
 
 .basic-typeahead__selectable--hover, .basic-typeahead__selectable--hover .search-typeahead-v2__hit,
 
-[class*=".artdeco-entity-pile__image--circle"], [class*=".artdeco-entity-pile__image--square"], [class*=artdeco-entity-lockup__image--type-circle] img, [class*=artdeco-entity-lockup__image--type-square] img, [class*=EntityPhoto-circle], [class*=EntityPhoto-square]
+[class*=".artdeco-entity-pile__image--circle"], [class*=".artdeco-entity-pile__image--square"], [class*=artdeco-entity-lockup__image--type-circle] img, [class*=artdeco-entity-lockup__image--type-square] img, [class*=EntityPhoto-circle], [class*=EntityPhoto-square],
+
+footer.artdeco-card__actions
 {
-    background-color: #293c46 !important;
+    background-color: var(--linkedDarkLift3) !important;
 }
 
 .entity-list-item,
@@ -367,6 +382,14 @@ select,
 .ge-base-flow__task-card,
 
 .pe-detail-featured-list__item,
+
+.inline-show-more-text__button--light,
+
+#layout-header.minimal-nav #header-banner .wrapper,
+
+.jobs-details .right-rail, .jobs-details--disable-hero-image,
+
+.jobs-similar-jobs,
 
 /*Learning*/
 .index-body__recommendations.container,
@@ -402,9 +425,12 @@ select,
 
 .launchpad-v2-card-with-image-1__cta,
 .artdeco-button--muted.artdeco-button--secondary,
-.artdeco-button
+
+.artdeco-card.pv-open-to-carousel-card--single,
+
+.feed-shared-carousel .artdeco-carousel__item-container
 {
-    background: #162228b0 !important;
+    background: var(--linkedDarkOverlay) !important;
 }
 
 .artdeco-button--circle, .peek-carousel-controls__button,
@@ -429,12 +455,16 @@ input, textarea,
 .artdeco-button--muted.artdeco-button--secondary:hover,
 .artdeco-button:hover,
 
+.artdeco-card.pv-open-to-carousel-card--single:hover,
+
+.share-box-feed-entry__trigger,
+
 /*Not Signed In*/
 .search-bar,
 
 .alternate-signin-container .alternate-signin__btn
 {
-    background-color: #0d1b22a3 !important;
+    background-color: var(--linkedDarkInput) !important;
 }
 
 .theme--mercado .me-wvmp-pills-tab--active {
@@ -501,7 +531,7 @@ input, textarea,
 }
 
 .theme--mercado .psa-occupations-card .artdeco-completeness-meter-linear__progress-element::-webkit-progress-bar {
-  background-color: #0d1b22a3;
+  background-color: var(--linkedDarkInput);
 }
 
 body, h1, h2, h3, h4, h5, h6, p, li, label, ::placeholder,
@@ -608,6 +638,12 @@ li-icon,
 
 .jobs-description--reformatted .jobs-description__container,
 
+.inline-show-more-text__button--light,
+
+.message-card .message-footer .message-footer-question,
+
+.premium-upsell-link .artdeco-button--premium.artdeco-button,
+
 /*Learning*/
 .secondary-nav-bar__link,
 
@@ -667,12 +703,12 @@ li-icon,
 .site-header .primary-navigation-link,
 .utility-navigation .free-links .free-link a
 {
-  color: #ccc !important;
+  color: var(--mainTextColour) !important;
 }
 
 .ember-view
 {
-  color: #ccc;
+  color: var(--mainTextColour);
 }
 
 .artdeco-tabs .artdeco-tab.artdeco-tab--selected
@@ -732,7 +768,10 @@ input, input:required:invalid, input:required:valid, input[type=date], input[typ
   color: #000 !important;
 }
 
-*
+*,
+
+.scaffold-layout .artdeco-card,
+.global-nav
 {
   border-color: #0000 !important;
   box-shadow: none !important;
@@ -858,7 +897,9 @@ clearImage
   filter: invert(1);
 }
 
-#setting-change-password .content .save-container .save:disabled, #setting-change-password .content .save-container .save[disabled]
+#setting-change-password .content .save-container .save:disabled, #setting-change-password .content .save-container .save[disabled],
+
+.artdeco-button:disabled
 {
   opacity: .25;
 }
@@ -880,5 +921,223 @@ clearImage
 #globalfooter-select_language
 {
   filter: invert(0)
+}
+}
+
+@-moz-document regexp(".*(linkedin\\.com\\/sales).*"), regexp(".*(linkedin\\.com\\/payment).*") {
+/*Payments and Sales*/
+body, html,
+
+.theme--mercado #checkout-page.mobile-responsive--enabled,
+
+.theme--mercado #checkout-container,
+
+.background-color-white,
+
+.content-main.desktop,
+
+.background-color-slate0, .dropdown li p:focus, .dropdown li p:hover
+{
+    background: var(--linkedDarkMainBG) !important;
+}
+
+#dialog, #modal, .banner, #cart-chooser .footnotes, .order-summary-container, .review-container, .payment-method-display, .cancel-container, .payment-method-panel, .payment-method-toggle, .payment-method-accordion, .faqs, .JOBS #mobile-jobs-order-summary .p4p-order-summary, .JOBS #wallet .p4p-wallet-footnote, .LILCONTENT .lil-content__value-props--dual-layer, .LILCONTENT .lil-content__cart-info,
+
+.background-color-gray0,
+
+.on-boarding-recommendation,
+
+.lists-nav,
+
+.artdeco-models-table,
+
+.seat,
+
+div.top-bar,
+
+.profile-topcard,
+.profile-section,
+
+.user-success-home-carousel .artdeco-carousel__item-container,
+
+.account-top-card__container, .ad-container,
+
+.container-plain, .container-with-shadow, .container-without-shadow
+{
+    background: var(--linkedDarkLift1) !important;
+}
+
+.theme--mercado #header.custom-min-nav,
+
+#cart-chooser.desktop-only.show-radio input[type="radio"]+label,
+
+.theme--mercado .faqs .faq-header,
+
+.on-boarding-recommendation > button,
+
+.artdeco-models-table > thead,
+
+.inbox-content,
+
+#seat-management,
+
+.accomplishments-panel.cp-is-open,
+
+.list-detail-spotlights,
+
+.account-sticky-header--visible,
+
+.account-map-functions-filter
+{
+    background: var(--linkedDarkLift2) !important;
+}
+
+.theme--mercado .order-summary-container .footnotes,
+
+.tos,
+
+#dialog-content,
+
+.save-to-list-dropdown,
+
+.inbox-content .rail, .thread-container,
+
+.profile-skills__pill,
+
+.progress-meter,
+
+.progress-bar__star-circle--outlined,
+
+.account-top-card__insight-details.container-plain,
+
+.acct-map__list-item,
+
+.alert-card__lockup-text-content .button-secondary-small
+{
+    background: var(--linkedDarkOverlay) !important;
+}
+
+div.top-bar .left-entity,
+
+#content-main > .profile-body,
+
+.horizontal-square-entity-lockup-4>figure i, .horizontal-square-entity-lockup-4>figure img,
+
+.container
+{
+  background: #0000 !important;
+}
+
+.eah-menu-item__action,
+
+.global-nav-header .global-nav-dropdown
+{
+  background: #004b7c;
+}
+.eah-menu-item__action:hover,
+.global-nav-header .global-nav-dropdown ul a:hover,
+
+.global-nav-header .global-nav-dropdown.menu .global-nav-dropdown-header,
+
+.global-nav-header .global-apps-dropdown-list-item:hover
+{
+  background: #082c43;
+}
+
+body,
+
+.theme--mercado #header.custom-min-nav,
+.theme--mercado #header.custom-min-nav svg, .theme--mercado #header.custom-min-nav .secure-xo,
+
+#cart-chooser.desktop-only.show-radio input[type="radio"]+label .option-header,
+#cart-chooser input[type="radio"]+label .option-total, #cart-chooser-mobile input[type="radio"]+label .option-total,
+.mny-pmtcs-payments-frontend-artdeco--treatment .mny-pmtcs-enable-neptune-improvements--banner .banner .product-description strong, .mny-pmtcs-payments-frontend-artdeco--treatment .mny-pmtcs-enable-neptune-improvements--combined .banner .product-description strong,
+
+.faqs .faq-header,
+
+.button-tertiary-small-muted,
+
+.artdeco-models-table__sort-cell-wrapper, .artdeco-table-footer,
+
+.seats-summary-value,
+
+.dropdown-trigger,
+
+div.top-bar.seats-v2-top-bar .top-bar-img:before,
+
+.inverse-link-on-a-light-background, a.inverse-link-on-a-light-background,
+
+.user-success-feature-carousel-description strong,
+
+.list-company-detail__industry,
+
+.artdeco-tabs .artdeco-spotlight-tab .artdeco-spotlight-tab__primary-text,
+.artdeco-tabs .artdeco-spotlight-tab.artdeco-tab--selected .artdeco-spotlight-tab__secondary-text,
+.artdeco-tabs .artdeco-spotlight-tab .artdeco-spotlight-tab__secondary-text,
+
+.in-page-nav-button,
+
+.nowrap-ellipsis,
+
+h3 strong,
+
+.global-nav-header .global-nav-dropdown ul a,
+
+.global-nav-header .global-apps-dropdown.menu .global-apps-dropdown-label
+{
+  color: var(--mainTextColour) !important;
+}
+
+.link--muted:link, .link--muted:link:not(:focus):not(:hover), .link--muted:visited, .link--muted:visited:not(:focus):not(:hover),
+
+.alert-group-filter__tab
+{
+  color: var(--mainTextColour);
+}
+
+*
+{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ad-container
+{
+  border: 2px solid var(--linkedDarkMainBG) !important;
+}
+
+#cart-chooser .footnotes.none .arrow:after
+{
+  border-color: #0000 #0000 #1a2a33;
+  top: 1px;
+}
+
+.highcharts-container, .highcharts-container svg, .highcharts-wrapper .chart-container
+{
+  filter: invert(1) hue-rotate(180deg) saturate(2);
+    mix-blend-mode: color-dodge;
+}
+
+.highcharts-label.highcharts-tooltip.highcharts-color-undefined
+{
+  filter: brightness(10);
+}
+
+}
+
+@-moz-document domain("linkedin.com") {
+/*Colours*/
+:root
+{
+  --mainTextColour: #ccc;
+  
+  --borderRadius: 4px;
+  
+  --linkedDarkMainBG: #162228;
+  --linkedDarkLift1: #1a2a33;
+  --linkedDarkLift2: #1f2f38;
+  --linkedDarkLift3: #293c46;
+  --linkedDarkOverlay: #162228b0;
+  --linkedDarkInput: #0d1b22a3;
 }
 }
