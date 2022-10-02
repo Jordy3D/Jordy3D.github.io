@@ -31,13 +31,13 @@
         <div class="section">
             <div class="section-content">
                 <p>
-                    This tool will help you convert Trakt backup files into a format that Letterboxd is far happier with. I have no tested most backups, but the backups from <a href="https://darekkay.com/blog/trakt-tv-backup/">this backup page</a> certainly do.
+                    This tool will help you convert Trakt backup files into a format that Letterboxd is far happier with. I have not tested most backups, but the backups from <a href="https://darekkay.com/blog/trakt-tv-backup/">this backup page</a> certainly do.
                 </p>
                 <p>
                     The Letterboxd import page can be found <a href="https://letterboxd.com/import/">here</a>.
                 </p>
                 <p>
-                    Note, this web version is mostly untested and very unfinished. It should work on movies, but will break on TV shows.
+                    Note, this web version is mostly untested and very unfinished. It should work on movies, but may break on TV shows.
                 </p>
             </div>
         </div>
@@ -103,10 +103,10 @@
       for (let i = 0; i < Object.keys(json).length; i++) {
         var empty = {}
         
-        empty["Title"] = json[i].movie.title
-        empty["Year"] = json[i].movie.year
-        empty["imdbID"] = json[i].movie.ids.imdb
-        empty["tmdbID"] = json[i].movie.ids.tmdb
+        empty["Title"] =    ("movie" in json[i]) ? json[i].movie.title    : json[i].show.title
+        empty["Year"] =     ("movie" in json[i]) ? json[i].movie.year     : json[i].show.year
+        empty["imdbID"] =   ("movie" in json[i]) ? json[i].movie.ids.imdb : json[i].show.ids.imdb
+        empty["tmdbID"] =   ("movie" in json[i]) ? json[i].movie.ids.tmdb : json[i].show.ids.tmdb
         empty["WatchedDate"] = json[i].last_watched_at
         
         empty_json.push(empty)
