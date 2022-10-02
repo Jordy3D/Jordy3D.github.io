@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./trakt2letterboxd.css">
+    <link rel="icon" href="./files/logo.png">
+    <title>Bane // Test</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <img class="logoImg" src="./files/logo.png" style="width:40px; height: 40px;">
+
+            <h1 style="line-height: 0.3;">Bane</h1>
+            <a href="./index.html">
+                <span class="linkSpan"></span>
+            </a>
+        </div>
+
+        <h4 class="NavBar">
+            <a id="support" style="margin-right: 10px;" href="./index.html">Home</a>
+        </h4>
+    </div>
+
+    <div class="content">
+        <h1 class="separator-title">//Trakt2Letterboxd</h1>
+
+        <div class="section">
+            <div class="section-content">
+                <p>
+                    This tool will help you convert Trakt backup files into a format that Letterboxd is far happier with. I have no tested most backups, but the backups from <a href="https://darekkay.com/blog/trakt-tv-backup/">this backup page</a> certainly do.
+                </p>
+                <p>
+                    The Letterboxd import page can be found <a href="https://letterboxd.com/import/">here</a>.
+                </p>
+                <p>
+                    Note, this web version is mostly untested and very unfinished. It should work on movies, but will break on TV shows.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <form name="uploadForm" class="uploadForm">
+        <h2 class="separator-title">//Click to upload your backup below.</h2>
+        <p>
+            After uploading, your browswer should immediately download a converted file ready for use with Letterboxd.
+        </p>
+
+        <div>
+            <input type="file" name="uploadfile" id="uploadInput" style="display:none;"/>
+            <label for="uploadInput" class="centeriser">
+                <span>Choose File</span>
+            </label>
+        </div>
+    </form>
+</body>
+
+
+
+<script>
+    async function readJSON(file) {
+      // Read file
+      console.log("Reading file...")
+      const text = await file.text();
+      var new_json = JSON.parse(text)
+      
+      parseJSON(new_json)
+    }
+    
+    
+    // Based on https://stackoverflow.com/a/55584453
+    downloadCSVFromJson = (filename, arrayOfJson) => {
+      // convert JSON to CSV
+      const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+      const header = Object.keys(arrayOfJson[0])
+      let csv = arrayOfJson.map(row => header.map(fieldName => 
+                                                  JSON.stringify(row[fieldName], replacer)).join(','))
+      csv.unshift(header.join(','))
+      csv = csv.join('\r\n')
+
+      // Create link and download
+      var link = document.createElement('a');
+      link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv));
+      link.setAttribute('download', filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    
+    
+    function parseJSON(json) {
+      // Read and store the values we care about
+      console.log("Parsing file...")
+   
+      // Prepare new JSON
+      var empty_json = []
+      
+      for (let i = 0; i < Object.keys(json).length; i++) {
+        var empty = {}
+        
+        empty["Title"] = json[i].movie.title
+        empty["Year"] = json[i].movie.year
+        empty["imdbID"] = json[i].movie.ids.imdb
+        empty["tmdbID"] = json[i].movie.ids.tmdb
+        empty["WatchedDate"] = json[i].last_watched_at
+        
+        empty_json.push(empty)
+      }
+      
+      // console.log(empty_json)
+      
+      // Convert JSON to CSV file        
+      downloadCSVFromJson("Trakt2Letterboxd.csv", empty_json)
+    }
+    
+    const uploadInput = document.getElementById("uploadInput");
+    uploadInput.addEventListener(
+      "change",
+      () => {
+        const fileList = uploadInput.files
+             
+        var loaded = readJSON(fileList[0])     
+      },
+      false
+    );
+  </script>
+
+
+
+</html>
