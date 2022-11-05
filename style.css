@@ -185,6 +185,11 @@ Extra content
     .supportLinks {
         display: block;
     }
+
+    #support
+    {
+        padding-bottom: 30px;
+    }
     
     #inProgress {
         list-style-type: none;
