@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Comment Format Buttons
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  YouTube comments support simple Markdown. This supports you.
 // @author       Bane
 // @match        https://www.youtube.com/watch?v=*
@@ -62,17 +62,46 @@ GM_addStyle (`
     #bane_style_holder button:last-child { border-radius: 0 50% 50% 0; }
 ` );
 
+//#region Document click detection
+$(document.body).on('click', 'button', function() {
+    if(!$(this).parent().is("yt-button-shape")) return; // Returns if not a YouTube button
 
+    var replyContainer = (this).closest('ytd-comment-action-buttons-renderer');
 
-// Wait for the chat box to be opened up before doing anything
-waitForKeyElements (".ytd-commentbox#footer", spawnButtons)
+    if(!replyContainer) return; // If it's not found
+    if(replyContainer.children.length < 1) return; // If it has no children
 
+    if(replyContainer.children[1].id == "reply-dialog") // If the container contains the right child
+    {
+        findCommentFooter(replyContainer);
+    }
+});
 
-function spawnButtons(){
-    // Creates button container and controls button spawning
+$(document.body).on('click', 'ytd-comment-simplebox-renderer', function() {
+    var commentContainer = (this).closest('#simple-box');
+    sleep(50).then(() => { // We need to wait juuuuuuust a little for the rest of the comment box to spawn before continuing
+        findCommentFooter(commentContainer);
+    });
+});
+//#endregion
+
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+//#region Sorting and Spawning
+function findCommentFooter(commentContainer)
+{
+    /// Finds the footer for the comment box and stops repeat spawns
+    var spawnPoint = commentContainer.querySelector(".ytd-commentbox#footer");
+    if(!$(spawnPoint).hasClass("got-baned"))
+    {
+        $(spawnPoint).addClass("got-baned");
+        spawnButtons(spawnPoint);
+    }
+}
+
+function spawnButtons(commentbox){
+    // Creates the button container and controls the spawning of buttons
     console.log("Spawning buttons...")
-
-    var commentbox = document.querySelector(".ytd-commentbox#footer");
 
     var style_holder = document.createElement("div")
     style_holder.id = "bane_style_holder"
@@ -100,10 +129,10 @@ function spawnButton (inner, id, styletext, parent) {
     spawned.onclick = function() {
         surroundSelectedText(styletext);
     }
-
 }
+//#endregion
 
-
+//# Formatting
 function surroundSelectedText(mdChar) {
     /// Thank you, https://stackoverflow.com/a/3997896
     // Finds the text that is selected on the screen, surrounds it with the markdown character, then replaces it
@@ -112,6 +141,7 @@ function surroundSelectedText(mdChar) {
     var sel, range;
 
     sel = window.getSelection();
+
     if(sel.baseNode.parentNode.id != "contenteditable-root")
     {
         console.log("Selected text not in chat box.")
@@ -122,16 +152,17 @@ function surroundSelectedText(mdChar) {
         var str = sel.toString()
 
         var replacement = ""
-        if(str.charAt(0) === mdChar && str.charAt(str.length - 1) === mdChar)
-        {
-            replacement = str.replaceAll(mdChar, '')
-        }
-        else
-        {
-            replacement = `${mdChar}${sel}${mdChar}`
-        }
+        //if(str.charAt(0) === mdChar && str.charAt(str.length - 1) === mdChar)
+        //{
+        //    replacement = str.replaceAll(mdChar, '')
+        //}
+        //else
+        //{
+        //    replacement = `${mdChar}${sel}${mdChar}`
+        //}
 
-        //mdChar = `${mdChar}${sel}${mdChar}`
+        replacement = `${mdChar}${sel}${mdChar}`
+
         if (sel.rangeCount) {
             range = sel.getRangeAt(0);
             range.deleteContents();
@@ -142,6 +173,7 @@ function surroundSelectedText(mdChar) {
         range.text = replacement;
     }
 }
+//#endregion
 
 
 
