@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         >greentext
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  >not having greentext on Discord
 // @author       Bane
 // @match        https://discord.com/*
@@ -12,68 +12,77 @@
 
 // Add CSS for 4chan messages
 GM_addStyle (`
-/*Main Style*/
-.chanBody
-{
-  background: linear-gradient(to bottom, #ebd5ca 0px, #ebd5ca 25px, #c8b4ad 25px, #c8b4ad 26px, #f4e9e5 26px, #f4e9e5 100%) !important;
+    /*Settings*/
+    :root {
+        --chanRadius: 5px;
+    }
 
-  color: #7e9348;
-}
-.chanBody > div
-{
-  margin-top: 0.25rem !important;
-  padding-right: 0 !important;
-}
-.chanBodyCozy
-{
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  padding-right: 0 !important;
-}
+    /*Main Style*/
+    .chanBody
+    {
+      background: linear-gradient(to bottom, #ebd5ca 0px, #ebd5ca 25px, #c8b4ad 25px, #c8b4ad 26px, #f4e9e5 26px, #f4e9e5 100%) !important;
 
-/*Shape Section*/
-.chanTop { border-radius: 10px 10px 0 0; }
-.chanMid { border-radius: 0; }
-.chanBot { border-radius: 0 0 10px 10px; }
-.chanSolo { border-radius: 10px; }
+      color: #7e9348;
 
-/*Message Section*/
-.chanMessage
-{
-  color: #7e9348;
-  font-family: arial;
-  font-weight: 400;
-  background: #f4e9e5;
+      max-width: 600px;
+    }
+    .chanBody > div
+    {
+      margin-top: 0.25rem !important;
+      padding-right: 0 !important;
+    }
+    .chanBodyCozy
+    {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      padding-right: 0 !important;
+    }
 
-  margin-top: 0;
-}
-.chanMessageContent
-{
-  color: inherit;
-  font-family: inherit;
-  font-weight: inherit;
-  background: #0000;
-}
+    /*Shape Section*/
+    .chanTop { border-radius: var(--chanRadius) var(--chanRadius) 0 0; }
+    .chanMid { border-radius: 0; }
+    .chanBot { border-radius: 0 0 var(--chanRadius) var(--chanRadius); }
+    .chanSolo { border-radius: var(--chanRadius); }
 
-/*Header Section*/
-.chanHeader
-{
-  display: flex !important;
-  justify-content: space-between;
-  padding-right: 1rem !important;
-}
-.chanUsername
-{
-  color: #0c7741 !important;
-  font-weight:  600;
-  font-family: arial;
-}
-.chanTimestamp
-{
-  color: #63140f !important;
-  font-weight:  600 !important;
-  font-family: arial !important;
-}
+    /*Message Section*/
+    .chanMessage
+    {
+      color: #7e9348;
+      font-family: arial;
+      font-weight: 400;
+      background: #f4e9e5;
+
+      margin-top: 0;
+
+      max-width: 600px;
+    }
+    .chanMessageContent
+    {
+      color: inherit;
+      font-family: inherit;
+      font-weight: inherit;
+      background: #0000;
+    }
+
+    /*Header Section*/
+    .chanHeader
+    {
+      display: flex !important;
+      justify-content: space-between;
+      padding-right: 1rem !important;
+    }
+    .chanUsername
+    {
+      color: #0c7741 !important;
+      font-weight:  600;
+      font-family: arial;
+    }
+    .chanTimestamp
+    {
+      color: #63140f !important;
+      font-weight:  600 !important;
+      font-family: arial !important;
+    }
 ` );
 
 function LoopForever() {
@@ -85,12 +94,15 @@ function LoopForever() {
 
     // Loop through every message in chat
     for (const message of messages) {
+        // If the message is already processed and confirmed, ignore it
+        if($(message).hasClass("chanMessage")) return;
         // Grab some elements of the message
         var messageContent = message.querySelector('[id*="message-content"]')
         var cozyMessage = message.children[0]
 
         // If the message starts with > (greater-than)...
         var messageText = messageContent.innerHTML;
+
         if(messageText.startsWith("&gt;"))
         {
             //...the message is a 4chan message
@@ -115,10 +127,10 @@ function LoopForever() {
                 // Get the header object containing the timestamp and username
                 var messageHeader = timestamp.parentElement;
                 $(messageHeader).addClass("chanHeader");
-
             }
             else
             {
+                $(message).removeClass("chanBody")
                 // changes the borders on previous messages to try and make the whole block look natural
                 var prev = message.previousElementSibling;
                 var prevprev = prev.previousElementSibling;
