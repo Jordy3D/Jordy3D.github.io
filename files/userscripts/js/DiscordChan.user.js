@@ -99,7 +99,7 @@ function LoopForever() {
     for (const message of messages) {
         // If the message is already processed and confirmed, ignore it
         if($(message).hasClass("chanMessage")) return;
-
+        
         // Grab some elements of the message
         var messageContentContainer = message.querySelectorAll('[id*="message-content"]')
         var messageContent = messageContentContainer[messageContentContainer.length- 1]
