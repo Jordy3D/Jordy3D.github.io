@@ -10,16 +10,8 @@
 // ==/UserScript==
 
 setInterval(function() {
-    // if the URL has changed
-    if (window.location.href != window.lastUrl) {
-        // update the last URL
-        window.lastUrl = window.location.href;
-        // run the script
-        addCover();
-    }
+    addCover();
 }, 1000);
-
-
 
 
 function addCover() {
@@ -35,15 +27,13 @@ function addCover() {
     // look for .download-epub-cover-img.wider and copy it, placing it after the article's h1
     var cover = document.querySelector('.download-epub-cover-img.wider');
     if (!cover) return;
-        
+
     // get the article
     var article = document.querySelector('article');
     article.classList.add('bane-article');
 
     // clone the cover and insert it after the h1
     var coverCopy = cover.cloneNode(true);
-    // set coverCopy's src to the cover's src
-    coverCopy.src = cover.src;
     // add onerror="this.style.display='none'" to coverCopy
     coverCopy.setAttribute('onerror', "this.style.display='none'");
 
@@ -60,7 +50,6 @@ function addCover() {
             height: auto;
             width: 500px;
             margin: 0 auto;
-            position: relative;
         }
         .bane-article {
             display: flex;
