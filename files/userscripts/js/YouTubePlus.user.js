@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Plus
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.4.5
 // @description  Adds features to YouTube
 // @author       Bane
 // @match        https://www.youtube.com/*
