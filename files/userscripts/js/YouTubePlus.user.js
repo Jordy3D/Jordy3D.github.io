@@ -304,28 +304,25 @@ function shortsVolumeControl() {
 
 
 document.addEventListener("click", function (event) {
-    var target = event.target;
+    var source = event.target;
 
-    while (target.id != "action-buttons" && target.parentElement != null)
-        target = target.parentElement;
+    var found = false;
 
-    if (target)
-        commentFormatButtons(target);
+    while (found == false && source != null && source.parentElement != null) {
+        // same as above, but as an if/else statement
+        if (source.id == "action-buttons")
+            found = true;
+        else if (source.id == "main" && source.classList.contains("ytd-commentbox"))
+            found = true;
+        else
+            source = source.parentElement;
+    }
+
+    commentFormatButtons(source);
 });
 
 function commentFormatButtons(target) {
     console.log("Adding comment format buttons")
-
-    // look for a #action-buttons element that is a parent of the target
-    target = target.parentElement;
-    while (target.id != "action-buttons" && target.parentElement != null)
-        target = target.parentElement;
-
-
-    findCommentFooter(target);
-}
-
-function findCommentFooter(target) {
     var spawnPoint = target.querySelector(".ytd-commentbox#footer");
 
     if (spawnPoint != null && !spawnPoint.classList.contains("bane")) {
@@ -336,8 +333,7 @@ function findCommentFooter(target) {
 
 function spawnButtons(commentbox) {
     // Creates the button container and controls the spawning of buttons
-    if (debug)
-        console.log("Spawning buttons...");
+    console.log("Spawning buttons...");
 
     var style_holder = document.createElement("div");
     style_holder.id = "bane_style_holder";
@@ -404,7 +400,8 @@ function spawnButton(inner, id, styletext, parent) {
     var btn_txt = document.createElement("span");
     btn.type = "button"
 
-    console.log("Spawning " + id + " button...")
+    if (debug)
+        console.log("Spawning " + id + " button...")
 
     var spawned = parent.appendChild(btn);
     var spawned_txt = spawned.appendChild(btn_txt);
