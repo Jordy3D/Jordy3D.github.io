@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Plus
 // @namespace    http://tampermonkey.net/
-// @version      0.4.5
+// @version      0.4.6
 // @description  Adds features to YouTube
 // @author       Bane
 // @match        https://www.youtube.com/*
@@ -45,6 +45,7 @@ loadMaterialFonts();
 // ================================================
 
 setInterval(function () {
+    loadMaterialFonts();
     if (window.location.href.includes("youtube.com/shorts/")) {
         shortsVolumeControl();
         shortsOpenAsVideo();
@@ -55,8 +56,9 @@ setInterval(function () {
 // ============================
 // ===== Shorts =========================
 // ================================================
+//#region Shorts
 
-function addNewShortsButton(id, label, icon, onclick, iconType = "material-icons-outlined") {
+function addNewShortsButton(id, label, icon, onclick, iconType="material-icons-outlined") {
     if (document.getElementById("shorts-player") == null) { return; }
 
     // get ytd-reel-video-renderer with is-active attribute
@@ -75,25 +77,28 @@ function addNewShortsButton(id, label, icon, onclick, iconType = "material-icons
         ytdReel = ytdReel.parentElement;
 
     // find the #actions element that is a child of the ytd-reel-video-renderer
-    var actions = ytdReel.querySelector("#actions.ytd-reel-player-overlay-renderer-v2")
+    var actions = ytdReel.querySelector("#actions.ytd-reel-player-overlay-renderer-v2") || ytdReel.querySelector("#actions.ytd-reel-player-overlay-renderer");
+
+    // if v2, then store v2 as true
+    var v2 = actions.classList.contains("ytd-reel-player-overlay-renderer-v2");
 
     // Add button to open shorts as video, starting with a container
     var buttonContainer = document.createElement("div");
     buttonContainer.id = id;
-    buttonContainer.classList.add("button-container", "style-scope", "ytd-reel-player-overlay-renderer-v2", "bane-short-button");
+    buttonContainer.classList.add("button-container", "style-scope", "ytd-reel-player-overlay-renderer" + v2 ? "-v2" : "", "bane-short-button");
 
     var buttonHolder = document.createElement("div");
-    buttonHolder.classList.add("button-holder", "style-scope", "ytd-reel-player-overlay-renderer-v2");
+    buttonHolder.classList.add("button-holder", "style-scope", "ytd-reel-player-overlay-renderer" + v2 ? "-v2" : "");
 
     var button = document.createElement("button");
-    button.classList.add(iconType, "style-scope", "ytd-reel-player-overlay-renderer-v2");
+    button.classList.add(iconType, "style-scope","ytd-reel-player-overlay-renderer" + v2 ? "-v2" : "");
 
     button.innerHTML = icon;
 
     buttonHolder.onclick = onclick;
 
     var buttonLabel = document.createElement("span");
-    buttonLabel.classList.add("label", "style-scope", "ytd-reel-player-overlay-renderer-v2");
+    buttonLabel.classList.add("label", "style-scope", "ytd-reel-player-overlay-renderer" + v2 ? "-v2" : "");
     buttonLabel.innerHTML = label;
 
     // add button to container
@@ -122,11 +127,19 @@ function addNewShortsButton(id, label, icon, onclick, iconType = "material-icons
                 flex-wrap: nowrap;
                 justify-content: center;
             }
+            .ytd-reel-player-overlay-renderer .bane-short-button {
+                align-items: center;
+            }
             .bane-short-button .button-holder {
                 margin-right: 16px;
                 padding-bottom: 16px;
                 width: 48px;
                 height: 100%;
+            }
+            .ytd-reel-player-overlay-renderer .bane-short-button .button-holder {
+                margin-right: 0px;
+                padding-bottom: 0px;
+                padding-top: 16px;
             }
             .bane-short-button button {
                 width: 100%;
@@ -147,6 +160,9 @@ function addNewShortsButton(id, label, icon, onclick, iconType = "material-icons
                 font-weight: 400;
                 cursor: pointer !important;
             }
+
+
+            
         `;
 
         document.getElementsByTagName('head')[0].appendChild(style);
@@ -296,12 +312,12 @@ function shortsVolumeControl() {
     // add the style to the document
     document.body.appendChild(style);
 }
-
+//#endregion
 
 // ====================
 // ===== Comments ===============
 // ========================================
-
+//#region Comments
 
 document.addEventListener("click", function (event) {
     var source = event.target;
@@ -449,7 +465,7 @@ function surroundSelectedText(mdChar) {
         range.text = replacement;
     }
 }
-
+//#endregion
 
 
 
