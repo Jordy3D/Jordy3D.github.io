@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterDex Challenge</title>
+    <style>
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background-color: #7fac71;
+            background-image: url("https://wallpapercave.com/wp/wp1902707.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left top;
+            image-rendering: pixelated;
+
+            height: 100vh;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            height: fit-content;
+
+            height: 20vh;
+        }
+
+        #app header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+
+            background: lightblue;
+            box-shadow: 2px 2px black;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #app header.sticky {
+            position: fixed;
+        }
+
+        #app .description {
+            margin-top: 5.5rem;
+            padding: 0.5rem;
+
+            width: 80%;
+            max-width: 800px;
+
+            background: #eee;
+            border: 1px solid black;
+            border-radius: 0.5rem;
+            box-shadow: 2px 2px black;
+        }
+
+        #data {
+            display: flex;
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            max-width: 1400px;
+            margin: 0 auto;
+
+            gap: 0.5rem;
+
+            padding-bottom: 5rem;
+        }
+
+        .pokemon {
+            border: 1px solid black;
+            border-radius: 0.5rem;
+
+            background: #eee;
+
+            width: 200px;
+            height: 200px;
+
+            display: grid;
+            grid-template-areas:
+                "header"
+                "game"
+                "notes"
+                "toggle";
+
+            box-shadow: 2px 2px black;
+
+            overflow: hidden;
+
+            transition: 100ms;
+        }
+
+        .pokemon:hover {
+            background: lightblue;
+            box-shadow: 4px 4px black;
+
+            transform: scale(1.2);
+        }
+
+        .pokemon:hover .header {
+            background: blue;
+            color: azure;
+        }
+
+        .pokemon p {
+            margin: 0;
+        }
+
+        .pokemon .header {
+            grid-area: header;
+
+            display: flex;
+            justify-content: space-between;
+
+            width: 100%;
+            padding: 0.5rem;
+
+            background: #cacaca;
+        }
+
+        .pokemon .name,
+        .pokemon .dex {
+            margin: 0;
+        }
+
+        .pokemon .notes {
+            grid-area: notes;
+        }
+
+        .pokemon .game {
+            grid-area: game;
+            padding: 0.5rem;
+        }
+        .pokemon .game .title {
+            margin: 0;
+        }
+
+        .pokemon .notes {
+            grid-area: notes;
+            padding: 0.5rem;
+        }
+
+
+        /* caught */
+        .pokemon.caught {
+            background: lightgreen;
+        }
+
+        .pokemon.caught .header {
+            background: green;
+            color: azure;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <header>
+            <h1>Pokemon MasterDex Challenge</h1>
+            <div id="buttons">
+                <button onclick="saveToStorage()">Save</button>
+                <button onclick="exportToJSON()" disabled>Export</button>
+                <button onclick="importFromJSON()" disabled>Import</button>
+            </div>
+
+            <input type="text" id="filter" onkeyup="filter()" placeholder="Search in data...">
+        </header>
+
+        <p class="description">
+            This is an interactive page that allows you to keep track of which Pokemon you have caught the Pokemon MasterDex Challenge. <br>
+            Click on a Pokemon to toggle whether or not you have caught it. <br>
+            Click on the "Save" button to save your progress to local storage. <br>
+        </p>
+    </div>
+
+    <div id="data"></div>
+
+    <script>
+
+        // make the header sticky when scrolling
+        window.onscroll = function () {
+            var header = document.querySelector("header");
+            var sticky = header.offsetTop;
+
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        };
+
+
+
+        var full_json = null;
+
+        loadJSON();
+
+        loadFromStorage();
+
+        function loadJSON() {
+            fetch('masterdex/pokemon.json')
+                .then(response => response.json())
+                .then(json => {
+                    full_json = json;
+                    for (var i = 0; i < json.length; i++) {
+                        // create a div for each pokemon
+                        createDiv(json[i]);
+                    }
+                });
+        }
+
+        function saveToStorage() {
+            // check the checkboxes for each pokemon that has been caught
+            for (var i = 0; i < full_json.length; i++) {
+                if (document.getElementById(full_json[i].name).classList.contains("caught")) {
+                    full_json[i].caught = true;
+                }
+                else {
+                    full_json[i].caught = false;
+                }
+            }
+
+            localStorage.setItem("pokemon", JSON.stringify(full_json));
+        }
+
+        function loadFromStorage() {
+            // see if all of the divs have been created
+            if (full_json == null) {
+                setTimeout(loadFromStorage, 100);
+                return;
+            }
+
+            // load from local storage if it exists
+            if (localStorage.getItem("pokemon") != null) {
+                stored_json = JSON.parse(localStorage.getItem("pokemon"));
+                for (var i = 0; i < stored_json.length; i++) {
+                    if (stored_json[i].caught) {
+                        console.log(stored_json[i]);
+                        let pokemon = document.querySelector("#" + stored_json[i].name);
+
+                        if (pokemon != null) {
+                            pokemon.classList.add("caught");
+                        }
+                        else {
+                            console.log("pokemon not found");
+                        }
+                    }
+                }
+            }
+        }
+
+        // create a div for each pokemon
+        function createDiv(pokemon) {
+
+            // the div will contain the pokemon name, dex number, the game it is to be found in, any notes, and a toggle to mark it as caught
+
+            // create the div
+            var div = document.createElement("div");
+            div.id = pokemon.name;
+            div.className = "pokemon";
+
+            var header = document.createElement("div");
+            header.classList.add("header");
+            div.appendChild(header);
+
+            // create the name
+            var name = document.createElement("h2");
+            name.classList.add("name");
+            name.innerHTML = pokemon.name;
+            header.appendChild(name);
+
+            // create the dex number
+            var dex = document.createElement("p");
+            dex.classList.add("dex");
+            dex.innerHTML = pokemon.dex_number;
+            header.appendChild(dex);
+
+            // create the game requirements
+            var gameSection = document.createElement("div");
+            gameSection.classList.add("game")
+            div.appendChild(gameSection);
+
+            var gameLabel = document.createElement("p");
+            gameLabel.innerHTML = "Source:";
+            gameSection.appendChild(gameLabel);
+
+            var game = document.createElement("ul");
+            game.classList.add("title");
+            for (var i = 0; i < pokemon.requirements.length; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = pokemon.requirements[i];
+                game.appendChild(li);
+            }
+            gameSection.appendChild(game);
+
+            // create the notes
+            var notes = document.createElement("p");
+            notes.classList.add("notes");
+            notes.innerHTML = pokemon.notes;
+            div.appendChild(notes);
+
+            // create the toggle
+            div.addEventListener("click", function () {
+                toggleCaught(pokemon.name);
+            });
+
+            // add the div to the page
+            document.getElementById("data").appendChild(div);
+        }
+
+        function toggleCaught(name) {
+            var div = document.getElementById(name);
+            if (div.classList.contains("caught")) {
+                div.classList.remove("caught");
+            } else {
+                div.classList.add("caught");
+            }
+
+            // toggle the status of the pokemon in the json
+            for (var i = 0; i < full_json.length; i++) {
+                if (full_json[i].name == name) {
+                    full_json[i].caught = !full_json[i].caught;
+                }
+            }
+        }
+
+        function filter() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("filter");
+            filter = input.value.toLowerCase();
+
+            var divs = document.getElementsByClassName("pokemon");
+
+            // set all divs to display none
+            for (i = 0; i < divs.length; i++) {
+                divs[i].style.display = "none";
+            }
+
+            for (i = 0; i < divs.length; i++) {
+                if (divs[i].id.toLowerCase().includes(filter) || divs[i].getElementsByClassName("notes")[0].innerHTML.toLowerCase().includes(filter) || divs[i].getElementsByClassName("dex")[0].innerHTML.toLowerCase().includes(filter) || divs[i].getElementsByClassName("game")[0].innerHTML.toLowerCase().includes(filter)) {
+                    divs[i].style.display = "";
+                } else {
+                    divs[i].style.display = "none";
+                }
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>
