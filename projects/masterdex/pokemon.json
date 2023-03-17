@@ -12628,7 +12628,7 @@
     },
     {
         "dex_number": 669,
-        "name": "Flab\u00c3\u00a9b\u00c3\u00a9",
+        "name": "Flabebe",
         "requirements": [
             "X",
             "Y"
@@ -17755,8 +17755,10 @@
         "dex_number": "983",
         "name": "Kingambit",
         "requirements": [
-            "Scarlet",
-            "Violet"
+            "Black",
+            "White",
+            "Black 2",
+            "White 2"
         ],
         "notes": "",
         "outlier": false,
