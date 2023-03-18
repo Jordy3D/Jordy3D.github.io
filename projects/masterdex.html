@@ -147,6 +147,7 @@
             grid-area: game;
             padding: 0.5rem;
         }
+
         .pokemon .game .title {
             margin: 0;
         }
@@ -176,15 +177,16 @@
             <h1>Pokemon MasterDex Challenge</h1>
             <div id="buttons">
                 <button onclick="saveToStorage()">Save</button>
-                <button onclick="exportToJSON()" disabled>Export</button>
-                <button onclick="importFromJSON()" disabled>Import</button>
+                <button onclick="exportToJSON()">Export</button>
+                <button onclick="importFromJSON()">Import</button>
             </div>
 
             <input type="text" id="filter" onkeyup="filter()" placeholder="Search in data...">
         </header>
 
         <p class="description">
-            This is an interactive page that allows you to keep track of which Pokemon you have caught the Pokemon MasterDex Challenge. <br>
+            This is an interactive page that allows you to keep track of which Pokemon you have caught the Pokemon
+            MasterDex Challenge. <br>
             Click on a Pokemon to toggle whether or not you have caught it. <br>
             Click on the "Save" button to save your progress to local storage. <br>
         </p>
@@ -206,7 +208,23 @@
             }
         };
 
-
+        // listen to the konami code, up up down down left right left right b a
+        var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        var konami_index = 0;
+        document.addEventListener('keydown', function (e) {
+            if (e.keyCode == konami[konami_index]) {
+                konami_index++;
+                if (konami_index == konami.length) {
+                    konami_index = 0;
+                    // clear local storage
+                    localStorage.clear();
+                    // reload the page
+                    location.reload();
+                }
+            } else {
+                konami_index = 0;
+            }
+        });
 
         var full_json = null;
 
@@ -227,17 +245,24 @@
         }
 
         function saveToStorage() {
-            // check the checkboxes for each pokemon that has been caught
+              // check the checkboxes for each pokemon that has been caught
             for (var i = 0; i < full_json.length; i++) {
                 if (document.getElementById(full_json[i].name).classList.contains("caught")) {
-                    full_json[i].caught = true;
+                    full_json[i].obtained = true;
+                    console.log(`caught ${full_json[i].name}`);
                 }
                 else {
-                    full_json[i].caught = false;
+                    full_json[i].obtained = false;
                 }
             }
 
             localStorage.setItem("pokemon", JSON.stringify(full_json));
+
+            full_json = JSON.parse(localStorage.getItem("pokemon"));
+
+            // print the first pokemon in the list
+            console.log(full_json[0]);
+
         }
 
         function loadFromStorage() {
@@ -251,7 +276,7 @@
             if (localStorage.getItem("pokemon") != null) {
                 stored_json = JSON.parse(localStorage.getItem("pokemon"));
                 for (var i = 0; i < stored_json.length; i++) {
-                    if (stored_json[i].caught) {
+                    if (stored_json[i].obtained) {
                         console.log(stored_json[i]);
                         let pokemon = document.querySelector("#" + stored_json[i].name);
 
@@ -263,7 +288,9 @@
                         }
                     }
                 }
+                full_json = stored_json;
             }
+
         }
 
         // create a div for each pokemon
@@ -317,8 +344,13 @@
             div.appendChild(notes);
 
             // create the toggle
-            div.addEventListener("click", function () {
+            div.addEventListener("click", function (event) {
                 toggleCaught(pokemon.name);
+            });
+
+            div.addEventListener("contextmenu", function (event) {
+                event.preventDefault();
+                // notes.style.display = notes.style.display == "none" ? "block" : "none";
             });
 
             // add the div to the page
@@ -336,7 +368,7 @@
             // toggle the status of the pokemon in the json
             for (var i = 0; i < full_json.length; i++) {
                 if (full_json[i].name == name) {
-                    full_json[i].caught = !full_json[i].caught;
+                    full_json[i].obtained = !full_json[i].obtained;
                 }
             }
         }
@@ -358,6 +390,54 @@
                     divs[i].style.display = "";
                 } else {
                     divs[i].style.display = "none";
+                }
+            }
+        }
+
+        function exportToJSON() {
+            // stringify the json with an indent of 4 spaces
+            var dataStr = JSON.stringify(full_json, null, 4);
+            var dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+
+            var exportFileDefaultName = 'pokemon.json';
+            var linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+
+        function importFromJSON() {
+            console.log("importing");
+            // read the JSON file and just apply the caught status to the pokemon
+
+            // open a file dialog
+
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.click();
+
+            input.onchange = e => {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                reader.readAsText(file, 'UTF-8');
+                reader.onload = readerEvent => {
+                    var content = readerEvent.target.result;
+                    var json = JSON.parse(content);
+
+                    for (var i = 0; i < json.length; i++) {
+                        if (json[i].obtained) {
+                            let pokemon = document.querySelector("#" + json[i].name);
+
+                            if (pokemon != null) {
+                                pokemon.classList.add("caught");
+                            }
+                            else {
+                                console.log("pokemon not found");
+                            }
+                        }
+                    }
+
+                    full_json = json;
                 }
             }
         }

@@ -359,8 +359,7 @@
             {
                 "name": "Alolan",
                 "requirements": [
-                    "Totem",
-                    "from Ultra Sun and Ultra Moon"
+                    "Totem from Ultra Sun and Ultra Moon"
                 ],
                 "notes": "",
                 "obtained": false
@@ -2557,7 +2556,41 @@
         "notes": "",
         "outlier": true,
         "obtained": false,
-        "forms": []
+        "forms": [
+            {
+                "name": "Combat",
+                "requirements":
+                [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+
+            },
+            {
+                "name": "Blaze",
+                "requirements":
+                [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+
+            },
+            {
+                "name": "Aqua",
+                "requirements":
+                [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+
+            }
+        ]
     },
     {
         "dex_number": 129,
@@ -3745,6 +3778,18 @@
                 ],
                 "notes": "",
                 "obtained": false
+            },
+            
+            {
+                "name": "Paldean",
+                "requirements":
+                [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+
             }
         ]
     },
@@ -13805,8 +13850,7 @@
         "dex_number": 735,
         "name": "Gumshoos",
         "requirements": [
-            "Totem",
-            "from Ultra Sun and Ultra Moon"
+            "Totem from Ultra Sun and Ultra Moon"
         ],
         "notes": "",
         "outlier": true,
@@ -13845,8 +13889,7 @@
         "dex_number": 738,
         "name": "Vikavolt",
         "requirements": [
-            "Totem",
-            "from Ultra Sun and Ultra Moon"
+            "Totem from Ultra Sun and Ultra Moon"
         ],
         "notes": "",
         "outlier": true,
@@ -14146,8 +14189,7 @@
         "dex_number": 754,
         "name": "Lurantis",
         "requirements": [
-            "Totem",
-            "from Ultra Sun and Ultra Moon"
+            "Totem from Ultra Sun and Ultra Moon"
         ],
         "notes": "",
         "outlier": true,
@@ -14200,8 +14242,7 @@
         "dex_number": 758,
         "name": "Salazzle",
         "requirements": [
-            "Totem",
-            "from Ultra Sun and Ultra Moon"
+            "Totem from Ultra Sun and Ultra Moon"
         ],
         "notes": "",
         "outlier": true,
@@ -14556,8 +14597,7 @@
         "dex_number": 778,
         "name": "Mimikyu",
         "requirements": [
-            "Totem",
-            "from Ultra Sun and Ultra Moon"
+            "Totem from Ultra Sun and Ultra Moon"
         ],
         "notes": "",
         "outlier": true,
@@ -14638,8 +14678,7 @@
         "dex_number": 784,
         "name": "Kommo-o",
         "requirements": [
-            "Totem",
-            "from Ultra Sun and Ultra Moon"
+            "Totem from Ultra Sun and Ultra Moon"
         ],
         "notes": "",
         "outlier": true,
