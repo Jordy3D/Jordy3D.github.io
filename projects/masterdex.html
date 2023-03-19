@@ -66,7 +66,7 @@
             border: 1px solid black;
             border-radius: 0.5rem;
             box-shadow: 2px 2px black;
-            
+
             display: grid;
             grid-template-columns: 1fr 1fr;
         }
@@ -283,7 +283,8 @@
             <div class="details">
                 <h3 style="text-align: center;">Details</h3>
                 <hr>
-                <p>This is an interactive page that allows you to keep track of which Pokémon you have caught the Pokémon MasterDex Challenge.</p>
+                <p>This is an interactive page that allows you to keep track of which Pokémon you have caught the
+                    Pokémon MasterDex Challenge.</p>
                 <h4>Functions</h4>
                 <ul>
                     <li>Toggle whether or not you have caught a Pokémon by clicking on it.</li>
@@ -295,7 +296,8 @@
                 <ul>
                     <li>Grey Pokémon have not been caught.</li>
                     <li>Green Pokémon have been caught.</li>
-                    <li>Yellow Pokémon are outliers. These are Pokémon that are not obtained in a normal way, or are very specific.</li>
+                    <li>Yellow Pokémon are outliers. These are Pokémon that are not obtained in a normal way, or are
+                        very specific.</li>
                 </ul>
             </div>
             <div class="notes">
@@ -380,37 +382,42 @@
                     // calculate how many boxes we need
                     var boxes = Math.ceil(json.length / 30);
                     // create a div for each box
-                    for (var i = 0; i < boxes; i++) {
+                    for (var i = 0; i < boxes; i++)
                         createBox(i + 1);
-                    }
 
-                    for (var i = 0; i < json.length; i++) {
-                        // create a div for each pokemon
+                    for (var i = 0; i < json.length; i++)
                         createDiv(json[i]);
-
-                    }
                 });
+        }
+
+        function getPokemonDiv(pokemon) {
+            let pokemon_name = pokemon.name;
+            pokemon_name = pokemon_name.replace(" ", "-");
+
+            return document.getElementById(pokemon_name);
         }
 
         function saveToStorage() {
             // check the checkboxes for each pokemon that has been caught
             for (var i = 0; i < full_json.length; i++) {
-                if (document.getElementById(full_json[i].name).classList.contains("caught")) {
-                    full_json[i].obtained = true;
-                    console.log(`caught ${full_json[i].name}`);
-                }
-                else {
-                    full_json[i].obtained = false;
-                }
+                var pokemon_div = getPokemonDiv(full_json[i]);
+                full_json[i].obtained = pokemon_div.classList.contains("caught");
             }
 
             localStorage.setItem("pokemon", JSON.stringify(full_json));
-
             full_json = JSON.parse(localStorage.getItem("pokemon"));
+        }
 
-            // print the first pokemon in the list
-            console.log(full_json[0]);
+        function setPokemonCaught(pokemon_info) {
+            var pokemon = getPokemonDiv(pokemon_info);
 
+            if (pokemon != null) {
+                console.log(`Setting ${pokemon_info.name} to caught`);
+                pokemon.classList.add("caught");
+            }
+            else {
+                console.log(`Could not find ${pokemon_info.name}`);
+            }
         }
 
         function loadFromStorage() {
@@ -422,26 +429,14 @@
 
             // load from local storage if it exists
             if (localStorage.getItem("pokemon") != null) {
-                stored_json = JSON.parse(localStorage.getItem("pokemon"));
-                for (var i = 0; i < stored_json.length; i++) {
-                    if (stored_json[i].obtained) {
-                        let pokemon_name = stored_json[i].name;
-                        pokemon_name = pokemon_name.replace(" ", "-");
+                pokemon_data = JSON.parse(localStorage.getItem("pokemon"));
+                for (var i = 0; i < pokemon_data.length; i++) {
+                    if (pokemon_data[i].obtained)
+                        setPokemonCaught(pokemon_data[i]);
 
-                        let pokemon = document.querySelector("#" + pokemon_name);
-
-                        if (pokemon != null) {
-                            console.log(`Setting ${stored_json[i].name} to caught`);
-                            pokemon.classList.add("caught");
-                        }
-                        else {
-                            console.log(`Could not find ${stored_json[i].name}`);
-                        }
-                    }
+                    full_json = pokemon_data;
                 }
-                full_json = stored_json;
             }
-
         }
 
         // create a div for each box
@@ -539,6 +534,7 @@
         }
 
         function toggleCaught(name) {
+            name = name.replace(" ", "-");
             var div = document.getElementById(name);
             div.classList.toggle("caught");
 
@@ -590,8 +586,14 @@
             }
         }
 
-        function exportToJSON() {
+        function download(dataUri, fileName) {
+            var link = document.createElement("a");
+            link.setAttribute("href", dataUri);
+            link.setAttribute("download", fileName);
+            link.click();
+        }
 
+        function exportToJSON() {
             // remove the "caught" property from the json, cuz it was messing me up a few times
             if (full_json[0].hasOwnProperty("caught")) {
                 for (var i = 0; i < full_json.length; i++)
@@ -605,13 +607,10 @@
             // get current date and time and store it in a formatting string
             var date = new Date();
             var dateStr = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds();
-            
+
             // create a file name
             var exportFileDefaultName = 'banemasterdex-' + dateStr + '.json';
-            var linkElement = document.createElement('a');
-            linkElement.setAttribute('href', dataUri);
-            linkElement.setAttribute('download', exportFileDefaultName);
-            linkElement.click();
+            download(dataUri, exportFileDefaultName);
         }
 
         function importFromJSON() {
@@ -630,28 +629,15 @@
                     var json = JSON.parse(content);
 
                     // if the json does not contain a bulbasaur in the first position or doesn't even have a name key to start with, it is not a valid json file
-                    if (!json[0].hasOwnProperty("name") || json[0].name != "Bulbasaur") { 
+                    if (!json[0].hasOwnProperty("name") || json[0].name != "Bulbasaur") {
                         console.log("Invalid JSON file.");
                         return;
                     }
 
                     for (var i = 0; i < json.length; i++) {
-                         if (json[i].obtained) {
-                            let pokemon_name = json[i].name;
-                            pokemon_name = pokemon_name.replace(" ", "-");
-
-                            let pokemon = document.querySelector("#" + pokemon_name);
-
-                            if (pokemon != null) {
-                                console.log(`Setting ${json[i].name} to caught`);
-                                pokemon.classList.add("caught");
-                            }
-                            else {
-                                console.log(`Could not find ${json[i].name}`);
-                            }
-                        }
+                        if (pokemon_data[i].obtained)
+                            setPokemonCaught(pokemon_data[i]);
                     }
-                    
 
                     full_json = json;
                 }
