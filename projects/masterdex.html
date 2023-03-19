@@ -429,8 +429,9 @@
                 pokemon_data = JSON.parse(localStorage.getItem("pokemon"));
                 for (var i = 0; i < pokemon_data.length; i++)
                     setPokemonCaughtState(pokemon_data[i]);
+                
+                full_json = pokemon_data;
             }
-            full_json = pokemon_data;
         }
 
         // create a div for each box
