@@ -426,7 +426,6 @@
                 for (var i = 0; i < stored_json.length; i++) {
                     if (stored_json[i].obtained) {
                         let pokemon_name = stored_json[i].name;
-                        // replace spaces with dashes
                         pokemon_name = pokemon_name.replace(" ", "-");
 
                         let pokemon = document.querySelector("#" + pokemon_name);
@@ -645,7 +644,23 @@
                             else
                                 console.log("pokemon not found");
                         }
+
+                        if (stored_json[i].obtained) {
+                            let pokemon_name = stored_json[i].name;
+                            pokemon_name = pokemon_name.replace(" ", "-");
+
+                            let pokemon = document.querySelector("#" + pokemon_name);
+
+                            if (pokemon != null) {
+                                console.log(`Setting ${stored_json[i].name} to caught`);
+                                pokemon.classList.add("caught");
+                            }
+                            else {
+                                console.log(`Could not find ${stored_json[i].name}`);
+                            }
+                        }
                     }
+                    
 
                     full_json = json;
                 }
