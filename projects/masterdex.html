@@ -425,14 +425,18 @@
                 stored_json = JSON.parse(localStorage.getItem("pokemon"));
                 for (var i = 0; i < stored_json.length; i++) {
                     if (stored_json[i].obtained) {
-                        console.log(stored_json[i]);
-                        let pokemon = document.querySelector("#" + stored_json[i].name);
+                        let pokemon_name = stored_json[i].name;
+                        // replace spaces with dashes
+                        pokemon_name = pokemon_name.replace(" ", "-");
+
+                        let pokemon = document.querySelector("#" + pokemon_name);
 
                         if (pokemon != null) {
+                            console.log(`Setting ${stored_json[i].name} to caught`);
                             pokemon.classList.add("caught");
                         }
                         else {
-                            console.log("pokemon not found");
+                            console.log(`Could not find ${stored_json[i].name}`);
                         }
                     }
                 }
@@ -473,7 +477,7 @@
 
             // create the div
             var div = document.createElement("div");
-            div.id = pokemon.name;
+            div.id = pokemon.name.replace(" ", "-");
             div.className = "pokemon";
 
             var header = document.createElement("div");
@@ -537,17 +541,12 @@
 
         function toggleCaught(name) {
             var div = document.getElementById(name);
-            if (div.classList.contains("caught")) {
-                div.classList.remove("caught");
-            } else {
-                div.classList.add("caught");
-            }
+            div.classList.toggle("caught");
 
             // toggle the status of the pokemon in the json
             for (var i = 0; i < full_json.length; i++) {
-                if (full_json[i].name == name) {
+                if (full_json[i].name == name)
                     full_json[i].obtained = !full_json[i].obtained;
-                }
             }
         }
 
@@ -575,7 +574,6 @@
             // set all divs to display none
             for (i = 0; i < divs.length; i++) {
                 divs[i].style.display = "none";
-                // remove the "found" class from all pokemon
                 divs[i].classList.remove("found");
             }
 
@@ -594,6 +592,13 @@
         }
 
         function exportToJSON() {
+
+            // remove the "caught" property from the json, cuz it was messing me up a few times
+            if (full_json[0].hasOwnProperty("caught")) {
+                for (var i = 0; i < full_json.length; i++)
+                    delete full_json[i].caught;
+            }
+
             // stringify the json with an indent of 4 spaces
             var dataStr = JSON.stringify(full_json, null, 4);
             var dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
@@ -611,10 +616,7 @@
         }
 
         function importFromJSON() {
-            console.log("importing");
-            // read the JSON file and just apply the caught status to the pokemon
-
-            // open a file dialog
+            console.log(`Importing from JSON...`);
 
             var input = document.createElement('input');
             input.type = 'file';
@@ -628,16 +630,20 @@
                     var content = readerEvent.target.result;
                     var json = JSON.parse(content);
 
+                    // if the json does not contain a bulbasaur in the first position or doesn't even have a name key to start with, it is not a valid json file
+                    if (!json[0].hasOwnProperty("name") || json[0].name != "bulbasaur") { 
+                        console.log("Invalid JSON file.");
+                        return;
+                    }
+
                     for (var i = 0; i < json.length; i++) {
                         if (json[i].obtained) {
                             let pokemon = document.querySelector("#" + json[i].name);
 
-                            if (pokemon != null) {
+                            if (pokemon != null)
                                 pokemon.classList.add("caught");
-                            }
-                            else {
+                            else
                                 console.log("pokemon not found");
-                            }
                         }
                     }
 
