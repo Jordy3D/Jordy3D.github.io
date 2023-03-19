@@ -32,8 +32,6 @@
             align-items: center;
 
             height: fit-content;
-
-            height: 20vh;
         }
 
         #app header {
@@ -58,6 +56,7 @@
 
         #app .description {
             margin-top: 5.5rem;
+            margin-bottom: 1rem;
             padding: 0.5rem;
 
             width: 80%;
@@ -67,9 +66,12 @@
             border: 1px solid black;
             border-radius: 0.5rem;
             box-shadow: 2px 2px black;
+            
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
 
-        #data {
+        .box {
             display: flex;
             flex-wrap: wrap;
 
@@ -80,7 +82,67 @@
 
             gap: 0.5rem;
 
-            padding-bottom: 5rem;
+            padding-bottom: 3rem;
+
+            /* similar to above, but using grid with 6 columns */
+            display: grid;
+            grid-template-rows: 3em 1fr;
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .box.closed {
+            height: 3em;
+            overflow: hidden;
+
+            margin-bottom: 0.5rem;
+        }
+
+        .box-header {
+            grid-column: 1 / 7;
+            grid-row: 1 / 2;
+
+            text-align: center;
+
+            background: #eee;
+            border: 1px solid black;
+            border-radius: 0.5rem;
+            box-shadow: 2px 2px black;
+
+            padding: 0.5rem;
+
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .box-header:hover {
+            background: lightblue;
+            box-shadow: 4px 4px black;
+        }
+
+        .box-header::after {
+            content: "▼";
+            float: right;
+        }
+
+        .box.closed .box-header {
+            box-shadow: none;
+
+            background: #cacaca;
+        }
+
+        .box.closed .box-header::after {
+            content: "◀";
+
+        }
+
+        /* hide boxes with no filtered pokemon */
+        #data.filtered .box:not(:has(.found)) {
+            display: none;
+        }
+
+        /* set boxes to not take up as many rows */
+        #data.filtered .box {
+            grid-template-rows: 3em 1fr;
         }
 
         .pokemon {
@@ -89,8 +151,9 @@
 
             background: #eee;
 
-            width: 200px;
-            height: 200px;
+            /* width: 200px;
+            height: 200px; */
+            aspect-ratio: 1 / 1;
 
             display: grid;
             grid-template-areas:
@@ -104,18 +167,6 @@
             overflow: hidden;
 
             transition: 100ms;
-        }
-
-        .pokemon:hover {
-            background: lightblue;
-            box-shadow: 4px 4px black;
-
-            transform: scale(1.2);
-        }
-
-        .pokemon:hover .header {
-            background: blue;
-            color: azure;
         }
 
         .pokemon p {
@@ -157,6 +208,34 @@
             padding: 0.5rem;
         }
 
+        .pokemon.outlier {
+            /* give a gold border and box-shadow */
+            border: 1px solid gold;
+            box-shadow: 2px 2px gold;
+
+            background-color: #f5f5dc;
+        }
+
+        .pokemon.outlier .header {
+            background-color: #d6d6a0;
+        }
+
+        .pokemon.outlier:hover {
+            box-shadow: 4px 4px gold;
+        }
+
+        .pokemon:hover {
+            background: lightblue;
+            box-shadow: 4px 4px black;
+
+            transform: scale(1.2);
+        }
+
+        .pokemon:hover .header {
+            background: blue;
+            color: azure;
+        }
+
 
         /* caught */
         .pokemon.caught {
@@ -167,6 +246,22 @@
             background: green;
             color: azure;
         }
+
+        /* mobile? */
+        @media (max-width: 835px) {
+            #app header {
+                flex-direction: column;
+                padding-bottom: 1rem;
+            }
+
+            #app header h1 {
+                margin: 1rem;
+            }
+
+            #app .description {
+                margin-top: 8.5rem;
+            }
+        }
     </style>
 </head>
 
@@ -174,7 +269,7 @@
 
     <div id="app">
         <header>
-            <h1>Pokemon MasterDex Challenge</h1>
+            <h1>Pokémon MasterDex Challenge</h1>
             <div id="buttons">
                 <button onclick="saveToStorage()">Save</button>
                 <button onclick="exportToJSON()">Export</button>
@@ -184,12 +279,56 @@
             <input type="text" id="filter" onkeyup="filter()" placeholder="Search in data...">
         </header>
 
-        <p class="description">
-            This is an interactive page that allows you to keep track of which Pokemon you have caught the Pokemon
-            MasterDex Challenge. <br>
-            Click on a Pokemon to toggle whether or not you have caught it. <br>
-            Click on the "Save" button to save your progress to local storage. <br>
-        </p>
+        <div class="description">
+            <div class="details">
+                <h3 style="text-align: center;">Details</h3>
+                <hr>
+                <p>This is an interactive page that allows you to keep track of which Pokémon you have caught the Pokémon MasterDex Challenge.</p>
+                <h4>Functions</h4>
+                <ul>
+                    <li>Toggle whether or not you have caught a Pokémon by clicking on it.</li>
+                    <li>Save your progress to your browser's localstorage.</li>
+                    <li>Export and Import your progress to a JSON file.</li>
+                    <li>Search for a Pokémon by typing in the search bar.</li>
+                </ul>
+                <h4>Key</h4>
+                <ul>
+                    <li>Grey Pokémon have not been caught.</li>
+                    <li>Green Pokémon have been caught.</li>
+                    <li>Yellow Pokémon are outliers. These are Pokémon that are not obtained in a normal way, or are very specific.</li>
+                </ul>
+            </div>
+            <div class="notes">
+                <h3 style="text-align: center;">Notes</h3>
+                <hr>
+                <ul>
+                    <li>
+                        This page is still in development, so there may be bugs. If you find any, please let me know on
+                        <a href="jordy3d.github.io">my GitHub page</a>.
+                    </li>
+                    <li>
+                        This page is not affiliated with Nintendo, Game Freak, or The Pokémon Company in any way.
+                    </li>
+                    <li>
+                        This page makes use of localstorage. If you clear your browser's cache, your progress will be
+                        lost
+                        unless you have previously exported your progress.
+                    </li>
+                    <li>
+                        Much of the data used on this page is from Bird Keeper Toby's spreadsheet. You can find the most
+                        recent video about the MasterDex Challenge <a
+                            href="https://www.youtube.com/watch?v=dKOjYQ5fhQQ">here</a>.
+                    </li>
+                    <li>
+                        The Konami Code will clear localstorage and reload the page.
+                    </li>
+                    <li>
+                        At the time of writing, Paldea is not included in the MasterDex Challenge as it is not supported
+                        by HOME. The information below is my best guess as to what may be included in the future.
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div id="data"></div>
@@ -237,15 +376,24 @@
                 .then(response => response.json())
                 .then(json => {
                     full_json = json;
+
+                    // calculate how many boxes we need
+                    var boxes = Math.ceil(json.length / 30);
+                    // create a div for each box
+                    for (var i = 0; i < boxes; i++) {
+                        createBox(i + 1);
+                    }
+
                     for (var i = 0; i < json.length; i++) {
                         // create a div for each pokemon
                         createDiv(json[i]);
+
                     }
                 });
         }
 
         function saveToStorage() {
-              // check the checkboxes for each pokemon that has been caught
+            // check the checkboxes for each pokemon that has been caught
             for (var i = 0; i < full_json.length; i++) {
                 if (document.getElementById(full_json[i].name).classList.contains("caught")) {
                     full_json[i].obtained = true;
@@ -293,10 +441,35 @@
 
         }
 
+        // create a div for each box
+        function createBox(box_number) {
+            // the box will contain 30 pokemon
+
+            // create the box
+            var box = document.createElement("div");
+            box.id = "box" + box_number;
+            box.className = "box";
+
+            // create the header
+            var header = document.createElement("div");
+            header.className = "box-header";
+            header.innerHTML = "Box " + box_number;
+            box.appendChild(header);
+
+            // add event listeners to the header to toggle the box open and closed
+            header.addEventListener("click", function () {
+                box.classList.toggle("closed");
+            });
+
+            document.getElementById("data").appendChild(box);
+        }
+
         // create a div for each pokemon
         function createDiv(pokemon) {
-
             // the div will contain the pokemon name, dex number, the game it is to be found in, any notes, and a toggle to mark it as caught
+
+            // calculate what box the pokemon should be in
+            var box = Math.floor((pokemon.dex_number - 1) / 30) + 1;
 
             // create the div
             var div = document.createElement("div");
@@ -343,6 +516,11 @@
             notes.innerHTML = pokemon.notes;
             div.appendChild(notes);
 
+            // if pokemon is an outlier, add the outlier class
+            if (pokemon.outlier) {
+                div.classList.add("outlier");
+            }
+
             // create the toggle
             div.addEventListener("click", function (event) {
                 toggleCaught(pokemon.name);
@@ -353,8 +531,8 @@
                 // notes.style.display = notes.style.display == "none" ? "block" : "none";
             });
 
-            // add the div to the page
-            document.getElementById("data").appendChild(div);
+            // add the div to the box
+            document.getElementById("box" + box).appendChild(div);
         }
 
         function toggleCaught(name) {
@@ -378,16 +556,37 @@
             input = document.getElementById("filter");
             filter = input.value.toLowerCase();
 
+            // if the filter is empty, show all pokemon
+            if (filter == "") {
+                var divs = document.getElementsByClassName("pokemon");
+                for (i = 0; i < divs.length; i++) {
+                    divs[i].style.display = "";
+                    divs[i].classList.remove("found");
+                    document.getElementById("data").classList.remove("filtered");
+                }
+                return;
+            }
+
             var divs = document.getElementsByClassName("pokemon");
+
+            // mark the #data div as filtered
+            document.getElementById("data").classList.add("filtered");
 
             // set all divs to display none
             for (i = 0; i < divs.length; i++) {
                 divs[i].style.display = "none";
+                // remove the "found" class from all pokemon
+                divs[i].classList.remove("found");
             }
 
             for (i = 0; i < divs.length; i++) {
                 if (divs[i].id.toLowerCase().includes(filter) || divs[i].getElementsByClassName("notes")[0].innerHTML.toLowerCase().includes(filter) || divs[i].getElementsByClassName("dex")[0].innerHTML.toLowerCase().includes(filter) || divs[i].getElementsByClassName("game")[0].innerHTML.toLowerCase().includes(filter)) {
                     divs[i].style.display = "";
+                    // unclose any boxes that contain the filtered pokemon
+                    divs[i].parentElement.classList.remove("closed");
+                    divs[i].parentElement.getElementsByClassName("box-header")[0].classList.remove("closed");
+                    // mark the pokemon as "found"
+                    divs[i].classList.add("found");
                 } else {
                     divs[i].style.display = "none";
                 }
@@ -399,7 +598,12 @@
             var dataStr = JSON.stringify(full_json, null, 4);
             var dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
 
-            var exportFileDefaultName = 'pokemon.json';
+            // get current date and time and store it in a formatting string
+            var date = new Date();
+            var dateStr = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds();
+            
+            // create a file name
+            var exportFileDefaultName = 'banemasterdex-' + dateStr + '.json';
             var linkElement = document.createElement('a');
             linkElement.setAttribute('href', dataUri);
             linkElement.setAttribute('download', exportFileDefaultName);

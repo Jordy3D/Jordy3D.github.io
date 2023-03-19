@@ -1522,8 +1522,7 @@
         "dex_number": 77,
         "name": "Ponyta",
         "requirements": [
-            "Shiny",
-            "Special Encounter from Horseshoe Plains in Legends: Arceus"
+            "Shiny Special Encounter from Horseshoe Plains in Legends: Arceus"
         ],
         "notes": "",
         "outlier": true,
@@ -1882,9 +1881,7 @@
         "dex_number": 94,
         "name": "Gengar",
         "requirements": [
-            "Dual-slot Gengar from Old Chateau in Diamond",
-            "Pearl",
-            "Platinum"
+            "Dual-slot Gengar from Old Chateau in Diamond, Pearl, Platinum"
         ],
         "notes": "",
         "outlier": true,
@@ -3008,9 +3005,9 @@
         "dex_number": 151,
         "name": "Mew",
         "requirements": [
-            "Pok\u00c3\u00a9ball Plus, Brilliant Diamond, Shining Pearl"
+            "Pokéball Plus, Brilliant Diamond, Shining Pearl"
         ],
-        "notes": "Gold star if both from My Pokemon Ranch.",
+        "notes": "Gold star if both from My Pokémon Ranch.",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -9764,7 +9761,7 @@
         "requirements": [
             "Legends: Arceus"
         ],
-        "notes": "Gold star if both from My Pokemon Ranch.",
+        "notes": "Gold star if both from My Pokémon Ranch.",
         "outlier": true,
         "obtained": false,
         "forms": []
