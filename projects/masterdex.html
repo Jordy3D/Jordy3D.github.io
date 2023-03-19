@@ -408,16 +408,13 @@
             full_json = JSON.parse(localStorage.getItem("pokemon"));
         }
 
-        function setPokemonCaught(pokemon_info) {
+        function setPokemonCaughtState(pokemon_info) {
             var pokemon = getPokemonDiv(pokemon_info);
 
-            if (pokemon != null) {
-                console.log(`Setting ${pokemon_info.name} to caught`);
+            if (pokemon_info.obtained)
                 pokemon.classList.add("caught");
-            }
-            else {
-                console.log(`Could not find ${pokemon_info.name}`);
-            }
+            else
+                pokemon.classList.remove("caught");
         }
 
         function loadFromStorage() {
@@ -430,13 +427,10 @@
             // load from local storage if it exists
             if (localStorage.getItem("pokemon") != null) {
                 pokemon_data = JSON.parse(localStorage.getItem("pokemon"));
-                for (var i = 0; i < pokemon_data.length; i++) {
-                    if (pokemon_data[i].obtained)
-                        setPokemonCaught(pokemon_data[i]);
-
-                    full_json = pokemon_data;
-                }
+                for (var i = 0; i < pokemon_data.length; i++)
+                    setPokemonCaughtState(pokemon_data[i]);
             }
+            full_json = pokemon_data;
         }
 
         // create a div for each box
@@ -634,10 +628,8 @@
                         return;
                     }
 
-                    for (var i = 0; i < json.length; i++) {
-                        if (pokemon_data[i].obtained)
-                            setPokemonCaught(pokemon_data[i]);
-                    }
+                    for (var i = 0; i < json.length; i++)
+                        setPokemonCaughtState(json[i]);
 
                     full_json = json;
                 }
