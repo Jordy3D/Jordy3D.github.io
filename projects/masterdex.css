@@ -1,0 +1,276 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #7fac71;
+    background-image: url("https://wallpapercave.com/wp/wp1902707.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left top;
+    image-rendering: pixelated;
+
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: fit-content;
+}
+
+#app header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    background: lightblue;
+    box-shadow: 2px 2px black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#app header.sticky {
+    position: fixed;
+}
+
+#app .description {
+    margin-top: 5.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+
+    width: 80%;
+    max-width: 800px;
+
+    background: #eee;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px black;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    max-width: 1400px;
+    margin: 0 auto;
+
+    gap: 0.5rem;
+
+    padding-bottom: 3rem;
+
+    /* similar to above, but using grid with 6 columns */
+    display: grid;
+    grid-template-rows: 3em 1fr;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.box.closed {
+    height: 3em;
+    overflow: hidden;
+
+    margin-bottom: 0.5rem;
+}
+
+.box-header {
+    grid-column: 1 / 7;
+    grid-row: 1 / 2;
+
+    text-align: center;
+
+    background: #eee;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px black;
+
+    padding: 0.5rem;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.box-header:hover {
+    background: lightblue;
+    box-shadow: 4px 4px black;
+}
+
+.box-header::after {
+    content: "▼";
+    float: right;
+}
+
+.box.closed .box-header {
+    box-shadow: none;
+
+    background: #cacaca;
+}
+
+.box.closed .box-header::after {
+    content: "◀";
+
+}
+
+/* hide boxes with no filtered pokemon */
+#data.filtered .box:not(:has(.found)) {
+    display: none;
+}
+
+/* set boxes to not take up as many rows */
+#data.filtered .box {
+    grid-template-rows: 3em 1fr;
+}
+
+.pokemon {
+    border: 1px solid black;
+    border-radius: 0.5rem;
+
+    background: #eee;
+
+    /* width: 200px;
+    height: 200px; */
+    aspect-ratio: 1 / 1;
+
+    display: grid;
+    grid-template-areas:
+        "header"
+        "game"
+        "notes"
+        "toggle";
+
+    box-shadow: 2px 2px black;
+
+    overflow: hidden;
+
+    transition: 100ms;
+}
+
+.pokemon p {
+    margin: 0;
+}
+
+.pokemon .header {
+    grid-area: header;
+
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 0.5rem;
+
+    background: #cacaca;
+}
+
+.pokemon .name,
+.pokemon .dex {
+    margin: 0;
+}
+
+.pokemon .notes {
+    grid-area: notes;
+}
+
+.pokemon .game {
+    grid-area: game;
+    padding: 0.5rem;
+}
+
+.pokemon .game .title {
+    margin: 0;
+}
+
+.pokemon .notes {
+    grid-area: notes;
+    padding: 0.5rem;
+}
+
+.pokemon.outlier {
+    /* give a gold border and box-shadow */
+    border: 1px solid gold;
+    box-shadow: 2px 2px gold;
+
+    background-color: #f5f5dc;
+}
+
+.pokemon.outlier .header {
+    background-color: #d6d6a0;
+}
+
+.pokemon.outlier:hover {
+    box-shadow: 4px 4px gold;
+}
+
+.pokemon:hover {
+    background: lightblue;
+    box-shadow: 4px 4px black;
+
+    transform: scale(1.2);
+}
+
+.pokemon:hover .header {
+    background: blue;
+    color: azure;
+}
+
+/* blanks */
+.pokemon.blank {
+    background: #eee5;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+.pokemon.blank:hover {
+    background: #eee3;
+    box-shadow: none;
+
+    transform: none;
+}
+
+
+/* caught */
+.pokemon.caught {
+    background: lightgreen;
+}
+
+.pokemon.caught .header {
+    background: green;
+    color: azure;
+}
+
+/* mobile? */
+@media (max-width: 835px) {
+    #app header {
+        flex-direction: column;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+
+    #app header h1 {
+        margin: 1rem;
+    }
+
+    #app .description {
+        margin-top: 8.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #app header h1
+    {
+        font-size: 1.5rem;
+    }
+}
