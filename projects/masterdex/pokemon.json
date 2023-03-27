@@ -3005,9 +3005,9 @@
         "dex_number": 151,
         "name": "Mew",
         "requirements": [
-            "Pokéball Plus, Brilliant Diamond, Shining Pearl"
+            "Pokeball Plus, Brilliant Diamond, Shining Pearl"
         ],
-        "notes": "Gold star if both from My Pokémon Ranch.",
+        "notes": "Gold star if both from My Pokemon Ranch.",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -9761,7 +9761,7 @@
         "requirements": [
             "Legends: Arceus"
         ],
-        "notes": "Gold star if both from My Pokémon Ranch.",
+        "notes": "Gold star if both from My Pokemon Ranch.",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -16973,8 +16973,24 @@
         "outlier": false,
         "obtained": false,
         "forms": [
-            "Male",
-            "Female"
+            {
+                "name": "Male",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "Female",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            }
         ]
     },
     {
@@ -17084,8 +17100,24 @@
         "outlier": false,
         "obtained": false,
         "forms": [
-            "Family of 3",
-            "Family of 4"
+            {
+                "name": "Family of 3",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "Family of 4",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            }
         ]
     },
     {
@@ -17159,10 +17191,42 @@
         "outlier": false,
         "obtained": false,
         "forms": [
-            "Green",
-            "Blue",
-            "Yellow",
-            "White"
+            {
+                "name": "Green",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "Blue",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "Yellow",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "White",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            }
         ]
     },
     {
@@ -17728,9 +17792,33 @@
         "outlier": false,
         "obtained": false,
         "forms": [
-            "Curly",
-            "Droopy",
-            "Stretchy"
+            {
+                "name": "Curly",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "Droopy",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "Stretchy",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            }
         ]
     },
     {
@@ -17783,8 +17871,24 @@
         "outlier": true,
         "obtained": false,
         "forms": [
-            "2 Segment",
-            "3 Segment"
+            {
+                "name": "2 Segment",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            },
+            {
+                "name": "3 Segment",
+                "requirements": [
+                    "Scarlet",
+                    "Violet"
+                ],
+                "notes": "",
+                "obtained": false
+            }
         ]
     },
     {

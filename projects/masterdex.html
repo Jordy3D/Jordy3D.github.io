@@ -66,13 +66,50 @@
                             href="https://www.youtube.com/watch?v=dKOjYQ5fhQQ">here</a>.
                     </li>
                     <li>
-                        The Konami Code will clear localstorage and reload the page.
-                    </li>
-                    <li>
                         At the time of writing, Paldea is not included in the MasterDex Challenge as it is not supported
                         by HOME. The information below is my best guess as to what may be included in the future.
                     </li>
                 </ul>
+            </div>
+            <div class="codes">
+                <h3 style="text-align: center;">Codes</h3>
+                <hr>
+                <ul>
+                    <li>
+                        <b>Up Up Down Down Left Right Left Right B A</b><br>Clear localstorage and reload page.
+                    </li>
+                    <li>
+                        <b>Up Down Up Down B A</b><br>Close all Boxes.
+                    </li>
+                    <li>
+                        <b>Up Down Up Down A B</b><br>Open all Boxes.
+                    </li>
+                </ul>
+            </div>
+            <div class="stats hide">
+                <h3 style="text-align: center;">Stats</h3>
+                <hr>
+
+                <!-- table with type | count | total | percentage -->
+                <table id="statsTable">
+                    <tr>
+                        <th>Type</th>
+                        <th>Caught</th>
+                        <th>Total</th>
+                        <th>Percentage</th>
+                    </tr>
+                    <tr>
+                        <td>Primary</td>
+                        <td id="primaryCaughtCount">0</td>
+                        <td id="primaryTotalCount">0</td>
+                        <td id="primaryPercentage">0%</td>
+                    </tr>
+                    <tr>
+                        <td>Formes and Variants</td>
+                        <td id="formCaughtCount">0</td>
+                        <td id="formTotalCount">0</td>
+                        <td id="formPercentage">0%</td>
+                </table>
             </div>
         </div>
     </div>

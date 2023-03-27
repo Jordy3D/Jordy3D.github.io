@@ -50,8 +50,8 @@ html {
     margin-bottom: 1rem;
     padding: 0.5rem;
 
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 1000px;
 
     background: #eee;
     border: 1px solid black;
@@ -59,7 +59,40 @@ html {
     box-shadow: 2px 2px black;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "details notes codes"
+        "details notes stats";
+}
+
+#app .details { grid-area: details; }
+#app .notes { grid-area: notes; }
+#app .codes { grid-area: codes; }
+#app .stats { grid-area: stats; }
+
+.notes > :not(h3)
+{
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+.stats
+{
+    border-top: 3px solid black;
+    margin-top: 1em;
+}
+
+.stats p
+{
+    margin-left: 1em;
+}
+
+#app .description ul {
+    padding-left: 1rem;
+}
+
+#app .description ul li {
+    margin: 0.5rem;
 }
 
 .box {
@@ -273,4 +306,14 @@ html {
     {
         font-size: 1.5rem;
     }
+}
+
+
+
+
+
+
+.hide
+{
+    display: none;
 }
