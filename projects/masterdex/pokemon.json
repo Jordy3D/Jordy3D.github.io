@@ -359,9 +359,10 @@
             {
                 "name": "Alolan",
                 "requirements": [
-                    "Totem from Ultra Sun and Ultra Moon"
+                    "Ultra Sun", 
+                    "Ultra Moon"
                 ],
-                "notes": "",
+                "notes": "Totem",
                 "obtained": false
             },
             {
@@ -498,9 +499,10 @@
         "dex_number": 26,
         "name": "Raichu",
         "requirements": [
-            "Kantonian, from Heahea Beach in Ultra Sun and Ultra Moon"
+            "Ultra Sun",
+            "Ultra Moon"
         ],
-        "notes": "",
+        "notes": "Kantonian, from Heahea Beach",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -676,9 +678,9 @@
         "dex_number": 35,
         "name": "Clefairy",
         "requirements": [
-            "Night Sky's Edge on the Pokewalker"
+            "Pokewalker"
         ],
-        "notes": "",
+        "notes": "Night Sky's Edge",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -750,9 +752,9 @@
         "dex_number": 39,
         "name": "Jigglypuff",
         "requirements": [
-            "Night Sky's Edge on the Pokewalker"
+            "Pokewalker"
         ],
-        "notes": "",
+        "notes": "Night Sky's Edge",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -1018,9 +1020,10 @@
             {
                 "name": "Alolan",
                 "requirements": [
-                    "Gift in Sword, Shield"
+                    "Sword", 
+                    "Shield"
                 ],
-                "notes": "",
+                "notes": "Isle of Armour Gift",
                 "obtained": false
             }
         ]
@@ -1423,9 +1426,10 @@
         "dex_number": 72,
         "name": "Tentacool",
         "requirements": [
-            "Cianwood City Gift in HeartGold, SoulSilver"
+            "HeartGold", 
+            "SoulSilver"
         ],
-        "notes": "",
+        "notes": "Cianwood City Gift",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -1522,9 +1526,9 @@
         "dex_number": 77,
         "name": "Ponyta",
         "requirements": [
-            "Shiny Special Encounter from Horseshoe Plains in Legends: Arceus"
+            "Legends: Arceus"
         ],
-        "notes": "",
+        "notes": "Shiny Special Encounter from Horseshoe Plains",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -1881,9 +1885,11 @@
         "dex_number": 94,
         "name": "Gengar",
         "requirements": [
-            "Dual-slot Gengar from Old Chateau in Diamond, Pearl, Platinum"
+            "Diamond",
+            "Pearl",
+            "Platinum"
         ],
-        "notes": "",
+        "notes": "Dual-slot Gengar from Old Chateau",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -2458,9 +2464,10 @@
         "dex_number": 123,
         "name": "Scyther",
         "requirements": [
-            "Bug Catching Contest in HeartGold, SoulSilver"
+            "HeartGold",
+            "SoulSilver"
         ],
-        "notes": "",
+        "notes": "Bug Catching Contest",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -2537,9 +2544,10 @@
         "dex_number": 127,
         "name": "Pinsir",
         "requirements": [
-            "Bug Catching Contest in HeartGold, SoulSilver"
+            "HeartGold",
+            "SoulSilver"
         ],
-        "notes": "",
+        "notes": "Bug Catching Contest",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -2635,9 +2643,11 @@
         "dex_number": 130,
         "name": "Gyarados",
         "requirements": [
-            "Shiny Special Encounter from the Lake of Rage in Gold, Silver, Crystal"
+            "Gold",
+            "Silver",
+            "Crystal"
         ],
-        "notes": "",
+        "notes": "Shiny Special Encounter from the Lake of Rage",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -2711,9 +2721,10 @@
         "dex_number": 133,
         "name": "Eevee",
         "requirements": [
-            "Gift in Sword, Shield"
+            "Sword", 
+            "Shield"
         ],
-        "notes": "",
+        "notes": "Gift for Let's Go! save data",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -2947,9 +2958,9 @@
         "dex_number": 147,
         "name": "Dratini",
         "requirements": [
-            "Shiny, from Benga in Floccesy Town in White 2"
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Shiny, from Benga in Floccesy Town",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -3005,7 +3016,9 @@
         "dex_number": 151,
         "name": "Mew",
         "requirements": [
-            "Pokeball Plus, Brilliant Diamond, Shining Pearl"
+            "Pokeball Plus", 
+            "Brilliant Diamond", 
+            "Shining Pearl"
         ],
         "notes": "Gold star if both from My Pokemon Ranch.",
         "outlier": true,
@@ -3018,9 +3031,9 @@
         "requirements": [
             "Gold",
             "Silver",
-            "Crystal [See note]"
+            "Crystal"
         ],
-        "notes": "Professor Birch in Emerald or Mt. Battle in XD. Gold star if all three.",
+        "notes": "One from Professor Birch in Emerald or Mt. Battle in XD. Gold star if all three.",
         "outlier": false,
         "obtained": false,
         "forms": []
@@ -3082,9 +3095,9 @@
         "requirements": [
             "Gold",
             "Silver",
-            "Crystal [See note]"
+            "Crystal"
         ],
-        "notes": "Professor Birch in Emerald or Mt. Battle in XD. Gold star if all three.",
+        "notes": "One from Professor Birch in Emerald or Mt. Battle in XD. Gold star if all three.",
         "outlier": false,
         "obtained": false,
         "forms": []
@@ -3132,9 +3145,9 @@
         "requirements": [
             "Gold",
             "Silver",
-            "Crystal [See note]"
+            "Crystal"
         ],
-        "notes": "Professor Birch in Emerald or Mt. Battle in XD. Gold star if all three.",
+        "notes": "One from Professor Birch in Emerald or Mt. Battle in XD. Gold star if all three.",
         "outlier": false,
         "obtained": false,
         "forms": []
@@ -3554,9 +3567,9 @@
         "dex_number": 185,
         "name": "Sudowoodo",
         "requirements": [
-            "Special Encounter in Emerald"
+            "Emerald"
         ],
-        "notes": "",
+        "notes": "Special Encounter in Battle Frontier",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -4634,9 +4647,10 @@
         "dex_number": 216,
         "name": "Teddiursa",
         "requirements": [
-            "From Yancy in Black 2 and White 2"
+            "Black 2",
+            "White 2"
         ],
-        "notes": "",
+        "notes": "From Yancy",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -4937,9 +4951,10 @@
         "dex_number": 231,
         "name": "Phanpy",
         "requirements": [
-            "From Curtis in Black 2 and White 2"
+            "Black 2",
+            "White 2"
         ],
-        "notes": "",
+        "notes": "From Curtis",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -7119,9 +7134,10 @@
         "dex_number": 362,
         "name": "Glalie",
         "requirements": [
-            "Omega Ruby and Alpha Sapphire Special Demo"
+            "Omega Ruby",
+            "Alpha Sapphire"
         ],
-        "notes": "",
+        "notes": "Special Demo",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -7440,9 +7456,10 @@
         "dex_number": 385,
         "name": "Jirachi",
         "requirements": [
-            "Channel or Colosseum Bonus Disc"
+            "Channel",
+            "Colosseum"
         ],
-        "notes": "",
+        "notes": "Colosseum Bonus Disc",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -7833,9 +7850,9 @@
         "dex_number": 402,
         "name": "Kricketune",
         "requirements": [
-            "Story Alpha in Legends: Arceus"
+            "Legends: Arceus"
         ],
-        "notes": "",
+        "notes": "Story Alpha",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -8240,9 +8257,9 @@
         "dex_number": 416,
         "name": "Vespiquen",
         "requirements": [
-            "Story Alpha in Legends: Arceus"
+            "Legends: Arceus"
         ],
-        "notes": "",
+        "notes": "Story Alpha",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -8731,7 +8748,7 @@
             "Platinum",
             "Brilliant Diamond",
             "Shining Pearl",
-            "LA"
+            "Legends: Arceus"
         ],
         "notes": "",
         "outlier": false,
@@ -8742,9 +8759,9 @@
         "dex_number": 443,
         "name": "Gible",
         "requirements": [
-            "Shiny, from Benga in Floccesy Town in Black 2"
+            "Black 2"
         ],
-        "notes": "",
+        "notes": "Shiny, from Benga in Floccesy Town",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -10043,9 +10060,10 @@
         "dex_number": 509,
         "name": "Purrloin",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10180,9 +10198,10 @@
         "dex_number": 519,
         "name": "Pidove",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10284,9 +10303,10 @@
         "dex_number": 525,
         "name": "Boldore",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10309,9 +10329,10 @@
         "dex_number": 527,
         "name": "Woobat",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10376,9 +10397,10 @@
         "dex_number": 532,
         "name": "Timburr",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10415,9 +10437,10 @@
         "dex_number": 535,
         "name": "Tympole",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10679,9 +10702,10 @@
         "dex_number": 551,
         "name": "Sandile",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10718,9 +10742,10 @@
         "dex_number": 554,
         "name": "Darumaka",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -10739,9 +10764,10 @@
         "dex_number": 555,
         "name": "Darmanitan",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -10802,9 +10828,10 @@
         "dex_number": 559,
         "name": "Scraggy",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10827,9 +10854,10 @@
         "dex_number": 561,
         "name": "Sigilyth",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -10960,9 +10988,10 @@
         "dex_number": 570,
         "name": "Zorua",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -11461,9 +11490,10 @@
         "dex_number": 595,
         "name": "Joltik",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -11486,9 +11516,10 @@
         "dex_number": 597,
         "name": "Ferroseed",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -11511,9 +11542,10 @@
         "dex_number": 599,
         "name": "Klink",
         "requirements": [
-            "Originally owned by N in Black 2 and White 2"
+            "Black 2", 
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Originally owned by N",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -11690,9 +11722,10 @@
         "dex_number": 612,
         "name": "Haxorus",
         "requirements": [
-            "Shiny, from the Nature Preserve in Black 2 and White 2"
+            "Black 2",
+            "White 2"
         ],
-        "notes": "",
+        "notes": "Shiny, from the Nature Preserve",
         "outlier": true,
         "obtained": false,
         "forms": [
@@ -12377,9 +12410,10 @@
         "dex_number": 658,
         "name": "Greninja",
         "requirements": [
-            "Sun and Moon Special Demo"
+            "Sun",
+            "Moon"
         ],
-        "notes": "",
+        "notes": "Special Demo",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -13847,9 +13881,10 @@
         "dex_number": 735,
         "name": "Gumshoos",
         "requirements": [
-            "Totem from Ultra Sun and Ultra Moon"
+            "Ultra Sun", 
+            "Ultra Moon"
         ],
-        "notes": "",
+        "notes": "Totem",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -13886,9 +13921,10 @@
         "dex_number": 738,
         "name": "Vikavolt",
         "requirements": [
-            "Totem from Ultra Sun and Ultra Moon"
+            "Ultra Sun", 
+            "Ultra Moon"
         ],
-        "notes": "",
+        "notes": "Totem",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -14186,9 +14222,10 @@
         "dex_number": 754,
         "name": "Lurantis",
         "requirements": [
-            "Totem from Ultra Sun and Ultra Moon"
+            "Ultra Sun", 
+            "Ultra Moon"
         ],
-        "notes": "",
+        "notes": "Totem",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -14239,9 +14276,10 @@
         "dex_number": 758,
         "name": "Salazzle",
         "requirements": [
-            "Totem from Ultra Sun and Ultra Moon"
+            "Ultra Sun", 
+            "Ultra Moon"
         ],
-        "notes": "",
+        "notes": "Totem",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -14594,9 +14632,10 @@
         "dex_number": 778,
         "name": "Mimikyu",
         "requirements": [
-            "Totem from Ultra Sun and Ultra Moon"
+            "Ultra Sun", 
+            "Ultra Moon"
         ],
-        "notes": "",
+        "notes": "Totem",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -14675,9 +14714,10 @@
         "dex_number": 784,
         "name": "Kommo-o",
         "requirements": [
-            "Totem from Ultra Sun and Ultra Moon"
+            "Ultra Sun", 
+            "Ultra Moon"
         ],
-        "notes": "",
+        "notes": "Totem",
         "outlier": true,
         "obtained": false,
         "forms": []

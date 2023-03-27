@@ -179,6 +179,8 @@ html {
     height: 200px; */
     aspect-ratio: 1 / 1;
 
+    max-width: 215.5px;
+
     display: grid;
     grid-template-areas:
         "header"
@@ -187,8 +189,6 @@ html {
         "toggle";
 
     box-shadow: 2px 2px black;
-
-    overflow: hidden;
 
     transition: 100ms;
 }
@@ -202,6 +202,8 @@ html {
 
     display: flex;
     justify-content: space-between;
+
+    border-radius: 0.5rem 0.5rem 0 0;
 
     width: 100%;
     padding: 0.5rem;
@@ -253,6 +255,7 @@ html {
     box-shadow: 4px 4px black;
 
     transform: scale(1.2);
+    z-index: 10;
 }
 
 .pokemon:hover .header {
@@ -309,6 +312,71 @@ html {
 }
 
 
+/* icons */
+.pokemon li:has(.game-icon)
+{
+    /* remove the marker */
+    list-style-type: none;
+    position: relative;
+    height: 42px;
+    aspect-ratio: 1 / 1;
+
+    background: #5555;
+    border-radius: 5px;
+    padding: 5px;
+
+    transition: 100ms;
+}
+
+.pokemon li:has(.game-icon):hover
+{
+    background: #555;
+}
+
+.pokemon li img
+{
+    /* add a subtle drop shadow */
+    filter: drop-shadow(1px 1px 1px #0005);
+
+    height: 100%;
+    width: 100%;
+
+    object-fit: contain;
+}
+
+.pokemon .title:has(.game-icon)
+{
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pokemon li img + .tooltip
+{
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background: #eee;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px black;
+    padding: 0.5rem;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%) translateY(-200%);
+
+    width: fit-content;
+    /* stop the text from breaking at words */
+    white-space: nowrap;
+
+    text-align: center;
+}
+
+.pokemon li img:hover + .tooltip
+{
+    display: block;
+}
 
 
 

@@ -418,10 +418,53 @@ function createDiv(pokemon, box_number, is_form = false, form_of = null) {
 
     var game = document.createElement("ul");
     game.classList.add("title");
+
     for (var i = 0; i < pokemon.requirements.length; i++) {
-        var li = document.createElement("li");
-        li.innerHTML = pokemon.requirements[i];
-        game.appendChild(li);
+        // try and load an image from masterdex/images and add it to the list, images are named MD_Black2.png
+        let img = document.createElement("img");
+        img.classList.add("game-icon");
+        img.alt = pokemon.requirements[i];
+        
+        var game_name = pokemon.requirements[i].replace(" ", "");
+        img.src = `masterdex/images/MD_${game_name}.png`;
+
+        // if the game_name contains eevee
+        if (game_name.toLowerCase().includes("eevee"))
+            img.src = `masterdex/images/MD_Eevee.png`;
+        else if (game_name.toLowerCase().includes("pikachu"))
+            img.src = `masterdex/images/MD_Pikachu.png`;
+        else if (game_name.toLowerCase().includes("arceus"))
+            img.src = `masterdex/images/MD_LegendsArceus.png`;
+        else if (game_name.toLowerCase().includes("xd"))
+            img.src = `masterdex/images/MD_XD.png`;
+        
+        
+        let li = document.createElement("li");
+
+        var error = false;
+
+        img.onerror = function () {
+            img.display = "none";
+            // if the image doesn't exist, just use the text
+            li.innerHTML = img.alt;
+            game.appendChild(li);
+            error = true;
+        }
+
+        if (error)
+            continue;
+
+        img.onload = function () {
+            // if the image exists, add it to the list
+            li.appendChild(img);
+            game.appendChild(li);
+
+            // add tooltip to the image
+            var tooltip = document.createElement("span");
+            tooltip.classList.add("tooltip");
+            tooltip.innerHTML = img.alt;
+            li.appendChild(tooltip);
+        }
     }
     gameSection.appendChild(game);
 
@@ -432,9 +475,8 @@ function createDiv(pokemon, box_number, is_form = false, form_of = null) {
     div.appendChild(notes);
 
     // if pokemon is an outlier, add the outlier class
-    if (pokemon.outlier) {
+    if (pokemon.outlier)
         div.classList.add("outlier");
-    }
 
     // create the toggle
     div.addEventListener("click", function (event) {
@@ -448,7 +490,6 @@ function createDiv(pokemon, box_number, is_form = false, form_of = null) {
 
     div.addEventListener("contextmenu", function (event) {
         event.preventDefault();
-        // notes.style.display = notes.style.display == "none" ? "block" : "none";
     });
 
     // add the div to the box
