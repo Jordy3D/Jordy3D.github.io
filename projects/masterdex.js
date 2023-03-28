@@ -50,6 +50,13 @@ function clearData() {
 
 var full_json = null;
 
+
+// if mobile, load mobile css
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+    document.querySelector("head").innerHTML += '<link rel="stylesheet" href="masterdex/mobile.css">';
+
+
+
 loadJSON();
 
 loadFromStorage();

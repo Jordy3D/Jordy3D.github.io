@@ -1,0 +1,74 @@
+html,
+body {
+    width: 100vw;
+}
+
+
+
+#app .description {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+#app .notes > :not(h3) {
+    border-left: none;
+    border-right: none;
+}
+
+#app .codes {
+    display: none;
+}
+
+
+.pokemon {
+    max-width: calc(100vw / 8);
+    height: 100%;
+}
+
+.pokemon .name,
+.pokemon .game>p,
+.pokemon .notes {
+    display: none;
+}
+
+.pokemon .dex {
+    text-align: center;
+    width: 100%;
+}
+
+.pokemon .dex::before {
+    content: "#";
+}
+
+.pokemon .title:has(.game-icon) {
+    padding: 0;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.pokemon li:has(.game-icon) {
+    height: 24px;
+}
+
+
+#data
+{
+    width: 95vw;
+    padding: 0.5rem;
+}
+
+.box
+{
+    width: 100%;
+}
+
+
+.box-header
+{
+    width: 100%;
+}
