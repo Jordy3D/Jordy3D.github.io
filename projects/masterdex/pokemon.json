@@ -9704,9 +9704,9 @@
         "dex_number": 483,
         "name": "Dialga",
         "requirements": [
-            "Legends: Arceus in Origin Ball"
+            "Legends: Arceus"
         ],
-        "notes": "",
+        "notes": "Caught in Origin Ball",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -9715,9 +9715,9 @@
         "dex_number": 484,
         "name": "Palkia",
         "requirements": [
-            "Legends: Arceus in Origin Ball"
+            "Legends: Arceus"
         ],
-        "notes": "",
+        "notes": "Caught in Origin Ball",
         "outlier": true,
         "obtained": false,
         "forms": []
@@ -17914,8 +17914,9 @@
             {
                 "name": "2 Segment",
                 "requirements": [
-                    "Scarlet",
-                    "Violet"
+                    "Gold",
+                    "Silver",
+                    "Crystal"
                 ],
                 "notes": "",
                 "obtained": false
@@ -17923,8 +17924,9 @@
             {
                 "name": "3 Segment",
                 "requirements": [
-                    "Scarlet",
-                    "Violet"
+                    "Gold",
+                    "Silver",
+                    "Crystal"
                 ],
                 "notes": "",
                 "obtained": false
