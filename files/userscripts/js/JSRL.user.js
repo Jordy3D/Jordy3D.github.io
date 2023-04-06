@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JetSetRadio.live Plus
 // @namespace    http://tampermonkey.net/
-// @version      0.3.0
+// @version      0.4.2
 // @description  JetSetRadio.live, but more
 // @author       You
 // @match        https://jetsetradio.live/
@@ -44,7 +44,6 @@ var stationNames = {
     "bonafidebloom": "BonafideBloom",
 };
 
-
 var currentStation = "";
 
 (function () {
@@ -52,10 +51,13 @@ var currentStation = "";
 
     // UI Changes
     addVolumeSlider();
+    addNewSoulAnimation();
 
     // Menu Changes
     addMenuCSS();
     addMenuButton("https://github.com/Jordy3D/Jordy3D.github.io/raw/master/files/logo.ico", test);
+
+    // Functional Changes
 })();
 
 // periodically refresh songlist
@@ -283,6 +285,33 @@ function test() {
     console.log(trackIndex);
 
     drawSongList();
+    style.type = 'text/css';
+    style.innerHTML = `
+        /* Vinyl Logo */
+        #graffitiSoul
+        {
+            animation: recordSpin 4s linear infinite;
+            
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 4%, rgba(0,0,0,1) 5%, rgba(107,0,0,1) 6%, rgba(139,0,0,1) 16%, rgba(0,0,0,1) 17%, rgba(29,29,29,1) 18%, rgba(0,0,0,1) 40%, rgba(26,26,26,1) 41%, rgba(6,6,6,1) 42%, rgba(0,0,0,1) 57%, rgba(19,19,19,1) 59%, rgba(0,0,0,1) 60%, rgba(14,14,14,1) 79%, rgba(0,0,0,1) 81%, rgba(8,8,8,1) 82%, rgba(0,0,0,1) 100%);
+            border-radius: 50%;
+        }
+
+        #graffitiSoulFramel
+        {
+            filter: drop-shadow(0px 0px 15px #000) drop-shadow(0px 0px 15px #000);
+            overflow: visible;
+        }
+
+        @keyframes recordSpin {
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.getElementsByTagName('head')[0].appendChild(style);
+}
+
+function test() {
+    // go to the url https://jordy3d.github.io/ in a new tab
+    window.open("https://jordy3d.github.io/", "_blank");
 }
 
 function drawSongList() {
