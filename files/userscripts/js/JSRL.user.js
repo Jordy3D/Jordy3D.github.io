@@ -1,13 +1,51 @@
 // ==UserScript==
 // @name         JetSetRadio.live Plus
 // @namespace    http://tampermonkey.net/
-// @version      0.2.5
+// @version      0.3.0
 // @description  JetSetRadio.live, but more
 // @author       You
 // @match        https://jetsetradio.live/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=jetsetradio.live
 // @grant        none
 // ==/UserScript==
+
+
+// dict of all station internal names and their display names
+var stationNames = {
+    "classic": "Classic",
+    "future": "Future",
+    "ultraremixes": "Ultra Remixes",
+    "garage": "The Garage",
+    "turntablism": "Turntablism",
+    "lofi": "Lo-Fi",
+    "ggs": "GG's",
+    "noisetanks": "Noise Tanks",
+    "poisonjam": "Poison Jam",
+    "rapid99": "Rapid 99",
+    "loveshockers": "Love Shockers",
+    "immortals": "The Immortals",
+    "doomriders": "Doom Riders",
+    "goldenrhinos": "Golden Rhinos",
+    "ganjah": "Ganjah",
+    "outerspace": "Outer Space",
+    "retroremix": "Retro Remix",
+    "classical": "Classical Remix",
+    "revolution": "Revolution",
+    "endofdays": "End of Days",
+    "chiptunes": "Chiptunes",
+    "spacechannel5": "Space Channel 5",
+    "crazytaxi": "Crazy Taxi",
+    "ollieking": "Ollie King",
+    "lethalleagueblaze": "Lethal League Blaze",
+    "toejamandearl": "Toe Jam & Earl",
+    "hover": "Hover",
+    "butterflies": "Butterflies",
+    "silvagunner": "SilvaGunner X JSR",
+    "bonafidebloom": "BonafideBloom",
+};
+
+
+var currentStation = "";
 
 (function () {
     'use strict';
@@ -24,10 +62,14 @@
 setInterval(function () {
     // try to refresh songlist, if it fails, don't do anything
     try {
-        // if songlist exists and isn't being hovered over, refresh it
         let songList = document.getElementById("songList");
-        if ((songList && !document.querySelector("#songList:hover")) || !songList)
-        {
+        let songListHover = document.querySelector("#songList:hover");
+
+        let titleOverlay = document.getElementById("titleScreenDiv");
+        let titleOverlayVisible = titleOverlay.style.visibility != "hidden";
+
+        // if the songList is not hovered over, and the title overlay is not visible, refresh the songlist
+        if (!songListHover && !titleOverlayVisible) {
             drawSongList();
         }
     } catch (e) { }
@@ -244,23 +286,50 @@ function test() {
 }
 
 function drawSongList() {
-    // if a songlist already exists, remove it
-    if (document.getElementById("songList") != null) {
-        document.getElementById("songList").remove();
-    }
+    let refresh = false;
 
+    let currentSong = getCurrentTrack();
     let station = getCurrentStation();
     let stationTracks = getStationTracks(station);
 
-    // create songlist div
-    let songList = document.createElement("div");
-    songList.id = "songList";
+    let songList = document.getElementById("songList") || null;
 
-    // add title to songlist div
-    let songListTitle = document.createElement("div");
-    songListTitle.classList.add("songListTitle");
-    songListTitle.innerHTML = "Song List";
-    songList.appendChild(songListTitle);
+    if (songList) {
+        if (currentStation != station) {
+            console.log(`Current Station: ${currentStation} | New Station: ${station}`);
+            currentStation = station;
+        }
+        refresh = true;
+
+        let songListContainer = songList.getElementsByClassName("songListContainer")[0];
+        songList.removeChild(songListContainer);
+    }
+
+    let songListTitle = null;
+
+    if (!refresh) {
+        // create songlist div
+        songList = document.createElement("div");
+        songList.id = "songList";
+
+        // add title to songlist div
+        songListTitle = document.createElement("div");
+        songListTitle.classList.add("songListTitle");
+        songList.appendChild(songListTitle);
+    }
+    else {
+        songListTitle = songList.getElementsByClassName("songListTitle")[0];
+        songList = document.getElementById("songList");
+    }
+
+    songListTitle.innerHTML = `Now Playing on ${getStationDisplayName(currentStation)}`;
+
+    // create song list container
+    let songListContainer = document.createElement("div");
+    songListContainer.classList.add("songListContainer");
+    songList.appendChild(songListContainer);
+
+    let currentSongFound = false;
 
     for (let i = 0; i < stationTracks.length; i++) {
         let song = document.createElement("div");
@@ -274,10 +343,17 @@ function drawSongList() {
         songName.classList.add("songName");
         songName.innerHTML = stationTracks[i];
 
+        if (!currentSongFound && currentSong != "Bump") {
+            if (stationTracks[i] == currentSong && !currentSongFound) {
+                currentSongFound = true;
+                song.classList.add("currentSong");
+            }
+        }
+
         song.appendChild(songNumber);
         song.appendChild(songName);
 
-        songList.appendChild(song);
+        songListContainer.appendChild(song);
     }
 
     // place songlist div absolutely on the left, half the height of the screen and in the middle of the screen
@@ -361,11 +437,19 @@ function drawSongList() {
         margin-bottom: 15px;
     }
 
-    #songList::-webkit-scrollbar { width: 10px; }
-    #songList::-webkit-scrollbar-track { background: #fff0; }
-    #songList::-webkit-scrollbar-thumb { background: #ffe222; border-radius: 0.5em; }
-    #songList::-webkit-scrollbar-thumb:hover { background: white; }
-    #songList::-webkit-scrollbar-corner { background: #0000; }
+    .songListContainer
+    {
+        height: 100%;
+        overflow-y: auto;
+        
+        padding-right: 10px;
+    }
+
+    .songListContainer::-webkit-scrollbar { width: 10px; }
+    .songListContainer::-webkit-scrollbar-track { background: #fff0; }
+    .songListContainer::-webkit-scrollbar-thumb { background: #ffe222; border-radius: 0.5em; }
+    .songListContainer::-webkit-scrollbar-thumb:hover { background: white; }
+    .songListContainer::-webkit-scrollbar-corner { background: #0000; }
 
     .song
     {
@@ -379,6 +463,11 @@ function drawSongList() {
     {
         cursor: pointer; 
         color: #ffe222; 
+    }
+    .currentSong
+    {
+        color: #ffe222;
+        font-weight: bold;
     }
     .songNumber { margin-right: 15px; }
     `;
@@ -394,6 +483,14 @@ function playTrack(station, trackIndex) {
     forceTrack(station, trackName);
 }
 
+
+function getStationDisplayName(station) {
+    let stationDisplayName = stationNames[station];
+    if (!stationDisplayName || stationDisplayName == "undefined") {
+        stationDisplayName = "some Station";
+    }
+    return stationDisplayName;
+}
 
 
 function getCurrentStation() {
