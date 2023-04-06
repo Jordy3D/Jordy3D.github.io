@@ -44,94 +44,97 @@
 
         <h1 class="separatorTitle">//Content</h1>
 
+        <script>
+            function createCard(script, image, description, leftOverride = null) {
+                var scriptInfo = loadUserscriptInformation(script);
+
+                var container = document.querySelector(".column");
+
+                var card = document.createElement("div");
+                card.classList.add("objectCard");
+
+                var cardData = document.createElement("div");
+                cardData.classList.add("objectCardData");
+                cardData.style.backgroundImage = `url(${image})`;
+
+                var cardFilter = document.createElement("div");
+                cardFilter.classList.add("objectCardFilter");
+                cardFilter.style.backdropFilter = "brightness(0.25) blur(16px)";
+
+                var cardImageHolder = document.createElement("div");
+                cardImageHolder.classList.add("objectCardImageHolder");
+
+                var cardImage = document.createElement("img");
+                cardImage.loading = "lazy";
+                cardImage.src = image;
+                cardImage.style.left = "-85px";
+                if (leftOverride != null)
+                    cardImage.style.left = leftOverride;
+                cardImageHolder.appendChild(cardImage);
+
+                var cardInfo = document.createElement("div");
+                cardInfo.classList.add("objectCardInfo");
+
+                var cardHeader = document.createElement("div");
+                cardHeader.classList.add("objectCardHeader");
+
+                var cardTitle = document.createElement("h4");
+                cardTitle.classList.add("objectCardTitle");
+                cardTitle.innerHTML = scriptInfo.name;
+
+                var cardVersion = document.createElement("h5");
+                cardVersion.classList.add("objectCardVersion");
+                cardVersion.innerHTML = scriptInfo.version;
+
+                var cardDescription = document.createElement("p");
+                cardDescription.innerHTML = description;
+
+                var cardLink = document.createElement("a");
+                cardLink.href = script;
+
+                var cardLinkSpan = document.createElement("span");
+                cardLinkSpan.classList.add("linkSpan");
+
+                cardLink.appendChild(cardLinkSpan);
+                cardInfo.appendChild(cardHeader);
+                cardHeader.appendChild(cardTitle);
+                cardHeader.appendChild(cardVersion);
+                cardInfo.appendChild(cardDescription);
+                cardInfo.appendChild(cardLink);
+                cardFilter.appendChild(cardImageHolder);
+                cardFilter.appendChild(cardInfo);
+                cardData.appendChild(cardFilter);
+                card.appendChild(cardData);
+
+                container.appendChild(card);
+
+                return card;
+            }
+
+            function loadUserscriptInformation(scriptURL) {
+                var request = new XMLHttpRequest();
+                request.open("GET", scriptURL, false);
+                request.send(null);
+                var script = request.responseText;
+
+                var name = script.match(/\/\/\s*@name\s+(.*)/)[1];
+                var version = script.match(/\/\/\s*@version\s+(.*)/)[1];
+
+                return { name: name, version: version };
+            }
+        </script>
+
         <div class="objectListContainer">
             <div class="column">
+                <script>
+                    createCard("files/userscripts/js/YouTubePlus.user.js", "files/userscripts/images/youtubecommentbuttons.png", "A number of bonus features for YouTube.<br><li>SHORTS: Volume Control, Watch as Video, and Download</li><li>GENERAL: Simple Markdown formatting on Comments and Replies.</li>");
 
-                <div class="objectCard">
-                    <div class="objectCardData"
-                        style="background-image: url(./files/userscripts/images/youtubecommentbuttons.png); background-position: 60% 0; background-size: inherit;">
-                        <div class="objectCardFilter" style="backdrop-filter: brightness(0.25) blur(6px);">
-                            <div class="objectCardImageHolder">
-                                <img loading="lazy" src="./files/userscripts/images/youtubecommentbuttons.png"
-                                    style="left: -65px"></img>
-                            </div>
-                            <div class="objectCardInfo">
-                                <div class="objectCardHeader">
-                                    <h4 class="objectCardTitle">YouTube Plus</h4>
-                                </div>
-                                <p>A number of bonus features for YouTube.<br>
-                                    <li>SHORTS: Volume Control, Watch as Video, and Download</li><li>GENERAL: Simple Markdown
-                                    formatting on Comments and Replies.</li></p>
-                                <a href="files/userscripts/js/YouTubePlus.user.js">
-                                    <span class="linkSpan"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    createCard("files/userscripts/js/ArxivWebShortcut.user.js", "files/userscripts/images/arxivweb.png", "Arxiv has a cool feature.<br>It shouldn't be hidden.", "-35px");
 
-                <div class="objectCard">
-                    <div class="objectCardData"
-                        style="background-image: url(./files/userscripts/images/arxivweb.png); background-position: 60% 0; background-size: inherit;">
-                        <div class="objectCardFilter" style="backdrop-filter: brightness(0.25) blur(16px);">
-                            <div class="objectCardImageHolder">
-                                <img loading="lazy" src="./files/userscripts/images/arxivweb.png"
-                                    style="left: -25px"></img>
-                            </div>
-                            <div class="objectCardInfo">
-                                <div class="objectCardHeader">
-                                    <h4 class="objectCardTitle">Arxiv Web Shortcut</h4>
-                                </div>
-                                <p>Arxiv has a cool feature.<br>It shouldn't be hidden.</p>
-                                <a href="files/userscripts/js/ArxivWebShortcut.user.js">
-                                    <span class="linkSpan"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    createCard("files/userscripts/js/DiscordChan.user.js", "files/userscripts/images/discordchan.png", "Greentexts are a gift from God.<br>Create a little Discord.");
 
-                <div class="objectCard">
-                    <div class="objectCardData"
-                        style="background-image: url(./files/userscripts/images/discordchan.png); background-position: 60% 0; background-size: inherit;">
-                        <div class="objectCardFilter" style="backdrop-filter: brightness(0.25) blur(16px);">
-                            <div class="objectCardImageHolder">
-                                <img loading="lazy" src="./files/userscripts/images/discordchan.png"
-                                    style="left: -85px"></img>
-                            </div>
-                            <div class="objectCardInfo">
-                                <div class="objectCardHeader">
-                                    <h4 class="objectCardTitle">>discord greentext</h4>
-                                </div>
-                                <p>Greentexts are a gift from God.<br>Create a little Discord.</p>
-                                <a href="files/userscripts/js/DiscordChan.user.js">
-                                    <span class="linkSpan"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="objectCard">
-                    <div class="objectCardData"
-                        style="background-image: url(./files/userscripts/images/jsrlp.png); background-position: 60% 0; background-size: inherit;">
-                        <div class="objectCardFilter" style="backdrop-filter: brightness(0.25) blur(16px);">
-                            <div class="objectCardImageHolder">
-                                <img loading="lazy" src="./files/userscripts/images/jsrlp.png"
-                                    style="left: -85px"></img>
-                            </div>
-                            <div class="objectCardInfo">
-                                <div class="objectCardHeader">
-                                    <h4 class="objectCardTitle">>JetSetRadio.live Plus</h4>
-                                </div>
-                                <p>The streets of Tokyo-to deserve a little more lovin'</p>
-                                <a href="files/userscripts/js/JSRL.user.js">
-                                    <span class="linkSpan"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    createCard("files/userscripts/js/JSRL.user.js", "files/userscripts/images/jsrlp.png", "The streets of Tokyo-to deserve a little more lovin'");
+                </script>
 
                 <h1 class="separator-title ">//Support</h1>
 
