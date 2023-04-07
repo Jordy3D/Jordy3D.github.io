@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.5.0
 // @description  JetSetRadio.live, but more
-// @author       You
+// @author       Bane
 // @match        https://jetsetradio.live/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=jetsetradio.live
 // @grant        none
@@ -24,6 +24,7 @@
 // - Replaced the station Soul animation with a new one
 // 0.5.0
 // - Made the chat window remember its position when you close it
+// - Code cleanup
 
 
 // ==================================
