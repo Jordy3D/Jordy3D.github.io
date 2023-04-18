@@ -1,6 +1,13 @@
 html,
 body {
     width: 100vw;
+    margin: 0;
+}
+
+
+#app header
+{
+    width: 100%;;
 }
 
 
@@ -20,7 +27,6 @@ body {
 #app .codes {
     display: none;
 }
-
 
 .pokemon {
     max-width: calc(100vw / 8);
@@ -60,11 +66,13 @@ body {
 {
     width: 95vw;
     padding: 0.5rem;
+    margin: 0 auto;
 }
 
 .box
 {
     width: 100%;
+    padding-bottom: 1rem;
 }
 
 

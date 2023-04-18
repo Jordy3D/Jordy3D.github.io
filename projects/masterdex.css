@@ -66,6 +66,20 @@ html {
         "details notes stats";
 }
 
+#app .changes
+{
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+
+    width: 90%;
+    max-width: 1000px;
+
+    background: #eee;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px black;
+}
+
 #app .details { grid-area: details; }
 #app .notes { grid-area: notes; }
 #app .codes { grid-area: codes; }
@@ -179,7 +193,8 @@ html {
     height: 200px; */
     aspect-ratio: 1 / 1;
 
-    max-width: 215.5px;
+    width: 215.5px;
+    margin: 0 auto;
 
     display: grid;
     grid-template-areas:
