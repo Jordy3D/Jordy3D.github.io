@@ -125,7 +125,7 @@ html {
     /* similar to above, but using grid with 6 columns */
     display: grid;
     grid-template-rows: 3em 1fr;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, calc(100% / 7));
 }
 
 .box.closed {
@@ -193,7 +193,10 @@ html {
     height: 200px; */
     aspect-ratio: 1 / 1;
 
-    width: 215.5px;
+    max-width: 215.5px;
+    width: 100%;
+    height: -webkit-fill-available;
+    
     margin: 0 auto;
 
     display: grid;
@@ -303,7 +306,7 @@ html {
 }
 
 /* mobile? */
-@media (max-width: 835px) {
+@media (max-width: 1000px) {
     #app header {
         flex-direction: column;
         padding-bottom: 1rem;
@@ -316,6 +319,11 @@ html {
 
     #app .description {
         margin-top: 8.5rem;
+    }
+
+    .pokemon .header h2
+    {
+        font-size: 1rem;
     }
 }
 
