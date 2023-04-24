@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Modifications
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -9,8 +9,20 @@
 // @grant        none
 // ==/UserScript==
 
+
+
+// Changlog
+// 0.2 - Added code to support conversation styling
+// 0.1 - Initial version 
+//          - adds cover image to the top of the article
+
+var conversationSet = false;
+
+var conversationScan = 3;
+
 setInterval(function() {
     addCover();
+    setConversationElement();
 }, 1000);
 
 
@@ -59,4 +71,69 @@ function addCover() {
         }
     `;
     document.head.appendChild(style);
+}
+
+function setConversationElement()
+{
+    if (conversationSet) return;
+
+    // find all .p tags that only contain em tags and/or br tags, and not their own text, and are not just <p></p>
+    var pTags = document.querySelectorAll('p');
+    for (var i = 0; i < pTags.length; i++) {
+        var pTag = pTags[i];
+        var emTags = pTag.querySelectorAll('em');
+        if (emTags.length == 0) continue;
+
+        var brTags = pTag.querySelectorAll('br');
+
+        if (emTags.length + (brTags.length*2) == pTag.childNodes.length) {
+
+            // if pTag doesn't contain strong
+            if (pTag.querySelectorAll('strong').length == 0)
+                pTag.classList.add('consider');
+        }
+    }
+
+    // find all divs with the style attribute text-align: right and add the class conversation
+    var divs = document.querySelectorAll('div[style="text-align: right"]');
+    for (var i = 0; i < divs.length; i++) {
+        var div = divs[i];
+        div.classList.add('conversation');
+        div.classList.add('right');
+    }
+
+    // search through every child of the main>article and remove every .conversation that isn't within 3 of another .conversation
+    var article = document.querySelector('main>article');
+    var children = [];
+    // set children to all immediate children of article
+    for (var i = 0; i < article.childNodes.length; i++) {
+        var child = article.childNodes[i];
+        if (child.nodeType == 1)
+            children.push(child);
+    }
+
+    for (var i = 0; i < children.length; i++) {
+        var child = children[i];
+        if (child.classList && child.classList.contains('consider')) {          
+            // for the 3 siblings before and after, if there are no .conversation siblings, remove the class
+            for (var j = -conversationScan; j < conversationScan; j++) {
+                let ref = i+j;
+
+                if (ref < 0) continue; // skip if we're going to go out of bounds
+                if (ref >= children.length) continue; // skip if we're going to go out of bounds
+
+                if (j == 0) continue;
+
+                let sibling = children[ref];
+
+                if (sibling && sibling.classList && sibling.classList.contains('conversation')) {
+                    child.classList.add('conversation');
+                    child.classList.add('left');
+                    break;
+                }
+            }
+        }
+    }
+
+    conversationSet = true;
 }
