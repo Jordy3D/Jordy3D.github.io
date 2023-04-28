@@ -1,222 +1,318 @@
-    /* ==========
+/* ==========
 Scrollbars
 ========== */
-    
-     ::-webkit-scrollbar {
-        width: 10px;
-    }
-    
-     ::-webkit-scrollbar-track {
-        background: #fff0;
-    }
-    
-     ::-webkit-scrollbar-thumb {
-        background: rgb(48, 47, 47);
-    }
-    
-     ::-webkit-scrollbar-thumb:hover {
-        background: #252525;
-    }
-    /* ==========
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #fff0;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgb(48, 47, 47);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #252525;
+}
+/* ==========
 Main Body / General Settings
 ========== */
-    
-    body,
-    html {
-        background-image: repeating-linear-gradient(0deg, rgb(32, 32, 32) 0px, rgb(32, 32, 32) 2px, rgb(33, 33, 33) 2px, rgb(33, 33, 33) 4px, rgb(34, 34, 34) 4px, rgb(34, 34, 34) 6px, rgb(33, 33, 33) 6px, rgb(33, 33, 33) 8px, rgb(36, 36, 36) 8px, rgb(36, 36, 36) 10px, rgb(35, 35, 35) 10px, rgb(35, 35, 35) 12px, rgb(33, 33, 33) 12px, rgb(33, 33, 33) 14px, rgb(32, 32, 32) 14px, rgb(32, 32, 32) 16px, rgb(36, 36, 36) 16px, rgb(36, 36, 36) 18px, rgb(34, 34, 34) 18px, rgb(34, 34, 34) 20px, rgb(35, 35, 35) 20px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 22px, rgb(35, 35, 35) 24px);
-        margin: 0;
-        background-color: #1d1d1d;
-        color: #ccc;
-        zoom: 1.1;
-    }
-    
-    @font-face {
-        font-family: 'VCR OSD Mono';
-        src: url('./files/fonts/VCROSDMono.woff') format('woff'), url('./files/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
-    
-    * {
-        font-family: 'VCR OSD Mono';
-        font-weight: normal;
-        font-style: normal;
-    }
-    
-    a {
-        color: #8e8edf;
-        text-decoration: none;
-    }
-    
-    .content {
-        width: 60%;
-        margin: 0 auto;
-        min-width: 600px;
-        padding-top: 60px;
-    }
-    /* ==========
+
+body,
+html {
+	background-image: repeating-linear-gradient(
+		0deg,
+		rgb(32, 32, 32) 0px,
+		rgb(32, 32, 32) 2px,
+		rgb(33, 33, 33) 2px,
+		rgb(33, 33, 33) 4px,
+		rgb(34, 34, 34) 4px,
+		rgb(34, 34, 34) 6px,
+		rgb(33, 33, 33) 6px,
+		rgb(33, 33, 33) 8px,
+		rgb(36, 36, 36) 8px,
+		rgb(36, 36, 36) 10px,
+		rgb(35, 35, 35) 10px,
+		rgb(35, 35, 35) 12px,
+		rgb(33, 33, 33) 12px,
+		rgb(33, 33, 33) 14px,
+		rgb(32, 32, 32) 14px,
+		rgb(32, 32, 32) 16px,
+		rgb(36, 36, 36) 16px,
+		rgb(36, 36, 36) 18px,
+		rgb(34, 34, 34) 18px,
+		rgb(34, 34, 34) 20px,
+		rgb(35, 35, 35) 20px,
+		rgb(35, 35, 35) 22px,
+		rgb(35, 35, 35) 22px,
+		rgb(35, 35, 35) 24px
+	);
+	margin: 0;
+	background-color: #1d1d1d;
+	color: #ccc;
+	zoom: 1.1;
+}
+
+@font-face {
+	font-family: "VCR OSD Mono";
+	src: url("./files/fonts/VCROSDMono.woff") format("woff"),
+		url("./files/fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: "VCR OSD Mono";
+	font-weight: normal;
+	font-style: normal;
+}
+
+a {
+	color: #8e8edf;
+	text-decoration: none;
+}
+
+.content {
+	width: 60%;
+	margin: 0 auto;
+	min-width: 600px;
+	max-width: 80vw;
+	padding-top: 60px;
+}
+/* ==========
 Header
 ========== */
-    
-    .header {
-        background: #000d !important;
-        display: inline-flex;
-        width: 100%;
-        height: 3em;
-        position: fixed;
-        z-index: 100;
-        /*clip-path: polygon(0 0, 100% 0%, 100% 80%, 0% 100%);*/
-    }
-    
-    .header,
-    .logoImg {
-        box-shadow: 0 0 10px 2px #000;
-    }
-    
-    .header>* {
-        display: flex;
-        margin: 5px;
-    }
-    
-    .logo {
-        transform: scale(1.5);
-        transform-origin: 0 0;
-    }
-    
-    .logo h1 {
-        font-size: x-large;
-        margin-left: 5px;
-    }
-    
-    .NavBar {
-        float: right;
-        right: 10px;
-        position: absolute;
-        height: auto;
-        top: 42%;
-        font-size: large;
-        /*transform: rotateZ(-1deg);*/
-    }
-    
-    .NavBar a {
-        float: right;
-        margin-left: 2ch;
-        color: #ccc;
-    }
-    /* ==========
+
+.header {
+	background: #000d !important;
+	display: inline-flex;
+	width: 100%;
+	height: 3em;
+	position: fixed;
+	z-index: 100;
+	/*clip-path: polygon(0 0, 100% 0%, 100% 80%, 0% 100%);*/
+}
+
+.header,
+.logoImg {
+	box-shadow: 0 0 10px 2px #000;
+}
+
+.header > * {
+	display: flex;
+	margin: 5px;
+}
+
+.logo {
+	transform: scale(1.5);
+	transform-origin: 0 0;
+}
+
+.logo h1 {
+	font-size: x-large;
+	margin-left: 5px;
+}
+
+.NavBar {
+	float: right;
+	right: 10px;
+	position: absolute;
+	height: auto;
+	top: 42%;
+	font-size: large;
+	/*transform: rotateZ(-1deg);*/
+}
+
+.NavBar a {
+	float: right;
+	margin-left: 2ch;
+	color: #ccc;
+}
+/* ==========
 Style Cards
 ========== */
-    
-    .objectCardData {
-        background-color: #202020;
-        border-radius: 15px;
-        min-width: 300px;
-        height: fit-content !important;
-        box-sizing: border-box;
-        color: #ccc;
-        display: flex;
-        margin: 20px 0;
-        padding: 0px 0 0px 0em;
-        /*Shadow*/
-        -webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
-        -moz-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
-        box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, .5);
-        /* Transitions*/
-        transition: color 200ms;
-    }
-    
-    .objectCardData:hover {
-        color: #fff !important;
-        /* Transitions*/
-        transition: color 200ms;
-    }
-    
-    .objectCardFilter {
-        border-radius: 15px;
-        display: flex;
-        width: 100%;
-        padding: 10px;
-        backdrop-filter: brightness(0.4) blur(8px);
-    }
-    
-    .objectCardImageHolder {
-        background-size: cover;
-        height: 156px;
-        width: 300px;
-        background-position-x: 50%;
-        border-radius: 10px 0 0 10px;
-        margin-right: -150px;
-        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 60%);
-        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 60%);
-        z-index: -100;
-    }
-    
-    .objectCardImageHolder img {
-        height: 156px;
-        width: 300px;
-        left: -70px;
-        position: relative;
-    }
-    
-    .objectCardInfo {
-        width: 100%;
-        padding-right: 20px;
-        text-shadow: -5px 5px 8px black;
-        border-radius: inherit;
-    }
-    
-    .objectCardHeader {
-        padding-top: 5px;
-        ;
-    }
-    
-    .objectCardTitle {
-        font-size: 30pt;
-        display: inline;
-    }
 
-    .objectCardVersion {
-        font-size: 15pt;
-        display: inline;
-        margin-left: 10px;
-    }
+.objectListContainer {
+	width: 100%;
+}
 
-    /* ==========
+.objectCardData {
+	background-color: #202020;
+	border-radius: 15px;
+	min-width: 300px;
+	height: fit-content !important;
+	box-sizing: border-box;
+	color: #ccc;
+	display: flex;
+	margin: 20px 0;
+	padding: 0px 0 0px 0em;
+	/*Shadow*/
+	-webkit-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+	/* Transitions*/
+	transition: color 200ms;
+}
+
+.objectCardData:hover {
+	color: #fff !important;
+	/* Transitions*/
+	transition: color 200ms;
+}
+
+.objectCardFilter {
+	border-radius: 15px;
+	display: flex;
+	width: 100%;
+	padding: 10px;
+	backdrop-filter: brightness(0.4) blur(8px);
+}
+
+.objectCardImageHolder {
+	background-size: cover;
+	height: 156px;
+	width: 300px;
+	background-position-x: 50%;
+	border-radius: 10px 0 0 10px;
+	margin-right: -150px;
+	-webkit-mask-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgba(0, 0, 0, 0.65) 30%,
+		rgba(0, 0, 0, 0) 60%
+	);
+	mask-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgba(0, 0, 0, 0.65) 30%,
+		rgba(0, 0, 0, 0) 60%
+	);
+	z-index: -100;
+}
+
+.objectCardImageHolder img {
+	height: 156px;
+	width: 300px;
+	left: -70px;
+	position: relative;
+}
+
+.objectCardInfo {
+	width: 100%;
+	padding-right: 20px;
+	text-shadow: -5px 5px 8px black;
+	border-radius: inherit;
+}
+
+.objectCardHeader {
+	padding-top: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.objectCardTitle {
+	font-size: 30pt;
+	display: inline;
+
+    margin: 0;
+}
+
+.objectCardVersion {
+	font-size: 15pt;
+	display: inline;
+    margin: 0;
+}
+
+/* ==========
 Extra content
 ========== */
-    
-    .section-content {
-        margin-left: 20px;
-    }
-    
-    .supportLinks {
-        display: block;
-    }
 
-    #support
-    {
-        padding-bottom: 30px;
-    }
-    
-    #inProgress {
-        list-style-type: none;
-    }
-    
-    #inProgress li {
-        margin-top: 5px;
-    }
-    
-    .discordContent p {
-        width: 70%;
-        margin: 10px auto;
-        text-align: center;
-    }
-    
-    .linkSpan {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 1;
-    }
+.section-content {
+	margin-left: 20px;
+}
+
+.supportLinks {
+	display: block;
+}
+
+#support {
+	padding-bottom: 30px;
+}
+
+#inProgress {
+	list-style-type: none;
+}
+
+#inProgress li {
+	margin-top: 5px;
+}
+
+.discordContent p {
+	width: 70%;
+	margin: 10px auto;
+	text-align: center;
+}
+
+.linkSpan {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+/* Resize Support */
+/* if sscreen is smaller than 600px */
+@media screen and (max-width: 800px) {
+	.content {
+		min-width: unset;
+	}
+
+	.column {
+		width: 100%;
+		display: block;
+		margin-bottom: 20px;
+
+		/* 2-wide grid */
+		display: flex;
+		flex-direction: column;
+	}
+
+	.objectCardData {
+		min-width: unset;
+		margin: 10px 0;
+	}
+	.objectCardData > div {
+		flex-direction: column;
+	}
+
+	.objectCardTitle {
+		font-size: 20pt;
+	}
+
+	.objectCardImageHolder {
+		mask-image: none !important;
+		-webkit-mask-image: none !important;
+		border-radius: 1em;
+		overflow: hidden;
+		width: 100%;
+		height: auto;
+	}
+	.objectCardImageHolder img {
+		height: 100%;
+		width: 100%;
+		left: 0 !important;
+		position: relative;
+	}
+}
+
+/* css if image failed to load */
+.objectCardImageHolder > img[src='null'] {
+	display: none;
+}
