@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.4.5
+// @version      0.4.7
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -67,6 +67,7 @@ function spawnSettings() {
         settingDiv.innerHTML = `
             <label for="bane-setting-${setting}">${settings[setting].fancyText}</label>
             <input type="checkbox" id="bane-setting-${setting}" ${settings[setting].value ? 'checked' : ''}>
+            <label for="bane-setting-${setting}">switch</label>
         `;
 
         settingDiv.querySelector(`#bane-setting-${setting}`).addEventListener('change', updateSettings);
@@ -119,13 +120,52 @@ function spawnSettings() {
             transition: all 300ms ease-in-out;
         }
 
-
         .bane-setting
         {
             display: flex;
             gap: 5px;
             justify-content: flex-end;
+            margin-bottom: 5px;
         }
+
+        /* Modifed based on https://codepen.io/mburnette/pen/LxNxNg */
+        input[type=checkbox]{
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        label:last-child {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 40px;
+            height: 20px;
+            background: grey;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+        }
+
+        label:last-child:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+
+        input:checked + label:last-child { background: #D09242; }
+
+        input:checked + label:last-child:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+        label:last-child:active:after { width: 15px; }
     `;
 
     document.head.appendChild(style);
@@ -283,7 +323,6 @@ function loadCSS() {
     for (i = 0; i < settings.length; i++) {
         var setting = settings[i];
         if (setting.value) {
-            console.log(setting);
             switch (setting.name) {
                 case 'replaceSectionEndHeaders':
                     style.innerHTML += `
