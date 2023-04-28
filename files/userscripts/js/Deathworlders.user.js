@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.4.7
+// @version      0.5
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -18,11 +18,29 @@
 // 0.3 - Added extra CSS to the script rather than loading it separately
 // 0.4 - Added a settings menu to enable/disable features
 //          - saves settings to localstorage
+//          - added a konami code to reset settings
+// 0.5 - Added a fix for the conversation styling failing on certain instances
+//     - Added a way for new settings to be added without overwriting old settings (hopefully)
+//     - Added a setting for adding a cover image
+//     - Organized settings into categories
+//     - Fixed a bug where non-paragrapgh elements were being justified
 
 var conversationSet = false;
 var conversationScan = 3;
 
 // ===== Settings =====
+
+var defaultSettings = [];
+defaultSettings.push({ name: 'replaceSectionEndHeaders', value: true, fancyText: 'Replace Section End Headers', tag: 'Fix' });
+defaultSettings.push({ name: 'fixBrokenHRTags', value: true, fancyText: 'Fix Broken HR Tags', tag: 'Fix' });
+defaultSettings.push({ name: 'darkScrollbars', value: true, fancyText: 'Dark Scrollbars', tag: 'Style' });
+defaultSettings.push({ name: 'fixCodeBlocks', value: true, fancyText: 'Fix Code Blocks', tag: 'Fix' });
+defaultSettings.push({ name: 'fixBlockquotes', value: true, fancyText: 'Fix Blockquotes', tag: 'Fix' });
+defaultSettings.push({ name: 'fancySMS', value: true, fancyText: 'Fancy SMS', tag: 'Style' });
+defaultSettings.push({ name: 'fancySMSBubbles', value: true, fancyText: 'Fancy SMS Bubbles', tag: 'Style' });
+defaultSettings.push({ name: 'justifyParagraphs', value: true, fancyText: 'Justify Paragraphs', tag: 'Style' });
+defaultSettings.push({ name: 'addCover', value: true, fancyText: 'Add Cover', tag: 'Function' });
+
 
 var settings = [];
 
@@ -30,18 +48,52 @@ var settings = [];
 if (localStorage.getItem('bane-deathworlders-settings')) {
     settings = JSON.parse(localStorage.getItem('bane-deathworlders-settings'));
 } else {
-    settings.push({ name: 'replaceSectionEndHeaders', value: true, fancyText: 'Replace Section End Headers', tag: 'Fix' });
-    settings.push({ name: 'fixBrokenHRTags', value: true, fancyText: 'Fix Broken HR Tags', tag: 'Fix' });
-    settings.push({ name: 'darkScrollbars', value: true, fancyText: 'Dark Scrollbars', tag: 'Style' });
-    settings.push({ name: 'fixCodeBlocks', value: true, fancyText: 'Fix Code Blocks', tag: 'Fix' });
-    settings.push({ name: 'fixBlockquotes', value: true, fancyText: 'Fix Blockquotes', tag: 'Fix' });
-    settings.push({ name: 'fancySMS', value: true, fancyText: 'Fancy SMS', tag: 'Style' });
-    settings.push({ name: 'fancySMSBubbles', value: true, fancyText: 'Fancy SMS Bubbles', tag: 'Style' });
-    settings.push({ name: 'justifyParagraphs', value: true, fancyText: 'Justify Paragraphs', tag: 'Style' });
+    // otherwise, load the defaults
+    settings = defaultSettings;
 }
+
+function checkNewSettings() {
+    var newSettings = [];
+    for (var setting in defaultSettings) {
+        var found = false;
+        for (var oldSetting in settings) {
+            if (defaultSettings[setting].name == settings[oldSetting].name) {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            newSettings.push(defaultSettings[setting]);
+    }
+
+    if (newSettings.length > 0) {
+        for (var setting in newSettings)
+            settings.push(newSettings[setting]);
+        localStorage.setItem('bane-deathworlders-settings', JSON.stringify(settings));
+    }
+}
+
+// konami code
+var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+var konamiCodePosition = 0;
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode === konamiCode[konamiCodePosition++]) {
+        if (konamiCodePosition === konamiCode.length) {
+            konamiCodePosition = 0;
+            // delete settings
+            localStorage.removeItem('bane-deathworlders-settings');
+            // reload page
+            window.location.reload();
+        }
+    } else {
+        konamiCodePosition = 0;
+    }
+});
 
 
 // ===== End Settings =====
+
+initialize();
 
 spawnSettings();
 
@@ -50,6 +102,13 @@ setInterval(function () {
     setConversationElement();
 }, 1000);
 
+
+function initialize() {
+    // print Deathworlders Tweaks in large letters
+    var textCSSMain = 'font-size: 30px; font-weight: bold; text-shadow: -3px 0px 0px rgba(255, 0, 0, 1),3px 0px 0px rgba(8, 0, 255, 1);';
+    var textCSSSub = 'font-size: 15px; font-weight: bold;';
+    console.log(`%cDeathworlders Tweaks%c${GM_info.script.version}\nby Bane`, textCSSMain, textCSSSub);
+}
 
 
 function spawnSettings() {
@@ -60,19 +119,40 @@ function spawnSettings() {
         <h4>by Bane</h4>
         <hr>
     `;
-    // loop through settings and add them to the div
+
+    // get a list of all unique tags
+    var tags = [];
     for (var setting in settings) {
-        var settingDiv = document.createElement('div');
-        settingDiv.classList.add('bane-setting');
-        settingDiv.innerHTML = `
-            <label for="bane-setting-${setting}">${settings[setting].fancyText}</label>
-            <input type="checkbox" id="bane-setting-${setting}" ${settings[setting].value ? 'checked' : ''}>
-            <label for="bane-setting-${setting}">switch</label>
-        `;
+        if (!tags.includes(settings[setting].tag))
+            tags.push(settings[setting].tag);
+    }
 
-        settingDiv.querySelector(`#bane-setting-${setting}`).addEventListener('change', updateSettings);
+    // loop through settings and add them to the div
+    for (var tag in tags) {
+        var tagHeader = document.createElement('h3');
+        tagHeader.classList.add('bane-setting-tag');
+        tagHeader.innerHTML = tags[tag];
+        settingsDiv.appendChild(tagHeader);
 
-        settingsDiv.appendChild(settingDiv);
+        var hr = document.createElement('hr');
+        settingsDiv.appendChild(hr);
+
+        for (var setting in settings) {
+            if (settings[setting].tag != tags[tag])
+                continue;
+
+            var settingDiv = document.createElement('div');
+            settingDiv.classList.add('bane-setting');
+            settingDiv.innerHTML = `
+                <label for="bane-setting-${setting}">${settings[setting].fancyText}</label>
+                <input type="checkbox" id="bane-setting-${setting}" ${settings[setting].value ? 'checked' : ''}>
+                <label for="bane-setting-${setting}">switch</label>
+            `;
+
+            settingDiv.querySelector(`#bane-setting-${setting}`).addEventListener('change', updateSettings);
+
+            settingsDiv.appendChild(settingDiv);
+        }
     }
     document.body.appendChild(settingsDiv);
 
@@ -103,7 +183,8 @@ function spawnSettings() {
         }
 
         .bane-settings h1, 
-        .bane-settings h4
+        .bane-settings h4,
+        .bane-setting-tag
         {
             margin: 0;
         }
@@ -126,6 +207,12 @@ function spawnSettings() {
             gap: 5px;
             justify-content: flex-end;
             margin-bottom: 5px;
+        }
+
+        .bane-setting-tag
+        {
+            margin-top: 1em;
+            text-align: center;
         }
 
         /* Modifed based on https://codepen.io/mburnette/pen/LxNxNg */
@@ -187,40 +274,56 @@ function updateSettings() {
 
 function addCover() {
 
-    // look for .story-specific-images
-    var storySpecificImages = document.querySelector('.story-specific-images');
-    if (!storySpecificImages) return;
+    if (settings.find(x => x.name == 'addCover').value == false)
+    {
+        // find .bane-cover and remove it if it exists
+        var cover = document.querySelector('.bane-cover');
+        if (cover)
+            cover.remove();
 
-    // if .story-specific-images has .bane then we've already done this
-    if (storySpecificImages.classList.contains('bane')) return;
-    storySpecificImages.classList.add('bane');
+        return;
+    }
+    else
+    {
+        var cover = document.querySelector('.bane-cover');
+        if (cover) return;
 
-    // look for .download-epub-cover-img.wider and copy it, placing it after the article's h1
-    var cover = document.querySelector('.download-epub-cover-img.wider');
-    if (!cover) return;
-
-    // get the article
-    var article = document.querySelector('article');
-    article.classList.add('bane-article');
-
-    // clone the cover and insert it after the h1
-    var coverCopy = cover.cloneNode(true);
-    // add onerror="this.style.display='none'" to coverCopy
-    coverCopy.setAttribute('onerror', "this.style.display='none'");
-
-    var h1 = article.querySelector('h1');
-    h1.parentNode.insertBefore(coverCopy, h1.nextSibling);
-
-    // add a class to the cover so we can style it
-    coverCopy.classList.add('bane-cover');
-
+        // look for .story-specific-images
+        var storySpecificImages = document.querySelector('.story-specific-images');
+        if (!storySpecificImages) return;
+      
+        // look for .download-epub-cover-img.wider and copy it, placing it after the article's h1
+        var cover = document.querySelector('.download-epub-cover-img.wider');
+        if (!cover) return;
+    
+        // get the article
+        var article = document.querySelector('article');
+        article.classList.add('bane-article');
+    
+        // clone the cover and insert it after the h1
+        var coverCopy = cover.cloneNode(true);
+        // add onerror="this.style.display='none'" to coverCopy
+        coverCopy.setAttribute('onerror', "this.style.display='none'");
+    
+        var h1 = article.querySelector('h1');
+        h1.parentNode.insertBefore(coverCopy, h1.nextSibling);
+    
+        // add a class to the cover so we can style it
+        coverCopy.classList.add('bane-cover');
+    }
+    
     // add style
+    if (document.querySelector('#bane-cover-style')) return;
+
     var style = document.createElement('style');
+    style.id = 'bane-cover-style';
     style.innerHTML = `
         .bane-cover {
             height: auto;
             width: 500px;
             margin: 0 auto;
+            box-shadow: none;
+            border-radius: 0.5em;
         }
         .bane-article {
             display: flex;
@@ -240,11 +343,15 @@ function setConversationElement() {
     for (var i = 0; i < pTags.length; i++) {
         var pTag = pTags[i];
         var emTags = pTag.querySelectorAll('em');
-        if (emTags.length == 0) continue;
+        // if (emTags.length == 0) continue;
 
         var brTags = pTag.querySelectorAll('br');
 
-        if (emTags.length + (brTags.length * 2) == pTag.childNodes.length) {
+        // pTag.classList.add(`em-${emTags.length}`);
+        // pTag.classList.add(`br-${brTags.length * 2}`)
+        // pTag.classList.add(`p-${pTag.childNodes.length}`);
+
+        if (emTags.length + (brTags.length * 2) == pTag.childNodes.length || (emTags.length == 0 && brTags.length > 0)) {
 
             // if pTag doesn't contain strong
             if (pTag.querySelectorAll('strong').length == 0)
@@ -293,6 +400,23 @@ function setConversationElement() {
         }
     }
 
+    // go through every .conversation.right and merge it with the previous .conversation.right if it starts with a lowercase letter
+    var conversations = document.querySelectorAll('.conversation.right');
+    for (var i = 0; i < conversations.length; i++) {
+        var conversation = conversations[i];
+        var previous = conversations[i - 1];
+
+        if (previous) {
+            var previousText = previous.innerText;
+            var conversationText = conversation.innerText;
+
+            if (conversationText[0] == conversationText[0].toLowerCase()) {
+                previous.innerText = previousText + ' ' + conversationText;
+                conversation.remove();
+            }
+        }
+    }
+
 
     // find every <br> that is immediately after a .conversation and remove it
     var brs = document.querySelectorAll('.conversation+br');
@@ -306,6 +430,13 @@ function setConversationElement() {
     for (var i = 0; i < ps.length; i++) {
         var p = ps[i];
         if (p.innerHTML == '') p.remove();
+    }
+
+    // remove all .consider
+    var considers = document.querySelectorAll('.consider');
+    for (var i = 0; i < considers.length; i++) {
+        var consider = considers[i];
+        consider.classList.remove('consider');
     }
 
     conversationSet = true;
@@ -512,10 +643,8 @@ function loadCSS() {
                     break;
                 case 'justifyParagraphs':
                     style.innerHTML += `
-                        p:not(.conversation)
-                        {
-                            text-align: justify;
-                        }
+                        p:not(.conversation) { text-align: justify; }
+                        li p:not(.conversation) { text-align: left; }
                     `;
                     break;
             }
@@ -525,4 +654,3 @@ function loadCSS() {
     // add the CSS to the page
     document.head.appendChild(style);
 }
-
