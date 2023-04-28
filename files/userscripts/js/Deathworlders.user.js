@@ -128,6 +128,8 @@ function spawnSettings() {
         }
     `;
 
+    document.head.appendChild(style);
+
     loadCSS();
 }
 
