@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.6.1
+// @version      0.6.2
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -23,7 +23,8 @@
 //     - Organized settings into categories
 //     - Fixed a bug where non-paragrapgh elements were being justified
 // 0.6 - Added a setting for fancy chat log
-//     - Rewrote the settings code to be more efficient
+//     - Rewrote the settings code to be more efficient 
+//     - Added Light Mode support
 
 
 var conversationSet = false;
@@ -35,7 +36,7 @@ var chatLogSet = false;
 var defaultSettings = [];
 defaultSettings.push({ name: 'replaceSectionEndHeaders', value: true, fancyText: 'Replace Section End Headers', tag: 'Fix' });
 defaultSettings.push({ name: 'fixBrokenHRTags', value: true, fancyText: 'Fix Broken HR Tags', tag: 'Fix' });
-defaultSettings.push({ name: 'darkScrollbars', value: true, fancyText: 'Dark Scrollbars', tag: 'Style' });
+defaultSettings.push({ name: 'darkScrollbars', value: true, fancyText: 'Dark Scrollbar', tag: 'Style' });
 defaultSettings.push({ name: 'fixCodeBlocks', value: true, fancyText: 'Fix Code Blocks', tag: 'Fix' });
 defaultSettings.push({ name: 'fixBlockquotes', value: true, fancyText: 'Fix Blockquotes', tag: 'Fix' });
 defaultSettings.push({ name: 'fancySMS', value: true, fancyText: 'Fancy SMS', tag: 'Style' });
@@ -109,7 +110,6 @@ function initialize() {
     checkNewSettings();
 }
 
-
 function spawnSettings() {
     var settingsDiv = document.createElement('div');
     settingsDiv.classList.add('bane-settings');
@@ -180,6 +180,7 @@ function spawnSettings() {
             
             transition: all 100ms ease-in-out;
         }
+        body:not(.inverted) .bane-settings { background: #ffffff !important; }
 
         .bane-settings h1, 
         .bane-settings h4,
