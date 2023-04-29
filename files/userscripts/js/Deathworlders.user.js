@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.6.2
+// @version      0.6.3
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -11,18 +11,20 @@
 
 // ===== Changelog =====
 // 0.1 - Initial version 
-//          - adds cover image to the top of the article
+//          - Adds cover image to the top of the article
 // 0.2 - Added code to support conversation styling
 // 0.3 - Added extra CSS to the script rather than loading it separately
 // 0.4 - Added a settings menu to enable/disable features
-//          - saves settings to localstorage
-//          - added a konami code to reset settings
+//          - Saves settings to localstorage
+//          - Added a konami code to reset settings
 // 0.5 - Added a fix for the conversation styling failing on certain instances
 //     - Added a way for new settings to be added without overwriting old settings (hopefully)
 //     - Added a setting for adding a cover image
 //     - Organized settings into categories
 //     - Fixed a bug where non-paragrapgh elements were being justified
 // 0.6 - Added a setting for fancy chat log
+//          - Setting for keeping the ++NAME++ flavour in the chat log
+//          - Setting for rounded system messages
 //     - Rewrote the settings code to be more efficient 
 //     - Added Light Mode support
 
@@ -45,6 +47,7 @@ defaultSettings.push({ name: 'justifyParagraphs', value: true, fancyText: 'Justi
 defaultSettings.push({ name: 'addCover', value: true, fancyText: 'Add Cover', tag: 'Function' });
 defaultSettings.push({ name: 'fancyChatLog', value: true, fancyText: 'Fancy Chat Log', tag: 'Style' });
 defaultSettings.push({ name: 'fancyChatLogKeep++', value: true, fancyText: 'Fancy Chat Log Keep ++', tag: 'Style' });
+defaultSettings.push({ name: 'fancyChatLogRoundedSystem', value: true, fancyText: 'Fancy Chat Log Rounded System', tag: 'Style' });
 
 var settings = [];
 
@@ -764,10 +767,8 @@ function loadCSS() {
                         {
                             text-align: center !important;
                             border: 1px solid #ddd;
-                            border-left: none;
-                            border-right: none;
                             
-                            padding: 1em 0;
+                            padding: 1em;
                             margin: 0;
                             
                             font-family: monospace;
@@ -789,6 +790,14 @@ function loadCSS() {
                     style.innerHTML += `
                         .chat-log-name::before {content: "++"; }
                         .chat-log-name::after {content: "++:"; }
+                    `;
+                    break;
+                case 'fancyChatLogRoundedSystem':
+                    style.innerHTML += `
+                        .chat-log-system { border-radius: 1em; }
+                        .chat-log-system:has(+.chat-log-system) { border-radius: 1em 1em 0 0; } 
+                        .chat-log-system + .chat-log-system { border-radius: 0; }
+                        .chat-log-system+.chat-log-system:not(:has(+.chat-log-system)) { border-radius: 0 0 1em 1em; }
                     `;
                     break;
             }
