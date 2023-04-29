@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.6.1
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -743,6 +743,7 @@ function loadCSS() {
                             gap: 15px;
                             
                             margin: 0;
+                            font-family: 'Ruda';
                         }
                         .chat-log-name
                         {
@@ -754,8 +755,6 @@ function loadCSS() {
                         {
                             border-left: 1px solid #ddd;
                             padding: 1em;
-                            
-                            font-family: 'Ruda';
 
                             justify-content: left;
                         }
@@ -775,7 +774,6 @@ function loadCSS() {
                         }
                         .chat-log-system:has(+.chat-log-system) { border-bottom: none; }
                         .chat-log-system +.chat-log-system { border-top: none; }
-                        
                         
                         .chat-log-system + hr { display: none; }
                         
