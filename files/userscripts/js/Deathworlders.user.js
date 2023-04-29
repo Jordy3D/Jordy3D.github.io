@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.6
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -9,9 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-
-
-// Changlog
+// ===== Changelog =====
 // 0.1 - Initial version 
 //          - adds cover image to the top of the article
 // 0.2 - Added code to support conversation styling
@@ -24,9 +22,13 @@
 //     - Added a setting for adding a cover image
 //     - Organized settings into categories
 //     - Fixed a bug where non-paragrapgh elements were being justified
+// 0.6 - Added a setting for fancy chat log
+//     - Rewrote the settings code to be more efficient
+
 
 var conversationSet = false;
 var conversationScan = 3;
+var chatLogSet = false;
 
 // ===== Settings =====
 
@@ -40,36 +42,30 @@ defaultSettings.push({ name: 'fancySMS', value: true, fancyText: 'Fancy SMS', ta
 defaultSettings.push({ name: 'fancySMSBubbles', value: true, fancyText: 'Fancy SMS Bubbles', tag: 'Style' });
 defaultSettings.push({ name: 'justifyParagraphs', value: true, fancyText: 'Justify Paragraphs', tag: 'Style' });
 defaultSettings.push({ name: 'addCover', value: true, fancyText: 'Add Cover', tag: 'Function' });
-
+defaultSettings.push({ name: 'fancyChatLog', value: true, fancyText: 'Fancy Chat Log', tag: 'Style' });
+defaultSettings.push({ name: 'fancyChatLogKeep++', value: true, fancyText: 'Fancy Chat Log Keep ++', tag: 'Style' });
 
 var settings = [];
 
-// if we have settings saved, load them
-if (localStorage.getItem('bane-deathworlders-settings')) {
-    settings = JSON.parse(localStorage.getItem('bane-deathworlders-settings'));
-} else {
-    // otherwise, load the defaults
-    settings = defaultSettings;
-}
-
 function checkNewSettings() {
-    var newSettings = [];
-    for (var setting in defaultSettings) {
-        var found = false;
-        for (var oldSetting in settings) {
-            if (defaultSettings[setting].name == settings[oldSetting].name) {
-                found = true;
-                break;
+    settings = defaultSettings;
+
+    // check if settings exist in localstorage
+    if (localStorage.getItem('bane-deathworlders-settings') != null) {
+        // load settings from localstorage
+        var loadedSettings = JSON.parse(localStorage.getItem('bane-deathworlders-settings'));
+
+        // loop through loaded settings and update the default settings
+        for (var setting in loadedSettings) {
+            for (var defaultSetting in defaultSettings) {
+                if (defaultSettings[defaultSetting].name == loadedSettings[setting].name) {
+                    defaultSettings[defaultSetting].value = loadedSettings[setting].value;
+                }
             }
         }
-        if (!found)
-            newSettings.push(defaultSettings[setting]);
-    }
-
-    if (newSettings.length > 0) {
-        for (var setting in newSettings)
-            settings.push(newSettings[setting]);
-        localStorage.setItem('bane-deathworlders-settings', JSON.stringify(settings));
+    } else {
+        // save default settings to localstorage
+        localStorage.setItem('bane-deathworlders-settings', JSON.stringify(defaultSettings));
     }
 }
 
@@ -100,6 +96,7 @@ spawnSettings();
 setInterval(function () {
     addCover();
     setConversationElement();
+    setChatLogElement();
 }, 1000);
 
 
@@ -108,6 +105,8 @@ function initialize() {
     var textCSSMain = 'font-size: 30px; font-weight: bold; text-shadow: -3px 0px 0px rgba(255, 0, 0, 1),3px 0px 0px rgba(8, 0, 255, 1);';
     var textCSSSub = 'font-size: 15px; font-weight: bold;';
     console.log(`%cDeathworlders Tweaks%c${GM_info.script.version}\nby Bane`, textCSSMain, textCSSSub);
+
+    checkNewSettings();
 }
 
 
@@ -274,8 +273,7 @@ function updateSettings() {
 
 function addCover() {
 
-    if (settings.find(x => x.name == 'addCover').value == false)
-    {
+    if (settings.find(x => x.name == 'addCover').value == false) {
         // find .bane-cover and remove it if it exists
         var cover = document.querySelector('.bane-cover');
         if (cover)
@@ -283,35 +281,34 @@ function addCover() {
 
         return;
     }
-    else
-    {
+    else {
         var cover = document.querySelector('.bane-cover');
         if (cover) return;
 
         // look for .story-specific-images
         var storySpecificImages = document.querySelector('.story-specific-images');
         if (!storySpecificImages) return;
-      
+
         // look for .download-epub-cover-img.wider and copy it, placing it after the article's h1
         var cover = document.querySelector('.download-epub-cover-img.wider');
         if (!cover) return;
-    
+
         // get the article
         var article = document.querySelector('article');
         article.classList.add('bane-article');
-    
+
         // clone the cover and insert it after the h1
         var coverCopy = cover.cloneNode(true);
         // add onerror="this.style.display='none'" to coverCopy
         coverCopy.setAttribute('onerror', "this.style.display='none'");
-    
+
         var h1 = article.querySelector('h1');
         h1.parentNode.insertBefore(coverCopy, h1.nextSibling);
-    
+
         // add a class to the cover so we can style it
         coverCopy.classList.add('bane-cover');
     }
-    
+
     // add style
     if (document.querySelector('#bane-cover-style')) return;
 
@@ -440,6 +437,97 @@ function setConversationElement() {
     }
 
     conversationSet = true;
+}
+
+function setChatLogElement() {
+    if (chatLogSet) return;
+
+    // find all p tags that contain a strong tag, and add the class chat-log if the first child starts with ++
+    var pTags = document.querySelectorAll('p');
+    for (var i = 0; i < pTags.length; i++) {
+        var pTag = pTags[i];
+        var strongTags = pTag.querySelectorAll('strong');
+        if (strongTags.length == 0) continue;
+
+        // get the first child
+        var firstChild = pTag.childNodes[0];
+        // if the first child is a strong and the text starts with ++, add the class chat-log
+        if (firstChild.tagName == 'STRONG' && firstChild.innerText.startsWith('++')) {
+            pTag.classList.add('chat-log');
+        }
+    }
+
+    // in all the chat-log p tags, remove the ++ and : from the first child, and add the class chat-log-name
+    var chatLogs = document.querySelectorAll('.chat-log');
+    for (var i = 0; i < chatLogs.length; i++) {
+        var chatLog = chatLogs[i];
+        var firstChild = chatLog.childNodes[0];
+
+        var name = firstChild.innerText;
+        name = name.replace('++', '');
+        name = name.replace('++:', '');
+
+        firstChild.innerText = name;
+        firstChild.classList.add('chat-log-name');
+    }
+
+    // in all chat-log p tags, place everything that isn't the first child into a new span
+    var chatLogs = document.querySelectorAll('.chat-log');
+    for (var i = 0; i < chatLogs.length; i++) {
+        var chatLog = chatLogs[i];
+        var firstChild = chatLog.childNodes[0];
+
+        var span = document.createElement('span');
+        span.classList.add('chat-log-text');
+
+        while (chatLog.childNodes.length > 1) {
+            var child = chatLog.childNodes[1];
+            span.appendChild(child);
+        }
+
+        chatLog.appendChild(span);
+    }
+
+    // find all p tags that contain a strong tag that starts with SYSTEM or ERROR and add the class chat-log-system
+    var pTags = document.querySelectorAll('p');
+    for (var i = 0; i < pTags.length; i++) {
+        var pTag = pTags[i];
+        var strongTags = pTag.querySelectorAll('strong');
+        if (strongTags.length == 0) continue;
+
+        // get the first child
+        var firstChild = pTag.childNodes[0];
+        // if the first child is a strong that starts with SYSTEM or ERROR, add the class chat-log-system
+        if (firstChild.tagName == 'STRONG' && (firstChild.innerText.startsWith('SYSTEM') || firstChild.innerText.startsWith('ERROR')))
+            pTag.classList.add('chat-log-system');
+
+        for (var j = 0; j < strongTags.length; j++) {
+            var strongTag = strongTags[j];
+            if (strongTag.innerText.startsWith('SYSTEM') || strongTag.innerText.startsWith('ERROR')) {
+                pTag.classList.add('chat-log-system');
+
+                // replace SYSTEM:: with SYSTEM:
+                strongTag.innerText = strongTag.innerText.replace('::', ':');
+
+                // replace ERROR - with ERROR:
+                strongTag.innerText = strongTag.innerText.replace(' - ', ': ');
+            }
+        }
+    }
+
+    // find every p tag that is only an all-caps strong tag and add the class chat-log-system
+    var pTags = document.querySelectorAll('p');
+    for (var i = 0; i < pTags.length; i++) {
+        var pTag = pTags[i];
+        var strongTags = pTag.querySelectorAll('strong');
+        if (strongTags.length == 0) continue;
+
+        // if the pTag is all caps, add the class chat-log-system
+        if (pTag.innerText == pTag.innerText.toUpperCase())
+            pTag.classList.add('chat-log-system');
+    }
+
+    chatLogSet = true;
 }
 
 function loadCSS() {
@@ -643,8 +731,65 @@ function loadCSS() {
                     break;
                 case 'justifyParagraphs':
                     style.innerHTML += `
-                        p:not(.conversation) { text-align: justify; }
+                        p:not(.conversation):not(.chat-log) { text-align: justify; }
                         li p:not(.conversation) { text-align: left; }
+                    `;
+                    break;
+                case 'fancyChatLog':
+                    style.innerHTML += `
+                        .chat-log
+                        {
+                            display: flex;
+                            gap: 15px;
+                            
+                            margin: 0;
+                        }
+                        .chat-log-name
+                        {
+                            min-width: 150px;
+                            text-align: right;
+                            padding: 1em;
+                        }
+                        .chat-log-text
+                        {
+                            border-left: 1px solid #ddd;
+                            padding: 1em;
+                            
+                            font-family: 'Ruda';
+
+                            justify-content: left;
+                        }
+                        
+                        .chat-log-system
+                        {
+                            text-align: center !important;
+                            border: 1px solid #ddd;
+                            border-left: none;
+                            border-right: none;
+                            
+                            padding: 1em 0;
+                            margin: 0;
+                            
+                            font-family: monospace;
+                            font-weight: 400;
+                        }
+                        .chat-log-system:has(+.chat-log-system) { border-bottom: none; }
+                        .chat-log-system +.chat-log-system { border-top: none; }
+                        
+                        
+                        .chat-log-system + hr { display: none; }
+                        
+                        .chat-log,
+                        .chat-log-text, .chat-log-text em
+                        {
+                            text-align: left !important;
+                        }
+                    `;
+                    break;
+                case 'fancyChatLogKeep++':
+                    style.innerHTML += `
+                        .chat-log-name::before {content: "++"; }
+                        .chat-log-name::after {content: "++:"; }
                     `;
                     break;
             }
