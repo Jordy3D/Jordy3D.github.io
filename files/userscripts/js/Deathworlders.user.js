@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.6.3
+// @version      0.7
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -27,6 +27,8 @@
 //          - Setting for rounded system messages
 //     - Rewrote the settings code to be more efficient 
 //     - Added Light Mode support
+// 0.7 - Added a check for new versions of the script
+//     - Redesigned the settings menu
 
 
 var conversationSet = false;
@@ -50,28 +52,6 @@ defaultSettings.push({ name: 'fancyChatLogKeep++', value: true, fancyText: 'Fanc
 defaultSettings.push({ name: 'fancyChatLogRoundedSystem', value: true, fancyText: 'Fancy Chat Log Rounded System', tag: 'Style' });
 
 var settings = [];
-
-function checkNewSettings() {
-    settings = defaultSettings;
-
-    // check if settings exist in localstorage
-    if (localStorage.getItem('bane-deathworlders-settings') != null) {
-        // load settings from localstorage
-        var loadedSettings = JSON.parse(localStorage.getItem('bane-deathworlders-settings'));
-
-        // loop through loaded settings and update the default settings
-        for (var setting in loadedSettings) {
-            for (var defaultSetting in defaultSettings) {
-                if (defaultSettings[defaultSetting].name == loadedSettings[setting].name) {
-                    defaultSettings[defaultSetting].value = loadedSettings[setting].value;
-                }
-            }
-        }
-    } else {
-        // save default settings to localstorage
-        localStorage.setItem('bane-deathworlders-settings', JSON.stringify(defaultSettings));
-    }
-}
 
 // konami code
 var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
@@ -110,7 +90,114 @@ function initialize() {
     var textCSSSub = 'font-size: 15px; font-weight: bold;';
     console.log(`%cDeathworlders Tweaks%c${GM_info.script.version}\nby Bane`, textCSSMain, textCSSSub);
 
+    checkNewVersion();
     checkNewSettings();
+}
+
+function checkNewVersion() {
+    console.log('Checking for new version of Deathworlders Tweaks');
+
+    // check https://jordy3d.github.io/files/userscripts/js/Deathworlders.user.js for the latest version
+    var url = 'https://jordy3d.github.io/files/userscripts/js/Deathworlders.user.js';
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.onload = function () {
+        if (request.status >= 200 && request.status < 400) {
+            var response = request.responseText;
+            var version = response.match(/@version\s+([^\s]+)/)[1];
+            if (version != GM_info.script.version) {
+                // add a new ::after element to the h1 element in .bane-settings, and make it look like the Minecraft splash text
+                var settingsDiv = document.querySelector('.bane-settings');
+                settingsDiv.classList.add('new');
+
+                // add a link to the bottom of the settings menu to open https://jordy3d.github.io/files/userscripts 
+                var sourceLink = document.createElement('a');
+                sourceLink.classList.add('not-button');
+                sourceLink.href = 'https://jordy3d.github.io/userscripts';
+                sourceLink.target = '_blank';
+                sourceLink.innerHTML = 'Download the latest version here';
+                settingsDiv.appendChild(sourceLink);
+
+
+                // create a new style
+                var style = document.createElement('style');
+                style.id = 'bane-new-version-style';
+                style.innerHTML = `
+                    /* Update Animations */
+                    .bane-settings.new 
+                    { 
+                        animation: ping 1s infinite; 
+                        opacity: 1;
+                    }
+                    
+                    @keyframes ping
+                    {
+                        0% { outline: 2px solid #d09242; }
+                        50% { outline: 5px solid #d09242; }
+                        100% { outline: 2px solid #d09242; }
+                    }
+                    
+                    .bane-settings.new h1 { position: relative; }
+                    .bane-settings.new h1::after
+                    {
+                        content: "New version available!";
+                        position: absolute;
+                        display: block;
+                        
+                        font-size: 10pt;
+                        font-weight: bold;
+                        
+                        right: -50px;
+                        bottom: 0;
+
+                        opacity: 0;
+                        transition: opacity 200ms ease-in-out;
+                        
+                        transform: rotate(-30deg);
+                        
+                        animation: updateSplash 1s infinite;
+                        
+                        text-shadow: 0 0 5px #222222, 0 0 5px #222222;
+                    }
+                    .bane-settings.new:hover h1::after { opacity: 1; }
+
+                    body:not(.inverted) .bane-settings.new h1::after { text-shadow: 0 0 5px #FFFFFF, 0 0 5px #FFFFFF; }
+                    
+                    @keyframes updateSplash {
+                        0% { transform: scale(1) rotate(-25deg); }
+                        50% { transform: scale(1) rotate(-15deg); }
+                        100% { transform: scale(1) rotate(-25deg); }
+                    }
+                    
+                    
+                    /* Update Button */
+                    .bane-settings:not(.new) .not-button { display: none; }
+                    
+                    .not-button
+                    {
+                        text-align: center;
+                        display: block;
+                        
+                        padding: 1em;
+                        margin-top: auto;
+                        border: 3px solid #D09242;
+                        border-radius: 5em;
+                        
+                        transition: all 100ms ease-in-out;
+                    }
+                    
+                    .not-button:hover
+                    {
+                        background: #D09242;
+                        color: #222222 !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+    };
+
+    request.send();
 }
 
 function spawnSettings() {
@@ -118,7 +205,10 @@ function spawnSettings() {
     settingsDiv.classList.add('bane-settings');
     settingsDiv.innerHTML = `
         <h1>Deathworlders Tweaks</h1>
-        <h4>by Bane</h4>
+        <div class="bane-settings-subtitle">
+            <h4>v${GM_info.script.version}</h4>
+            <h4>by Bane</h4>
+        </div>
         <hr>
     `;
 
@@ -166,10 +256,14 @@ function spawnSettings() {
         {
             background: #222222;
             
-            border: 4px solid #CECECE;
-            border-top: none;
-            border-left: none;
-            border-radius: 0 0 1em 0;
+            border-right: 4px solid #CECECE;
+            
+            height: 100vh;
+            border-radius: 0;
+            border-bottom: none;
+            
+            display: flex;
+            flex-direction: column;
             
             padding: 20px;
             box-sizing: border-box;
@@ -185,17 +279,21 @@ function spawnSettings() {
         }
         body:not(.inverted) .bane-settings { background: #ffffff !important; }
 
+        .bane-settings-subtitle
+        {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+
         .bane-settings h1, 
         .bane-settings h4,
         .bane-setting-tag
         {
             margin: 0;
         }
-        .bane-settings h4
-        {
-            font-size: 12px;
-            text-align: right;
-        }
+
+        .bane-settings hr { width: 100%; }
 
         .bane-settings:hover
         {
@@ -273,6 +371,28 @@ function updateSettings() {
     localStorage.setItem('bane-deathworlders-settings', JSON.stringify(settings));
 
     loadCSS();
+}
+
+function checkNewSettings() {
+    settings = defaultSettings;
+
+    // check if settings exist in localstorage
+    if (localStorage.getItem('bane-deathworlders-settings') != null) {
+        // load settings from localstorage
+        var loadedSettings = JSON.parse(localStorage.getItem('bane-deathworlders-settings'));
+
+        // loop through loaded settings and update the default settings
+        for (var setting in loadedSettings) {
+            for (var defaultSetting in defaultSettings) {
+                if (defaultSettings[defaultSetting].name == loadedSettings[setting].name) {
+                    defaultSettings[defaultSetting].value = loadedSettings[setting].value;
+                }
+            }
+        }
+    } else {
+        // save default settings to localstorage
+        localStorage.setItem('bane-deathworlders-settings', JSON.stringify(defaultSettings));
+    }
 }
 
 function addCover() {
