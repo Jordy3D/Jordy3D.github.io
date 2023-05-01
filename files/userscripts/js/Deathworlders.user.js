@@ -648,7 +648,7 @@ function setChatLogElement() {
             var strongTag = strongTags[j];
             if (strongTag.innerText.startsWith('SYSTEM') ||
                 strongTag.innerText.startsWith('ERROR') ||
-                strongTag.innerText.startsWith('System notification')) {
+                strongTag.innerText.toUpperCase().startsWith('SYSTEM NOTIFICATION')) {
                 pTag.classList.add('chat-log-system');
 
                 // replace SYSTEM:: with SYSTEM:
