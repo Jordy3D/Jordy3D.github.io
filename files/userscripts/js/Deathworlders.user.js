@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.7
+// @version      0.7.1
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -29,6 +29,8 @@
 //     - Added Light Mode support
 // 0.7 - Added a check for new versions of the script
 //     - Redesigned the settings menu
+//     - Fixed some fancy chat log items not being detected
+//     - Fixed an issue with justification justifying incorrect elements
 
 
 var conversationSet = false;
@@ -649,7 +651,27 @@ function setChatLogElement() {
         // if the pTag is all caps, add the class chat-log-system
         if (pTag.innerText == pTag.innerText.toUpperCase())
             pTag.classList.add('chat-log-system');
+
+        // if the text contains "session #" or "Session #" add the class chat-log-system
+        if (pTag.innerText.includes('session #') || pTag.innerText.includes('Session #'))
+            pTag.classList.add('chat-log-system');
     }
+
+    // find every p tag that is preceeded by a .chat-log-system
+    var pTags = document.querySelectorAll('p');
+    for (var i = 0; i < pTags.length; i++) {
+        var pTag = pTags[i];
+        var previous = pTag.previousElementSibling;
+        if (previous && previous.classList.contains('chat-log-system')) {
+            // if the first word ends with :, add the class chat-log-system
+            var text = pTag.innerText;
+            var firstWord = text.split(' ')[0];
+            if (firstWord.endsWith(':'))
+                pTag.classList.add('chat-log-system');
+        }
+    }
+
+    // find 
 
     chatLogSet = true;
 }
@@ -855,8 +877,7 @@ function loadCSS() {
                     break;
                 case 'justifyParagraphs':
                     style.innerHTML += `
-                        p:not(.conversation):not(.chat-log) { text-align: justify; }
-                        li p:not(.conversation) { text-align: left; }
+                        .bane-article > p { text-align: justify; }
                     `;
                     break;
                 case 'fancyChatLog':
@@ -886,13 +907,14 @@ function loadCSS() {
                         .chat-log-system
                         {
                             text-align: center !important;
+                            text-transform: uppercase;
                             border: 1px solid #ddd;
                             
                             padding: 1em;
                             margin: 0;
                             
                             font-family: monospace;
-                            font-weight: 400;
+                            font-weight: 400;    
                         }
                         .chat-log-system:has(+.chat-log-system) { border-bottom: none; }
                         .chat-log-system +.chat-log-system { border-top: none; }
