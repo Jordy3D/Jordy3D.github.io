@@ -703,7 +703,6 @@ function setChatLogElement() {
         if (!found)
         {
             chatLogSystem.classList.remove('chat-log-system');
-            chatLogSystem.classList.add('chat-log-system-removed');
         }
     }
 
