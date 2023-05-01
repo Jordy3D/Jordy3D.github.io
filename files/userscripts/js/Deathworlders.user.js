@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.8.1
+// @version      0.8.2
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -37,6 +37,7 @@
 //          - Fixed inconsistency with the chat log styling thanks to + being changed to ++ later
 //          - Fixed inconsistency with chat log system messages thanks to the system message being changed to a different format later
 //          - The old Date Point marker now breaks after the date, thanks Guvendruduvundraguvnegrugnuvenderelgureg-ugunduvug Guvnuragnaguvendrugun for making this necessary
+//     - Fixed a bug with chat log styling not working due to my own stupidity
 //
 // ===== End Changelog =====
 
@@ -714,9 +715,8 @@ function setChatLogElement() {
         var found = false;
         found = findClassWithinDistance(pTags, i, conversationScan, ['chat-log', 'chat-log-system']);
 
-        if (!found) {
+        if (!found)
             chatLogSystem.classList.remove('chat-log-system');
-        }
     }
 
     chatLogSet = true;
@@ -729,12 +729,12 @@ function findClassWithinDistance(array, currentIndex, distance, searchClass) {
         let className = classes[i];
         // console.log(`Looking for ${className} within ${distance} of ${currentIndex}`);
 
-        for (var i = -distance; i < distance; i++) {
-            let ref = currentIndex + i;
+        for (var j = -distance; j < distance; j++) {
+            let ref = currentIndex + j;
 
             if (ref < 0) continue; // skip if we're going to go out of bounds
             if (ref >= array.length) continue; // skip if we're going to go out of bounds
-            if (i == 0) continue; // skip if we're looking at the element itself
+            if (j == 0) continue; // skip if we're looking at the element itself
 
             let sibling = array[ref];
 
