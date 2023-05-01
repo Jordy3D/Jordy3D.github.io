@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.7.1
+// @version      0.7.6
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -10,6 +10,7 @@
 // ==/UserScript==
 
 // ===== Changelog =====
+//
 // 0.1 - Initial version 
 //          - Adds cover image to the top of the article
 // 0.2 - Added code to support conversation styling
@@ -30,7 +31,12 @@
 // 0.7 - Added a check for new versions of the script
 //     - Redesigned the settings menu
 //     - Fixed some fancy chat log items not being detected
+//     - Fixed some fancy chat log items being detected incorrectly
 //     - Fixed an issue with justification justifying incorrect elements
+//
+// ===== End Changelog =====
+
+
 
 
 var conversationSet = false;
@@ -72,7 +78,6 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-
 // ===== End Settings =====
 
 initialize();
@@ -107,7 +112,14 @@ function checkNewVersion() {
         if (request.status >= 200 && request.status < 400) {
             var response = request.responseText;
             var version = response.match(/@version\s+([^\s]+)/)[1];
-            if (version != GM_info.script.version) {
+            version = version.replace(/\./g, '');
+            version = parseInt(version);
+
+            var curVersion = GM_info.script.version;
+            curVersion = curVersion.replace(/\./g, '');
+            curVersion = parseInt(curVersion);
+
+            if (version > curVersion) {
                 // add a new ::after element to the h1 element in .bane-settings, and make it look like the Minecraft splash text
                 var settingsDiv = document.querySelector('.bane-settings');
                 settingsDiv.classList.add('new');
@@ -503,22 +515,12 @@ function setConversationElement() {
     for (var i = 0; i < children.length; i++) {
         var child = children[i];
         if (child.classList && child.classList.contains('consider')) {
-            // for the 3 siblings before and after, if there are no .conversation siblings, remove the class
-            for (var j = -conversationScan; j < conversationScan; j++) {
-                let ref = i + j;
+            var found = false;
+            found = findClassWithinDistance(children, i, 3, 'conversation');
 
-                if (ref < 0) continue; // skip if we're going to go out of bounds
-                if (ref >= children.length) continue; // skip if we're going to go out of bounds
-
-                if (j == 0) continue;
-
-                let sibling = children[ref];
-
-                if (sibling && sibling.classList && sibling.classList.contains('conversation')) {
-                    child.classList.add('conversation');
-                    child.classList.add('left');
-                    break;
-                }
+            if (found) {
+                child.classList.add('conversation');
+                child.classList.add('left');
             }
         }
     }
@@ -539,7 +541,6 @@ function setConversationElement() {
             }
         }
     }
-
 
     // find every <br> that is immediately after a .conversation and remove it
     var brs = document.querySelectorAll('.conversation+br');
@@ -577,9 +578,12 @@ function setChatLogElement() {
 
         // get the first child
         var firstChild = pTag.childNodes[0];
+        if (pTag.innerText.toUpperCase().includes('END CHAPTER')) continue;
+
         // if the first child is a strong and the text starts with ++, add the class chat-log
         if (firstChild.tagName == 'STRONG' && firstChild.innerText.startsWith('++')) {
-            pTag.classList.add('chat-log');
+            // if the text doesn't contain "END CHAPTER", add the class "chat-log
+                pTag.classList.add('chat-log');
         }
     }
 
@@ -648,12 +652,27 @@ function setChatLogElement() {
         var strongTags = pTag.querySelectorAll('strong');
         if (strongTags.length == 0) continue;
 
-        // if the pTag is all caps, add the class chat-log-system
-        if (pTag.innerText == pTag.innerText.toUpperCase())
+        var textContent = pTag.innerText;
+        var textContentNormalised = textContent.toUpperCase();
+
+        // if text is only numbers, skip
+        if (/^\d+$/.test(textContentNormalised)) continue;
+
+        if (textContentNormalised.includes('END CHAPTER'))
+        {
+            pTag.classList.add('chapter-end');
+            continue;
+        }
+
+        if (textContent == textContentNormalised)
             pTag.classList.add('chat-log-system');
 
-        // if the text contains "session #" or "Session #" add the class chat-log-system
-        if (pTag.innerText.includes('session #') || pTag.innerText.includes('Session #'))
+        if (textContentNormalised.includes('SESSION #'))
+            pTag.classList.add('chat-log-system');
+
+        // if the text matches SESSION XXX where X is a number using regex, add the class chat-log-system
+        var regex = /SESSION\s\d+/g;
+        if (regex.test(textContentNormalised))
             pTag.classList.add('chat-log-system');
     }
 
@@ -671,9 +690,48 @@ function setChatLogElement() {
         }
     }
 
-    // find 
+    // find all .chat-log-system elements and remove the class if there isn't a .chat-log-system element within 3 elements
+    var pTags = document.querySelectorAll('p');
+    for (var i = 0; i < pTags.length; i++) {
+        if (!pTags[i].classList.contains('chat-log-system')) continue;
+
+        var chatLogSystem = pTags[i];
+
+        var found = false;
+        found = findClassWithinDistance(pTags, i, conversationScan, ['chat-log', 'chat-log-system']);
+
+        if (!found)
+        {
+            chatLogSystem.classList.remove('chat-log-system');
+            chatLogSystem.classList.add('chat-log-system-removed');
+        }
+    }
 
     chatLogSet = true;
+}
+
+function findClassWithinDistance(array, currentIndex, distance, searchClass) {
+    let classes = [searchClass].flat();
+
+    for (var i = 0; i < classes.length; i++) {
+        let className = classes[i];
+        // console.log(`Looking for ${className} within ${distance} of ${currentIndex}`);
+
+        for (var i = -distance; i < distance; i++) {
+            let ref = currentIndex + i;
+
+            if (ref < 0) continue; // skip if we're going to go out of bounds
+            if (ref >= array.length) continue; // skip if we're going to go out of bounds
+            if (i == 0) continue; // skip if we're looking at the element itself
+
+            let sibling = array[ref];
+
+            if (sibling && sibling.classList && sibling.classList.contains(className))
+                return true;
+        }
+    }
+
+    return false;
 }
 
 function loadCSS() {
@@ -885,7 +943,6 @@ function loadCSS() {
                         .chat-log
                         {
                             display: flex;
-                            gap: 15px;
                             
                             margin: 0;
                             font-family: 'Ruda';
@@ -926,6 +983,8 @@ function loadCSS() {
                         {
                             text-align: left !important;
                         }
+
+                        .bane-article > .chapter-end { text-align: center; }
                     `;
                     break;
                 case 'fancyChatLogKeep++':
