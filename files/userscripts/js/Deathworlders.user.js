@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.8
+// @version      0.8.0
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -126,6 +126,8 @@ function checkNewVersion() {
             var curVersion = GM_info.script.version;
             curVersion = curVersion.replace(/\./g, '');
             curVersion = parseInt(curVersion);
+
+            console.log(`Current version: ${curVersion} | Remote version: ${version}`);
 
             if (version > curVersion) {
                 // add a new ::after element to the h1 element in .bane-settings, and make it look like the Minecraft splash text
