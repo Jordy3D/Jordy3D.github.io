@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.7.6
+// @version      0.7.7
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -578,7 +578,7 @@ function setChatLogElement() {
 
         // get the first child
         var firstChild = pTag.childNodes[0];
-        if (pTag.innerText.toUpperCase().includes('END CHAPTER')) continue;
+        if (pTag.innerText.toUpperCase().includes('END CHAPTER') || pTag.innerText.toUpperCase().includes('END OF PART')) continue;
 
         // if the first child is a strong and the text starts with ++, add the class chat-log
         if (firstChild.tagName == 'STRONG' && firstChild.innerText.startsWith('++')) {
