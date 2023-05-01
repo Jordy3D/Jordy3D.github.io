@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.7.7
+// @version      0.8
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -33,15 +33,21 @@
 //     - Fixed some fancy chat log items not being detected
 //     - Fixed some fancy chat log items being detected incorrectly
 //     - Fixed an issue with justification justifying incorrect elements
+// 0.8 - Older Chapters now have the same styling as newer chapters
+//          - Fixed inconsistency with the chat log styling thanks to + being changed to ++ later
+//          - Fixed inconsistency with chat log system messages thanks to the system message being changed to a different format later
+//          - The old Date Point marker now breaks after the date, thanks Guvendruduvundraguvnegrugnuvenderelgureg-ugunduvug Guvnuragnaguvendrugun for making this necessary
 //
 // ===== End Changelog =====
 
-
-
+// ===== Variables =====
 
 var conversationSet = false;
 var conversationScan = 3;
 var chatLogSet = false;
+var breaksForced = false;
+
+// ===== End Variables =====
 
 // ===== Settings =====
 
@@ -88,6 +94,8 @@ setInterval(function () {
     addCover();
     setConversationElement();
     setChatLogElement();
+
+    forceBreaks();
 }, 1000);
 
 
@@ -581,9 +589,10 @@ function setChatLogElement() {
         if (pTag.innerText.toUpperCase().includes('END CHAPTER') || pTag.innerText.toUpperCase().includes('END OF PART')) continue;
 
         // if the first child is a strong and the text starts with ++, add the class chat-log
-        if (firstChild.tagName == 'STRONG' && firstChild.innerText.startsWith('++')) {
+        if (firstChild.tagName == 'STRONG'
+            && (firstChild.innerText.startsWith('++') || firstChild.innerText.startsWith('+'))) {
             // if the text doesn't contain "END CHAPTER", add the class "chat-log
-                pTag.classList.add('chat-log');
+            pTag.classList.add('chat-log');
         }
     }
 
@@ -595,7 +604,9 @@ function setChatLogElement() {
 
         var name = firstChild.innerText;
         name = name.replace('++', '');
+        name = name.replace('+', '');
         name = name.replace('++:', '');
+        name = name.replace('+:', '');
 
         firstChild.innerText = name;
         firstChild.classList.add('chat-log-name');
@@ -633,7 +644,9 @@ function setChatLogElement() {
 
         for (var j = 0; j < strongTags.length; j++) {
             var strongTag = strongTags[j];
-            if (strongTag.innerText.startsWith('SYSTEM') || strongTag.innerText.startsWith('ERROR')) {
+            if (strongTag.innerText.startsWith('SYSTEM') ||
+                strongTag.innerText.startsWith('ERROR') ||
+                strongTag.innerText.startsWith('System notification')) {
                 pTag.classList.add('chat-log-system');
 
                 // replace SYSTEM:: with SYSTEM:
@@ -658,8 +671,7 @@ function setChatLogElement() {
         // if text is only numbers, skip
         if (/^\d+$/.test(textContentNormalised)) continue;
 
-        if (textContentNormalised.includes('END CHAPTER'))
-        {
+        if (textContentNormalised.includes('END CHAPTER')) {
             pTag.classList.add('chapter-end');
             continue;
         }
@@ -700,8 +712,7 @@ function setChatLogElement() {
         var found = false;
         found = findClassWithinDistance(pTags, i, conversationScan, ['chat-log', 'chat-log-system']);
 
-        if (!found)
-        {
+        if (!found) {
             chatLogSystem.classList.remove('chat-log-system');
         }
     }
@@ -731,6 +742,29 @@ function findClassWithinDistance(array, currentIndex, distance, searchClass) {
     }
 
     return false;
+}
+
+function forceBreaks() {
+    if (breaksForced) return;
+
+    // find all p tags
+    var pTags = document.querySelectorAll('p');
+    for (var i = 0; i < pTags.length; i++) {
+        // if the p tag contains a br, skip
+        if (pTags[i].querySelector('br')) continue;
+
+        // if the p tag contains a strong tag that contains Date Point, add a br after it
+        var strongTags = pTags[i].querySelectorAll('strong');
+        for (var j = 0; j < strongTags.length; j++) {
+            var strongTag = strongTags[j];
+            if (strongTag.innerText.includes('Date Point')) {
+                var br = document.createElement('br');
+                strongTag.after(br);
+            }
+        }
+    }
+
+    breaksForced = true;
 }
 
 function loadCSS() {
