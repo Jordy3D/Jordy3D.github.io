@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.8.2
+// @version      0.8.3
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -665,6 +665,9 @@ function setChatLogElement() {
     var pTags = document.querySelectorAll('p');
     for (var i = 0; i < pTags.length; i++) {
         var pTag = pTags[i];
+
+        if (pTag.classList.contains('chat-log')) continue;
+
         var strongTags = pTag.querySelectorAll('strong');
         if (strongTags.length == 0) continue;
 
