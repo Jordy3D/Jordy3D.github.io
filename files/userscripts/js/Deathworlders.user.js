@@ -296,7 +296,7 @@ function spawnSettings() {
         .bane-sidebar
         {
             height: 100vh;
-            max-width: 250px;
+            width: 250px;
             
             position: fixed;
             top: 0;    
