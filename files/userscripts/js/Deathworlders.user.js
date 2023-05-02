@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.9.1
+// @version      0.9.2
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -44,6 +44,7 @@
 //          - Style-coded the table of contents based on the type of chapter
 //          - At time of writing, my table of contents file is incomplete, so it will be updated in the future
 //     - Fixed a bug with the script running on the home page
+//     - Fixed some fancy chat log items not being detected
 //
 // ===== End Changelog =====
 
@@ -295,7 +296,7 @@ function spawnSettings() {
         .bane-sidebar
         {
             height: 100vh;
-            max-width: 22vw;
+            max-width: 250px;
             
             position: fixed;
             top: 0;    
@@ -669,7 +670,8 @@ function setChatLogElement() {
             var strongTag = strongTags[j];
             if (strongTag.innerText.startsWith('SYSTEM') ||
                 strongTag.innerText.startsWith('ERROR') ||
-                strongTag.innerText.toUpperCase().startsWith('SYSTEM NOTIFICATION')) {
+                strongTag.innerText.toUpperCase().startsWith('SYSTEM NOTIFICATION') ||
+                strongTag.innerText.toUpperCase().startsWith('EMOTE CHANNEL')) {
                 pTag.classList.add('chat-log-system');
 
                 // replace SYSTEM:: with SYSTEM:
