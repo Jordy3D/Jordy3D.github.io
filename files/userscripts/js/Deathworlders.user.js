@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.8.3
+// @version      0.9.1
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -38,6 +38,12 @@
 //          - Fixed inconsistency with chat log system messages thanks to the system message being changed to a different format later
 //          - The old Date Point marker now breaks after the date, thanks Guvendruduvundraguvnegrugnuvenderelgureg-ugunduvug Guvnuragnaguvendrugun for making this necessary
 //     - Fixed a bug with chat log styling not working due to my own stupidity
+// 0.9 - Added a table of contents
+//          - Added a setting to enable/disable the table of contents from spawning
+//          - Colour-coded the table of contents based on the chapter's "Book"
+//          - Style-coded the table of contents based on the type of chapter
+//          - At time of writing, my table of contents file is incomplete, so it will be updated in the future
+//     - Fixed a bug with the script running on the home page
 //
 // ===== End Changelog =====
 
@@ -65,6 +71,7 @@ defaultSettings.push({ name: 'addCover', value: true, fancyText: 'Add Cover', ta
 defaultSettings.push({ name: 'fancyChatLog', value: true, fancyText: 'Fancy Chat Log', tag: 'Style' });
 defaultSettings.push({ name: 'fancyChatLogKeep++', value: true, fancyText: 'Fancy Chat Log Keep ++', tag: 'Style' });
 defaultSettings.push({ name: 'fancyChatLogRoundedSystem', value: true, fancyText: 'Fancy Chat Log Rounded System', tag: 'Style' });
+defaultSettings.push({ name: 'tableOfContents', value: true, fancyText: 'Table of Contents', tag: 'Function' });
 
 var settings = [];
 
@@ -89,9 +96,10 @@ document.addEventListener('keydown', function (e) {
 
 initialize();
 
-spawnSettings();
-
 setInterval(function () {
+    // if the URL is just https://deathworlders.com, don't do anything
+    if (window.location.href == 'https://deathworlders.com/') return;
+
     addCover();
     setConversationElement();
     setChatLogElement();
@@ -108,6 +116,12 @@ function initialize() {
 
     checkNewVersion();
     checkNewSettings();
+
+    spawnSettings();
+
+    // if the setting with the name tableOfContents is true, spawn the table of contents
+    if (settings.find(x => x.name === 'tableOfContents').value)
+        spawnTableofContents();
 }
 
 function checkNewVersion() {
@@ -150,13 +164,13 @@ function checkNewVersion() {
                 style.innerHTML = `
                     /* Update Animations */
                     .bane-settings.new 
-                    { 
+                  { 
                         animation: ping 1s infinite; 
                         opacity: 1;
                     }
                     
                     @keyframes ping
-                    {
+                  {
                         0% { outline: 2px solid #d09242; }
                         50% { outline: 5px solid #d09242; }
                         100% { outline: 2px solid #d09242; }
@@ -164,7 +178,7 @@ function checkNewVersion() {
                     
                     .bane-settings.new h1 { position: relative; }
                     .bane-settings.new h1::after
-                    {
+                  {
                         content: "New version available!";
                         position: absolute;
                         display: block;
@@ -199,7 +213,7 @@ function checkNewVersion() {
                     .bane-settings:not(.new) .not-button { display: none; }
                     
                     .not-button
-                    {
+                  {
                         text-align: center;
                         display: block;
                         
@@ -212,7 +226,7 @@ function checkNewVersion() {
                     }
                     
                     .not-button:hover
-                    {
+                  {
                         background: #D09242;
                         color: #222222 !important;
                     }
@@ -227,6 +241,7 @@ function checkNewVersion() {
 
 function spawnSettings() {
     var settingsDiv = document.createElement('div');
+    settingsDiv.classList.add('bane-sidebar');
     settingsDiv.classList.add('bane-settings');
     settingsDiv.innerHTML = `
         <h1>Deathworlders Tweaks</h1>
@@ -277,28 +292,33 @@ function spawnSettings() {
     var style = document.createElement('style');
     style.id = 'bane-settings-style';
     style.innerHTML = `
+        .bane-sidebar
+        {
+            height: 100vh;
+            max-width: 22vw;
+            
+            position: fixed;
+            top: 0;    
+           
+            display: flex;
+            flex-direction: column;
+            
+            padding: 1em;          
+            box-sizing: border-box;
+        }
+        
+        .bane-sidebar hr { width: 100%; }
+
         .bane-settings
         {
             background: #222222;
             
             border-right: 4px solid #CECECE;
             
-            height: 100vh;
-            border-radius: 0;
-            border-bottom: none;
-            
-            display: flex;
-            flex-direction: column;
-            
-            padding: 20px;
-            box-sizing: border-box;
-            
-            position: fixed;
             left: 0;
-            top: 0;
+
             transform: translatex(calc(20px - 100%));
-            
-            opacity: 0.1;
+            opacity: 0.1;          
             
             transition: all 100ms ease-in-out;
         }
@@ -788,7 +808,7 @@ function loadCSS() {
                 case 'replaceSectionEndHeaders':
                     style.innerHTML += `
                         body.inverted article h2
-                            {
+                          {
                             color: #fff !important;
                             font-family: "Roboto Slab", serif !important;
                             font-size: 1.2rem;
@@ -801,7 +821,7 @@ function loadCSS() {
                 case 'fixBrokenHRTags':
                     style.innerHTML += `
                         article hr
-                        {
+                      {
                             width: 100%;
                             padding-bottom: 3rem;
                             border: none;
@@ -821,7 +841,7 @@ function loadCSS() {
                 case 'fixCodeBlocks':
                     style.innerHTML += `
                         pre
-                        {
+                      {
                             background: black !important;
                             border-radius: 10px;
                             
@@ -833,7 +853,7 @@ function loadCSS() {
                 case 'fixBlockquotes':
                     style.innerHTML += `
                         blockquote::before
-                        {
+                      {
                             content: "“";
                             font-family: auto;
                         }
@@ -845,7 +865,7 @@ function loadCSS() {
                         .conversation.left,
                         
                         .conversation + p:not(:has(+p))
-                        {
+                      {
                             width: fit-content;
                             max-width: 50%;
                             
@@ -860,7 +880,7 @@ function loadCSS() {
                         }
                         
                         .conversation.left + p:has(+.conversation.right)
-                        {
+                      {
                             background: unset !important;
                             max-width: unset;
                             padding: unset;
@@ -870,7 +890,7 @@ function loadCSS() {
                         }
                         .conversation.left + p:has(+.conversation.right)::before,
                         .conversation.left + p:has(+.conversation.right)::after
-                        {
+                      {
                             display: none;
                         }
                         
@@ -878,24 +898,24 @@ function loadCSS() {
                         .conversation.left br,
                         
                         .conversation + br
-                        {
+                      {
                             display: none;
                         }
                         
                         .conversation.right
-                        {
+                      {
                             background: #159eec !important;
                             margin-left: auto;
                             
                             border-radius: 15px 15px 5px 15px;
                         }
                         .conversation.right:has(+.conversation.right)
-                        {
+                      {
                             border-radius: 15px 15px 5px 15px;
                             margin-bottom: 0;
                         }
                         .conversation.right + .conversation.right
-                        {
+                      {
                             border-radius: 15px 5px 5px 15px;
                             margin-top: 5px;
                         }
@@ -903,7 +923,7 @@ function loadCSS() {
                         .conversation.left, .conversation.left em,
                         
                         .conversation + p:not(:has(+p))
-                        {
+                      {
                             background: #d0d0d0 !important;
                             color: black;
                             border-radius: 15px 15px 15px 5px;
@@ -922,7 +942,7 @@ function loadCSS() {
                         .conversation.left::before,
                         
                         .conversation + p:not(:has(+p))::before
-                        {
+                      {
                             content: "";
                             border-radius: 50%;
                             height: 32px;
@@ -939,7 +959,7 @@ function loadCSS() {
                         .conversation.left::after,
                         
                         .conversation + p:not(:has(+p))::after
-                        {
+                      {
                             content: "";
                             border-radius: 50%;
                             height: 15px;
@@ -958,7 +978,7 @@ function loadCSS() {
                         
                         body:not(.inverted) .conversation.right:not(:has(+.conversation.right))::after,
                         body:not(.inverted) .conversation.right + p::after
-                        {
+                      {
                             border-color: #FFFFFF;
                         }
                         
@@ -979,20 +999,20 @@ function loadCSS() {
                 case 'fancyChatLog':
                     style.innerHTML += `
                         .chat-log
-                        {
+                      {
                             display: flex;
                             
                             margin: 0;
                             font-family: 'Ruda';
                         }
                         .chat-log-name
-                        {
+                      {
                             min-width: 150px;
                             text-align: right;
                             padding: 1em;
                         }
                         .chat-log-text
-                        {
+                      {
                             border-left: 1px solid #ddd;
                             padding: 1em;
 
@@ -1000,7 +1020,7 @@ function loadCSS() {
                         }
                         
                         .chat-log-system
-                        {
+                      {
                             text-align: center !important;
                             text-transform: uppercase;
                             border: 1px solid #ddd;
@@ -1018,7 +1038,7 @@ function loadCSS() {
                         
                         .chat-log,
                         .chat-log-text, .chat-log-text em
-                        {
+                      {
                             text-align: left !important;
                         }
 
@@ -1039,10 +1059,180 @@ function loadCSS() {
                         .chat-log-system+.chat-log-system:not(:has(+.chat-log-system)) { border-radius: 0 0 1em 1em; }
                     `;
                     break;
+                case 'tableOfContents':
+                    style.innerHTML += `
+                        .bane-toc
+                        {
+                            right: 0;
+                            text-align: center;
+                            
+                            padding-right: 0.5em;
+                            padding-bottom: 0;
+                            
+                            opacity: 0.1;
+                            
+                            border-left: 4px solid #CECECE;
+                            
+                            transform: translatex(calc(-20px + 100%));
+                            transition: all 100ms ease-in-out;
+                        }
+                        
+                        .bane-toc:hover
+                        {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                        
+                        .bane-toc h1
+                        {
+                            text-align: center;
+                            margin: 0;
+                        }
+                        
+                        .bane-toc-container
+                        {
+                            overflow: scroll;
+                            
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        
+                        .bane-toc-chapter { padding: 0.25em; }
+
+                        .bane-toc .bane-toc-active,
+                        .bane-toc .bane-toc-chapter:hover
+                        {
+                            color: #d09242 !important;
+                        }
+                        .bane-toc .bane-toc-active { font-weight: bold; }
+                        
+                        .bane-toc-deathworlders { border-left: 4px solid #d09242; }
+                        .bane-toc-goodtraining { border-left: 4px solid #d04242; }
+                        .bane-toc-babylon { border-left: 4px solid #f16ff1; }
+                        .bane-toc-bolthole { border-left: 4px solid #4297d0; }
+                        .bane-toc-chapter.interlude { border-left-style: double; }
+                        .bane-toc-chapter.part { border-left-style: dashed; }
+                        
+                        .bane-toc-navlinks
+                        {
+                            display: flex;
+                            justify-content: space-between;  
+                        }
+                    `;
+                    break;
             }
         }
     }
 
     // add the CSS to the page
     document.head.appendChild(style);
+}
+
+function spawnTableofContents() {
+    var chapterJSON = null;
+
+    // load JSON from my github
+    var url = 'https://jordy3d.github.io/files/userscripts/data/deathworlderstoc.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'json';
+    request.send();
+
+    // when the JSON is loaded, add the table of contents
+    request.onload = function () {
+        chapterJSON = request.response;
+
+        // add a sidebar on the right side of the page
+        let sidebar = document.createElement('div');
+        sidebar.id = 'bane-toc';
+        sidebar.classList.add('bane-sidebar');
+        sidebar.classList.add('bane-toc');
+        document.body.appendChild(sidebar);
+
+        let sidebarTitle = document.createElement('h1');
+        sidebarTitle.classList.add('bane-toc-title');
+        sidebarTitle.innerHTML = 'Table of Contents';
+        sidebar.appendChild(sidebarTitle);
+
+        // add a container for next/previous chapter links
+        let navLinks = document.createElement('div');
+        navLinks.classList.add('bane-toc-navlinks');
+        sidebar.appendChild(navLinks);
+
+        // add hr
+        let hr = document.createElement('hr');
+        sidebar.appendChild(hr);
+
+        // add a link to the previous chapter
+        let prevLink = document.createElement('a');
+        prevLink.classList.add('bane-toc-navlink-prev');
+        prevLink.innerHTML = '&lt; Previous Chapter';
+        navLinks.appendChild(prevLink);
+
+        // add a link to the next chapter
+        let nextLink = document.createElement('a');
+        nextLink.classList.add('bane-toc-navlink-next');
+        nextLink.innerHTML = 'Next Chapter &gt;';
+        navLinks.appendChild(nextLink);
+
+        // create a container for the table of contents
+        let toc = document.createElement('div');
+        toc.classList.add('bane-toc-container');
+        sidebar.appendChild(toc);
+
+        // load the table of contents from chapterJSON into the container and add links to the chapters
+        for (let chapter of chapterJSON["chapters"]) {
+            // create an a tag for the chapter
+            let chapterLink = document.createElement('a');
+            chapterLink.classList.add('bane-toc-chapter');
+
+            // add a class based on the book name to colour-code the chapters
+            if (chapter.book.toLowerCase().includes('deathworlders'))
+                chapterLink.classList.add('bane-toc-deathworlders');
+            else if (chapter.book.toLowerCase().includes('good training'))
+                chapterLink.classList.add('bane-toc-goodtraining');
+            else if (chapter.book.toLowerCase().includes('babylon'))
+                chapterLink.classList.add('bane-toc-babylon');
+            else if (chapter.book.toLowerCase().includes('bolthole'))
+                chapterLink.classList.add('bane-toc-bolthole');
+
+            // add a class based on the chapter type to style-code the chapters
+            if (chapter.name.toLowerCase().includes('part'))
+                chapterLink.classList.add('part');
+            if (chapter.name.toLowerCase().includes('interlude'))
+                chapterLink.classList.add('interlude');
+
+            chapterLink.href = chapter.url;
+            if (chapter.number == null || chapter.number == -1)
+                chapterLink.innerText = `${chapter.book}\n${chapter.name}`;
+            else
+                chapterLink.innerText = `${chapter.book} ${chapter.number}\n${chapter.name}`;
+
+            if (chapter.url == window.location.href) {
+                chapterLink.classList.add('bane-toc-active');
+
+                // add a link to the previous chapter based on the current chapter's index
+                let index = chapterJSON["chapters"].indexOf(chapter);
+                if (index > 0)
+                    prevLink.href = chapterJSON["chapters"][index - 1].url;
+                else
+                {
+                    prevLink.innerHTML = '';
+                    prevLink.style.pointerEvents = 'none';
+                }
+
+                // add a link to the next chapter based on the current chapter's index
+                if (index < chapterJSON["chapters"].length - 1)
+                    nextLink.href = chapterJSON["chapters"][index + 1].url;
+                else
+                {
+                    nextLink.innerHTML = '';
+                    nextLink.style.pointerEvents = 'none';
+                }
+            }
+
+            // add the chapter to the table of contents
+            toc.appendChild(chapterLink);
+        }
+    }
 }
