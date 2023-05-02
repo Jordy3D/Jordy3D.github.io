@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.9.2
+// @version      0.9.3
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -295,8 +295,11 @@ function spawnSettings() {
     style.innerHTML = `
         .bane-sidebar
         {
+            background: #222222;
+
             height: 100vh;
-            width: 250px;
+            min-width: 250px;
+            width: 22vw;
             
             position: fixed;
             top: 0;    
@@ -312,7 +315,6 @@ function spawnSettings() {
 
         .bane-settings
         {
-            background: #222222;
             
             border-right: 4px solid #CECECE;
             
@@ -323,7 +325,7 @@ function spawnSettings() {
             
             transition: all 100ms ease-in-out;
         }
-        body:not(.inverted) .bane-settings { background: #ffffff !important; }
+        body:not(.inverted) .bane-sidebar { background: #ffffff !important; }
 
         .bane-settings-subtitle
         {
