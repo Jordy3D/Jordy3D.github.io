@@ -298,7 +298,7 @@ function spawnSettings() {
             background: #222222;
 
             height: 100vh;
-            min-width: 250px;
+            min-width: 350px;
             width: 22vw;
             
             position: fixed;
