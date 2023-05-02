@@ -1,0 +1,725 @@
+{
+    "chapters": [
+        {
+            "book": "Deathworlders",
+            "number": 0,
+            "name": "The Kevin Jenkins Experience",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-00-kevin-jenkins-experience/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 1,
+            "name": "Run, Little Monster",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-01-run-little-monster/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 2,
+            "name": "Aftermath",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-02-aftermath/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 3,
+            "name": "An Eventful Month",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-03-eventful-month/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 4,
+            "name": "Quarantine",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-04-quarantine/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 5,
+            "name": "Deliverance",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-05-deliverance/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 5.5,
+            "name": "Interlude/Ultimatum",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-05.5-interlude-ultimatum/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 6,
+            "name": "Taking Back the Sky",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-06-taking-back-sky/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 6.5,
+            "name": "Interlude/Jargon",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-06.5-interlude-jargon/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 7,
+            "name": "Tensions",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-07-tensions/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 8,
+            "name": "Alternatives",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-08-alternatives/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 9,
+            "name": "Gains and Loses",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-09-gains-losses/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 10,
+            "name": "Legwork",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-10-legwork/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 11,
+            "name": "Direct Delivery",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-11-direct-delivery/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 12,
+            "name": "Only Human",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-12-only-human/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 13,
+            "name": "Tall Tales",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-13-tall-tales/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 14,
+            "name": "The Hornet's Nest",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-14-hornets-nest/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 15,
+            "name": "Forever Changed",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-15-forever-changed/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 16,
+            "name": "Firebird",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-16-firebird/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 17,
+            "name": "Battles",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-17-battles/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 18,
+            "name": "Baggage",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-18-baggage/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 19,
+            "name": "Baptisms",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-19-baptisms/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 20,
+            "name": "Exorcisms",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-20-exorcisms/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 21,
+            "name": "Dragon Dreams",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-21-dragon-dreams/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 21.5,
+            "name": "Interlude/d4 d5, c4 dxc4",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-21.5-interlude-d4-d5-c4-dxc4/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 22,
+            "name": "Warhorse Part 1—The First Year",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-22-warhorse-pt1-first-year/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 22,
+            "name": "Warhorse Part 2—The Second Year",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-22-warhorse-pt2-second-year/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 22,
+            "name": "Warhorse Part 3—The Third Year",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-22-warhorse-pt3-third-year/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 22,
+            "name": "Warhorse Part 4—The Fourth Year",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-22-warhorse-pt4-fourth-year/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 22,
+            "name": "Warhorse Part 5—The Fifth Year",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-22-warhorse-pt5-fifth-year/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 22,
+            "name": "Warhorse Part 6—Operation NOVA HOUND",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-22-warhorse-pt6-operation-nova-hound/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 22.5,
+            "name": "Interlude/Outlets",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-22.5-interlude-outlets/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 23,
+            "name": "Back Down To Earth",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-23-back-down-earth/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 24,
+            "name": "An Alien World",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-24-alien-world/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 25,
+            "name": "Where We Stand",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-25-where-we-stand/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 1,
+            "name": "Fun and Games",
+            "url": "https://deathworlders.com/books/good-training/1-fun-games/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 2,
+            "name": "Strategies",
+            "url": "https://deathworlders.com/books/good-training/2-strategies/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 3,
+            "name": "Instinct",
+            "url": "https://deathworlders.com/books/good-training/3-instinct/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 4,
+            "name": "Crawl",
+            "url": "https://deathworlders.com/books/good-training/4-crawl/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 5,
+            "name": "Walk",
+            "url": "https://deathworlders.com/books/good-training/5-walk/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 6,
+            "name": "Friendships & Revalations",
+            "url": "https://deathworlders.com/books/good-training/6-friendships-revelations/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 7,
+            "name": "Run",
+            "url": "https://deathworlders.com/books/good-training/7-run/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 8,
+            "name": "Fetch",
+            "url": "https://deathworlders.com/books/good-training/8-fetch/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 9,
+            "name": "Aftermath",
+            "url": "https://deathworlders.com/books/good-training/9-aftermath/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 10,
+            "name": "Essayons",
+            "url": "https://deathworlders.com/books/good-training/10-essayons/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 11,
+            "name": "Shenanigans",
+            "url": "https://deathworlders.com/books/good-training/11-shenanigans/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 12,
+            "name": "Wargames",
+            "url": "https://deathworlders.com/books/good-training/12-wargames/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": 13,
+            "name": "Adventure Time",
+            "url": "https://deathworlders.com/books/good-training/13-adventure-time/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 26,
+            "name": "Blood and Ash",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-26-blood-ash/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 27,
+            "name": "Playing with Fire",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-27-playing-fire/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 28,
+            "name": "Misfits",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-28-misfits/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 29,
+            "name": "Forges",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-29-forges/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part I",
+            "number": 1,
+            "name": "Prologue",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-i/1-prologue/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part I",
+            "number": 2,
+            "name": "Tooth & Claw",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-i/2-tooth-claw/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part I",
+            "number": 3,
+            "name": "Longest Prefix Match",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-i/3-longest-prefix-match/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part I",
+            "number": 4,
+            "name": "Gametime",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-i/4-gametime/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 30,
+            "name": "Hearts and Minds",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-30-hearts-minds/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 31,
+            "name": "Touching Down",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-31-touching-down/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 32,
+            "name": "Deep Wounds",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-32-deep-wounds/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 1,
+            "name": "Pounce",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/1-pounce/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 2,
+            "name": "Kin and Clan",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/2-kin-clan/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 3,
+            "name": "Tall Tales",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/3-tall-tales/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 4,
+            "name": "The First Ring",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/4-first-ring/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 5,
+            "name": "Plans and Plots",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/5-plans-plots/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 6,
+            "name": "Beginnings and Endings",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/6-beginnings-endings/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 7,
+            "name": "Doom and Gloom",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/7-doom-gloom/",
+            "note": ""
+        },
+        {
+            "book": "Good Training: The Champions Part II",
+            "number": 8,
+            "name": "Tidying Up",
+            "url": "https://deathworlders.com/books/good-training-champions-pt-ii/8-tidying-up/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 33,
+            "name": "Metadyskolia",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-33-metadyskolia/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 34,
+            "name": "States of Mind",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-34-states-mind/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 35,
+            "name": "Event Horizons",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-35-event-horizions/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 36,
+            "name": "Consequences",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-36-consequences/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 37,
+            "name": "Grounded",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-37-grounded/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 38,
+            "name": "Paroxysm",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-38-paroxysm/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 39,
+            "name": "Nirvana Cage",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-39-nirvana-cage/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 40,
+            "name": "War on Two Worlds, Part 1—Instigation",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-40-war-two-worlds-pt1-instigation/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 40,
+            "name": "War on Two Worlds, Part 2—Escalation",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-40-war-two-worlds-pt2-escalation/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 40,
+            "name": "War on Two Worlds, Part Part 3—Consolidation",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-40-war-two-worlds-pt3-consolidation/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 40,
+            "name": "War on Two Worlds, Part 4—Retaliation",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-40-war-two-worlds-pt4-retaliation/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 40,
+            "name": "War on Two Worlds, Part 5—Cremation",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-40-war-two-worlds-pt5-cremation/",
+            "note": ""
+        },
+        {
+            "book": "Good Training",
+            "number": -1,
+            "name": "Survival",
+            "url": "https://deathworlders.com/books/good-training/survival/",
+            "note": ""
+        },
+        {
+            "book": "Waters of Babylon",
+            "number": 1,
+            "name": "Tzedakah",
+            "url": "https://deathworlders.com/books/waters-babylon/1-tzedakah/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 41,
+            "name": "Pyrophytes",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-41-pyrophytes/",
+            "note": ""
+        },
+        {
+            "book": "Waters of Babylon",
+            "number": 2,
+            "name": "Tikkun Olam",
+            "url": "https://deathworlders.com/books/waters-babylon/2-tikkun-olam/",
+            "note": ""
+        },
+        {
+            "book": "Waters of Babylon",
+            "number": 3,
+            "name": "Mitzvah",
+            "url": "https://deathworlders.com/books/waters-babylon/3-mitzvah/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 42,
+            "name": "Big Questions",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-42-big-questions/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 43,
+            "name": "Scars Both Old and New",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-43-scars-both-old-new/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 44,
+            "name": "Samsara",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-44-samsara/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 45,
+            "name": "We Need Each Other",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-45-we-need-each-other/",
+            "note": ""
+        },
+        {
+            "book": "Bolthole Aces",
+            "number": 0,
+            "name": "Prelude to War",
+            "url": "https://deathworlders.com/books/bolthole-aces/chapter-00-prelude-to-war/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 46,
+            "name": "Hellfall",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-46-hellfall/",
+            "note": ""
+        },
+        {
+            "book": "Bolthole Aces",
+            "number": 1,
+            "name": "Innocence Lost",
+            "url": "https://deathworlders.com/books/bolthole-aces/chapter-01-innocence-lost/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 47,
+            "name": "Fallout",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-47-fallout/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 48,
+            "name": "Laid Bare",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-48-laid-bare/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 49,
+            "name": "Division",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-49-division/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 50,
+            "name": "Counterattack, Part 1—Regroup",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-50-counterattack-pt1-regroup/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 50,
+            "name": "Counterattack, Part 2—Homefront",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-50-counterattack-pt2-homefront/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 50,
+            "name": "Counterattack, Part 3—Trigger",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-41-pyrophytes/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 51,
+            "name": "Anticlimax",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-51-anticlimax/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 52,
+            "name": "Autoimmune",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-52-autoimmune/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 53,
+            "name": "The Wild Hunt",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-53-the-wild-hunt/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 54,
+            "name": "Here Be Dragons",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-54-here-be-dragons/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 55,
+            "name": "Reinvention",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-55-reinvention/",
+            "note": ""
+        },
+        {
+            "book": "Deathworlders",
+            "number": 56,
+            "name": "Dataquake",
+            "url": "https://deathworlders.com/books/deathworlders/chapter-56-dataquake/",
+            "note": ""
+        }
+    ]
+}
