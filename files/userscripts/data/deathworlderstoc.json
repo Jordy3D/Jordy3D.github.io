@@ -406,7 +406,7 @@
 			"name": "Fun and Games",
 			"url": "https://deathworlders.com/books/good-training/1-fun-games/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Deathworlders",
@@ -438,7 +438,7 @@
 			"name": "Strategies",
 			"url": "https://deathworlders.com/books/good-training/2-strategies/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Deathworlders",
@@ -470,7 +470,7 @@
 			"name": "Instinct",
 			"url": "https://deathworlders.com/books/good-training/3-instinct/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -478,7 +478,7 @@
 			"name": "Crawl",
 			"url": "https://deathworlders.com/books/good-training/4-crawl/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -486,7 +486,7 @@
 			"name": "Walk",
 			"url": "https://deathworlders.com/books/good-training/5-walk/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -494,7 +494,7 @@
 			"name": "Friendships & Revalations",
 			"url": "https://deathworlders.com/books/good-training/6-friendships-revelations/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part I",
@@ -502,7 +502,7 @@
 			"name": "Prologue",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-i/1-prologue/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -510,7 +510,7 @@
 			"name": "Run",
 			"url": "https://deathworlders.com/books/good-training/7-run/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part I",
@@ -518,7 +518,7 @@
 			"name": "Tooth & Claw",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-i/2-tooth-claw/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part I",
@@ -526,7 +526,7 @@
 			"name": "Longest Prefix Match",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-i/3-longest-prefix-match/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part I",
@@ -534,7 +534,7 @@
 			"name": "Gametime",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-i/4-gametime/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part II",
@@ -542,7 +542,7 @@
 			"name": "Pounce",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/1-pounce/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -550,7 +550,7 @@
 			"name": "Fetch",
 			"url": "https://deathworlders.com/books/good-training/8-fetch/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -558,7 +558,7 @@
 			"name": "Aftermath",
 			"url": "https://deathworlders.com/books/good-training/9-aftermath/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -566,7 +566,7 @@
 			"name": "Essayons",
 			"url": "https://deathworlders.com/books/good-training/10-essayons/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Deathworlders",
@@ -582,7 +582,7 @@
 			"name": "Kin and Clan",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/2-kin-clan/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part II",
@@ -590,7 +590,7 @@
 			"name": "Tall Tales",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/3-tall-tales/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part II",
@@ -598,7 +598,7 @@
 			"name": "The First Ring",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/4-first-ring/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -606,7 +606,7 @@
 			"name": "Shenanigans",
 			"url": "https://deathworlders.com/books/good-training/11-shenanigans/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Deathworlders",
@@ -638,7 +638,7 @@
 			"name": "Wargames",
 			"url": "https://deathworlders.com/books/good-training/12-wargames/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -654,7 +654,7 @@
 			"name": "Adventure Time",
 			"url": "https://deathworlders.com/books/good-training/13-adventure-time/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Deathworlders",
@@ -686,7 +686,7 @@
 			"name": "Plans and Plots",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/5-plans-plots/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training",
@@ -710,7 +710,7 @@
 			"name": "Beginnings and Endings",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/6-beginnings-endings/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part II",
@@ -718,7 +718,7 @@
 			"name": "Doom and Gloom",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/7-doom-gloom/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Good Training: The Champions Part II",
@@ -726,7 +726,7 @@
 			"name": "Tidying Up",
 			"url": "https://deathworlders.com/books/good-training-champions-pt-ii/8-tidying-up/",
 			"note": "",
-			"homework": false
+			"homework": true
 		},
 		{
 			"book": "Deathworlders",

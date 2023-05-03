@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.9.4
+// @version      0.10.0
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -11,40 +11,44 @@
 
 // ===== Changelog =====
 //
-// 0.1 - Initial version 
-//          - Adds cover image to the top of the article
-// 0.2 - Added code to support conversation styling
-// 0.3 - Added extra CSS to the script rather than loading it separately
-// 0.4 - Added a settings menu to enable/disable features
-//          - Saves settings to localstorage
-//          - Added a konami code to reset settings
-// 0.5 - Added a fix for the conversation styling failing on certain instances
-//     - Added a way for new settings to be added without overwriting old settings (hopefully)
-//     - Added a setting for adding a cover image
-//     - Organized settings into categories
-//     - Fixed a bug where non-paragrapgh elements were being justified
-// 0.6 - Added a setting for fancy chat log
-//          - Setting for keeping the ++NAME++ flavour in the chat log
-//          - Setting for rounded system messages
-//     - Rewrote the settings code to be more efficient 
-//     - Added Light Mode support
-// 0.7 - Added a check for new versions of the script
-//     - Redesigned the settings menu
-//     - Fixed some fancy chat log items not being detected
-//     - Fixed some fancy chat log items being detected incorrectly
-//     - Fixed an issue with justification justifying incorrect elements
-// 0.8 - Older Chapters now have the same styling as newer chapters
-//          - Fixed inconsistency with the chat log styling thanks to + being changed to ++ later
-//          - Fixed inconsistency with chat log system messages thanks to the system message being changed to a different format later
-//          - The old Date Point marker now breaks after the date, thanks Guvendruduvundraguvnegrugnuvenderelgureg-ugunduvug Guvnuragnaguvendrugun for making this necessary
-//     - Fixed a bug with chat log styling not working due to my own stupidity
-// 0.9 - Added a table of contents
-//          - Added a setting to enable/disable the table of contents from spawning
-//          - Colour-coded the table of contents based on the chapter's "Book"
-//          - Style-coded the table of contents based on the type of chapter
-//          - At time of writing, my table of contents file is incomplete, so it will be updated in the future
-//     - Fixed a bug with the script running on the home page
-//     - Fixed some fancy chat log items not being detected
+// 0.1      - Initial version 
+//              - Adds cover image to the top of the article
+// 0.2      - Added code to support conversation styling
+// 0.3      - Added extra CSS to the script rather than loading it separately
+// 0.4      - Added a settings menu to enable/disable features
+//              - Saves settings to localstorage
+//              - Added a konami code to reset settings
+// 0.5      - Added a fix for the conversation styling failing on certain instances
+//          - Added a way for new settings to be added without overwriting old settings (hopefully)
+//          - Added a setting for adding a cover image
+//          - Organized settings into categories
+//          - Fixed a bug where non-paragrapgh elements were being justified
+// 0.6      - Added a setting for fancy chat log
+//              - Setting for keeping the ++NAME++ flavour in the chat log
+//              - Setting for rounded system messages
+//          - Rewrote the settings code to be more efficient 
+//          - Added Light Mode support
+// 0.7      - Added a check for new versions of the script
+//          - Redesigned the settings menu
+//          - Fixed some fancy chat log items not being detected
+//          - Fixed some fancy chat log items being detected incorrectly
+//          - Fixed an issue with justification justifying incorrect elements
+// 0.8      - Older Chapters now have the same styling as newer chapters
+//              - Fixed inconsistency with the chat log styling thanks to + being changed to ++ later
+//              - Fixed inconsistency with chat log system messages thanks to the system message being changed to a different format later
+//              - The old Date Point marker now breaks after the date, thanks Guvendruduvundraguvnegrugnuvenderelgureg-ugunduvug Guvnuragnaguvendrugun for making this necessary
+//          - Fixed a bug with chat log styling not working due to my own stupidity
+// 0.9      - Added a table of contents
+//              - Added a setting to enable/disable the table of contents from spawning
+//              - Colour-coded the table of contents based on the chapter's "Book"
+//              - Style-coded the table of contents based on the type of chapter
+//              - At time of writing, my table of contents file is incomplete, so it will be updated in the future
+//          - Fixed a bug with the script running on the home page
+//          - Fixed some fancy chat log items not being detected
+// 0.10     - Updated the Table of Contents a bunch
+//              - More chapters are listed, including off-site ones that are needed for context/characters/events/etc
+//              - Added new styling to chapters
+//              - Added red text/borders to warn of off-site links
 //
 // ===== End Changelog =====
 
@@ -1102,7 +1106,12 @@ function loadCSS() {
                             flex-direction: column;
                         }
                         
-                        .bane-toc-chapter { padding: 0.25em; }
+                        .bane-toc-chapter
+                        {
+                            position: relative;
+                            margin: 0 3px;
+                            padding: 0.25em; 
+                        }
 
                         .bane-toc .bane-toc-active,
                         .bane-toc .bane-toc-chapter:hover
@@ -1115,6 +1124,9 @@ function loadCSS() {
                         .bane-toc-goodtraining { border-left: 4px solid #d04242; }
                         .bane-toc-babylon { border-left: 4px solid #f16ff1; }
                         .bane-toc-bolthole { border-left: 4px solid #4297d0; }
+                        .bane-toc-xiuchang { border-left: 4px solid #42d053; }
+                        .bane-toc-mia { border-left: 4px solid #7dd042; }
+
                         .bane-toc-chapter.interlude { border-left-style: double; }
                         .bane-toc-chapter.part { border-left-style: dashed; }
                         
@@ -1123,6 +1135,58 @@ function loadCSS() {
                             display: flex;
                             justify-content: space-between;  
                         }
+
+                        /* .bane-toc-chapter:not(.bane-toc-deathworlders) { opacity: .3; } */
+
+                        .bane-toc-chapter::before
+                        {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            
+                            transform: translate(-65%, -50%);
+                            
+                            border-left: 10px solid;
+                            border-color: inherit;
+                            
+                            height: 10px;
+                            width: 10px;
+                            
+                            border-radius: 20px;
+                            box-sizing:border-box;
+                            
+                            z-index: 1;
+                            
+                            transition: height 200ms ease-in-out;
+                        }
+
+                        .bane-toc-chapter:hover::before { height: 30px; }
+                        .bane-toc-chapter.bane-toc-active::before { height: 40px; }
+                        .bane-toc-chapter.bane-toc-active:hover::before { height: 45px; }
+                        .bane-toc-chapter.interlude::before { border-left-style: inherit; }
+
+                        .bane-toc-chapter.offsite { border-right: 5px solid #d04242; }
+                        .bane-toc-navlink-next.offsite, .bane-toc-navlink-prev.offsite { color: #d04242 !important; }
+
+                        .bane-toc-chapter:first-child::after
+                        {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            transform: translateX(-65%);
+                            
+                            background: #222222;
+                            
+                            height: 20px;
+                            width: 20px;
+                            
+                            z-index: 0;
+                        }
+
+                        body:not(.inverted) .bane-toc-chapter:first-child::after { background: #fff; }
                     `;
                     break;
             }
@@ -1200,6 +1264,16 @@ function spawnTableofContents() {
                 chapterLink.classList.add('bane-toc-babylon');
             else if (chapter.book.toLowerCase().includes('bolthole'))
                 chapterLink.classList.add('bane-toc-bolthole');
+            else if (chapter.book.toLowerCase().includes('xiù chang'))
+                chapterLink.classList.add('bane-toc-xiuchang');
+            else if (chapter.book.toLowerCase().includes('mia'))
+                chapterLink.classList.add('bane-toc-mia');
+
+            if (chapter.note.toLowerCase().includes('reddit'))
+            {
+                chapterLink.classList.add('bane-toc-reddit');
+                chapterLink.classList.add('offsite');
+            }
 
             // add a class based on the chapter type to style-code the chapters
             if (chapter.name.toLowerCase().includes('part'))
@@ -1219,7 +1293,12 @@ function spawnTableofContents() {
                 // add a link to the previous chapter based on the current chapter's index
                 let index = chapterJSON["chapters"].indexOf(chapter);
                 if (index > 0)
+                {
                     prevLink.href = chapterJSON["chapters"][index - 1].url;
+                    // if the url doesn't contain deathworlders.com, it's an offsite link
+                    if (!chapterJSON["chapters"][index - 1].url.includes('deathworlders.com'))
+                        prevLink.classList.add('offsite');
+                }
                 else
                 {
                     prevLink.innerHTML = '';
@@ -1228,7 +1307,12 @@ function spawnTableofContents() {
 
                 // add a link to the next chapter based on the current chapter's index
                 if (index < chapterJSON["chapters"].length - 1)
+                {
                     nextLink.href = chapterJSON["chapters"][index + 1].url;
+                    // if the url doesn't contain deathworlders.com, it's an offsite link
+                    if (!chapterJSON["chapters"][index + 1].url.includes('deathworlders.com'))
+                        nextLink.classList.add('offsite');
+                }
                 else
                 {
                     nextLink.innerHTML = '';
