@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.10.0
+// @version      0.11.2
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -11,7 +11,7 @@
 
 // ===== Changelog =====
 //
-// 0.1      - Initial version 
+// 0.1      - Initial version
 //              - Adds cover image to the top of the article
 // 0.2      - Added code to support conversation styling
 // 0.3      - Added extra CSS to the script rather than loading it separately
@@ -26,7 +26,7 @@
 // 0.6      - Added a setting for fancy chat log
 //              - Setting for keeping the ++NAME++ flavour in the chat log
 //              - Setting for rounded system messages
-//          - Rewrote the settings code to be more efficient 
+//          - Rewrote the settings code to be more efficient
 //          - Added Light Mode support
 // 0.7      - Added a check for new versions of the script
 //          - Redesigned the settings menu
@@ -49,6 +49,11 @@
 //              - More chapters are listed, including off-site ones that are needed for context/characters/events/etc
 //              - Added new styling to chapters
 //              - Added red text/borders to warn of off-site links
+// 0.11     - Added a tooltip warning of off-site links
+//          - Added a link to the full reading list on Reddit
+//          - Added a setting to highlight links in text
+//          - Fixed incorrect default setting on Keep ++ setting
+//          - Minor fixes related to this update
 //
 // ===== End Changelog =====
 
@@ -74,9 +79,10 @@ defaultSettings.push({ name: 'fancySMSBubbles', value: true, fancyText: 'Fancy S
 defaultSettings.push({ name: 'justifyParagraphs', value: true, fancyText: 'Justify Paragraphs', tag: 'Style' });
 defaultSettings.push({ name: 'addCover', value: true, fancyText: 'Add Cover', tag: 'Function' });
 defaultSettings.push({ name: 'fancyChatLog', value: true, fancyText: 'Fancy Chat Log', tag: 'Style' });
-defaultSettings.push({ name: 'fancyChatLogKeep++', value: true, fancyText: 'Fancy Chat Log Keep ++', tag: 'Style' });
+defaultSettings.push({ name: 'fancyChatLogKeep++', value: false, fancyText: 'Fancy Chat Log Keep ++', tag: 'Style' });
 defaultSettings.push({ name: 'fancyChatLogRoundedSystem', value: true, fancyText: 'Fancy Chat Log Rounded System', tag: 'Style' });
 defaultSettings.push({ name: 'tableOfContents', value: true, fancyText: 'Table of Contents', tag: 'Function' });
+defaultSettings.push({ name: 'highlightLinks', value: true, fancyText: 'Highlight Links in Text', tag: 'Style' });
 
 var settings = [];
 
@@ -127,6 +133,8 @@ function initialize() {
     // if the setting with the name tableOfContents is true, spawn the table of contents
     if (settings.find(x => x.name === 'tableOfContents').value)
         spawnTableofContents();
+
+    addToolTipToAllOffsiteLinks();
 }
 
 function checkNewVersion() {
@@ -154,7 +162,7 @@ function checkNewVersion() {
                 var settingsDiv = document.querySelector('.bane-settings');
                 settingsDiv.classList.add('new');
 
-                // add a link to the bottom of the settings menu to open https://jordy3d.github.io/files/userscripts 
+                // add a link to the bottom of the settings menu to open https://jordy3d.github.io/files/userscripts
                 var sourceLink = document.createElement('a');
                 sourceLink.classList.add('not-button');
                 sourceLink.href = 'https://jordy3d.github.io/userscripts';
@@ -168,68 +176,68 @@ function checkNewVersion() {
                 style.id = 'bane-new-version-style';
                 style.innerHTML = `
                     /* Update Animations */
-                    .bane-settings.new 
-                  { 
-                        animation: ping 1s infinite; 
+                    .bane-settings.new
+                  {
+                        animation: ping 1s infinite;
                         opacity: 1;
                     }
-                    
+
                     @keyframes ping
                   {
                         0% { outline: 2px solid #d09242; }
                         50% { outline: 5px solid #d09242; }
                         100% { outline: 2px solid #d09242; }
                     }
-                    
+
                     .bane-settings.new h1 { position: relative; }
                     .bane-settings.new h1::after
                   {
                         content: "New version available!";
                         position: absolute;
                         display: block;
-                        
+
                         font-size: 10pt;
                         font-weight: bold;
-                        
+
                         right: -50px;
                         bottom: 0;
 
                         opacity: 0;
                         transition: opacity 200ms ease-in-out;
-                        
+
                         transform: rotate(-30deg);
-                        
+
                         animation: updateSplash 1s infinite;
-                        
+
                         text-shadow: 0 0 5px #222222, 0 0 5px #222222;
                     }
                     .bane-settings.new:hover h1::after { opacity: 1; }
 
                     body:not(.inverted) .bane-settings.new h1::after { text-shadow: 0 0 5px #FFFFFF, 0 0 5px #FFFFFF; }
-                    
+
                     @keyframes updateSplash {
                         0% { transform: scale(1) rotate(-25deg); }
                         50% { transform: scale(1) rotate(-15deg); }
                         100% { transform: scale(1) rotate(-25deg); }
                     }
-                    
-                    
+
+
                     /* Update Button */
                     .bane-settings:not(.new) .not-button { display: none; }
-                    
+
                     .not-button
                   {
                         text-align: center;
                         display: block;
-                        
+
                         padding: 1em;
                         margin-top: auto;
                         border: 3px solid #D09242;
                         border-radius: 5em;
-                        
+
                         transition: all 100ms ease-in-out;
                     }
-                    
+
                     .not-button:hover
                   {
                         background: #D09242;
@@ -304,28 +312,28 @@ function spawnSettings() {
             height: 100vh;
             min-width: 370px;
             width: 22vw;
-            
+
             position: fixed;
-            top: 0;    
-           
+            top: 0;
+
             display: flex;
             flex-direction: column;
-            
-            padding: 1em;          
+
+            padding: 1em;
             box-sizing: border-box;
         }
-        
+
         .bane-sidebar hr { width: 100%; }
 
         .bane-settings
         {
             border-right: 4px solid #CECECE;
-            
+
             left: 0;
 
             transform: translatex(calc(20px - 100%));
-            opacity: 0.1;          
-            
+            opacity: 0.1;
+
             transition: all 100ms ease-in-out;
         }
         body:not(.inverted) .bane-sidebar { background: #ffffff !important; }
@@ -339,7 +347,7 @@ function spawnSettings() {
 
         .bane-settings h1 { text-align: center; }
 
-        .bane-settings h1, 
+        .bane-settings h1,
         .bane-settings h4,
         .bane-setting-tag
         {
@@ -350,7 +358,7 @@ function spawnSettings() {
 
         .bane-settings:hover
         {
-            opacity: 1;  
+            opacity: 1;
             transform: translatex(0);
             transition: all 300ms ease-in-out;
         }
@@ -809,6 +817,14 @@ function loadCSS() {
     var style = document.createElement('style');
     style.id = 'BaneDW';
 
+    style.innerHTML = `
+        body
+        {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+    `;
+
     // for settings that are true, add the CSS using a switch statement
     for (i = 0; i < settings.length; i++) {
         var setting = settings[i];
@@ -821,7 +837,7 @@ function loadCSS() {
                             color: #fff !important;
                             font-family: "Roboto Slab", serif !important;
                             font-size: 1.2rem;
-                            
+
                             border-bottom: 1px solid white;
                             padding-bottom: 3rem;
                             }
@@ -853,7 +869,7 @@ function loadCSS() {
                       {
                             background: black !important;
                             border-radius: 10px;
-                            
+
                             box-shadow: none !important;
                         }
                         pre code { white-space: pre-wrap; }
@@ -872,22 +888,22 @@ function loadCSS() {
                     style.innerHTML += `
                         .conversation.right,
                         .conversation.left,
-                        
+
                         .conversation + p:not(:has(+p))
                       {
                             width: fit-content;
                             max-width: 50%;
-                            
+
                             font-family: system-ui;
-                            
+
                             border-radius: 15px;
                             padding: 10px;
-                            
+
                             margin: 10px 100px;
-                            
+
                             position: relative;
                         }
-                        
+
                         .conversation.left + p:has(+.conversation.right)
                       {
                             background: unset !important;
@@ -902,20 +918,20 @@ function loadCSS() {
                       {
                             display: none;
                         }
-                        
+
                         .conversation.right br,
                         .conversation.left br,
-                        
+
                         .conversation + br
                       {
                             display: none;
                         }
-                        
+
                         .conversation.right
                       {
                             background: #159eec !important;
                             margin-left: auto;
-                            
+
                             border-radius: 15px 15px 5px 15px;
                         }
                         .conversation.right:has(+.conversation.right)
@@ -928,18 +944,18 @@ function loadCSS() {
                             border-radius: 15px 5px 5px 15px;
                             margin-top: 5px;
                         }
-                        
+
                         .conversation.left, .conversation.left em,
-                        
+
                         .conversation + p:not(:has(+p))
                       {
                             background: #d0d0d0 !important;
                             color: black;
                             border-radius: 15px 15px 15px 5px;
-                            
+
                             font-style: normal !important;
                         }
-                        
+
                         body:not(.inverted) .conversation.right { color: white; }
                     `;
                     break;
@@ -949,7 +965,7 @@ function loadCSS() {
                     style.innerHTML += `
                         .conversation.right:not(:has(+.conversation.right))::before,
                         .conversation.left::before,
-                        
+
                         .conversation + p:not(:has(+p))::before
                       {
                             content: "";
@@ -957,16 +973,16 @@ function loadCSS() {
                             height: 32px;
                             width: auto;
                             aspect-ratio: 1/1;
-                            
+
                             position: absolute;
-                            
+
                             background: inherit;
                             bottom: 0;
                         }
-                        
+
                         .conversation.right:not(:has(+.conversation.right))::after,
                         .conversation.left::after,
-                        
+
                         .conversation + p:not(:has(+p))::after
                       {
                             content: "";
@@ -974,27 +990,27 @@ function loadCSS() {
                             height: 15px;
                             width: auto;
                             aspect-ratio: 1/1;
-                            
+
                             border: 4px solid #222;
-                            
+
                             box-sizing: border-box;
-                            
+
                             position: absolute;
-                            
+
                             background: #22a057;
                             bottom: -4px;
                         }
-                        
+
                         body:not(.inverted) .conversation.right:not(:has(+.conversation.right))::after,
                         body:not(.inverted) .conversation.right + p::after
                       {
                             border-color: #FFFFFF;
                         }
-                        
+
                         .conversation.right::before { right: -40px; }
                         .conversation.left::before { left: -40px; }
                         .conversation + p:not(:has(+p))::before { left: -40px; }
-                        
+
                         .conversation.right::after { right: -44px; }
                         .conversation.left::after { left: -20px; }
                         .conversation + p:not(:has(+p))::after { left: -20px; }
@@ -1010,7 +1026,7 @@ function loadCSS() {
                         .chat-log
                       {
                             display: flex;
-                            
+
                             margin: 0;
                             font-family: 'Ruda';
                         }
@@ -1027,24 +1043,24 @@ function loadCSS() {
 
                             justify-content: left;
                         }
-                        
+
                         .chat-log-system
                       {
                             text-align: center !important;
                             text-transform: uppercase;
                             border: 1px solid #ddd;
-                            
+
                             padding: 1em;
                             margin: 0;
-                            
+
                             font-family: monospace;
-                            font-weight: 400;    
+                            font-weight: 400;
                         }
                         .chat-log-system:has(+.chat-log-system) { border-bottom: none; }
                         .chat-log-system +.chat-log-system { border-top: none; }
-                        
+
                         .chat-log-system + hr { display: none; }
-                        
+
                         .chat-log,
                         .chat-log-text, .chat-log-text em
                       {
@@ -1063,7 +1079,7 @@ function loadCSS() {
                 case 'fancyChatLogRoundedSystem':
                     style.innerHTML += `
                         .chat-log-system { border-radius: 1em; }
-                        .chat-log-system:has(+.chat-log-system) { border-radius: 1em 1em 0 0; } 
+                        .chat-log-system:has(+.chat-log-system) { border-radius: 1em 1em 0 0; }
                         .chat-log-system + .chat-log-system { border-radius: 0; }
                         .chat-log-system+.chat-log-system:not(:has(+.chat-log-system)) { border-radius: 0 0 1em 1em; }
                     `;
@@ -1074,52 +1090,54 @@ function loadCSS() {
                         {
                             right: 0;
                             text-align: center;
-                            
+
                             padding-right: 0.5em;
-                            padding-bottom: 0;
-                            
+                            padding-bottom: 0.5em;
+
                             opacity: 0.1;
-                            
+
                             border-left: 4px solid #CECECE;
-                            
+
                             transform: translatex(calc(-20px + 100%));
                             transition: all 100ms ease-in-out;
                         }
-                        
+
                         .bane-toc:hover
                         {
                             transform: translateX(0);
                             opacity: 1;
                         }
-                        
+
                         .bane-toc h1
                         {
                             text-align: center;
                             margin: 0;
                         }
-                        
+
                         .bane-toc-container
                         {
                             overflow: scroll;
-                            
+
                             display: flex;
                             flex-direction: column;
                         }
-                        
+
                         .bane-toc-chapter
                         {
                             position: relative;
                             margin: 0 3px;
-                            padding: 0.25em; 
+                            padding: 0.25em;
                         }
 
                         .bane-toc .bane-toc-active,
-                        .bane-toc .bane-toc-chapter:hover
+                        .bane-toc .bane-toc-chapter:hover,
+
+                        .bane-toc .bane-toc-readingorder
                         {
                             color: #d09242 !important;
                         }
                         .bane-toc .bane-toc-active { font-weight: bold; }
-                        
+
                         .bane-toc-deathworlders { border-left: 4px solid #d09242; }
                         .bane-toc-goodtraining { border-left: 4px solid #d04242; }
                         .bane-toc-babylon { border-left: 4px solid #f16ff1; }
@@ -1129,11 +1147,11 @@ function loadCSS() {
 
                         .bane-toc-chapter.interlude { border-left-style: double; }
                         .bane-toc-chapter.part { border-left-style: dashed; }
-                        
+
                         .bane-toc-navlinks
                         {
                             display: flex;
-                            justify-content: space-between;  
+                            justify-content: space-between;
                         }
 
                         /* .bane-toc-chapter:not(.bane-toc-deathworlders) { opacity: .3; } */
@@ -1145,20 +1163,20 @@ function loadCSS() {
                             position: absolute;
                             top: 50%;
                             left: 0;
-                            
+
                             transform: translate(-65%, -50%);
-                            
+
                             border-left: 10px solid;
                             border-color: inherit;
-                            
+
                             height: 10px;
                             width: 10px;
-                            
+
                             border-radius: 20px;
                             box-sizing:border-box;
-                            
+
                             z-index: 1;
-                            
+
                             transition: height 200ms ease-in-out;
                         }
 
@@ -1177,19 +1195,30 @@ function loadCSS() {
                             position: absolute;
                             top: 0;
                             transform: translateX(-65%);
-                            
+
                             background: #222222;
-                            
+
                             height: 20px;
                             width: 20px;
-                            
+
                             z-index: 0;
+                        }
+
+                        .bane-toc-readingorder
+                        {
+                            width: fit-content;
+                            margin: 0 auto;
                         }
 
                         body:not(.inverted) .bane-toc-chapter:first-child::after { background: #fff; }
                     `;
                     break;
-            }
+                case 'highlightLinks':
+                    style.innerHTML += `
+                        .bane-article p a { color: #d09242 !important; }
+                        .bane-article p a:hover { text-decoration: underline; }
+                    `;
+                }
         }
     }
 
@@ -1228,9 +1257,7 @@ function spawnTableofContents() {
         navLinks.classList.add('bane-toc-navlinks');
         sidebar.appendChild(navLinks);
 
-        // add hr
-        let hr = document.createElement('hr');
-        sidebar.appendChild(hr);
+        addHR(sidebar);
 
         // add a link to the previous chapter
         let prevLink = document.createElement('a');
@@ -1269,8 +1296,7 @@ function spawnTableofContents() {
             else if (chapter.book.toLowerCase().includes('mia'))
                 chapterLink.classList.add('bane-toc-mia');
 
-            if (chapter.note.toLowerCase().includes('reddit'))
-            {
+            if (chapter.note.toLowerCase().includes('reddit')) {
                 chapterLink.classList.add('bane-toc-reddit');
                 chapterLink.classList.add('offsite');
             }
@@ -1292,29 +1318,25 @@ function spawnTableofContents() {
 
                 // add a link to the previous chapter based on the current chapter's index
                 let index = chapterJSON["chapters"].indexOf(chapter);
-                if (index > 0)
-                {
+                if (index > 0) {
                     prevLink.href = chapterJSON["chapters"][index - 1].url;
                     // if the url doesn't contain deathworlders.com, it's an offsite link
                     if (!chapterJSON["chapters"][index - 1].url.includes('deathworlders.com'))
                         prevLink.classList.add('offsite');
                 }
-                else
-                {
+                else {
                     prevLink.innerHTML = '';
                     prevLink.style.pointerEvents = 'none';
                 }
 
                 // add a link to the next chapter based on the current chapter's index
-                if (index < chapterJSON["chapters"].length - 1)
-                {
+                if (index < chapterJSON["chapters"].length - 1) {
                     nextLink.href = chapterJSON["chapters"][index + 1].url;
                     // if the url doesn't contain deathworlders.com, it's an offsite link
                     if (!chapterJSON["chapters"][index + 1].url.includes('deathworlders.com'))
                         nextLink.classList.add('offsite');
                 }
-                else
-                {
+                else {
                     nextLink.innerHTML = '';
                     nextLink.style.pointerEvents = 'none';
                 }
@@ -1323,5 +1345,217 @@ function spawnTableofContents() {
             // add the chapter to the table of contents
             toc.appendChild(chapterLink);
         }
+
+        addHR(sidebar);
+
+        // add a link to the full reading order
+        let fullReadingOrder = document.createElement('a');
+        fullReadingOrder.href = 'https://www.reddit.com/r/HFY/wiki/ref/universes/jenkinsverse/chronological_reading_order/';
+        fullReadingOrder.innerText = 'Full Reading Order';
+        fullReadingOrder.classList.add('bane-toc-readingorder');
+        fullReadingOrder.classList.add('offsite');
+        sidebar.appendChild(fullReadingOrder);
+
+        // scroll to the active chapter, vertically centering it
+        let activeChapter = document.querySelector('.bane-toc-active');
+        if (activeChapter) {
+            activeChapter.scrollIntoView({
+                behavior: 'auto',
+                block: 'center',
+                inline: 'center',
+            });
+        }
     }
+}
+
+function addHR(parent) {
+    var hr = document.createElement('hr');
+    parent.appendChild(hr);
+}
+
+function createTooltip(msg) {
+    var tooltip = document.querySelector('.bane-tooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.classList.add('bane-tooltip');
+    }
+    tooltip.innerText = msg;
+
+    document.body.appendChild(tooltip);
+}
+
+function updateTooltip(msg) { createTooltip(msg); }
+
+function moveTooltip(e) {
+    var tooltip = document.querySelector('.bane-tooltip');
+    var x = e.clientX;
+    var y = e.clientY;
+
+    // offset y by the scroll position
+    y += window.scrollY;
+
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+}
+
+function moveTooltipToElement(element, side) {
+    var tooltip = document.querySelector('.bane-tooltip');
+    var rect = element.getBoundingClientRect();
+
+    tooltip.classList.add(side);
+
+    var x = null;
+    var y = null;
+
+    switch (side) {
+        case 'top':
+            x = rect.left + (rect.width / 2);
+            y = rect.top;
+            break;
+        case 'bottom':
+            x = rect.left + (rect.width / 2);
+            y = rect.bottom;
+            break;
+        case 'left':
+            x = rect.left;
+            y = rect.top + (rect.height / 2);
+            break;
+        case 'right':
+            x = rect.right;
+            y = rect.top + (rect.height / 2);
+            break;
+    }
+
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+}
+
+function addToolTipToAllOffsiteLinks() {
+    createTooltip('Offsite link');
+
+    // use document.querySelector body closest '.offsite' for hover detection
+    document.body.addEventListener('mousemove', function (e) {
+        var tooltip = document.querySelector('.bane-tooltip');
+        var offsite = e.target.closest('.offsite');
+        if (offsite) {
+            tooltip.classList.add('active');
+
+            // set tooltip text to the domain of the link (IE, reddit.com)
+            var url = new URL(offsite.href);
+            var domain = url.hostname;
+            domain = domain.replace('www.', '');
+
+            updateTooltip(`Offsite link: (${domain})`);
+            moveTooltipToElement(offsite, 'left');
+        }
+        else {
+            tooltip.classList.remove('active');
+        }
+    });
+
+    // create style for tooltips
+    var style = document.createElement('style');
+    style.id = 'bane-tooltip-style';
+    style.innerHTML = `
+        .bane-tooltip
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: max-content;
+
+            z-index: 9999;
+            pointer-events: none;
+
+            background: #D04242;
+            color: #fff;
+
+            padding: 0.5em;
+            margin: 0.5em;
+
+            border-radius: 5px;
+
+            opacity: 0;
+            transform: translate(-110%, -70%);
+        }
+        .bane-tooltip.active { opacity: 1; }
+
+        .bane-tooltip::before
+        {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translate(-5px, -50%) rotate(45deg);
+
+            width: 10px;
+            height: 10px;
+
+            background: #D04242;
+        }
+
+        .bane-tooltip.top::before
+        {
+            top: 100%;
+            left: 50%;
+            transform: translate(0, -50%) rotate(45deg);
+        }
+
+        .bane-tooltip.bottom::before
+        {
+            top: 0%;
+            left: 50%;
+            transform: translate(0, -50%) rotate(45deg);
+        }
+
+        .bane-tooltip.left::before
+        {
+            top: 50%;
+            left: 100%;
+            transform: translate(-5px, -50%) rotate(45deg);
+        }
+
+        .bane-tooltip.right::before
+        {
+            top: 50%;
+            left: 0%;
+            transform: translate(-5px, -50%) rotate(45deg);
+        }
+        .bane-tooltip.bottom.left::before
+        {
+            top: 99%;
+            left: 100%;
+            transform: translate(-5px, -50%) rotate(130deg);
+        
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .bane-tooltip.top.left::before
+        {
+            top: 1%;
+            left: 100%;
+            transform: translate(-5px, -50%) rotate(50deg);
+        
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .bane-tooltip.bottom.right::before
+        {
+            top: 99%;
+            left: 0%;
+            transform: translate(-5px, -50%) rotate(-130deg);
+        
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .bane-tooltip.top.right::before
+        {
+            top: 1%;
+            left: 0%;
+            transform: translate(-5px, -50%) rotate(-50deg);
+        
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+    `;
+    document.head.appendChild(style);
+
 }
