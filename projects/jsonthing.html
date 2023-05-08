@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TXT to JSON</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+            margin: 0;
+
+            padding: 1em;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .not-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            border: 2px solid #333;
+
+            border-radius: 1em;
+
+            padding: 1em;
+
+            width: 100%;
+
+            gap: 1em;
+        }
+
+        .not-block {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            width: 100%;
+
+            gap: 1em;
+        }
+
+        .label-input {
+            display: flex;
+            flex-direction: column;
+
+            width: 100%;
+
+            gap: 0.5em;
+
+            border: 3px solid #333;
+            border-radius: 1em 1em 2em 2em;
+        }
+
+        .label-input label {
+            font-size: 0.75em;
+            background: #222;
+            color: #757575;
+
+            display: block;
+            width: fit-content;
+
+            line-height: 0em;
+            margin-left: 1em;
+            margin-top: -0.5em;
+            padding: 0.5em;
+        }
+
+        input {
+            padding: 1em;
+            border-radius: 1em 1em 2em 2em;
+
+            width: 100%;
+
+            border: none;
+            background-color: #333;
+            color: #fff;
+        }
+
+        textarea {
+            padding: 1em;
+            border-radius: 1em;
+            border: none;
+            background-color: #333;
+            color: #fff;
+
+            width: 100%;
+            min-height: 10em;
+            min-width: 100%;
+            max-width: 100%;
+        }
+
+        /* style scrollbar */
+        ::-webkit-scrollbar {
+            width: 1em;
+
+            border-radius: 0 2em 2em 0;
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #333;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #444;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        button {
+            padding: 1em;
+            border-radius: 2em;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+
+            width: 60%;
+            font-size: 1.5em;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Bane's Weird TXT to JSON Thing!</h1>
+        <p>This will convert raw TXT text into a JSON format that I used for another project.<br>Clicking the button
+            will download a JSON file.</p>
+
+        <div class="not-form">
+            <div class="not-block">
+                <div class="label-input">
+                    <label for="outputName">Output File Name</label>
+                    <input type="name" name="name" id="outputName" placeholder="Output File Name">
+                </div>
+                <div class="label-input">
+                    <label for="book">Book Name</label>
+                    <input type="name" name="book" id="book" placeholder="Book Name">
+                </div>
+            </div>
+            <div class="not-block">
+                <div class="label-input">
+                    <label for="chapter">Chapter Number</label>
+                    <input type="number" name="chapter" id="chapter" placeholder="Chapter Number">
+                </div>
+                <div class="label-input">
+                    <label for="chapterTitle">Chapter Title</label>
+                    <input type="name" name="chapterTitle" id="chapterTitle" placeholder="Chapter Title">
+                </div>
+            </div>
+            <textarea name="txt" id="txt" cols="30" rows="10"></textarea>
+            <button onclick="convert()">Convert</button>
+        </div>
+    </main>
+    <script>
+        function convert() {
+            console.log("Converting...");
+
+            // read the values from the input fields
+            let outputName = document.getElementById("outputName").value;
+            let book = document.getElementById("book").value;
+            let chapter = document.getElementById("chapter").value;
+            let chapterTitle = document.getElementById("chapterTitle").value;
+            let txt = document.getElementById("txt").value;
+
+            // export to JSON file, where the JSON looks like this:
+            // {
+            //      "book": "Xiu Chang",
+            //      "chapter": 1,
+            //      "chapterTitle": "Monkeys Reaches Stars",
+            //      "content": [
+            //          {
+            //              "tag": "p",
+            //              "class": "",
+            //              "text": "Once upon a time, there was a monkey who lived in a tree that was very tall. The monkey was very happy with his tree, but he was also very curious. He wondered what it would be like to touch the stars."
+            //          }
+            //      ]
+            // }
+
+            // create the JSON object
+            let json = {
+                "book": book,
+                "chapter": chapter,
+                "chapterTitle": chapterTitle,
+                "content": []
+            };
+
+            // split the text into paragraphs
+            let paragraphs = txt.split("\n");
+
+            for (let i = 0; i < paragraphs.length; i++) {
+                // if the paragraph is empty, skip it
+                if (paragraphs[i] == "") {
+                    continue;
+                }
+
+                // create the paragraph object
+                let paragraph = {
+                    "tag": "p",
+                    "class": "",
+                    "text": paragraphs[i]
+                };
+
+                // add the paragraph to the JSON object
+                json.content.push(paragraph);
+            }
+
+            // convert the JSON object to a string, pretty-printed
+            let jsonString = JSON.stringify(json, null, 4);
+
+            // create a blob from the string
+            let blob = new Blob([jsonString], {
+                type: "application/json"
+            });
+
+            // create a link to download the blob
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = outputName + ".json";
+
+            // click the link to download the file
+            link.click();
+
+            // remove the link
+            link.remove();
+
+            console.log("Done!");
+        }
+    </script>
+</body>
+
+</html>
