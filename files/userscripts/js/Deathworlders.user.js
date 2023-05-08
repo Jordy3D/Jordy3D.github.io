@@ -1164,7 +1164,7 @@ function loadCSS() {
                             top: 50%;
                             left: 0;
 
-                            transform: translate(-65%, -50%);
+                            transform: translate(calc(-50% - 3px), -50%)
 
                             border-left: 10px solid;
                             border-color: inherit;
@@ -1283,29 +1283,25 @@ function spawnTableofContents() {
             chapterLink.classList.add('bane-toc-chapter');
 
             // add a class based on the book name to colour-code the chapters
-            if (chapter.book.toLowerCase().includes('deathworlders'))
-                chapterLink.classList.add('bane-toc-deathworlders');
-            else if (chapter.book.toLowerCase().includes('good training'))
-                chapterLink.classList.add('bane-toc-goodtraining');
-            else if (chapter.book.toLowerCase().includes('babylon'))
-                chapterLink.classList.add('bane-toc-babylon');
-            else if (chapter.book.toLowerCase().includes('bolthole'))
-                chapterLink.classList.add('bane-toc-bolthole');
-            else if (chapter.book.toLowerCase().includes('xiù chang'))
-                chapterLink.classList.add('bane-toc-xiuchang');
-            else if (chapter.book.toLowerCase().includes('mia'))
-                chapterLink.classList.add('bane-toc-mia');
+            let chapterBook = chapter.book;
+            includesAdd(chapterLink, chapterBook, 'deathworlders', 'bane-toc-deathworlders');
+            includesAdd(chapterLink, chapterBook, 'good training', 'bane-toc-goodtraining');
+            includesAdd(chapterLink, chapterBook, 'the champions', 'bane-toc-champions');
+            includesAdd(chapterLink, chapterBook, 'babylon', 'bane-toc-babylon');
+            includesAdd(chapterLink, chapterBook, 'bolthole', 'bane-toc-bolthole');
+            includesAdd(chapterLink, chapterBook, 'xiù chang', 'bane-toc-xiuchang');
+            includesAdd(chapterLink, chapterBook, 'mia', 'bane-toc-mia');
 
-            if (chapter.note.toLowerCase().includes('reddit')) {
+            if (chapter.note.toLowerCase().includes('reddit'))
+            {
                 chapterLink.classList.add('bane-toc-reddit');
                 chapterLink.classList.add('offsite');
             }
 
             // add a class based on the chapter type to style-code the chapters
-            if (chapter.name.toLowerCase().includes('part'))
-                chapterLink.classList.add('part');
-            if (chapter.name.toLowerCase().includes('interlude'))
-                chapterLink.classList.add('interlude');
+            let chapterName = chapter.name;
+            if (chapterName.toLowerCase().includes('part')) chapterLink.classList.add('part');
+            if (chapterName.toLowerCase().includes('interlude')) chapterLink.classList.add('interlude');
 
             chapterLink.href = chapter.url;
             if (chapter.number == null || chapter.number == -1)
@@ -1366,6 +1362,12 @@ function spawnTableofContents() {
             });
         }
     }
+}
+
+function includesAdd(element, term, search, addClass)
+{
+    if (term.toLowerCase().includes(search))
+        element.classList.add(addClass);
 }
 
 function addHR(parent) {
