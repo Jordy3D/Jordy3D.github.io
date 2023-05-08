@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.12.0
+// @version      0.12.2
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -61,6 +61,7 @@
 //          - Notes now supported on tooltips
 //          - Bug fixes related to hijacking
 //          - Fixed bug incorrecting detecting the chapter type when the word "part" is in the chapter title
+//          - Fixed a bug where the tooltip wouldn't be at the right position when the page was scrolled
 //          - Code cleanup and modification of backend data
 //
 // ===== End Changelog =====
@@ -266,7 +267,7 @@ function checkNewVersion() {
 
 function doAtStart()
 {
-    replace('xiu1', 'https://raw.githubusercontent.com/Jordy3D/DeathworldersTools/main/stories/XiuChang1.json');
+    replace('xiu-chang/chapter-01');
 }
 
 // ===== SETTINGS FUNCTIONS =====
@@ -1417,7 +1418,7 @@ function addToolTipToWhereItNeedsToGo() {
     });
 }
 
-function replace(hash, url) {
+function replace(hash, url='https://raw.githubusercontent.com/Jordy3D/DeathworldersTweaks/main/stories/' + hash + '.json') {
     var json = null;
 
     // if the URL matches https://deathworlders.com/books/#HASH
@@ -1664,6 +1665,9 @@ function tooltip() {
                 y = rect.top + (rect.height / 2);
                 break;
         }
+
+        // offset y by the scroll position
+        y += window.scrollY;
 
         tp.style.left = x + 'px';
         tp.style.top = y + 'px';
