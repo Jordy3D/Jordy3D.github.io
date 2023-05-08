@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.11.2
+// @version      0.12.0
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -54,6 +54,14 @@
 //          - Added a setting to highlight links in text
 //          - Fixed incorrect default setting on Keep ++ setting
 //          - Minor fixes related to this update
+// 0.12     - Laid groundwork for displaying non-Deathworlders chapters on Deathworlders.com via URL hijacking
+//              - This already works at https://deathworlders.com/books/#xiu1! 
+//          - Unique colours for Good Training The Champions and Salvage
+//          - Shift to hosting Deathworlders data on a new repo
+//          - Notes now supported on tooltips
+//          - Bug fixes related to hijacking
+//          - Fixed bug incorrecting detecting the chapter type when the word "part" is in the chapter title
+//          - Code cleanup and modification of backend data
 //
 // ===== End Changelog =====
 
@@ -83,6 +91,7 @@ defaultSettings.push({ name: 'fancyChatLogKeep++', value: false, fancyText: 'Fan
 defaultSettings.push({ name: 'fancyChatLogRoundedSystem', value: true, fancyText: 'Fancy Chat Log Rounded System', tag: 'Style' });
 defaultSettings.push({ name: 'tableOfContents', value: true, fancyText: 'Table of Contents', tag: 'Function' });
 defaultSettings.push({ name: 'highlightLinks', value: true, fancyText: 'Highlight Links in Text', tag: 'Style' });
+// defaultSettings.push({ name: 'useAltLinks', value: true, fancyText: 'Use Alt Links (Hijack /books/)', tag: 'Function' });
 
 var settings = [];
 
@@ -106,6 +115,8 @@ document.addEventListener('keydown', function (e) {
 // ===== End Settings =====
 
 initialize();
+
+doAtStart();
 
 setInterval(function () {
     // if the URL is just https://deathworlders.com, don't do anything
@@ -134,7 +145,8 @@ function initialize() {
     if (settings.find(x => x.name === 'tableOfContents').value)
         spawnTableofContents();
 
-    addToolTipToAllOffsiteLinks();
+    // addToolTipToAllOffsiteLinks();
+    addToolTipToWhereItNeedsToGo();
 }
 
 function checkNewVersion() {
@@ -252,6 +264,12 @@ function checkNewVersion() {
     request.send();
 }
 
+function doAtStart()
+{
+    replace('xiu1', 'https://raw.githubusercontent.com/Jordy3D/DeathworldersTools/main/stories/XiuChang1.json');
+}
+
+// ===== SETTINGS FUNCTIONS =====
 function spawnSettings() {
     var settingsDiv = document.createElement('div');
     settingsDiv.classList.add('bane-sidebar');
@@ -456,6 +474,8 @@ function checkNewSettings() {
     }
 }
 
+// ===== FEATURES =====
+
 function addCover() {
 
     if (settings.find(x => x.name == 'addCover').value == false) {
@@ -507,18 +527,16 @@ function addCover() {
             box-shadow: none;
             border-radius: 0.5em;
         }
-        .bane-article {
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            width: 100%;
-        }
     `;
     document.head.appendChild(style);
 }
 
 function setConversationElement() {
     if (conversationSet) return;
+
+    // if no article is found, return
+    var article = document.querySelector('main>article');
+    if (!article) return;
 
     // find all .p tags that only contain em tags and/or br tags, and not their own text, and are not just <p></p>
     var pTags = document.querySelectorAll('p');
@@ -615,6 +633,10 @@ function setConversationElement() {
 
 function setChatLogElement() {
     if (chatLogSet) return;
+
+    // if no article is found, return
+    var article = document.querySelector('main>article');
+    if (!article) return;
 
     // find all p tags that contain a strong tag, and add the class chat-log if the first child starts with ++
     var pTags = document.querySelectorAll('p');
@@ -762,30 +784,6 @@ function setChatLogElement() {
     chatLogSet = true;
 }
 
-function findClassWithinDistance(array, currentIndex, distance, searchClass) {
-    let classes = [searchClass].flat();
-
-    for (var i = 0; i < classes.length; i++) {
-        let className = classes[i];
-        // console.log(`Looking for ${className} within ${distance} of ${currentIndex}`);
-
-        for (var j = -distance; j < distance; j++) {
-            let ref = currentIndex + j;
-
-            if (ref < 0) continue; // skip if we're going to go out of bounds
-            if (ref >= array.length) continue; // skip if we're going to go out of bounds
-            if (j == 0) continue; // skip if we're looking at the element itself
-
-            let sibling = array[ref];
-
-            if (sibling && sibling.classList && sibling.classList.contains(className))
-                return true;
-        }
-    }
-
-    return false;
-}
-
 function forceBreaks() {
     if (breaksForced) return;
 
@@ -823,6 +821,14 @@ function loadCSS() {
             max-width: 100vw;
             overflow-x: hidden;
         }
+        .bane-article {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            width: 100%;
+        }
+
+        hr { width: 100%; }
     `;
 
     // for settings that are true, add the CSS using a switch statement
@@ -1140,10 +1146,12 @@ function loadCSS() {
 
                         .bane-toc-deathworlders { border-left: 4px solid #d09242; }
                         .bane-toc-goodtraining { border-left: 4px solid #d04242; }
+                        .bane-toc-champions { border-left: 4px solid #d0ad42; }
                         .bane-toc-babylon { border-left: 4px solid #f16ff1; }
                         .bane-toc-bolthole { border-left: 4px solid #4297d0; }
                         .bane-toc-xiuchang { border-left: 4px solid #42d053; }
-                        .bane-toc-mia { border-left: 4px solid #7dd042; }
+                        .bane-toc-mia { border-left: 4px solid #9de16d; }
+                        .bane-toc-salvage { border-left: 4px solid #fb41fb; }
 
                         .bane-toc-chapter.interlude { border-left-style: double; }
                         .bane-toc-chapter.part { border-left-style: dashed; }
@@ -1164,7 +1172,7 @@ function loadCSS() {
                             top: 50%;
                             left: 0;
 
-                            transform: translate(calc(-50% - 3px), -50%)
+                            transform: translate(calc(-50% - 2px), -50%);
 
                             border-left: 10px solid;
                             border-color: inherit;
@@ -1218,7 +1226,7 @@ function loadCSS() {
                         .bane-article p a { color: #d09242 !important; }
                         .bane-article p a:hover { text-decoration: underline; }
                     `;
-                }
+            }
         }
     }
 
@@ -1230,7 +1238,7 @@ function spawnTableofContents() {
     var chapterJSON = null;
 
     // load JSON from my github
-    var url = 'https://jordy3d.github.io/files/userscripts/data/deathworlderstoc.json';
+    var url = 'https://raw.githubusercontent.com/Jordy3D/DeathworldersTools/main/deathworlderstoc.json';
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.responseType = 'json';
@@ -1282,6 +1290,8 @@ function spawnTableofContents() {
             let chapterLink = document.createElement('a');
             chapterLink.classList.add('bane-toc-chapter');
 
+            let datatp = "";
+
             // add a class based on the book name to colour-code the chapters
             let chapterBook = chapter.book;
             includesAdd(chapterLink, chapterBook, 'deathworlders', 'bane-toc-deathworlders');
@@ -1291,19 +1301,35 @@ function spawnTableofContents() {
             includesAdd(chapterLink, chapterBook, 'bolthole', 'bane-toc-bolthole');
             includesAdd(chapterLink, chapterBook, 'xiù chang', 'bane-toc-xiuchang');
             includesAdd(chapterLink, chapterBook, 'mia', 'bane-toc-mia');
-
-            if (chapter.note.toLowerCase().includes('reddit'))
-            {
-                chapterLink.classList.add('bane-toc-reddit');
-                chapterLink.classList.add('offsite');
-            }
+            includesAdd(chapterLink, chapterBook, 'salvage', 'bane-toc-salvage');
 
             // add a class based on the chapter type to style-code the chapters
             let chapterName = chapter.name;
-            if (chapterName.toLowerCase().includes('part')) chapterLink.classList.add('part');
+            if (chapterName.toLowerCase().includes(' part ')) chapterLink.classList.add('part');
             if (chapterName.toLowerCase().includes('interlude')) chapterLink.classList.add('interlude');
 
-            chapterLink.href = chapter.url;
+            let chapterURL = chapter.url;
+            chapterLink.href = chapterURL;
+
+            // if the url is offsite, add a class to the chapter
+            if (!chapterURL.includes('deathworlders.com')) {
+                chapterLink.classList.add('offsite');
+
+                var domain = chapterLink.hostname;
+                domain = domain.replace('www.', '');
+
+                datatp += `Offsite Link: (${domain})\n`
+            }
+
+            let chapterNote = chapter.note;
+            if (chapterNote != null && chapterNote != "") {
+                // add a note to the chapter as data
+                chapterLink.setAttribute('data-note', chapterNote);
+                chapterLink.classList.add('bane-toc-note');
+
+                datatp += `Note: ${chapterNote}\n`;
+            }
+
             if (chapter.number == null || chapter.number == -1)
                 chapterLink.innerText = `${chapter.book}\n${chapter.name}`;
             else
@@ -1315,10 +1341,11 @@ function spawnTableofContents() {
                 // add a link to the previous chapter based on the current chapter's index
                 let index = chapterJSON["chapters"].indexOf(chapter);
                 if (index > 0) {
-                    prevLink.href = chapterJSON["chapters"][index - 1].url;
-                    // if the url doesn't contain deathworlders.com, it's an offsite link
-                    if (!chapterJSON["chapters"][index - 1].url.includes('deathworlders.com'))
+                    let target = isOffsite("deathworlders.com", chapterJSON["chapters"][index - 1].url);
+                    if (target[0]) {
                         prevLink.classList.add('offsite');
+                        prevLink.setAttribute('data-tooltip', `Offsite Link: (${target[1]})`);
+                    }
                 }
                 else {
                     prevLink.innerHTML = '';
@@ -1327,16 +1354,21 @@ function spawnTableofContents() {
 
                 // add a link to the next chapter based on the current chapter's index
                 if (index < chapterJSON["chapters"].length - 1) {
-                    nextLink.href = chapterJSON["chapters"][index + 1].url;
-                    // if the url doesn't contain deathworlders.com, it's an offsite link
-                    if (!chapterJSON["chapters"][index + 1].url.includes('deathworlders.com'))
+                    let target = isOffsite("deathworlders.com", chapterJSON["chapters"][index + 1].url);
+                    if (target[0]) {
                         nextLink.classList.add('offsite');
+                        nextLink.setAttribute('data-tooltip', `Offsite Link: (${target[1]})`);
+                    }
                 }
                 else {
                     nextLink.innerHTML = '';
                     nextLink.style.pointerEvents = 'none';
                 }
             }
+
+            // add tooltip text as data
+            if (datatp != "")
+                chapterLink.setAttribute('data-tooltip', datatp);
 
             // add the chapter to the table of contents
             toc.appendChild(chapterLink);
@@ -1364,8 +1396,111 @@ function spawnTableofContents() {
     }
 }
 
-function includesAdd(element, term, search, addClass)
-{
+function addToolTipToWhereItNeedsToGo() {
+    let tp = tooltip();
+
+    // use document.querySelector body closest '.offsite' for hover detection
+    document.body.addEventListener('mousemove', function (e) {
+        // find any element with an attribute of data-tooltip
+        var target = e.target.closest('[data-tooltip]');
+        if (target) {
+            tp.classList.add('active');
+
+            // set tooltip text to contents of data-tooltip attribute
+            var msg = target.getAttribute('data-tooltip');
+            tp.updateTooltipMessage(msg);
+            tp.moveTooltipToElement(target, 'left');
+        }
+        else {
+            tp.classList.remove('active');
+        }
+    });
+}
+
+function replace(hash, url) {
+    var json = null;
+
+    // if the URL matches https://deathworlders.com/books/#HASH
+    if (window.location.hash == '#' + hash) {
+        // find the main element and delete the #list element
+        var main = document.querySelector('main');
+        var list = main.querySelector('#list');
+        if (list) list.remove();
+
+        // load the JSON file at the URL using request
+        var request = new XMLHttpRequest();
+        request.open('GET', url);
+        request.responseType = 'json';
+        request.send();
+
+        // when the request loads, run this function
+        request.onload = function () {
+            // set the json variable to the response
+            json = request.response;
+
+            // create a new div with the id #bane-replace
+            var div = document.createElement('div');
+            div.id = 'bane-replace';
+            div.classList.add('bane-article');
+            main.appendChild(div);
+
+            // add the title to the page
+            var title = document.createElement('h1');
+            title.innerText = `${json.book}\nChapter ${json.chapter}: ${json.chapterTitle}`;
+            div.appendChild(title);
+
+            addHR(div);
+
+            // add each paragraph to the page
+            for (var i = 0; i < json.content.length; i++) {
+                var paragraph = json.content[i];
+
+                // create an element based on the paragraph's tag
+                var p = document.createElement(paragraph.tag);
+                // if class is defined, add it to the element. If there's more than one class, split it by spaces, comma, or period
+                if (paragraph.class) p.classList.add(...paragraph.class.split(/[\s,\.]+/));
+                // add the text to the element, ensuring that HTML tags are parsed as HTML
+                p.innerHTML = paragraph.text;
+
+
+                div.appendChild(p);
+            }
+        };
+    }
+}
+
+// ===== HELPER FUNCTIONS =====
+
+function findClassWithinDistance(array, currentIndex, distance, searchClass) {
+    let classes = [searchClass].flat();
+
+    for (var i = 0; i < classes.length; i++) {
+        let className = classes[i];
+        // console.log(`Looking for ${className} within ${distance} of ${currentIndex}`);
+
+        for (var j = -distance; j < distance; j++) {
+            let ref = currentIndex + j;
+
+            if (ref < 0) continue; // skip if we're going to go out of bounds
+            if (ref >= array.length) continue; // skip if we're going to go out of bounds
+            if (j == 0) continue; // skip if we're looking at the element itself
+
+            let sibling = array[ref];
+
+            if (sibling && sibling.classList && sibling.classList.contains(className))
+                return true;
+        }
+    }
+
+    return false;
+}
+
+function isOffsite(home, url) {
+    url = new URL(url);
+    return [!url.hostname.includes(home), url.hostname.replace('www.', '')];
+}
+
+function includesAdd(element, term, search, addClass) {
     if (term.toLowerCase().includes(search))
         element.classList.add(addClass);
 }
@@ -1375,189 +1510,169 @@ function addHR(parent) {
     parent.appendChild(hr);
 }
 
-function createTooltip(msg) {
-    var tooltip = document.querySelector('.bane-tooltip');
-    if (!tooltip) {
-        tooltip = document.createElement('div');
-        tooltip.classList.add('bane-tooltip');
+function tooltip() {
+    var tp = document.querySelector('.bane-tooltip');
+    if (!tp) {
+        tp = document.createElement('div');
+        tp.classList.add('bane-tooltip');
+        document.body.appendChild(tp);
+
+        // create style for tooltips
+        var style = document.createElement('style');
+        style.id = 'bane-tooltip-style';
+        style.innerHTML = `
+            .bane-tooltip
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: max-content;
+
+                z-index: 9999;
+                pointer-events: none;
+
+                background: #D04242;
+                color: #fff;
+
+                padding: 0.5em;
+                margin: 0.5em;
+
+                border-radius: 5px;
+
+                opacity: 0;
+                transform: translate(-110%, -70%);
+            }
+            .bane-tooltip.active { opacity: 1; }
+
+            .bane-tooltip::before
+            {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                transform: translate(-5px, -50%) rotate(45deg);
+
+                width: 10px;
+                height: 10px;
+
+                background: #D04242;
+            }
+
+            .bane-tooltip.top::before
+            {
+                top: 100%;
+                left: 50%;
+                transform: translate(0, -50%) rotate(45deg);
+            }
+
+            .bane-tooltip.bottom::before
+            {
+                top: 0%;
+                left: 50%;
+                transform: translate(0, -50%) rotate(45deg);
+            }
+
+            .bane-tooltip.left::before
+            {
+                top: 50%;
+                left: 100%;
+                transform: translate(-5px, -50%) rotate(45deg);
+            }
+
+            .bane-tooltip.right::before
+            {
+                top: 50%;
+                left: 0%;
+                transform: translate(-5px, -50%) rotate(45deg);
+            }
+            .bane-tooltip.bottom.left::before
+            {
+                top: 99%;
+                left: 100%;
+                transform: translate(-5px, -50%) rotate(130deg);
+            
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            }
+            .bane-tooltip.top.left::before
+            {
+                top: 1%;
+                left: 100%;
+                transform: translate(-5px, -50%) rotate(50deg);
+            
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            }
+
+            .bane-tooltip.bottom.right::before
+            {
+                top: 99%;
+                left: 0%;
+                transform: translate(-5px, -50%) rotate(-130deg);
+            
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            }
+            .bane-tooltip.top.right::before
+            {
+                top: 1%;
+                left: 0%;
+                transform: translate(-5px, -50%) rotate(-50deg);
+            
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            }
+        `;
+        document.head.appendChild(style);
     }
-    tooltip.innerText = msg;
 
-    document.body.appendChild(tooltip);
-}
-
-function updateTooltip(msg) { createTooltip(msg); }
-
-function moveTooltip(e) {
-    var tooltip = document.querySelector('.bane-tooltip');
-    var x = e.clientX;
-    var y = e.clientY;
-
-    // offset y by the scroll position
-    y += window.scrollY;
-
-    tooltip.style.left = x + 'px';
-    tooltip.style.top = y + 'px';
-}
-
-function moveTooltipToElement(element, side) {
-    var tooltip = document.querySelector('.bane-tooltip');
-    var rect = element.getBoundingClientRect();
-
-    tooltip.classList.add(side);
-
-    var x = null;
-    var y = null;
-
-    switch (side) {
-        case 'top':
-            x = rect.left + (rect.width / 2);
-            y = rect.top;
-            break;
-        case 'bottom':
-            x = rect.left + (rect.width / 2);
-            y = rect.bottom;
-            break;
-        case 'left':
-            x = rect.left;
-            y = rect.top + (rect.height / 2);
-            break;
-        case 'right':
-            x = rect.right;
-            y = rect.top + (rect.height / 2);
-            break;
+    function updateTooltipMessage(msg) {
+        tp.innerText = msg;
     }
 
-    tooltip.style.left = x + 'px';
-    tooltip.style.top = y + 'px';
-}
+    function moveTooltip(e) {
+        var x = e.clientX;
+        var y = e.clientY;
 
-function addToolTipToAllOffsiteLinks() {
-    createTooltip('Offsite link');
+        // offset y by the scroll position
+        y += window.scrollY;
 
-    // use document.querySelector body closest '.offsite' for hover detection
-    document.body.addEventListener('mousemove', function (e) {
-        var tooltip = document.querySelector('.bane-tooltip');
-        var offsite = e.target.closest('.offsite');
-        if (offsite) {
-            tooltip.classList.add('active');
+        tp.style.left = x + 'px';
+        tp.style.top = y + 'px';
+    }
 
-            // set tooltip text to the domain of the link (IE, reddit.com)
-            var url = new URL(offsite.href);
-            var domain = url.hostname;
-            domain = domain.replace('www.', '');
+    function moveTooltipToElement(element, side) {
+        var rect = element.getBoundingClientRect();
 
-            updateTooltip(`Offsite link: (${domain})`);
-            moveTooltipToElement(offsite, 'left');
-        }
-        else {
-            tooltip.classList.remove('active');
-        }
-    });
+        tp.classList.add(side);
 
-    // create style for tooltips
-    var style = document.createElement('style');
-    style.id = 'bane-tooltip-style';
-    style.innerHTML = `
-        .bane-tooltip
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
+        var x = null;
+        var y = null;
 
-            width: max-content;
-
-            z-index: 9999;
-            pointer-events: none;
-
-            background: #D04242;
-            color: #fff;
-
-            padding: 0.5em;
-            margin: 0.5em;
-
-            border-radius: 5px;
-
-            opacity: 0;
-            transform: translate(-110%, -70%);
-        }
-        .bane-tooltip.active { opacity: 1; }
-
-        .bane-tooltip::before
-        {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            transform: translate(-5px, -50%) rotate(45deg);
-
-            width: 10px;
-            height: 10px;
-
-            background: #D04242;
+        switch (side) {
+            case 'top':
+                x = rect.left + (rect.width / 2);
+                y = rect.top;
+                break;
+            case 'bottom':
+                x = rect.left + (rect.width / 2);
+                y = rect.bottom;
+                break;
+            case 'left':
+                x = rect.left;
+                y = rect.top + (rect.height / 2);
+                break;
+            case 'right':
+                x = rect.right;
+                y = rect.top + (rect.height / 2);
+                break;
         }
 
-        .bane-tooltip.top::before
-        {
-            top: 100%;
-            left: 50%;
-            transform: translate(0, -50%) rotate(45deg);
-        }
+        tp.style.left = x + 'px';
+        tp.style.top = y + 'px';
+    }
 
-        .bane-tooltip.bottom::before
-        {
-            top: 0%;
-            left: 50%;
-            transform: translate(0, -50%) rotate(45deg);
-        }
+    // make the above functions public
+    tp.updateTooltipMessage = updateTooltipMessage;
+    tp.moveTooltip = moveTooltip;
+    tp.moveTooltipToElement = moveTooltipToElement;
 
-        .bane-tooltip.left::before
-        {
-            top: 50%;
-            left: 100%;
-            transform: translate(-5px, -50%) rotate(45deg);
-        }
-
-        .bane-tooltip.right::before
-        {
-            top: 50%;
-            left: 0%;
-            transform: translate(-5px, -50%) rotate(45deg);
-        }
-        .bane-tooltip.bottom.left::before
-        {
-            top: 99%;
-            left: 100%;
-            transform: translate(-5px, -50%) rotate(130deg);
-        
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-        .bane-tooltip.top.left::before
-        {
-            top: 1%;
-            left: 100%;
-            transform: translate(-5px, -50%) rotate(50deg);
-        
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-
-        .bane-tooltip.bottom.right::before
-        {
-            top: 99%;
-            left: 0%;
-            transform: translate(-5px, -50%) rotate(-130deg);
-        
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-        .bane-tooltip.top.right::before
-        {
-            top: 1%;
-            left: 0%;
-            transform: translate(-5px, -50%) rotate(-50deg);
-        
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-    `;
-    document.head.appendChild(style);
-
+    return tp;
 }
