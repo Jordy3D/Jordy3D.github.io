@@ -41,6 +41,11 @@
             text-align: center;
         }
 
+        h1, p
+        {
+            color: #888888;
+        }
+
         .not-form {
             display: flex;
             flex-direction: column;
@@ -82,7 +87,7 @@
         .label-input label {
             font-size: 0.75em;
             background: #222;
-            color: #757575;
+            color: #888888;
 
             display: block;
             width: fit-content;
@@ -93,7 +98,10 @@
             padding: 0.5em;
         }
 
-        input {
+        input,
+        textarea,
+        button
+        {
             padding: 1em;
             border-radius: 1em 1em 2em 2em;
 
@@ -101,56 +109,54 @@
 
             border: none;
             background-color: #333;
-            color: #fff;
+            color: #ccc;
+
+            transition: background-color 0.5s ease;
         }
 
         textarea {
-            padding: 1em;
             border-radius: 1em;
-            border: none;
-            background-color: #333;
-            color: #fff;
 
-            width: 100%;
             min-height: 10em;
             min-width: 100%;
             max-width: 100%;
         }
 
-        /* style scrollbar */
-        ::-webkit-scrollbar {
-            width: 1em;
-
-            border-radius: 0 2em 2em 0;
-            overflow: hidden;
-        }
-
-        ::-webkit-scrollbar-track {
-            background-color: #333;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #444;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
-        }
-
         button {
-            padding: 1em;
             border-radius: 2em;
-            border: none;
-            background-color: #333;
-            color: #fff;
             cursor: pointer;
 
             width: 60%;
             font-size: 1.5em;
         }
 
+        ::placeholder {
+            color: #75757555;
+        }
+
+        input:focus,
+        input:active,
+        input:hover,
+        textarea:focus,
+        textarea:active,
+        textarea:hover,
         button:hover {
+            outline: none;
             background-color: #444;
+        }
+
+        /* style scrollbar */
+        ::-webkit-scrollbar {
+            width: 1em;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #333;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #444;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -164,22 +170,27 @@
         <div class="not-form">
             <div class="not-block">
                 <div class="label-input">
-                    <label for="outputName">Output File Name</label>
-                    <input type="name" name="name" id="outputName" placeholder="Output File Name">
+                    <label for="book">Book Name</label>
+                    <input type="name" name="book" id="book" placeholder="Deathworlders">
                 </div>
                 <div class="label-input">
-                    <label for="book">Book Name</label>
-                    <input type="name" name="book" id="book" placeholder="Book Name">
+                    <label for="chapterTitle">Chapter Title</label>
+                    <input type="name" name="chapterTitle" id="chapterTitle" placeholder="Run, Little Monster">
                 </div>
             </div>
             <div class="not-block">
                 <div class="label-input">
                     <label for="chapter">Chapter Number</label>
-                    <input type="number" name="chapter" id="chapter" placeholder="Chapter Number">
+                    <input type="number" name="chapter" id="chapter" placeholder=1>
                 </div>
                 <div class="label-input">
-                    <label for="chapterTitle">Chapter Title</label>
-                    <input type="name" name="chapterTitle" id="chapterTitle" placeholder="Chapter Title">
+                    <label for="date">Date</label>
+                    <!-- set default date to 11/09/2014 -->
+                    <input type="date" name="date" id="date" value="2014-09-11">
+                </div>
+                <div class="label-input">
+                    <label for="outputName">Output File Name</label>
+                    <input type="name" name="name" id="outputName" placeholder="chapter-01.json">
                 </div>
             </div>
             <textarea name="txt" id="txt" cols="30" rows="10"></textarea>
@@ -195,18 +206,20 @@
             let book = document.getElementById("book").value;
             let chapter = document.getElementById("chapter").value;
             let chapterTitle = document.getElementById("chapterTitle").value;
+            let date = document.getElementById("date").value;
             let txt = document.getElementById("txt").value;
 
             // export to JSON file, where the JSON looks like this:
             // {
-            //      "book": "Xiu Chang",
+            //      "book": "Deathworlders",
             //      "chapter": 1,
-            //      "chapterTitle": "Monkeys Reaches Stars",
+            //      "chapterTitle": "Run, Little Monster",
+            //      "date": "2014-09-11",
             //      "content": [
             //          {
             //              "tag": "p",
             //              "class": "",
-            //              "text": "Once upon a time, there was a monkey who lived in a tree that was very tall. The monkey was very happy with his tree, but he was also very curious. He wondered what it would be like to touch the stars."
+            //              "text": "Terri Boone could feel the bass power cords begin to thump at her bones as she entered the bar and couldn’t resist the feral grin that forced its way onto her face—it was exactly her kind of song."
             //          }
             //      ]
             // }
@@ -214,8 +227,9 @@
             // create the JSON object
             let json = {
                 "book": book,
-                "chapter": chapter,
+                "chapter": parseInt(chapter) || -1,
                 "chapterTitle": chapterTitle,
+                "date": date,
                 "content": []
             };
 
@@ -224,9 +238,8 @@
 
             for (let i = 0; i < paragraphs.length; i++) {
                 // if the paragraph is empty, skip it
-                if (paragraphs[i] == "") {
+                if (paragraphs[i] == "")
                     continue;
-                }
 
                 // create the paragraph object
                 let paragraph = {
