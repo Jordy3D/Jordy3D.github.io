@@ -177,11 +177,15 @@
                     <label for="chapterTitle">Chapter Title</label>
                     <input type="name" name="chapterTitle" id="chapterTitle" placeholder="Run, Little Monster">
                 </div>
-            </div>
-            <div class="not-block">
                 <div class="label-input">
                     <label for="chapter">Chapter Number</label>
                     <input type="number" name="chapter" id="chapter" placeholder=1>
+                </div>
+            </div>
+            <div class="not-block">
+                <div class="label-input">
+                    <label for="source">Source Link</label>
+                    <input type="name" name="source" id="source" placeholder="https://deathworlders.com/books/deathworlders/chapter-01-run-little-monster/">
                 </div>
                 <div class="label-input">
                     <label for="date">Date</label>
@@ -207,6 +211,7 @@
             let chapter = document.getElementById("chapter").value;
             let chapterTitle = document.getElementById("chapterTitle").value;
             let date = document.getElementById("date").value;
+            let source = document.getElementById("source").value;
             let txt = document.getElementById("txt").value;
 
             // export to JSON file, where the JSON looks like this:
@@ -215,6 +220,7 @@
             //      "chapter": 1,
             //      "chapterTitle": "Run, Little Monster",
             //      "date": "2014-09-11",
+            //      "source": "https://deathworlders.com/books/deathworlders/chapter-01-run-little-monster/",
             //      "content": [
             //          {
             //              "tag": "p",
@@ -230,6 +236,7 @@
                 "chapter": parseInt(chapter) || -1,
                 "chapterTitle": chapterTitle,
                 "date": date,
+                "source": source,
                 "content": []
             };
 
@@ -238,7 +245,7 @@
 
             for (let i = 0; i < paragraphs.length; i++) {
                 // if the paragraph is empty, skip it
-                if (paragraphs[i] == "")
+                if (paragraphs[i] == "" || paragraphs[i] == "\n" || paragraphs[i] == " ")
                     continue;
 
                 // create the paragraph object
