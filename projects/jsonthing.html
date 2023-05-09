@@ -255,6 +255,12 @@
                     "text": paragraphs[i]
                 };
 
+                if (text == "<hr>") {
+                    paragraph.tag = "hr";
+                    paragraph.class = "";
+                    paragraph.text = "";
+                }
+
                 // add the paragraph to the JSON object
                 json.content.push(paragraph);
             }
