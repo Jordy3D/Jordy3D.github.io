@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Deathworlders Tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.12.2
+// @version      0.14.0
 // @description  Modifications to the Deathworlders web novel
 // @author       Bane
 // @match        https://deathworlders.com/*
@@ -63,6 +63,12 @@
 //          - Fixed bug incorrecting detecting the chapter type when the word "part" is in the chapter title
 //          - Fixed a bug where the tooltip wouldn't be at the right position when the page was scrolled
 //          - Code cleanup and modification of backend data
+// 0.13     - Minor in comparison, added new elements to better match the original site
+//              - Added a button above the chapter (replacing the EPUB button with a link to the source)
+//              - Added a Date and Time to Read element below the chapter title
+// 0.14     - Made chapter replacement automatic based on the deathworlderstoc.json file
+//              - This means that the script shouldn't need regular updates to keep up with the replacement chapters
+//          - Made the page auto-refresh on URL change to allow for the hijacking to work more naturally
 //
 // ===== End Changelog =====
 
@@ -117,8 +123,6 @@ document.addEventListener('keydown', function (e) {
 
 initialize();
 
-doAtStart();
-
 setInterval(function () {
     // if the URL is just https://deathworlders.com, don't do anything
     if (window.location.href == 'https://deathworlders.com/') return;
@@ -128,8 +132,19 @@ setInterval(function () {
     setChatLogElement();
 
     forceBreaks();
-}, 1000);
 
+    hijackChapters();
+}, 200);
+
+function reloadOnURLChange() {
+    var currentURL = window.location.href;
+    setInterval(function () {
+        if (currentURL != window.location.href) {
+            currentURL = window.location.href;
+            window.location.reload();
+        }
+    }, 1000);
+}
 
 function initialize() {
     // print Deathworlders Tweaks in large letters
@@ -148,6 +163,8 @@ function initialize() {
 
     // addToolTipToAllOffsiteLinks();
     addToolTipToWhereItNeedsToGo();
+
+    reloadOnURLChange();
 }
 
 function checkNewVersion() {
@@ -265,9 +282,68 @@ function checkNewVersion() {
     request.send();
 }
 
-function doAtStart()
-{
-    replace('xiu-chang/chapter-01');
+function hijackChapters() {
+    // if .bane-article#bane-replace exists, do nothing
+    if (document.querySelector('.bane-article#bane-replace') !== null) return;
+
+    // load deathworlderstoc.json
+    var url = 'https://raw.githubusercontent.com/Jordy3D/DeathworldersTools/main/deathworlderstoc.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.onload = function () {
+        if (request.status >= 200 && request.status < 400) {
+            var response = request.responseText;
+            var toc = JSON.parse(response);
+
+            // get the chapters from the toc
+            var chapters = toc.chapters;
+
+            // find every chapter with a non-empty alt
+            var altChapters = [];
+            for (var i = 0; i < chapters.length; i++) {
+                if (chapters[i].alt !== '')
+                    altChapters.push(chapters[i]);
+            }
+
+            // loop through every chapter
+            for (var i = 0; i < altChapters.length; i++) {
+                var chapter = altChapters[i];
+
+                console.log(`Replacing ${chapter.name} with ${chapter.alt}`);
+
+                // if the chapter has a non-empty alt, replace the chapter with the alt
+                if (chapter.alt !== '') {
+                    var linkTag = "";
+                    if (chapter.number >= 0) {
+                        var paddedChapter = chapter.number.toString().padStart(2, "0");
+                        linkTag = paddedChapter;
+                    }
+                    else {
+                        // set the link tag to the chapter name, replacing spaces with dashes and removing non-alphanumeric characters
+                        linkTag = chapter.name.replace(/ /g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
+                    }
+
+                    switch (chapter.book) {
+                        case 'Deathworlders':
+                            continue;
+                        case 'The Xiù Chang Saga':
+                            replace(`xiu-chang/chapter-${linkTag}`);
+                            break;
+                        case 'Salvage':
+                            replace(`salvage/chapter-${linkTag}`);
+                            break;
+                        case 'MIA':
+                            replace(`mia/chapter-${linkTag}`);
+                            break;
+                        case 'Good Training':
+                            replace(`good-training/chapter-${linkTag}`);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    request.send();
 }
 
 // ===== SETTINGS FUNCTIONS =====
@@ -1418,7 +1494,7 @@ function addToolTipToWhereItNeedsToGo() {
     });
 }
 
-function replace(hash, url='https://raw.githubusercontent.com/Jordy3D/DeathworldersTweaks/main/stories/' + hash + '.json') {
+function replace(hash, url = 'https://raw.githubusercontent.com/Jordy3D/DeathworldersTweaks/main/stories/' + hash + '.json') {
     var json = null;
 
     // if the URL matches https://deathworlders.com/books/#HASH
@@ -1439,22 +1515,59 @@ function replace(hash, url='https://raw.githubusercontent.com/Jordy3D/Deathworld
             // set the json variable to the response
             json = request.response;
 
-            // create a new div with the id #bane-replace
-            var div = document.createElement('div');
-            div.id = 'bane-replace';
-            div.classList.add('bane-article');
-            main.appendChild(div);
+            // if the json has a source, add it to the page as main > div.download-epub-btn.add-margin > span.epub-btn-text:TEXT=" SOURCE" > span.fas.fa-download.fa-lg::before:CONTENT="\f0c1"
+            if (json.source) {
+                var sourceLink = document.createElement('div');
+                sourceLink.classList.add('download-epub-btn');
+                sourceLink.classList.add('epub-btn');
+                sourceLink.classList.add('add-margin');
+                sourceLink.innerHTML = `<span class="fas fa-link fa-lg" style="font-size:revert"></span><span class="epub-btn-text"><a href="${json.source}"> SOURCE</a></span>`;
+                main.appendChild(sourceLink);
+            }
+
+            // create a new article with the id #bane-replace
+            var article = document.createElement('article');
+            article.id = 'bane-replace';
+            article.classList.add('bane-article');
+            main.appendChild(article);
 
             // add the title to the page
             var title = document.createElement('h1');
             title.innerText = `${json.book}\nChapter ${json.chapter}: ${json.chapterTitle}`;
-            div.appendChild(title);
+            article.appendChild(title);
 
-            addHR(div);
+            // add aside > ul > li > time
+            var aside = document.createElement('aside');
+            var ul = document.createElement('ul');
+            var li = document.createElement('li');
+
+            if (json.date) {
+                var time = document.createElement('time');
+                // set the time's datetime attribute to the date
+                var date = new Date(json.date);
+                time.classList.add('post-date');
+                time.setAttribute('datetime', `${date}T00:00:00`);
+                // set the time's innerText to the date formatted as Mon X, YYYY
+                time.innerText = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            }
+
+            li.appendChild(time);
+            ul.appendChild(li);
+            aside.appendChild(ul);
+            article.appendChild(aside);
+
+            var wordCount = 0;
 
             // add each paragraph to the page
             for (var i = 0; i < json.content.length; i++) {
                 var paragraph = json.content[i];
+
+                if (paragraph.tag == 'hr') {
+                    addHR(article);
+                    continue;
+                }
+
+                if (paragraph.text == '' || paragraph.text == ' ') continue;
 
                 // create an element based on the paragraph's tag
                 var p = document.createElement(paragraph.tag);
@@ -1463,9 +1576,16 @@ function replace(hash, url='https://raw.githubusercontent.com/Jordy3D/Deathworld
                 // add the text to the element, ensuring that HTML tags are parsed as HTML
                 p.innerHTML = paragraph.text;
 
+                // count words to calculate reading time
+                wordCount += paragraph.text.split(' ').length;
 
-                div.appendChild(p);
+                article.appendChild(p);
             }
+
+            // add reading time to the page
+            var readingTime = document.createElement('li');
+            readingTime.innerText = `${Math.ceil(wordCount / 200)} min read`;
+            ul.appendChild(readingTime);
         };
     }
 }
