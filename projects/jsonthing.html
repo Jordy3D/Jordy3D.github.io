@@ -261,6 +261,12 @@
                     paragraph.text = "";
                 }
 
+                // if paragraph text contains <p> and </p>, remove the tags
+                if (paragraph.text.includes("<p>") && paragraph.text.includes("</p>")) {
+                    paragraph.text = paragraph.text.replace("<p>", "");
+                    paragraph.text = paragraph.text.replace("</p>", "");
+                }
+
                 // add the paragraph to the JSON object
                 json.content.push(paragraph);
             }
