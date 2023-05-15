@@ -1,310 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TXT to JSON</title>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TXT to JSON</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+			body {
+				background-color: #222;
+				color: #fff;
+				font-family: Arial, Helvetica, sans-serif;
 
-        body {
-            background-color: #222;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
+				height: 100vh;
+				margin: 0;
+			}
 
-            min-height: 100vh;
-            margin: 0;
+			main {
+				display: grid;
+				grid-template-columns: repeat(6, 1fr);
+				grid-template-rows: 40px calc(100% - 50px);
 
-            padding: 1em;
+				height: 100%;
+				max-height: 100vh;
+				padding: 1em;
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+				gap: 1em;
 
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+				margin: 0 auto;
+				max-width: 1400px;
+			}
 
-            margin: 0 auto;
-            max-width: 800px;
-        }
+			main > h1 {
+				grid-column: 1 / 7;
+				height: 40px;
+			}
+			main > .left {
+				grid-column: 1 / 4;
+			}
+			main > .right {
+				grid-column: 4 / 7;
+			}
 
-        h1 {
-            text-align: center;
-        }
+			main > div {
+				padding-right: 1em;
 
-        h1,
-        p {
-            color: #888888;
-        }
+				display: flex;
+				flex-direction: column;
 
-        .not-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+				max-height: 100%;
+			}
 
-            border: 2px solid #333;
+			main .left {
+				overflow: hidden;
+				justify-content: center;
+			}
 
-            border-radius: 1em;
+			pre {
+				overflow: scroll;
+				padding: 1em;
+				padding-bottom: 0;
+				border-radius: 1em;
+				background-color: #333;
+				color: #ccc;
 
-            padding: 1em;
+				/* wrap text */
+				white-space: pre-wrap;
+				word-wrap: break-word;
 
-            width: 100%;
+				/* add syntax highlighting */
+				font-family: monospace;
+			}
 
-            gap: 1em;
-        }
+			main h1 {
+				text-align: center;
+			}
 
-        .not-block {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+			h1,
+			p {
+				color: #888888;
+			}
 
-            width: 100%;
+			.not-form {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 
-            gap: 1em;
-        }
+				border: 2px solid #333;
 
-        .label-input {
-            display: flex;
-            flex-direction: column;
+				border-radius: 1em;
 
-            width: 100%;
+				padding: 1em;
 
-            gap: 0.5em;
+				width: 100%;
 
-            border: 3px solid #333;
-            border-radius: 1em 1em 2em 2em;
+				gap: 1em;
+			}
 
-            transition: border 0.5s ease;
-        }
+			.not-block {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
 
-        .label-input:hover {
-            border: 3px solid #444;
-        }
+				width: 100%;
 
-        .label-input label {
-            font-size: 0.75em;
-            background: #222;
-            color: #888888;
+				gap: 1em;
+			}
 
-            display: block;
-            width: fit-content;
+			.label-input {
+				display: flex;
+				flex-direction: column;
 
-            line-height: 0em;
-            margin-left: 1em;
-            margin-top: -0.5em;
-            padding: 0.5em;
-        }
+				width: 100%;
 
-        input,
-        textarea,
-        button {
-            padding: 1em;
-            border-radius: 1em 1em 2em 2em;
+				gap: 0.5em;
 
-            width: 100%;
+				border: 3px solid #333;
+				border-radius: 1em 1em 2em 2em;
 
-            border: none;
-            background-color: #333;
-            color: #ccc;
+				transition: border 0.5s ease;
+			}
+			.label-input:hover {
+				border: 3px solid #444;
+			}
 
-            transition: background-color 0.5s ease;
-        }
+			.label-input label {
+				font-size: 0.75em;
+				background: #222;
+				color: #888888;
 
-        textarea {
-            border-radius: 1em;
+				display: block;
+				width: fit-content;
 
-            min-height: 10em;
-            min-width: 100%;
-            max-width: 100%;
-        }
+				line-height: 0em;
+				margin-left: 1em;
+				margin-top: -0.5em;
+				padding: 0.5em;
+			}
 
-        button {
-            border-radius: 2em;
-            cursor: pointer;
+			input,
+			textarea,
+			button {
+				padding: 1em;
+				border-radius: 1em 1em 2em 2em;
 
-            width: 60%;
-            font-size: 1.5em;
-        }
+				width: 100%;
 
-        ::placeholder {
-            color: #75757555;
-        }
+				border: none;
+				background-color: #333;
+				color: #ccc;
 
-        input:focus,
-        input:active,
-        input:hover,
-        textarea:focus,
-        textarea:active,
-        textarea:hover,
-        button:hover {
-            outline: none;
-            background-color: #444;
-        }
+				transition: background-color 0.5s ease;
+			}
 
-        /* style scrollbar */
-        ::-webkit-scrollbar {
-            width: 1em;
-        }
+			textarea {
+				border-radius: 1em;
 
-        ::-webkit-scrollbar-track {
-            background-color: #333;
-        }
+				min-height: 10em;
+				max-height: 35em;
+				min-width: 100%;
+				max-width: 100%;
+			}
 
-        ::-webkit-scrollbar-thumb {
-            background-color: #444;
-        }
+			button {
+				border-radius: 2em;
+				cursor: pointer;
 
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
-        }
-    </style>
-</head>
+				width: 60%;
+				font-size: 1.5em;
+			}
 
-<body>
-    <main>
-        <h1>Bane's Weird TXT to JSON Thing!</h1>
-        <p>
-            This will convert raw TXT text into a JSON format that I used for
-            another project.<br />Clicking the button will download a JSON file.
-        </p>
+			::placeholder {
+				color: #75757555;
+			}
 
-        <div class="not-form">
-            <div class="not-block">
-                <div class="label-input">
-                    <label for="book">Book Name</label>
-                    <input type="name" name="book" id="book" placeholder="Deathworlders" />
-                </div>
-                <div class="label-input">
-                    <label for="chapterTitle">Chapter Title</label>
-                    <input type="name" name="chapterTitle" id="chapterTitle" placeholder="Run, Little Monster" />
-                </div>
-                <div class="label-input">
-                    <label for="chapter">Chapter Number</label>
-                    <input type="number" name="chapter" id="chapter" placeholder="1" />
-                </div>
-            </div>
-            <div class="not-block">
-                <div class="label-input">
-                    <label for="source">Source Link</label>
-                    <input type="name" name="source" id="source"
-                        placeholder="https://deathworlders.com/books/deathworlders/chapter-01-run-little-monster/" />
-                </div>
-                <div class="label-input">
-                    <label for="date">Date</label>
-                    <!-- set default date to 11/09/2014 -->
-                    <input type="date" name="date" id="date" value="2014-09-11" />
-                </div>
-                <div class="label-input">
-                    <label for="outputName">Output File Name</label>
-                    <input type="name" name="name" id="outputName" placeholder="chapter-01.json" />
-                </div>
-            </div>
-            <textarea name="txt" id="txt" cols="30" rows="10"></textarea>
-            <button onclick="convert()">Convert</button>
-        </div>
-    </main>
-    <script>
-        function convert() {
-            console.log("Converting...");
+			input:focus,
+			input:active,
+			input:hover,
+			textarea:focus,
+			textarea:active,
+			textarea:hover,
+			button:hover {
+				outline: none;
+				background-color: #444;
+			}
 
-            // read the values from the input fields
-            let outputName = document.getElementById("outputName").value;
-            let book = document.getElementById("book").value;
-            let chapter = document.getElementById("chapter").value;
-            let chapterTitle = document.getElementById("chapterTitle").value;
-            let date = document.getElementById("date").value;
-            let source = document.getElementById("source").value;
-            let txt = document.getElementById("txt").value;
+			/* style scrollbar */
+			::-webkit-scrollbar {
+				width: 1em;
+			}
+			::-webkit-scrollbar-track {
+				background-color: #3330;
+			}
+			::-webkit-scrollbar-thumb {
+				background-color: #444;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background-color: #555;
+			}
+			::-webkit-scrollbar-corner {
+				background-color: #3330;
+			}
 
-            // export to JSON file, where the JSON looks like this:
-            // {
-            //      "book": "Deathworlders",
-            //      "chapter": 1,
-            //      "chapterTitle": "Run, Little Monster",
-            //      "date": "2014-09-11",
-            //      "source": "https://deathworlders.com/books/deathworlders/chapter-01-run-little-monster/",
-            //      "content": [
-            //          {
-            //              "tag": "p",
-            //              "class": "",
-            //              "text": "Terri Boone could feel the bass power cords begin to thump at her bones as she entered the bar and couldn’t resist the feral grin that forced its way onto her face—it was exactly her kind of song."
-            //          }
-            //      ]
-            // }
+			textarea:hover::-webkit-scrollbar-thumb,
+			textarea:focus::-webkit-scrollbar-thumb,
+			textarea:active::-webkit-scrollbar-thumb {
+				background-color: #555;
+			}
+			textarea:hover::-webkit-scrollbar-thumb:hover,
+			textarea:focus::-webkit-scrollbar-thumb:hover,
+			textarea:active::-webkit-scrollbar-thumb:hover {
+				background-color: #666;
+			}
 
-            // create the JSON object
-            let json = {
-                book: book,
-                chapter: parseInt(chapter) || -1,
-                chapterTitle: chapterTitle,
-                date: date,
-                source: source,
-                content: [],
-            };
+			pre::-webkit-scrollbar-thumb {
+				border-radius: 1em;
+			}
 
-            // split the text into paragraphs
-            let paragraphs = txt.split("\n");
+			/* preview */
+			.fileName {
+				font-family: monospace;
+				color: #888888;
 
-            for (let i = 0; i < paragraphs.length; i++) {
-                // if the paragraph is empty, skip it
-                if (paragraphs[i] == "" || paragraphs[i] == "\n" || paragraphs[i] == " ")
-                    continue;
+				margin-bottom: 0;
+			}
 
-                // create the paragraph object
-                let paragraph = {
-                    tag: "p",
-                    class: "",
-                    text: paragraphs[i],
-                };
+			/* syntax highlight */
+			.key {
+				color: #ffcc00;
+			}
+			.value {
+				color: #00ff00;
+			}
 
-                // if paragraph text is <hr> or made up of more than 5 + signs, make it an <hr>, using regex
-                if (paragraph.text.match(/^[+]{5,}$/) || paragraph.text == "<hr>") {
-                    paragraph.tag = "hr";
-                    paragraph.class = "";
-                    paragraph.text = "";
-                }
+			.value.string {
+				color: #e9c8e9;
+			}
+			.value.number {
+				color: #00ffff;
+			}
+			.value.boolean {
+				color: #008cff;
+			}
+			.value.null {
+				color: #ff0000;
+			}
+			.value.date {
+				color: #8dd1ff;
+			}
+			.value.url {
+				color: #38dd29;
+			}
 
-                // if paragraph text contains <p> and </p>, remove the tags
-                if (paragraph.text.includes("<p>") && paragraph.text.includes("</p>")) {
-                    paragraph.text = paragraph.text.replace("<p>", "");
-                    paragraph.text = paragraph.text.replace("</p>", "");
-                }
+			/* toggle preview stuff */
+			main.solo {
+				grid-template-columns: 1fr 60% 1fr;
+				grid-template-rows: 40px 1fr;
+			}
+			main.solo > .left {
+				grid-column: 2 / 3;
+			}
+			main.solo > .right {
+				display: none;
+			}
 
-                // add the paragraph to the JSON object
-                json.content.push(paragraph);
-            }
+			/* place the togglePreview on the bottom right of the parent div */
+			.not-form {
+				position: relative;
+			}
+			.togglePreview {
+				text-align: center;
+				text-decoration: none;
+				color: #888888;
+				font-size: 0.75em;
 
-            // convert the JSON object to a string, pretty-printed
-            let jsonString = JSON.stringify(json, null, 4);
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				margin: 0.5em;
 
-            // create a blob from the string
-            let blob = new Blob([jsonString], {
-                type: "application/json",
-            });
+				transition: color 100ms ease-in-out;
+			}
+			.togglePreview:hover {
+				color: #b6b6b6;
+			}
+		</style>
+	</head>
 
-            // create a link to download the blob
-            let link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = outputName + ".json";
+	<body>
+		<main>
+			<h1>Bane's Weird TXT to JSON Thing!</h1>
+			<div class="left">
+				<p>
+					This will convert raw TXT text into a JSON format that I used for
+					another project.<br />Clicking the button will download a JSON file.
+				</p>
 
-            // click the link to download the file
-            link.click();
+				<div class="not-form">
+					<div class="not-block">
+						<div class="label-input">
+							<label for="book">Book Name</label>
+							<input
+								type="name"
+								name="book"
+								id="book"
+								placeholder="Deathworlders"
+							/>
+						</div>
+						<div class="label-input">
+							<label for="chapterTitle">Chapter Title</label>
+							<input
+								type="name"
+								name="chapterTitle"
+								id="chapterTitle"
+								placeholder="Run, Little Monster"
+							/>
+						</div>
+						<div class="label-input">
+							<label for="chapter">Chapter Number</label>
+							<input
+								type="number"
+								name="chapter"
+								id="chapter"
+								placeholder="1"
+							/>
+						</div>
+					</div>
+					<div class="not-block">
+						<div class="label-input">
+							<label for="source">Source Link</label>
+							<input
+								type="name"
+								name="source"
+								id="source"
+								placeholder="https://deathworlders.com/books/deathworlders/chapter-01-run-little-monster/"
+							/>
+						</div>
+						<div class="label-input">
+							<label for="date">Date</label>
+							<!-- set default date to 11/09/2014 -->
+							<input type="date" name="date" id="date" value="2014-09-11" />
+						</div>
+						<div class="label-input">
+							<label for="outputName">Output File Name</label>
+							<input
+								type="name"
+								name="name"
+								id="outputName"
+								placeholder="chapter-01.json"
+							/>
+						</div>
+					</div>
+					<textarea name="txt" id="txt" cols="30" rows="10"></textarea>
+					<button onclick="save()">Convert</button>
+					<!-- a link that will hide and show the .right panel -->
+					<a class="togglePreview" href="#" onclick="togglePreview()"
+						>Toggle Preview</a
+					>
+				</div>
+			</div>
+			<div class="right">
+				<p>This is an preview of what the output JSON file will look like.</p>
+				<p class="fileName"></p>
+				<pre class="jsonPreview"></pre>
+			</div>
+		</main>
+		<script>
+			// read the values from the input fields
+			var outputName = document.getElementById("outputName");
+			var book = document.getElementById("book");
+			var chapter = document.getElementById("chapter");
+			var chapterTitle = document.getElementById("chapterTitle");
+			var date = document.getElementById("date");
+			var source = document.getElementById("source");
+			var txt = document.getElementById("txt");
 
-            // remove the link
-            link.remove();
+			// add input event listeners to the above fields
+			outputName.addEventListener("input", convert);
+			book.addEventListener("input", convert);
+			chapter.addEventListener("input", convert);
+			chapterTitle.addEventListener("input", convert);
+			date.addEventListener("input", convert);
+			source.addEventListener("input", convert);
+			txt.addEventListener("input", convert);
 
-            console.log("Done!");
-        }
-    </script>
-</body>
+			var fileName = document.querySelector(".fileName");
+			var jsonPreview = document.querySelector(".jsonPreview");
 
+			var jsonString = "";
+
+			convert();
+
+			function convert() {
+				console.log("Converting...");
+
+				// read the values from the input fields
+				let outputVal = outputName.value;
+				let bookVal = book.value;
+				let chapterVal = chapter.value;
+				let chapterTitleVal = chapterTitle.value;
+				let dateVal = date.value;
+				let sourceVal = source.value;
+				let txtVal = txt.value;
+
+				// export to JSON file, where the JSON looks like this:
+				// {
+				//      "book": "Deathworlders",
+				//      "chapter": 1,
+				//      "chapterTitle": "Run, Little Monster",
+				//      "date": "2014-09-11",
+				//      "source": "https://deathworlders.com/books/deathworlders/chapter-01-run-little-monster/",
+				//      "content": [
+				//          {
+				//              "tag": "p",
+				//              "class": "",
+				//              "text": "Terri Boone could feel the bass power cords begin to thump at her bones as she entered the bar and couldn’t resist the feral grin that forced its way onto her face—it was exactly her kind of song."
+				//          }
+				//      ]
+				// }
+
+				// create the JSON object
+				let json = {
+					book: bookVal,
+					chapter: parseInt(chapterVal) || -1,
+					chapterTitle: chapterTitleVal,
+					date: dateVal,
+					source: sourceVal,
+					content: [],
+				};
+
+				// split the text into paragraphs
+				let paragraphs = txtVal.split("\n");
+
+				for (let i = 0; i < paragraphs.length; i++) {
+					// if the paragraph is empty, skip it
+					if (paragraphs[i] == "" || paragraphs[i] == "\n" || paragraphs[i] == " ")
+						continue;
+
+					// create the paragraph object
+					let paragraph = {
+						tag: "p",
+						class: "",
+						text: paragraphs[i],
+					};
+
+					if (paragraph.text.match(/^[+]{5,}$/) || paragraph.text == "<hr>") {
+						paragraph.tag = "hr";
+						paragraph.class = "";
+						paragraph.text = "";
+					}
+
+					// if paragraph text contains <p> and </p>, remove the tags
+					if (paragraph.text.includes("<p>") && paragraph.text.includes("</p>")) {
+						paragraph.text = paragraph.text.replace("<p>", "");
+						paragraph.text = paragraph.text.replace("</p>", "");
+					}
+
+					// add the paragraph to the JSON object
+					json.content.push(paragraph);
+				}
+
+				// convert the JSON object to a string, pretty-printed
+				jsonString = JSON.stringify(json, null, 4);
+
+				// update the preview
+				let filNameDisplay = outputVal || "output";
+
+				fileName.innerHTML = `${filNameDisplay}.json`;
+				syntaxHighlight(jsonString);
+
+				console.log("Done!");
+			}
+
+			function save() {
+				// create a blob from the string
+				let blob = new Blob([jsonString], {
+					type: "application/json",
+				});
+
+				// create a link to download the blob
+				let link = document.createElement("a");
+				link.href = URL.createObjectURL(blob);
+				link.download = jsonString + ".json";
+
+				// click the link to download the file
+				link.click();
+
+				// remove the link
+				link.remove();
+			}
+
+			function syntaxHighlight(target) {
+				// for every line in jsonString
+				let lines = target.split("\n");
+
+				for (var line in lines) {
+					// if the line is empty, skip it
+					if (lines[line] == "" || lines[line] == "\n" || lines[line] == " ")
+						continue;
+
+					// if the line contains a colon after a "
+					if (lines[line].includes('":')) {
+						// split the line at the first colon
+						let split = lines[line].split('":');
+
+						// get the key and value
+						let key = split[0] + '"';
+						let value = split[1];
+
+						// if the value is just a [
+						if (value == "[" || value == "[ " || value == " [") {
+							lines[line] = `<span class="key">${key}</span>: <span>[</span>`;
+							continue;
+						}
+
+						// remove the first and last characters from the value
+						value = value.substring(1, value.length);
+
+						// replace < and > with &lt; and &gt;
+						value = value.replaceAll("<", "&lt;");
+
+						// check value type and add a class based on that. The types we care about are string, number, Boolean, null, date, and URL
+						if (value == "true" || value == "false")
+							value = `<span class="value boolean">${value}</span>`;
+						else if (value == "null")
+							value = `<span class="value null">${value}</span>`;
+						else if (value.match(/^"(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/))
+							value = `<span class="value url">${value}</span>`;
+						else if (value.match(/^"\d{4}-\d{2}-\d{2}"/))
+							value = `<span class="value date">${value}</span>`;
+						else if (!isNaN(value))
+							value = `<span class="value number">${value}</span>`;
+						else value = `<span class="value string">${value}</span>`;
+
+						// replace the line with the new line
+						lines[line] = `<span class="key">${key}</span>: <span class="value">${value}</span>`;
+					}
+				}
+
+				// join the lines back together
+				target = lines.join("\n");
+
+				jsonPreview.innerHTML = target;
+			}
+
+			function togglePreview() {
+				let main = document.querySelector("main");
+				main.classList.toggle("solo");
+			}
+		</script>
+	</body>
 </html>
