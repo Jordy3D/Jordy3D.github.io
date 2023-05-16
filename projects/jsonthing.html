@@ -6,6 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>TXT to JSON</title>
 
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+
 		<style>
 			* {
 				box-sizing: border-box;
@@ -32,7 +39,7 @@
 				gap: 1em;
 
 				margin: 0 auto;
-				max-width: 1400px;
+				max-width: 80vw;
 			}
 
 			main > h1 {
@@ -40,10 +47,13 @@
 				height: 40px;
 			}
 			main > .left {
-				grid-column: 1 / 4;
+				grid-column: 1 / 3;
+			}
+			main > .middle {
+				grid-column: 3 / 5;
 			}
 			main > .right {
-				grid-column: 4 / 7;
+				grid-column: 5 / 7;
 			}
 
 			main > div {
@@ -158,7 +168,7 @@
 			}
 
 			textarea {
-				border-radius: 1em;
+				border-radius: 1em 0.5em 0.5em 1em;
 
 				min-height: 10em;
 				max-height: 35em;
@@ -198,6 +208,7 @@
 			}
 			::-webkit-scrollbar-thumb {
 				background-color: #444;
+				border-radius: 1em;
 			}
 			::-webkit-scrollbar-thumb:hover {
 				background-color: #555;
@@ -209,19 +220,15 @@
 			textarea:hover::-webkit-scrollbar-thumb,
 			textarea:focus::-webkit-scrollbar-thumb,
 			textarea:active::-webkit-scrollbar-thumb {
-				background-color: #555;
-			}
-			textarea:hover::-webkit-scrollbar-thumb:hover,
-			textarea:focus::-webkit-scrollbar-thumb:hover,
-			textarea:active::-webkit-scrollbar-thumb:hover {
-				background-color: #666;
+				background-color: #7775;
 			}
 
-			pre::-webkit-scrollbar-thumb {
+			/* style textarea resize control */
+			::-webkit-resizer {
+				background-color: #7775;
 				border-radius: 1em;
 			}
-
-			/* preview */
+			/*#region All Preview */
 			.fileName {
 				font-family: monospace;
 				color: #888888;
@@ -229,7 +236,12 @@
 				margin-bottom: 0;
 			}
 
-			/* syntax highlight */
+			.jsonPreview
+			{
+				margin: 0;
+			}
+
+			/*#region syntax highlight */
 			.key {
 				color: #ffcc00;
 			}
@@ -255,8 +267,9 @@
 			.value.url {
 				color: #38dd29;
 			}
+			/*#endregion */
 
-			/* toggle preview stuff */
+			/*#region toggle preview stuff */
 			main.solo {
 				grid-template-columns: 1fr 60% 1fr;
 				grid-template-rows: 40px 1fr;
@@ -264,6 +277,7 @@
 			main.solo > .left {
 				grid-column: 2 / 3;
 			}
+			main.solo > .middle,
 			main.solo > .right {
 				display: none;
 			}
@@ -288,12 +302,156 @@
 			.togglePreview:hover {
 				color: #b6b6b6;
 			}
+			/*#endregion */
+
+			/*#region HTML Preview */
+			.htmlPreview {
+				overflow: scroll;
+				padding: 1em;
+				padding-bottom: 0;
+				border-radius: 1em;
+				background-color: #333;
+				color: #fff;
+
+				/* wrap text */
+				white-space: pre-wrap;
+				word-wrap: break-word;
+
+				font-family: "Ruda", sans-serif;
+			}
+
+			.htmlPreview h1 {
+				color: #d09242;
+				text-align: left;
+				margin-top: 0;
+			}
+			.htmlPreview a {
+				color: #d09242;
+				text-decoration: none;
+			}
+
+			.htmlPreview .date,
+			.htmlPreview .time {
+				color: #909090;
+				font-size: 0.8em;
+				margin: 0;
+			}
+
+			.htmlPreview p {
+				color: #fff;
+			}
+
+			.conversation.right,
+			.conversation.left,
+			.conversation + p:not(:has(+ p)) {
+				width: fit-content;
+				max-width: 50%;
+
+				font-family: system-ui;
+
+				border-radius: 15px;
+				padding: 10px;
+
+				margin: 10px 100px;
+
+				position: relative;
+			}
+
+			.conversation.left + p:has(+ .conversation.right):not(.right) {
+				background: unset !important;
+				max-width: unset;
+				padding: unset;
+				color: unset;
+				margin: 1em 0;
+				font-family: unset;
+			}
+
+			.conversation.left + p:has(+ .conversation.right)::before,
+			.conversation.left + p:has(+ .conversation.right)::after {
+				display: none;
+			}
+
+			.conversation + br {
+				display: none;
+			}
+
+			.conversation.right {
+				background: #159eec !important;
+				margin-left: auto;
+
+				border-radius: 15px 15px 5px 15px;
+			}
+
+			.conversation.right:has(+ .conversation.right) {
+				border-radius: 15px 15px 5px 15px;
+				margin-bottom: 0;
+			}
+
+			.conversation.right + .conversation.right {
+				border-radius: 15px 5px 5px 15px;
+				margin-top: 5px;
+			}
+
+			.conversation.left,
+			.conversation.left em,
+			.conversation + p:not(:has(+ p)) {
+				background: #d0d0d0 !important;
+				color: black;
+				border-radius: 15px 15px 15px 5px;
+
+				font-style: normal !important;
+			}
+
+			body:not(.inverted) .conversation.right {
+				color: white;
+			}
+			/*#endregion */
+			/*#endregion */
+		
+			/*#region Small Screen */
+			@media screen and (width <= 1300px) {
+				.fileName
+				{
+					display: none;
+				}
+				
+				.label-input label
+				{
+					line-height: 1em;
+					margin-bottom: -1em;
+				}
+
+				main
+				{
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					grid-template-rows: 40px 1fr 1fr;
+					gap: unset;
+				}
+
+				main > .left 
+				{ 
+					grid-column: 1 / 3; 
+					display: block;
+					height: 100%;
+
+					overflow: visible;
+				}
+				main > .middle
+				{
+					grid-column: 1 / 2;
+				}
+				main > .right
+				{
+					grid-column: 2 / 3;
+				}
+			}
 		</style>
 	</head>
 
 	<body>
 		<main>
-			<h1>Bane's Weird TXT to JSON Thing!</h1>
+			<h1>a rather strange text to HTML thing</h1>
 			<div class="left">
 				<p>
 					This will convert raw TXT text into a JSON format that I used for
@@ -363,10 +521,15 @@
 					>
 				</div>
 			</div>
-			<div class="right">
+			<div class="middle">
 				<p>This is an preview of what the output JSON file will look like.</p>
 				<p class="fileName"></p>
 				<pre class="jsonPreview"></pre>
+			</div>
+			<div class="right">
+				<p>This is an preview of what the page will look like using the JSON to the left.</p>
+				<p class="fileName"></p>
+				<div class="htmlPreview"></div>
 			</div>
 		</main>
 		<script>
@@ -391,7 +554,11 @@
 			var fileName = document.querySelector(".fileName");
 			var jsonPreview = document.querySelector(".jsonPreview");
 
+			var htmlPreview = document.querySelector(".htmlPreview");
+
 			var jsonString = "";
+
+			var jsonItself = {};
 
 			convert();
 
@@ -460,18 +627,32 @@
 						paragraph.text = paragraph.text.replace("</p>", "");
 					}
 
+					// if paragraph text starts with §→ or §←, remove it and set the class to .conversation.left or .conversation.right
+					if (paragraph.text.startsWith("§→")) {
+						paragraph.text = paragraph.text.replace("§→", "");
+						paragraph.class = "conversation right";
+					} else if (paragraph.text.startsWith("§←")) {
+						paragraph.text = paragraph.text.replace("§←", "");
+						paragraph.class = "conversation left";
+					}
+
+					// replace \n with <br>
+					paragraph.text = paragraph.text.replaceAll("\\n", "<br>");
+
 					// add the paragraph to the JSON object
 					json.content.push(paragraph);
 				}
 
 				// convert the JSON object to a string, pretty-printed
 				jsonString = JSON.stringify(json, null, 4);
+				jsonItself = json;
 
 				// update the preview
 				let filNameDisplay = outputVal || "output";
 
 				fileName.innerHTML = `${filNameDisplay}.json`;
 				syntaxHighlight(jsonString);
+				previewHTML();
 
 				console.log("Done!");
 			}
@@ -529,7 +710,11 @@
 							value = `<span class="value boolean">${value}</span>`;
 						else if (value == "null")
 							value = `<span class="value null">${value}</span>`;
-						else if (value.match(/^"(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/))
+						else if (
+							value.match(
+								/^"(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/
+							)
+						)
 							value = `<span class="value url">${value}</span>`;
 						else if (value.match(/^"\d{4}-\d{2}-\d{2}"/))
 							value = `<span class="value date">${value}</span>`;
@@ -538,7 +723,9 @@
 						else value = `<span class="value string">${value}</span>`;
 
 						// replace the line with the new line
-						lines[line] = `<span class="key">${key}</span>: <span class="value">${value}</span>`;
+						lines[
+							line
+						] = `<span class="key">${key}</span>: <span class="value">${value}</span>`;
 					}
 				}
 
@@ -546,6 +733,51 @@
 				target = lines.join("\n");
 
 				jsonPreview.innerHTML = target;
+			}
+
+			function previewHTML() {
+				// delete everything in the htmlPreview
+				htmlPreview.innerHTML = "";
+
+				var h1 = document.createElement("h1");
+				h1.classList.add("previewTitle");
+				if (jsonItself.chapter < 1)
+					h1.innerHTML = `${jsonItself.book}\n${jsonItself.chapterTitle}`;
+				else
+					h1.innerHTML = `${jsonItself.book}\nChapter ${jsonItself.chapter}: ${jsonItself.chapterTitle}`;
+				htmlPreview.appendChild(h1);
+
+				if (jsonItself.date) {
+					var date = document.createElement("p");
+					date.classList.add("date");
+					// format the date as MMM DD, YYYY
+					let dateString = new Date(jsonItself.date).toLocaleDateString(
+						"en-US",
+						{ year: "numeric", month: "short", day: "numeric" }
+					);
+					date.innerText = dateString;
+					htmlPreview.appendChild(date);
+				}
+				var time = document.createElement("p");
+				time.classList.add("time");
+				// time is the total number of words divided by 200, rounded up
+				time.innerHTML =
+					Math.ceil(txt.value.split(" ").length / 200) + " min read";
+				htmlPreview.appendChild(time);
+
+				for (let i = 0; i < jsonItself.content.length; i++) {
+					let element = jsonItself.content[i];
+
+					let el = document.createElement(element.tag);
+					if (element.class) {
+						let classList = element.class.split(" ");
+						for (let j = 0; j < classList.length; j++)
+							el.classList.add(classList[j]);
+					}
+					el.innerHTML = element.text;
+
+					htmlPreview.appendChild(el);
+				}
 			}
 
 			function togglePreview() {
