@@ -551,7 +551,7 @@
 			source.addEventListener("input", convert);
 			txt.addEventListener("input", convert);
 
-			var fileName = document.querySelector(".fileName");
+			var fileNamePreview = document.querySelector(".fileName");
 			var jsonPreview = document.querySelector(".jsonPreview");
 
 			var htmlPreview = document.querySelector(".htmlPreview");
@@ -615,16 +615,16 @@
 						text: paragraphs[i],
 					};
 
-					if (paragraph.text.match(/^[+]{5,}$/) || paragraph.text == "<hr>") {
-						paragraph.tag = "hr";
-						paragraph.class = "";
-						paragraph.text = "";
-					}
-
 					// if paragraph text contains <p> and </p>, remove the tags
 					if (paragraph.text.includes("<p>") && paragraph.text.includes("</p>")) {
 						paragraph.text = paragraph.text.replace("<p>", "");
 						paragraph.text = paragraph.text.replace("</p>", "");
+					}
+
+					if (paragraph.text.match(/^[+]{5,}$/) || paragraph.text == "<hr>") {
+						paragraph.tag = "hr";
+						paragraph.class = "";
+						paragraph.text = "";
 					}
 
 					// if paragraph text starts with §→ or §←, remove it and set the class to .conversation.left or .conversation.right
@@ -650,7 +650,7 @@
 				// update the preview
 				let filNameDisplay = outputVal || "output";
 
-				fileName.innerHTML = `${filNameDisplay}.json`;
+				fileNamePreview.innerHTML = `${filNameDisplay}.json`;
 				syntaxHighlight(jsonString);
 				previewHTML();
 
@@ -658,6 +658,10 @@
 			}
 
 			function save() {
+                let fileName = outputName.value;
+                if (!fileName)
+                    fileName = "output"
+
 				// create a blob from the string
 				let blob = new Blob([jsonString], {
 					type: "application/json",
@@ -666,7 +670,7 @@
 				// create a link to download the blob
 				let link = document.createElement("a");
 				link.href = URL.createObjectURL(blob);
-				link.download = jsonString + ".json";
+				link.download = fileName + ".json";
 
 				// click the link to download the file
 				link.click();
