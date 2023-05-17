@@ -352,7 +352,7 @@
 				border-radius: 15px;
 				padding: 10px;
 
-				margin: 10px 100px;
+				margin: 10px 40px;
 
 				position: relative;
 			}
@@ -626,6 +626,18 @@
 						paragraph.class = "";
 						paragraph.text = "";
 					}
+
+					// if the paragraph text matches class="something", set the class to something
+					let classPattern = /class=".*"/;
+					if (paragraph.text.match(classPattern))
+					{
+						let foundClass = paragraph.text.match(classPattern)[0];
+						foundClass = foundClass.replace("class=", "");
+						foundClass = foundClass.replace(/"/g, "");
+						paragraph.class = foundClass;
+						paragraph.text = paragraph.text.replace(` class="${foundClass}"`, "");
+					}
+
 
 					// if paragraph text starts with §→ or §←, remove it and set the class to .conversation.left or .conversation.right
 					if (paragraph.text.startsWith("§→")) {
