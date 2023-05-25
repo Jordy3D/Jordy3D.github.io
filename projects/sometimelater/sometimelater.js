@@ -45,20 +45,21 @@ function replaceTimeCard() {
     }
 }
 
-function setBackground() {
+function setBackground(random = false) {
     // if the URL contains ?background=, then replace the background with the one specified in the URL
-    if (variables.background) {
+    if (variables.background && !random) {
         let background = variables.background;
         document.body.style.backgroundImage = "url('sometimelater/bgs/" + background + ".webp')";
     }
-    else
-    {
+    else {
+        console.log("Setting random background");
+
         // grab a random background from the backgrounds folder, starting from 1
         let background = Math.floor(Math.random() * backgroundCount) + 1;
         // turn the background into a string and pad it with 0s to make it 3 digits long
         background = background.toString().padStart(3, "0");
         variables.background = background;
-        document.body.style.backgroundImage = "url('sometimelater/bgs/" + background + ".webp')";        
+        document.body.style.backgroundImage = "url('sometimelater/bgs/" + background + ".webp')";
     }
 }
 
@@ -94,6 +95,7 @@ function setTextColour() {
                 shadow = rgbToHex(shadow);
 
                 timecard.style.textShadow = `.1em .1em 0 ${shadow}`
+                setTextDropShadow(shadow);
                 // timecard.style.WebkitTextStroke = `1px ${rgbToHex(rgb)}`;
             }
 
@@ -187,37 +189,62 @@ function componentToHex(c) {
     return hex.length == 1 ? "0" + hex : hex;
 }
 
+function setTextDropShadow(shadow, dist = .1) {
+    // 1 in 4 chance of having an outline instead of a drop shadow
+    let outline = Math.random() < .25;
+
+    if (outline) {
+        dist = dist / 2;
+        timecard.style.textShadow = `
+            ${-dist}em ${-dist}em 0 ${shadow},
+            0 ${-dist}em 0 ${shadow},
+            ${dist}em ${-dist}em 0 ${shadow},
+            ${dist}em 0 0 ${shadow}, 
+            ${dist}em ${dist}em 0 ${shadow},
+            0 ${dist}em 0 ${shadow}, 
+            ${-dist}em ${dist}em 0 ${shadow},
+            ${-dist}em 0 0 ${shadow}
+        `;
+    }
+    else {
+        // set dirX to either 1 or -1
+        let dirX = Math.random() < 0.5 ? 1 : -1;
+        let dirY = Math.random() < 0.5 ? 1 : -1;
+
+        timecard.style.textShadow = `${dist * dirX}em ${dist * dirY}em 0 ${shadow}`;
+    }
+}
 
 // hotkey to save the timecard as an image
 document.addEventListener("keydown", function (event) {
     // if esc is hit, unfocus the timecard
     if (event.key == "Escape")
         document.activeElement.blur();
-    
+
     // if the timecard is focused, don't do anything
     if (document.activeElement == timecard)
         return;
 
     if (event.key == "s")
         saveTimecard();
+    // if the b key is pressed, change the background
+    if (event.key == "b") {
+        setBackground(true);
+        setTextColour(true);
+    }
 });
 
 // add scroll event listener to the document
 document.addEventListener("wheel", (e) => {
-
-    console.log(e);
-    
     // if the timecard is focused
     if (document.activeElement == timecard) {
         // if scroll up, make font size bigger
-        if (e.deltaY < 0)
-        {
+        if (e.deltaY < 0) {
             fontSize += 0.1;
             timecard.style.fontSize = fontSize + "rem";
         }
         // if scroll down, make font size smaller
-        else if (e.deltaY > 0)
-        {   
+        else if (e.deltaY > 0) {
             fontSize -= 0.1;
             timecard.style.fontSize = fontSize + "rem";
         }
