@@ -1,0 +1,50 @@
+@font-face {
+    /* Thank you to https://github.com/ctrlcctrlv/some-time-later for the font! */
+    font-family: 'Some Time Later';
+    src: url('/projects/sometimelater/Some.Time.Later.woff2') format('woff2'),
+         url('/projects/sometimelater/Some.Time.Later.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Some Time Later', sans-serif;
+
+    margin: 0;
+
+    background-color: #000;
+    background-image: url('/projects/sometimelater/bgs/002.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+main
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: 90vw;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 12rem;
+    margin: 0;
+    text-align: center;
+
+    /* set text outline */
+    /* -webkit-text-stroke: 1px #fff;
+    text-stroke: 1px #fff; */
+
+    /* set text drop */
+    text-shadow: .1em .1em 0 #fff;
+}
