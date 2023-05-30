@@ -309,7 +309,9 @@ function loadFromStorage() {
     if (localStorage.getItem("pokemon") != null) {
         var pokemon_data = JSON.parse(localStorage.getItem("pokemon"));
         for (var i = 0; i < pokemon_data.length; i++) {
-            updateCaughtStatusFromLoad(pokemon_data[i]);
+            var pkmnData = pokemon_data[i];
+            console.log(pkmnData);
+            updateCaughtStatusFromLoad(pkmnData);
         }
 
         full_json = pokemon_data;
@@ -656,6 +658,8 @@ function importFromJSON() {
 
             for (var i = 0; i < pokemon_data.length; i++)
                 updateCaughtStatusFromLoad(pokemon_data[i]);
+
+            full_json = pokemon_data;
         }
     }
 }
