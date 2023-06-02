@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.cdnfonts.com/css/gg-sans-2" rel="stylesheet">
+
+    <title>TXT to Discord</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: #313338;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+
+            height: 90vh;
+            max-height: 100vh;
+
+            gap: 1em;
+
+            margin: 0 auto;
+            margin-bottom: 2em;
+            max-width: 80vw;
+        }
+
+        main .left, main .right {
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+
+            width: 100%;
+            height: 90%;
+        }
+
+        main .left {
+            max-width: 40%;
+        }
+
+        main .content {
+            overflow-y: scroll;
+        }
+        /* main .left .content
+        {
+            overflow: visible;
+        } */
+
+        main h1 {
+            text-align: center;
+        }
+
+        h1,
+        p {
+            color: #888888;
+        }
+
+        textarea {
+            background-color: #383a40;
+            border: none;
+            color: #ccc;
+            border-radius: 1em 0.5em 0.5em 1em;
+            padding: 1em;
+
+            min-height: 30em;
+            min-width: 100%;
+            width: 100%;
+            max-width: 100%;
+
+            transition: background-color 0.5s ease;
+        }
+
+        textarea:focus,
+        textarea:active,
+        textarea:hover {
+            outline: none;
+            background-color: #2b2d31;
+        }
+
+        /* style scrollbar */
+        ::-webkit-scrollbar {
+            width: 0.75em;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #2b2d31;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #191a1d;
+            border-radius: 1em;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        ::-webkit-scrollbar-corner {
+            background-color: #3330;
+        }
+
+        textarea:hover::-webkit-scrollbar-thumb,
+        textarea:focus::-webkit-scrollbar-thumb,
+        textarea:active::-webkit-scrollbar-thumb {
+            background-color: #2b2d31;
+        }
+
+        /* style textarea resize control */
+        ::-webkit-resizer {
+            background-color: #7775;
+            border-radius: 1em;
+        }
+
+        /*#region All Preview */
+        .discordPreview * {
+            font-family: 'gg sans Normal', sans-serif;
+        }
+
+        .discordPreview h1,
+        .discordPreview h2,
+        .discordPreview h3 {
+            font-weight: 700;
+            line-height: 1.375em;
+            margin: 16px 0 4px;
+
+            font-family: 'gg sans', sans-serif;
+
+            text-align: left;
+            color: #f2f3f5;
+        }
+
+        .discordPreview p,
+        .discordPreview blockquote {
+            margin: 0;
+        }
+
+        .discordPreview h1 {
+            font-size: 1.5rem;
+            margin: 16px 0 8px;
+        }
+
+        .discordPreview h2 {
+            font-size: 1.25rem;
+            margin: 16px 0 8px;
+        }
+
+        .discordPreview h3 {
+            font-size: 1rem;
+            margin: 16px 0 8px;
+        }
+
+        .discordPreview p {
+            font-size: 1rem;
+            line-height: 1.375rem;
+
+            color: #dbdee1;
+        }
+
+        .discordPreview .spoiler {
+            background-color: #222326;
+            border-radius: 4px;
+            color: #b9bbbe00;
+            cursor: pointer;
+            display: inline;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.375rem;
+            margin: 0;
+            padding: 0 4px;
+            text-decoration: none;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .discordPreview code {
+            background-color: #2b2d31;
+            border-radius: 4px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1rem;
+            line-height: 1.375rem;
+            padding: 0 4px;
+        }
+
+        .discordPreview blockquote {
+            border-left: 4px solid #4e5058;
+            margin: 0;
+            padding: 0 16px;
+        }
+
+        .discordPreview ol,
+        .discordPreview ul {
+            margin: 4px 0 0 16px;
+            list-style-position: outside;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+
+            padding: 0;
+        }
+
+        .discordPreview li {
+            white-space: break-spaces;
+            margin-bottom: 4px;
+        }
+
+        /*#region syntax highlight */
+        .key {
+            color: #ffcc00;
+        }
+
+        .value {
+            color: #00ff00;
+        }
+
+        .value.string {
+            color: #e9c8e9;
+        }
+
+        .value.number {
+            color: #00ffff;
+        }
+
+        .value.boolean {
+            color: #008cff;
+        }
+
+        .value.null {
+            color: #ff0000;
+        }
+
+        .value.date {
+            color: #8dd1ff;
+        }
+
+        .value.url {
+            color: #38dd29;
+        }
+
+        /*#endregion */
+
+
+        /*#endregion */
+        /*#endregion */
+    </style>
+</head>
+
+<body>
+    <h1>a rather strange text to Discord thing</h1>
+    <main>
+        <div class="left">
+            <div class="top">
+                <p>
+                    This is a shitty little Discord-flavoured Markdown previewer.<br>It's not perfect, but it's mine.
+                </p>
+            </div>
+            <div class="content">
+                <div class="not-form">
+                    <textarea name="txt" id="txt" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <p>This is a preview of what your text will look like in Discord.</p>
+            </div>
+            <div class="content">
+                <div class="discordPreview"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        var txt = document.getElementById("txt");
+
+        txt.addEventListener("input", markdown);
+        var discordPreview = document.querySelector(".discordPreview");
+
+        setDefault();
+
+        function setDefault() {
+            txt.value = `# Styling
+## Italics
+Does *this* work? 
+
+How about _this_?
+
+### A quick jest (this is a 3rd level heading)
+Both good.
+
+## Bold
+Now... how about **this**?
+Very good.
+
+## Underline
+One more...
+How about _thiiiiiiis_?
+
+## Strikethrough
+And this is a ~~struck~~ bit of text.
+
+## Code Fragments (not blocks yet...)
+This is a \`code fragment\`!
+
+## Spoilers
+And this is a ||test|| spoiler!
+
+## Quote
+> Blockquote
+
+## Lists
+Some normal bullet points...
+- Test
+ - Test 2
+And a numbered list!
+1. Test
+1. Test 2
+`;
+
+            markdown();
+        }
+
+        function markdown() {
+            // clear the preview
+            discordPreview.innerHTML = "";
+
+            let lines = txt.value.split("\n");
+
+            var markdownLineStartDict = {
+                "header1": {
+                    "regex": /^# .*/g,
+                    "split": "# ",
+                    "replace": "<h1>$1</h1>"
+                },
+                "header2": {
+                    "regex": /^## .*/g,
+                    "split": "## ",
+                    "replace": "<h2>$1</h2>"
+                },
+                "header3": {
+                    "regex": /^### .*/g,
+                    "split": "### ",
+                    "replace": "<h3>$1</h3>"
+                },
+                "singleQuote": {
+                    "regex": /^> .*/g,
+                    "split": "> ",
+                    "replace": "<blockquote>$1</blockquote>"
+                },
+                "unorderedList": {
+                    "regex": /^- .*/g,
+                    "split": "- ",
+                    "replace": "<li>$1</li>"
+                },
+                "unorderedListLevel2": {
+                    "regex": /^ - .*/g,
+                    "split": " - ",
+                    "replace": "<li l2>$1</li>"
+                },
+                "orderedList": {
+                    "regex": /^[0-9]+\. .*/g,
+                    "split": ". ",
+                    "replace": "<li>$1</li>"
+                },
+                // "codeBlock": {
+                //     "regex": /^```/g,
+                //     "split": "```",
+                //     "replace": "<pre><code>$1</code></pre>"
+                // },
+            };
+
+            var isOpeningCodeBlock = false;
+            var isInCodeBlock = false;
+
+            for (var line in lines) {
+
+                var isParagraph = true;
+
+                var outputLine = lines[line];
+
+                for (var key in markdownLineStartDict) {
+                    if (lines[line].match(markdownLineStartDict[key].regex)) {
+                        let header = lines[line].split(markdownLineStartDict[key].split)[1];
+                        let headerLine = markdownLine(header);
+                        outputLine = markdownLineStartDict[key].replace.replace("$1", headerLine);
+
+                        // if the line is a list, add the <ul> tags or <ol> tags depending on the type
+                        if (key == "unorderedListLevel2") {
+                            console.log("unorderedListLevel2");
+                            outputLine = outputLine.replace(/<li l2>/g, "<ul l2><li>");
+                            outputLine = outputLine.replace(/<\/li>/g, "</li></ul>");
+                        }
+                        if (key == "unorderedList") {
+                            outputLine = outputLine.replace(/<li>/g, "<ul><li>");
+                            outputLine = outputLine.replace(/<\/li>/g, "</li></ul>");
+                        }
+                        else if (key == "orderedList") {
+                            outputLine = outputLine.replace(/<li>/g, "<ol><li>");
+                            outputLine = outputLine.replace(/<\/li>/g, "</li></ol>");
+                        }
+
+                        // // if the line is a code block, determine if it's an open or close tag
+                        // if (key == "codeBlock") {
+                        //     isOpeningCodeBlock = !isOpeningCodeBlock;
+                        //     isInCodeBlock = isOpeningCodeBlock;
+
+                        //     if (isOpeningCodeBlock) {
+                        //         // remove the closing </pre></code> tags
+                        //         outputLine = outputLine.replace(/<\/code><\/pre>/g, "");
+                        //     }
+                        //     else {
+                        //         isInCodeBlock = false;
+                        //         // remove the opening <pre><code> tags
+                        //         outputLine = outputLine.replace(/<pre><code>/g, "");
+                        //     }
+
+                        //     console.log(`Code output: ${outputLine} | isOpeningCodeBlock: ${isOpeningCodeBlock}`);
+                        // }
+
+                        isParagraph = false;
+                    }
+                }
+
+                let markLine = markdownLine(outputLine);
+
+                // remove any instances of <p></p>
+                markLine = markLine.replace(/<p><\/p>/g, "");
+
+                let outputLineHTML = `${markLine}`;
+                if (isParagraph)
+                    outputLineHTML = `<p>${markLine}</p>`;
+
+                if (outputLineHTML == "<p></p>")
+                    continue;
+
+                var whiteSpaceVisibleLine = outputLineHTML.replace(/ /g, "·").replace(/\n/g, "↵\n");
+                // print markLine as raw text, showing whitespace characters
+                // console.log(whiteSpaceVisibleLine);
+
+                discordPreview.innerHTML += outputLineHTML;
+            }
+
+
+            // merge all adjacent <ul> and <ol> tags, but put level 2 lists into the previous <li> tag
+            discordPreview.innerHTML = discordPreview.innerHTML.replace(/<\/li><\/ul><ul l2=""><li>/g, "<ul l2><li>");
+
+            // look for <ul l2=""> and match up to the next </ul> tag
+            var l2ListRegex = /<ul l2="">(.|\n)*?<\/ul>/g;
+            // replace the </ul> tag with </ul></ul>
+            discordPreview.innerHTML = discordPreview.innerHTML.replace(l2ListRegex, function (match) {
+                return match.replace(/<\/ul>/g, "</ul></ul>");
+            });
+
+            // discordPreview.innerHTML = discordPreview.innerHTML.replace(/<\/ul><ul>/g, "");
+            discordPreview.innerHTML = discordPreview.innerHTML.replace(/<\/ol><ol>/g, "");
+        }
+
+        function markdownLine(line) {
+
+            var markdownDict = {
+                "bold": {
+                    "regex": /\*\*.{1,}\*\*/g,
+                    "change": "**",
+                    "replace": `<b>$1</b>`
+                },
+                "italicStar": {
+                    "regex": /\*.{1,}\*/g,
+                    "change": "*",
+                    "replace": `<i>$1</i>`
+                },
+                "italicUnderscore": {
+                    "regex": /\_.{1,}\_/g,
+                    "change": "_",
+                    "replace": `<i>$1</i>`
+                },
+                "strikethrough": {
+                    "regex": /\~\~.{1,}\~\~/g,
+                    "change": "~~",
+                    "replace": `<s>$1</s>`
+                },
+                "code": {
+                    "regex": /\`.{1,}\`/g,
+                    "change": "`",
+                    "replace": `<code>$1</code>`
+                },
+                "codeBlock": {
+                    "regex": /\`\`\`(.|\n)*?\`\`\`/g,
+                    "change": "```",
+                    "replace": `<pre>$1</pre>`
+                },
+                "spoiler": {
+                    "regex": /\|\|.{1,}\|\|/g,
+                    "change": "||",
+                    "replace": `<span class="spoiler">$1</span>`
+                },
+                "underline": {
+                    "regex": /\_.{1,}\_/g,
+                    "change": "_",
+                    "replace": `<u>$1</u>`
+                }
+            };
+
+            for (var key in markdownDict) {
+                let match = line.match(markdownDict[key].regex);
+                if (match) {
+                    let text = match[0].split(markdownDict[key].change)[1];
+                    let replace = markdownDict[key].replace.replace("$1", text);
+                    line = line.replace(markdownDict[key].regex, replace);
+                }
+            }
+
+            return line;
+        }
+
+        function syntaxHighlight(target) {
+            // for every line in jsonString
+            let lines = target.split("\n");
+
+            for (var line in lines) {
+                // if the line is empty, skip it
+                if (lines[line] == "" || lines[line] == "\n" || lines[line] == " ")
+                    continue;
+
+                // if the line contains a colon after a "
+                if (lines[line].includes('":')) {
+                    // split the line at the first colon
+                    let split = lines[line].split('":');
+
+                    // get the key and value
+                    let key = split[0] + '"';
+                    let value = split[1];
+
+                    // if the value is just a [
+                    if (value == "[" || value == "[ " || value == " [") {
+                        lines[line] = `<span class="key">${key}</span>: <span>[</span>`;
+                        continue;
+                    }
+
+                    // remove the first and last characters from the value
+                    value = value.substring(1, value.length);
+
+                    // replace < and > with &lt; and &gt;
+                    value = value.replaceAll("<", "&lt;");
+
+                    // check value type and add a class based on that. The types we care about are string, number, Boolean, null, date, and URL
+                    if (value == "true" || value == "false")
+                        value = `<span class="value boolean">${value}</span>`;
+                    else if (value == "null")
+                        value = `<span class="value null">${value}</span>`;
+                    else if (
+                        value.match(
+                            /^"(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/
+                        )
+                    )
+                        value = `<span class="value url">${value}</span>`;
+                    else if (value.match(/^"\d{4}-\d{2}-\d{2}"/))
+                        value = `<span class="value date">${value}</span>`;
+                    else if (!isNaN(value))
+                        value = `<span class="value number">${value}</span>`;
+                    else value = `<span class="value string">${value}</span>`;
+
+                    // replace the line with the new line
+                    lines[
+                        line
+                    ] = `<span class="key">${key}</span>: <span class="value">${value}</span>`;
+                }
+            }
+
+            // join the lines back together
+            target = lines.join("\n");
+
+            jsonPreview.innerHTML = target;
+        }
+
+        function previewHTML() {
+            // delete everything in the htmlPreview
+            htmlPreview.innerHTML = "";
+
+            var h1 = document.createElement("h1");
+            h1.classList.add("previewTitle");
+            if (jsonItself.chapter < 1)
+                h1.innerHTML = `${jsonItself.book}\n${jsonItself.chapterTitle}`;
+            else
+                h1.innerHTML = `${jsonItself.book}\nChapter ${jsonItself.chapter}: ${jsonItself.chapterTitle}`;
+            htmlPreview.appendChild(h1);
+
+            if (jsonItself.date) {
+                var date = document.createElement("p");
+                date.classList.add("date");
+                // format the date as MMM DD, YYYY
+                let dateString = new Date(jsonItself.date).toLocaleDateString(
+                    "en-US",
+                    { year: "numeric", month: "short", day: "numeric" }
+                );
+                date.innerText = dateString;
+                htmlPreview.appendChild(date);
+            }
+            var time = document.createElement("p");
+            time.classList.add("time");
+            // time is the total number of words divided by 200, rounded up
+            time.innerHTML =
+                Math.ceil(txt.value.split(" ").length / 200) + " min read";
+            htmlPreview.appendChild(time);
+
+            for (let i = 0; i < jsonItself.content.length; i++) {
+                let element = jsonItself.content[i];
+
+                let el = document.createElement(element.tag);
+                if (element.class) {
+                    let classList = element.class.split(" ");
+                    for (let j = 0; j < classList.length; j++)
+                        el.classList.add(classList[j]);
+                }
+                el.innerHTML = element.text;
+
+                htmlPreview.appendChild(el);
+            }
+        }
+
+        function togglePreview() {
+            let main = document.querySelector("main");
+            main.classList.toggle("solo");
+        }
+    </script>
+</body>
+
+</html>

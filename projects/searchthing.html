@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="searchthing/searchthing.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+
+            background-color: #313338;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+
+            height: 100vh;
+            /* overflow: hidden; */
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            gap: 0.5em;
+
+            padding: 1em;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0;
+        }
+
+        main {
+            max-width: 1000px;
+            width: 80%;
+            margin: 0 auto;
+
+            height: 95%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: .25em;
+        }
+
+        .inputs {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            gap: .25em;
+        }
+
+        .input {
+            width: 100%;
+
+            display: flex;
+            /* align in th emiddle */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input input {
+            background: #4e5058;
+            color: #fff;
+
+            width: 500px;
+            height: 30px;
+
+            border-radius: 1em 0 0 1em;
+            border: none;
+
+            padding: 5px;
+        }
+
+        .input button {
+            width: 100px;
+            height: 30px;
+
+            border-radius: 0 1em 1em 0;
+            border: none;
+            border-left: 1px solid black;
+
+            background: #4e5058;
+
+            color: #fff;
+            font-weight: bold;
+
+            transition: background .25s ease-in-out;
+        }
+
+        .input button:hover {
+            background: #36373d;
+        }
+
+        .content-container {
+            border-radius: 1em;
+            background: #4e5058;
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: .25em;
+
+            padding: .5em;
+
+            overflow: hidden;
+        }
+
+        .content-container:has(:not([hide])) {
+            height: 70%;
+        }
+
+
+        #content {
+            width: 100%;
+            height: 100%;
+
+            overflow-y: scroll;
+            padding: 0.5em;
+            padding-right: calc(1em + 5px);
+        }
+
+        #content:hover {
+            padding-right: calc(1em);
+        }
+
+        #content a {
+            color: #62baee;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        #content a:hover {
+            text-decoration: underline;
+        }
+
+        #content p {
+            margin: 0;
+            word-break: break-all;
+        }
+
+        .loaded {
+            border: 2px solid green !important;
+            background-color: rgba(0, 255, 0, 0.274) !important
+        }
+
+        .failed {
+            border: 2px solid red !important;
+            background-color: rgba(255, 0, 0, 0.274) !important
+        }
+
+        /* hide */
+        [hide] {
+            display: none;
+        }
+
+        /* style scrollbars */
+        ::-webkit-scrollbar {
+            width: 5px;
+
+            transition: all 2s;
+        }
+
+        #content:hover::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #4e5058;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #36373d;
+
+            border-radius: 1em;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2c2d31;
+
+            transform: scale(2);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>a rather strange text search thing</h1>
+    </header>
+    <main>
+        <div id="instructions">
+            <p>Enter the URL of a .txt file in the input below and click the load button. <br>Then enter a search term
+                in
+                the input below and click the find button.<br>The program will display all lines that contain the search
+                term.</p>
+        </div>
+        <div class="inputs">
+            <div class="input">
+                <input type="text" id="source" placeholder="Source file URL"
+                    onkeypress="if(event.keyCode==13) loadFile()">
+                <button id="load" onclick="loadFile()">Load</button>
+            </div>
+            <div class="input">
+                <input type="text" id="search" placeholder="Search" onkeypress="if(event.keyCode==13) find()">
+                <button id="find" onclick="find()">Search</button>
+            </div>
+        </div>
+        <!-- create a div to display the content of the .txt file -->
+        <div class="content-container">
+            <span hide id="loading">Loading...</span>
+            <span hide id="loaded">Loaded</span>
+            <div id="content"></div>
+        </div>
+    </main>
+
+    <footer></footer>
+</body>
+
+</html>
