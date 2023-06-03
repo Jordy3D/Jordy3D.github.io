@@ -20,11 +20,8 @@ var appendDiv = null;
 // === MAIN FUNCTIONS ===
 window.onload = function () {
     contentDiv = document.getElementById("content");
-    console.log(contentDiv);
     statusDiv = document.getElementById("status");
-    console.log(statusDiv);
     appendDiv = document.getElementsByClassName("append")[0];
-    console.log(appendDiv);
 }
 
 // if the user presses B, A, N, E, show the append div
@@ -318,6 +315,3 @@ function populateAppend(text)
         if (results[i] != "" && results[i] != "\n")
             appendContent.push(results[i]);
 }
-
-
-// magnet:?xt=urn:btih:069BC40C595871B1459008264A118F729DD531C3&dn=BBC.Japan.Earths.Enchanted.Islands.3of3.Hokkaido.1080p.HDTV.x264.AAC.MVGroup.org.mkv&$tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&$tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&$tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&$tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&$tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&$tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&$tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&$tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&$tr=udp%3A%2F%2Ftracker.bitsearch.to%3A1337%2Fannounce&$tr=udp%3A%2F%2Ftracker.altrosky.nl%3A6969%2Fannounce&$tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&$tr=udp%3A%2F%2Fmovies.zsw.ca%3A6969%2Fannounce&$tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&$tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&$tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&$tr=udp%3A%2F%2Fuploads.gamecoast.net%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce
