@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bane | SearchThing</title>
+    <!-- get the favicon from the root -->
+    <link rel="shortcut icon" href="../files/logo.ico" type="image/x-icon">
 
     <script src="searchthing/searchthing.js"></script>
 
@@ -130,6 +132,8 @@
             padding-left: 10px;
 
             cursor: pointer;
+
+            transition: background .25s ease-in-out;
         }
 
         .input input[type="file"]::-webkit-file-upload-button:hover {
@@ -263,7 +267,6 @@
         }
 
         #instructions .states {
-            max-width: 500px;
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -308,7 +311,7 @@
             </div>
             <div class="input">
                 <!-- create a file upload, and run the loadFile function when a file is selected -->
-                <input type="file" id="sourceFile" accept=".txt" onchange="loadFile()">
+                <input type="file" id="sourceFile" onchange="loadFile()">
             </div>
         </div>
         <div class="inputs">
