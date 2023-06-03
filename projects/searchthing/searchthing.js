@@ -11,11 +11,12 @@ var linkTypes = {
 }
 
 function loadFile() {
+    var source = document.getElementById("source");
     // remove classes from the input
-    document.getElementById("source").className = "";
+    source.className = "";
 
     // download the .txt file from the url given in the input
-    var url = document.getElementById("source").value;
+    var url = source.value;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -23,12 +24,18 @@ function loadFile() {
             textContent = this.responseText;
 
             // give the input a green border to indicate that the file was loaded
-            document.getElementById("source").className = "loaded";
+            source.className = "loaded";
         }
-        else {
-            // if the file was not loaded, give the input a red border
-            document.getElementById("source").className = "failed";
+        // if load failed
+        else if (this.readyState == 4 && this.status != 200) {
+            // give the input a red border to indicate that the file was not loaded
+            source.className = "failed";
         }
+        else
+        {
+            // give the input a yellow border to indicate that the file is loading
+            source.className = "loading";
+        } 
     };
     xhttp.open("GET", url, true);
     xhttp.send();
