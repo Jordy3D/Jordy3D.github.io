@@ -10,13 +10,20 @@ var linkTypes = {
     "magnet": "magnet:?",
 }
 
-function loadFile() {
-    var source = document.getElementById("source");
+function loadURL() {
+    var source = document.getElementById("sourceURL");
     // remove classes from the input
     source.className = "";
 
     // download the .txt file from the url given in the input
     var url = source.value;
+
+    // if there is no url, give the input a red border to indicate that the file was not loaded
+    if (url == "") {
+        source.className = "failed";
+        return;
+    }
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -39,6 +46,32 @@ function loadFile() {
     };
     xhttp.open("GET", url, true);
     xhttp.send();
+}
+
+function loadFile() {
+    var source = document.getElementById("sourceFile");
+    // remove classes from the input
+    source.className = "";
+
+    // get the file from the input
+    var file = source.files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        // store the content of the .txt file in a variable
+        textContent = e.target.result;
+
+        // give the input a green border to indicate that the file was loaded
+        source.className = "loaded";
+
+        // change the choose file button to display the name of the file
+        var fileName = document.getElementById("fileName");
+        fileName.innerHTML = file.name;
+    };
+    reader.onerror = function (e) {
+        // give the input a red border to indicate that the file was not loaded
+        source.className = "failed";
+    };
+    reader.readAsText(file);
 }
 
 function search() {
