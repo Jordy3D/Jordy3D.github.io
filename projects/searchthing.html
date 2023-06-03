@@ -26,18 +26,14 @@
             font-family: Arial, Helvetica, sans-serif;
 
             height: 100vh;
+            max-height: 100vh;
             /* overflow: hidden; */
             margin: 0;
         }
 
         body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            gap: 0.5em;
-
-            padding: 1em;
+            display: grid;
+            grid-template-rows: 7vh 90vh 3vh;
         }
 
         p {
@@ -50,11 +46,11 @@
         }
 
         main {
-            max-width: 1000px;
+            max-width: 60vw;
             width: 80%;
             margin: 0 auto;
 
-            height: 95%;
+            height: 100%;
 
             display: flex;
             flex-direction: column;
@@ -179,9 +175,9 @@
             overflow: hidden;
         }
 
-        .content-container:has(:not([hide])) {
+        /* .content-container:has(:not([hide])) {
             height: 70%;
-        }
+        } */
 
 
         #content {
@@ -287,6 +283,24 @@
             padding: .1em .5em;
             border-radius: 2em;
         }
+
+        footer {
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 12px;
+            margin: 0.5em;
+        }
+
+        footer a {
+            color: #62baee;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -303,6 +317,7 @@
                 <p><span class="failed">red</span><br>failed to load</p>
             </div>
         </div>
+
         <div class="inputs">
             <div class="input">
                 <input type="text" id="sourceURL" placeholder="Source file URL"
@@ -310,7 +325,6 @@
                 <button id="load" onclick="loadURL()">Load</button>
             </div>
             <div class="input">
-                <!-- create a file upload, and run the loadFile function when a file is selected -->
                 <input type="file" id="sourceFile" onchange="loadFile()">
             </div>
         </div>
@@ -320,15 +334,16 @@
                 <button id="find" onclick="find()">Search</button>
             </div>
         </div>
-        <!-- create a div to display the content of the .txt file -->
+
         <div class="content-container">
-            <span hide id="loading">Loading...</span>
-            <span hide id="loaded">Loaded</span>
+            <span hide id="status">status</span>
             <div id="content"></div>
         </div>
     </main>
 
-    <footer></footer>
+    <footer>
+        <p>made by <a href="https://github.com/Jordy3D/">Bane</a>, in honour of a lost hero</p>
+    </footer>
 </body>
 
 </html>

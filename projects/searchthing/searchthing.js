@@ -1,3 +1,5 @@
+// === GLOBAL VARIABLES ===
+
 var textContent = "";
 
 var linkTypes = {
@@ -10,10 +12,22 @@ var linkTypes = {
     "magnet": "magnet:?",
 }
 
+var contentDiv = null;
+var statusDiv = null;
+
+// === MAIN FUNCTIONS ===
+// on load, set contentDiv to the div with id "content"
+window.onload = function () {
+    contentDiv = document.getElementById("content");
+    statusDiv = document.getElementById("status");
+}
+
 function loadURL() {
     var source = document.getElementById("sourceURL");
     // remove classes from the input
     source.className = "";
+
+    clearContent();
 
     // download the .txt file from the url given in the input
     var url = source.value;
@@ -32,17 +46,17 @@ function loadURL() {
 
             // give the input a green border to indicate that the file was loaded
             source.className = "loaded";
+            statusMessage("File loaded");
         }
         // if load failed
         else if (this.readyState == 4 && this.status != 200) {
             // give the input a red border to indicate that the file was not loaded
             source.className = "failed";
         }
-        else
-        {
+        else {
             // give the input a yellow border to indicate that the file is loading
             source.className = "loading";
-        } 
+        }
     };
     xhttp.open("GET", url, true);
     xhttp.send();
@@ -53,6 +67,8 @@ function loadFile() {
     // remove classes from the input
     source.className = "";
 
+    clearContent();
+
     // get the file from the input
     var file = source.files[0];
     var reader = new FileReader();
@@ -62,10 +78,7 @@ function loadFile() {
 
         // give the input a green border to indicate that the file was loaded
         source.className = "loaded";
-
-        // change the choose file button to display the name of the file
-        var fileName = document.getElementById("fileName");
-        fileName.innerHTML = file.name;
+        statusMessage("File loaded");
     };
     reader.onerror = function (e) {
         // give the input a red border to indicate that the file was not loaded
@@ -78,7 +91,7 @@ function search() {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             var search = document.getElementById("search").value.toLowerCase();
-            var content = document.getElementById("content");
+            var content = contentDiv;
 
             // if the search term is empty, display all lines
             if (search == "") {
@@ -136,12 +149,8 @@ function search() {
                 // display the lines that contain the search term, each as links
                 for (var i = 0; i < found.length; i++) {
                     var line = found[i];
-                    var link = document.createElement("a");
-                    link.href = line;
-                    // display the line as the link text, split at &dn=
-                    line = line.split("&dn=")[1];
-                    link.innerHTML = line;
-                    link.target = "_blank";
+
+                    var link = createLink(line);
                     content.appendChild(link);
                     content.appendChild(document.createElement("br"));
                 }
@@ -157,14 +166,17 @@ function search() {
 }
 
 function find() {
-    // clear the div
-    document.getElementById("content").innerHTML = "";
+    // if the text has not been loaded, display an error message
+    if (textContent == "") {
+        contentDiv.innerHTML += "Please load a file first.";
+        return;
+    }
 
-    var loading = document.getElementById("loading");
-    var loaded = document.getElementById("loaded");
-    loading.removeAttribute("hide");
-    loaded.setAttribute("hide", "");
-    loading.innerHTML = "Loading...";
+
+    // clear the div
+    contentDiv.innerHTML = "";
+
+    statusMessage("Searching...");
 
     var count = 0;
     // asynchronously search the text
@@ -172,10 +184,32 @@ function find() {
         console.log("Number of lines: " + result);
         count = result;
 
-        loading.setAttribute("hide", "");
-        loaded.removeAttribute("hide");
-        loaded.innerHTML = "Loaded " + count + " results";
+        statusMessage("Loaded " + count + " results");
     }).catch(function (error) {
         console.error("An error occurred: " + error);
     });
+}
+
+// === HELPER FUNCTIONS ===
+
+function statusMessage(message) {
+    statusDiv.removeAttribute("hide");
+    statusDiv.innerHTML = message;
+}
+
+
+function clearContent() {
+    contentDiv.innerHTML = "";
+    statusDiv.setAttribute("hide", "");
+}
+
+
+function createLink(line) {
+    var link = document.createElement("a");
+    link.href = line;
+    // display the line as the link text, split at &dn=
+    line = line.split("&dn=")[1];
+    link.innerHTML = line;
+    link.target = "_blank";
+    return link;
 }
