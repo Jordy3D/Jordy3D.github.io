@@ -10,296 +10,12 @@
     <link rel="shortcut icon" href="../files/logo.ico" type="image/x-icon">
 
     <script src="searchthing/searchthing.js"></script>
+    <link rel="stylesheet" href="searchthing/searchthing.css">
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-
-            background-color: #313338;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
-
-            height: 100vh;
-            max-height: 100vh;
-            /* overflow: hidden; */
-            margin: 0;
-        }
-
-        body {
-            display: grid;
-            grid-template-rows: 7vh 90vh 3vh;
-        }
-
-        p {
-            margin: 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin: 0;
-        }
-
-        main {
-            max-width: 60vw;
-            width: 80%;
-            margin: 0 auto;
-
-            height: 100%;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            gap: .25em;
-        }
-
-        .inputs {
-            width: 100%;
-
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-
-            gap: .25em;
-        }
-
-        .input {
-            width: 100%;
-
-            display: flex;
-            /* align in th emiddle */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .input input {
-            background: #4e5058;
-            color: #fff;
-
-            width: 100%;
-            height: 30px;
-
-            border-radius: 1em 0 0 1em;
-            border: none;
-
-            padding: 5px;
-        }
-
-        .input:has([type="file"]) {
-            width: 50%;
-        }
-
-        .input input[type="file"] {
-            background: #4e5058;
-            color: #fff;
-
-            width: 100%;
-            height: 30px;
-
-            border-radius: 1em;
-            border: none;
-
-            padding: 5px;
-        }
-
-        .input input[type="file"].loaded {
-            padding: 3px;
-        }
-
-        /* change the style of the file button */
-        .input input[type="file"]::-webkit-file-upload-button {
-            background: #4e505855;
-            color: #fff;
-
-            height: calc(100% + 20px);
-            border: none;
-            border-right: 1px solid black;
-
-            margin-top: -10px;
-            margin-bottom: -10px;
-            margin-left: -10px;
-            padding-left: 10px;
-
-            cursor: pointer;
-
-            transition: background .25s ease-in-out;
-        }
-
-        .input input[type="file"]::-webkit-file-upload-button:hover {
-            background: #36373d;
-        }
-
-        .input button {
-            width: 100px;
-            height: 30px;
-
-            border-radius: 0 1em 1em 0;
-            border: none;
-            border-left: 1px solid black;
-
-            background: #4e5058;
-
-            color: #fff;
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition: background .25s ease-in-out;
-        }
-
-        .input button:hover {
-            background: #36373d;
-        }
-
-        .content-container {
-            border-radius: 1em;
-            background: #4e5058;
-            width: 100%;
-            height: 100%;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            gap: .25em;
-
-            padding: .5em;
-
-            overflow: hidden;
-        }
-
-        /* .content-container:has(:not([hide])) {
-            height: 70%;
-        } */
-
-
-        #content {
-            width: 100%;
-            height: 100%;
-
-            overflow-y: scroll;
-            padding: 0.5em;
-            padding-right: calc(1em + 5px);
-        }
-
-        #content:hover {
-            padding-right: calc(1em);
-        }
-
-        #content a {
-            color: #62baee;
-            text-decoration: none;
-            word-break: break-all;
-        }
-
-        #content a:hover {
-            text-decoration: underline;
-        }
-
-        #content p {
-            margin: 0;
-            word-break: break-all;
-        }
-
-        .loaded {
-            border: 2px solid green !important;
-            background-color: rgba(0, 255, 0, 0.274) !important
-        }
-
-        .failed {
-            border: 2px solid red !important;
-            background-color: rgba(255, 0, 0, 0.274) !important
-        }
-
-        .loading {
-            border: 2px solid yellow !important;
-            background-color: rgba(255, 255, 0, 0.274) !important
-        }
-
-        /* hide */
+        .hide,
         [hide] {
             display: none;
-        }
-
-        /* style scrollbars */
-        ::-webkit-scrollbar {
-            width: 5px;
-
-            transition: all 2s;
-        }
-
-        #content:hover::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #4e5058;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #36373d;
-
-            border-radius: 1em;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2c2d31;
-
-            transform: scale(2);
-        }
-
-
-        /* fancy instructions */
-        #instructions p {
-            margin: unset;
-            margin-bottom: .25em;
-        }
-
-        #instructions .states {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: .25em;
-            text-align: center;
-        }
-
-        #instructions .states p {
-            margin: unset;
-            min-width: 120px;
-        }
-
-        #instructions span {
-            text-align: center;
-            display: inline-block;
-            min-width: 120px;
-            padding: .1em .5em;
-            border-radius: 2em;
-        }
-
-        footer {
-            width: 100%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        footer p {
-            font-size: 12px;
-            margin: 0.5em;
-        }
-
-        footer a {
-            color: #62baee;
-            text-decoration: none;
         }
     </style>
 </head>
@@ -310,11 +26,12 @@
     </header>
     <main>
         <div id="instructions">
-            <p>Either load a .txt file from a URL or from your computer, then search for a term.</p>
+            <p>load a text file from a URL or from your computer. <br>search for something.</p>
             <div class="states">
-                <p><span class="loading">Yellow</span><br>loading</p>
-                <p><span class="loaded">green</span><br>loaded</p>
-                <p><span class="failed">red</span><br>failed to load</p>
+                <p>key</p>
+                <span class="loading">loading</span>
+                <span class="loaded">loaded</span>
+                <span class="failed">failed to load</span>
             </div>
         </div>
 
@@ -334,8 +51,19 @@
                 <button id="find" onclick="find()">Search</button>
             </div>
         </div>
+        <div class="inputs append hide">
+            <!-- add a textbox -->
+            <div class="input">
+                <textarea id="appendText" placeholder="Append to links"
+                    onkeypress="if(event.keyCode==13) loadAppendText()"></textarea>
+                <button id="load" onclick="loadAppendText()">Load</button>
+            </div>
+            <div class="input">
+                <input type="file" id="appendFile" onchange="loadAppendFile()">
+            </div>
+        </div>
 
-        <div class="content-container">
+        <div class="content-container input">
             <span hide id="status">status</span>
             <div id="content"></div>
         </div>

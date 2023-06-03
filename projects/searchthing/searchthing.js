@@ -1,6 +1,7 @@
 // === GLOBAL VARIABLES ===
 
-var textContent = "";
+var textContent = [];
+var appendContent = [];
 
 var linkTypes = {
     "http": "http://",
@@ -14,14 +15,35 @@ var linkTypes = {
 
 var contentDiv = null;
 var statusDiv = null;
+var appendDiv = null;
 
 // === MAIN FUNCTIONS ===
-// on load, set contentDiv to the div with id "content"
 window.onload = function () {
     contentDiv = document.getElementById("content");
+    console.log(contentDiv);
     statusDiv = document.getElementById("status");
+    console.log(statusDiv);
+    appendDiv = document.getElementsByClassName("append")[0];
+    console.log(appendDiv);
 }
 
+// if the user presses B, A, N, E, show the append div
+var appendCount = 0;
+var keySequence = ["b", "a", "n", "e"];
+document.addEventListener("keydown", function (event) {
+    if (event.key == keySequence[appendCount]) {
+        appendCount++;
+        if (appendCount == keySequence.length) {
+            appendDiv.classList.toggle("hide");
+            appendCount = 0;
+        }
+    }
+    else {
+        appendCount = 0;
+    }
+});
+
+//#region Source
 function loadURL() {
     var source = document.getElementById("sourceURL");
     // remove classes from the input
@@ -73,8 +95,12 @@ function loadFile() {
     var file = source.files[0];
     var reader = new FileReader();
     reader.onload = function (e) {
-        // store the content of the .txt file in a variable
-        textContent = e.target.result;
+        // store each line of the file in the textContent array
+        let text = e.target.result;
+        if (text != "") {
+            populateTextContent(text);
+            source.className = "loaded";
+        }
 
         // give the input a green border to indicate that the file was loaded
         source.className = "loaded";
@@ -86,58 +112,86 @@ function loadFile() {
     };
     reader.readAsText(file);
 }
+//#endregion
 
+//#region Append
+function loadAppendText() {
+    appendContent = [];
+    // get #appendText, which is a child of the append div
+    var source = appendDiv.querySelector("#appendText");
+    var text = source.value;
+    if (text != "") {
+        // if text is a url, download the file
+        if (text.indexOf("http") != -1) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // store the content of the .txt file in a variable
+                    text = this.responseText;
+                }
+                // if load failed
+                if (this.readyState == 4 && this.status != 200) {
+                    source.className = "failed";
+                }
+            };
+            xhttp.open("GET", text, false);
+            xhttp.send();
+        }
+        
+        populateAppend(text);
+        source.className = "loaded";
+    }
+}
+
+function loadAppendFile() {
+    appendContent = [];
+    // get #appendFile, which is a child of the append div
+    var source = appendDiv.querySelector("#appendFile");
+
+    var file = source.files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        // store each line of the file in the textContent array
+        let text = e.target.result;
+        if (text != "") {
+            populateAppend(text);
+            source.className = "loaded";
+        }
+    };
+    reader.onerror = function (e) {
+        source.className = "failed";
+    };
+    reader.readAsText(file);
+}
+//#endregion
+
+//#region Search
 function search() {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             var search = document.getElementById("search").value.toLowerCase();
             var content = contentDiv;
 
-            // if the search term is empty, display all lines
-            if (search == "") {
-                var lines = textContent.split("\n");
-                for (var i = 0; i < lines.length; i++) {
-                    var line = lines[i];
+            var searchTerms = "";
+            var displayAll = false;
 
-                    var isLink = false;
+            if (search != "")
+                searchTerms = search.split(" ");
+            else
+                displayAll = true;
 
-                    // if the line matches a link type, make it a link
-                    for (var type in linkTypes)
-                        if (line.indexOf(type) != -1)
-                            isLink = true;
+            var lines = textContent;
 
-                    if (isLink) {
-                        var link = document.createElement("a");
-                        link.href = line;
+            // create an array to store the lines that contain the search term
+            var found = [];
+            // loop through the lines
+            for (var i = 0; i < lines.length; i++) {
+                // if the line contains all of the search terms, add it to the array
+                var line = lines[i].toLowerCase();
 
-                        if (type == "magnet")
-                            line = line.split("&dn=")[1];
-
-                        link.innerHTML = line;
-                        content.appendChild(link);
-                        content.appendChild(document.createElement("br"));
-                    } else {
-                        // it's not a link, so just display it as text
-                        var text = document.createElement("p");
-                        text.innerHTML = line;
-                        content.appendChild(text);
-                    }
-                }
-                // resolve the promise with the number of lines
-                resolve(lines.length);
-            } else {
-                var searchTerms = search.split(" ");
-
-                var txt = textContent;
-
-                var lines = txt.split("\n");
-                // create an array to store the lines that contain the search term
-                var found = [];
-                // loop through the lines
-                for (var i = 0; i < lines.length; i++) {
-                    // if the line contains all of the search terms, add it to the array
-                    var line = lines[i].toLowerCase();
-
+                if (displayAll)
+                    found.push(lines[i]);
+                else {
                     var contains = true;
                     for (var j = 0; j < searchTerms.length; j++)
                         if (line.indexOf(searchTerms[j]) == -1)
@@ -146,21 +200,37 @@ function search() {
                     if (contains)
                         found.push(lines[i]);
                 }
-                // display the lines that contain the search term, each as links
-                for (var i = 0; i < found.length; i++) {
-                    var line = found[i];
+            }
 
-                    var link = createLink(line);
-                    content.appendChild(link);
-                    content.appendChild(document.createElement("br"));
+            for (var i = 0; i < found.length; i++) {
+                var line = found[i];
+
+                var isLink = false;
+
+                var foundType = "";
+
+                // if the line matches a link type, make it a link
+                for (var type in linkTypes) {
+                    if (line.indexOf(type) != -1) {
+                        isLink = true;
+                        foundType = type;
+                    }
                 }
 
-                // give the input a green border to indicate that the search was completed
-                document.getElementById("search").className = "loaded";
+                if (isLink) {
+                    var link = createLink(line, type);
 
-                // resolve the promise with the number of lines that contain the search term
-                resolve(found.length);
+                    content.appendChild(link);
+                    content.appendChild(document.createElement("br"));
+                } else {
+                    // it's not a link, so just display it as text
+                    var text = document.createElement("p");
+                    text.innerHTML = line;
+                    content.appendChild(text);
+                }
             }
+
+            resolve(found.length);
         }, 0);
     });
 }
@@ -171,7 +241,6 @@ function find() {
         contentDiv.innerHTML += "Please load a file first.";
         return;
     }
-
 
     // clear the div
     contentDiv.innerHTML = "";
@@ -189,6 +258,7 @@ function find() {
         console.error("An error occurred: " + error);
     });
 }
+//#endregion
 
 // === HELPER FUNCTIONS ===
 
@@ -197,19 +267,57 @@ function statusMessage(message) {
     statusDiv.innerHTML = message;
 }
 
-
 function clearContent() {
     contentDiv.innerHTML = "";
     statusDiv.setAttribute("hide", "");
 }
 
-
-function createLink(line) {
+function createLink(line, type) {
     var link = document.createElement("a");
-    link.href = line;
-    // display the line as the link text, split at &dn=
-    line = line.split("&dn=")[1];
+
+    var url = line;
+
+    // if there's things to append, append them
+    if (appendContent.length > 0) {
+        for (var i = 0; i < appendContent.length; i++) {
+            // for each line of the appendDiv, add it to the end of the textContent line 
+            if (type == "magnet")
+            {
+                let tracker = appendContent[i];
+                // url encode the tracker
+                tracker = encodeURIComponent(tracker);
+                url += `&$tr=${tracker}`;
+            }
+            else
+                url += appendContent[i];
+        }
+    }
+
+    link.href = url;
+
+    if (type == "magnet")
+        line = line.split("&dn=")[1];
+
     link.innerHTML = line;
     link.target = "_blank";
     return link;
+} 
+
+function populateTextContent(text)
+{
+    let results = text.split("\n");
+    for (var i = 0; i < results.length; i++)
+        if (results[i] != "" && results[i] != "\n")
+            textContent.push(results[i]);
 }
+
+function populateAppend(text)
+{
+    let results = text.split("\n");
+    for (var i = 0; i < results.length; i++)
+        if (results[i] != "" && results[i] != "\n")
+            appendContent.push(results[i]);
+}
+
+
+// magnet:?xt=urn:btih:069BC40C595871B1459008264A118F729DD531C3&dn=BBC.Japan.Earths.Enchanted.Islands.3of3.Hokkaido.1080p.HDTV.x264.AAC.MVGroup.org.mkv&$tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&$tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&$tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&$tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&$tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&$tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&$tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&$tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&$tr=udp%3A%2F%2Ftracker.bitsearch.to%3A1337%2Fannounce&$tr=udp%3A%2F%2Ftracker.altrosky.nl%3A6969%2Fannounce&$tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&$tr=udp%3A%2F%2Fmovies.zsw.ca%3A6969%2Fannounce&$tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&$tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&$tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&$tr=udp%3A%2F%2Fuploads.gamecoast.net%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&$tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce
