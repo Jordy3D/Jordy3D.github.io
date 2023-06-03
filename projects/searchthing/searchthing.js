@@ -1,4 +1,6 @@
 // === GLOBAL VARIABLES ===
+const chunkSize = 10000; // the number of entries to process at a time
+
 
 var textContent = [];
 var appendContent = [];
@@ -163,7 +165,7 @@ function loadAppendFile() {
 //#endregion
 
 //#region Search
-function search() {
+function search(chunk) {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             var search = document.getElementById("search").value.toLowerCase();
@@ -177,7 +179,7 @@ function search() {
             else
                 displayAll = true;
 
-            var lines = textContent;
+            var lines = chunk;
 
             // create an array to store the lines that contain the search term
             var found = [];
@@ -234,26 +236,52 @@ function search() {
 
 function find() {
     // if the text has not been loaded, display an error message
-    if (textContent == "") {
+    if (textContent == "" || textContent == undefined || textContent == []) {
         contentDiv.innerHTML += "Please load a file first.";
         return;
     }
 
+
+    // if textContent array is longer than 100,000 entries, display a confirmation message
+    if (textContent.length > 100000) {
+        if (!confirm("This file is very large. It may take a long time to load, or may simply crash the tab.\nIf you have no search term, it will crash.\nAre you sure you want to continue?"))
+            return;
+    }
+    
+
     // clear the div
     contentDiv.innerHTML = "";
-
     statusMessage("Searching...");
 
     var count = 0;
-    // asynchronously search the text
-    search().then(function (result) {
-        console.log("Number of lines: " + result);
-        count = result;
+
+    // split the textContent array into chunks
+    var chunks = [];
+    for (var i = 0; i < textContent.length; i += chunkSize)
+        chunks.push(textContent.slice(i, i + chunkSize));
+
+    // asynchronously search each chunk
+    var promises = [];
+    for (var i = 0; i < chunks.length; i++)
+        promises.push(search(chunks[i]));
+
+    Promise.all(promises).then(function (results) {
+        for (var i = 0; i < results.length; i++)
+            count += results[i];
 
         statusMessage("Loaded " + count + " results");
-    }).catch(function (error) {
-        console.error("An error occurred: " + error);
     });
+
+    
+    // // asynchronously search the text
+    // search().then(function (result) {
+    //     console.log("Number of lines: " + result);
+    //     count = result;
+
+    //     statusMessage("Loaded " + count + " results");
+    // }).catch(function (error) {
+    //     console.error("An error occurred: " + error);
+    // });
 }
 //#endregion
 
