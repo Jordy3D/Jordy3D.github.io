@@ -51,6 +51,9 @@ setInterval(function () {
         shortsOpenAsVideo();
         shortsDownload();
     }
+    if (window.location.href.includes("youtube.com/playlist")) {
+        playlistDuration();
+    }
 }, 1000);
 
 // ============================
@@ -58,7 +61,7 @@ setInterval(function () {
 // ================================================
 //#region Shorts
 
-function addNewShortsButton(id, label, icon, onclick, iconType="material-icons-outlined") {
+function addNewShortsButton(id, label, icon, onclick, iconType = "material-icons-outlined") {
     if (document.getElementById("shorts-player") == null) { return; }
 
     // get ytd-reel-video-renderer with is-active attribute
@@ -91,7 +94,7 @@ function addNewShortsButton(id, label, icon, onclick, iconType="material-icons-o
     buttonHolder.classList.add("button-holder", "style-scope", "ytd-reel-player-overlay-renderer" + v2 ? "-v2" : "");
 
     var button = document.createElement("button");
-    button.classList.add(iconType, "style-scope","ytd-reel-player-overlay-renderer" + v2 ? "-v2" : "");
+    button.classList.add(iconType, "style-scope", "ytd-reel-player-overlay-renderer" + v2 ? "-v2" : "");
 
     button.innerHTML = icon;
 
@@ -162,7 +165,7 @@ function addNewShortsButton(id, label, icon, onclick, iconType="material-icons-o
             }
 
 
-            
+
         `;
 
         document.getElementsByTagName('head')[0].appendChild(style);
@@ -468,12 +471,170 @@ function surroundSelectedText(mdChar) {
 //#endregion
 
 
+// ====================
+// ===== Playlist ===============
+// ========================================
+
+let tryCount = 0;
+
+function playlistDuration() {
+    // if (tryCount < 3)
+    //     return;
+
+    var playlist = document.querySelector("ytd-playlist-video-list-renderer");
+    if (playlist != null) {
+        var videos = playlist.querySelectorAll("ytd-playlist-video-renderer");
+        var videoLoadedTotal = videos.length;
+        var totalDuration = 0;
+
+        var stats = document.querySelectorAll(".metadata-stats")[0];
+
+        // find the total number of videos in the playlist as listed on the page
+        var videoCountTotal = stats.children[1].children[0].innerText;
+        var videoCounter = 0;
+
+        var prevSeconds = 0;
+        for (var i = 0; i < videos.length; i++) {
+            videos = playlist.querySelectorAll("ytd-playlist-video-renderer");
+            var video = videos[i];
+            var time = video.querySelector("span.ytd-thumbnail-overlay-time-status-renderer");
+            if (time != null) {
+                var seconds = 0;
+                var again = true;
+                while (again) {
+                    var timeStr = time.innerText.replace(/(\r\n|\n|\r)/gm, "");
+                    var timeArr = timeStr.split(":");
+                    if (timeArr.length == 2)
+                        seconds = parseInt(timeArr[0]) * 60 + parseInt(timeArr[1]);
+                    else if (timeArr.length == 3)
+                        seconds = parseInt(timeArr[0]) * 3600 + parseInt(timeArr[1]) * 60 + parseInt(timeArr[2]);
+
+                    if (seconds != prevSeconds) {
+                        if (debug)
+                            console.log(`Video ${i + 1} of ${videoCountTotal} | ${timeStr} | ${seconds} seconds | Prev Seconds: ${prevSeconds}`);
+
+                        again = false;
+                        totalDuration += seconds;
+                        prevSeconds = seconds;
+                        videoCounter++;
+                    }
+                }
+            }
+        }
+
+        var hours = Math.floor(totalDuration / 3600);
+        var minutes = Math.floor(totalDuration / 60) - (hours * 60);
+        var seconds = totalDuration % 60;
+
+        var durationDisplay = document.getElementById("bane-playlist-duration");
+        var durationText = document.getElementById("bane-playlist-duration-text");
+        var tooltip = document.getElementById("bane-playlist-duration-tooltip");
+        
+        var metadata = document.querySelector(".metadata-text-wrapper");
+
+        durationDisplay = ifNotExistCreate(durationDisplay, "bane-playlist-duration", metadata)
+        durationText = ifNotExistCreate(durationText, "bane-playlist-duration-text", durationDisplay)
+        tooltip = ifNotExistCreate(tooltip, "bane-playlist-duration-tooltip", durationDisplay)
+
+        tooltip.classList.add("tooltip");
+            
+        var tipContent = `Loaded ${videoLoadedTotal} of ${videoCountTotal} videos.`;
+        if (videoLoadedTotal != videoCountTotal)
+           tipContent += `<br>Scroll down to load more videos.`
+        
+        tooltip.innerHTML = tipContent;
+
+        // durationDisplay.innerText = "Total Duration:"
+        durationText.innerText = `${hours}h ${minutes}m ${seconds}s`;
+
+        if (videoLoadedTotal != videoCountTotal)
+            durationText.classList.add("warning");
+        else
+            durationText.classList.remove("warning");
+        
+        // add style
+        var style = document.getElementById("bane-playlist-duration-style");
+        if (style == null) {
+            var style = document.createElement("style");
+            style.type = "text/css";
+            style.id = "bane-playlist-duration-style";
+            style.innerHTML = `
+                #bane-playlist-duration {
+                    font-family: "Roboto","Arial",sans-serif;
+                    font-size: 1.2rem;
+                    line-height: 1.8rem;
+                    font-weight: 400;
+                    position: relative;
+
+                    display: flex;
+                    gap: 7px;
+                }
+                #bane-playlist-duration::before {
+                    content: "Total Duration: ";
+                    color: #FFFFFF;
+                }
+                #bane-playlist-duration .warning {
+                    color: #fdba74;
+                }
+                #bane-playlist-duration .warning::after {
+                    content: " 🛈"
+                }
+
+                #bane-playlist-duration .tooltip {
+                    visibility: hidden;
+                    width: 200px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 5px 0;
+                    position: absolute;
+                    z-index: 1;
+                    bottom: 125%;
+                    left: 50%;
+                    margin-left: -100px;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+                #bane-playlist-duration .tooltip::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: #555 transparent transparent transparent;
+                }
+                #bane-playlist-duration:hover .tooltip {
+                    visibility: visible;
+                    opacity: 1;
+                }
+                
+            `;
+            document.body.appendChild(style);
+        }
+
+
+    }
+}
 
 
 
 
+function ifNotExistCreate(element, id, parent, type="div") {
+    if (document.getElementById(id) == null) {
+        console.log(`Creating element ${id}`);
+        element = document.createElement(type);
+        element.id = id;
+        if (parent)
+            parent.appendChild(element);
+    }
+    else
+        element = document.getElementById(id);
 
-
+    return element;
+}
 
 
 
