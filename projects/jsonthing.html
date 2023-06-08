@@ -627,6 +627,12 @@
                     paragraph.text = "";
                 }
 
+                // if the text is surrounded by ` and `, set the tag to code
+                if (paragraph.text.startsWith("`") && paragraph.text.endsWith("`")) {
+                    paragraph.tag = "code";
+                    paragraph.text = paragraph.text.replace(/`/g, "");
+                }
+
                 // if the paragraph text matches class="something", set the class to something
                 let classPattern = /class=".*"/;
                 if (paragraph.text.match(classPattern)) {
