@@ -5,16 +5,19 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSVDE0W9KL"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-JSVDE0W9KL');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JSVDE0W9KL');
     </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TXT to JSON</title>
+
+    <!-- grab favicon -->
+    <link rel="shortcut icon" href="../files/logo.ico" type="image/x-icon" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +25,7 @@
         rel="stylesheet" />
 
     <style>
+        /*#region Main Style */
         * {
             box-sizing: border-box;
         }
@@ -245,6 +249,8 @@
             border-radius: 1em;
         }
 
+        /*#endregion */
+
         /*#region All Preview */
         .fileName {
             font-family: monospace;
@@ -433,6 +439,20 @@
 
         body:not(.inverted) .conversation.right {
             color: white;
+        }
+
+        code {
+            white-space: pre-wrap;
+            font-family: monospace !important;
+
+            background: black !important;
+            border-radius: 10px;
+            box-shadow: none !important;
+
+            padding: 0.8em;
+            margin: 1em 0;
+
+            display: block;
         }
 
         /*#endregion */
