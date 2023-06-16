@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Plus
-// @namespace    http://tampermonkey.net/
-// @version      0.4.6
+// @namespace    Bane
+// @version      0.5.7
 // @description  Adds features to YouTube
 // @author       Bane
 // @match        https://www.youtube.com/*
@@ -10,6 +10,19 @@
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @grant        none
 // ==/UserScript==
+
+// ==Changelog==
+// Before   - Added button to download video from YouTube
+//          - Added button to open Shorts as video
+//          - Added button to download Shorts
+//          - Added volume control to Shorts
+//          - Added duration to playlists (broken)
+//          - Added format buttons to comment and reply boxes
+// 
+// 0.5.6    - Start of changelog
+//          - Removed everything after &pp in URLs cuz they're gross
+// 0.5.7    - Made middle click work on thumbnails again
+
 
 // ============================
 // ===== Initialize =====================
@@ -54,6 +67,14 @@ setInterval(function () {
     if (window.location.href.includes("youtube.com/playlist")) {
         playlistDuration();
     }
+
+    // run removePP
+    removePP();
+    // run YouTube download button
+    videoDownloadButton();
+    // run middle click
+    middleClickThumbnails();
+
 }, 1000);
 
 // ============================
@@ -529,7 +550,7 @@ function playlistDuration() {
         var durationDisplay = document.getElementById("bane-playlist-duration");
         var durationText = document.getElementById("bane-playlist-duration-text");
         var tooltip = document.getElementById("bane-playlist-duration-tooltip");
-        
+
         var metadata = document.querySelector(".metadata-text-wrapper");
 
         durationDisplay = ifNotExistCreate(durationDisplay, "bane-playlist-duration", metadata)
@@ -537,11 +558,11 @@ function playlistDuration() {
         tooltip = ifNotExistCreate(tooltip, "bane-playlist-duration-tooltip", durationDisplay)
 
         tooltip.classList.add("tooltip");
-            
+
         var tipContent = `Loaded ${videoLoadedTotal} of ${videoCountTotal} videos.`;
         if (videoLoadedTotal != videoCountTotal)
-           tipContent += `<br>Scroll down to load more videos.`
-        
+            tipContent += `<br>Scroll down to load more videos.`
+
         tooltip.innerHTML = tipContent;
 
         // durationDisplay.innerText = "Total Duration:"
@@ -551,7 +572,7 @@ function playlistDuration() {
             durationText.classList.add("warning");
         else
             durationText.classList.remove("warning");
-        
+
         // add style
         var style = document.getElementById("bane-playlist-duration-style");
         if (style == null) {
@@ -610,7 +631,7 @@ function playlistDuration() {
                     visibility: visible;
                     opacity: 1;
                 }
-                
+
             `;
             document.body.appendChild(style);
         }
@@ -622,7 +643,7 @@ function playlistDuration() {
 
 
 
-function ifNotExistCreate(element, id, parent, type="div") {
+function ifNotExistCreate(element, id, parent, type = "div") {
     if (document.getElementById(id) == null) {
         console.log(`Creating element ${id}`);
         element = document.createElement(type);
@@ -646,9 +667,11 @@ function ifNotExistCreate(element, id, parent, type="div") {
 function videoDownloadButton() {
     // find the .ytp-right-controls element
     var rightControls = document.getElementsByClassName("ytp-right-controls")[0];
-
-    // if it exists
+    // if it doesn't exist, return
     if (!rightControls) { return; }
+
+    // if ytp-bane-controls already exists, return
+    if (document.getElementsByClassName("ytp-bane-controls")[0]) { return; }
 
     // add a container for the button called "ytp-bane-controls"
     var newElement = document.createElement("div");
@@ -708,6 +731,35 @@ function videoDownloadButton() {
         }
     `;
 
+    // add the style to the head
+    document.head.appendChild(style);
+}
+
+
+
+// remove &pp=XXX from all URLs
+function removePP() {
+    console.log("Removing &pp=XXX from all URLs");
+    var links = document.getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        var href = link.getAttribute("href");
+        if (href && href.includes("&pp="))
+            link.setAttribute("href", href.split("&pp=")[0]);
+    }
+}
+
+
+// make Thumbnails middle-clickable
+function middleClickThumbnails() {
+    if (document.getElementById("bane-middle-click-style")) { return; }
+
+    var style = document.createElement("style");
+    style.id = "bane-middle-click-style";
+    // add the style
+    style.innerHTML = `
+        ytd-video-preview[active] { pointer-events: none !important; }
+    `;
     // add the style to the head
     document.head.appendChild(style);
 }
