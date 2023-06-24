@@ -103,6 +103,9 @@ function addNewShortsButton(id, label, icon, onclick, iconType = "material-icons
     // find the #actions element that is a child of the ytd-reel-video-renderer
     var actions = ytdReel.querySelector("#actions.ytd-reel-player-overlay-renderer-v2") || ytdReel.querySelector("#actions.ytd-reel-player-overlay-renderer");
 
+    // if the button already exists in the actions, then return
+    if (actions.querySelector(`#${id}`) != null) { return; }
+
     // if v2, then store v2 as true
     var v2 = actions.classList.contains("ytd-reel-player-overlay-renderer-v2");
 
