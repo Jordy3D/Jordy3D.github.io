@@ -229,9 +229,8 @@
         }
 
         .discordPreview .spoiler {
-            background-color: #222326;
+            background-color: #46484c;
             border-radius: 4px;
-            color: #b9bbbe00;
             cursor: pointer;
             display: inline;
             font-size: 1rem;
@@ -240,7 +239,11 @@
             margin: 0;
             padding: 0 4px;
             text-decoration: none;
-            transition: background-color 0.2s ease-in-out;
+        }
+
+        .discordPreview .spoiler.hidden {
+            background-color: #222326;
+            color: #b9bbbe00;
         }
 
         .discordPreview code {
@@ -331,6 +334,7 @@
             <div class="controls">
                 <button onclick="share()" id="share">Share</button>
                 <button onclick="setDefault()" id="reset">Reset</button>
+                <button onclick="clearText()" id="clear">Clear</button>
             </div>
         </div>
         <div class="right">
@@ -349,13 +353,17 @@
         txt.addEventListener("input", markdown);
         var discordPreview = document.querySelector(".discordPreview");
 
-
         // if the URL has a hash, load that
         if (window.location.hash) {
             loadFromUrl();
             markdown();
         } else {
             setDefault();
+        }
+
+        function clearText() {
+            txt.value = "";
+            markdown();
         }
 
         function setDefault() {
@@ -370,10 +378,11 @@ Both good.
 
 ## Bold
 Now... how about **this**?
+
 Very good.
+Let's do some more...
 
 ## Underline
-Some more...
 How about __thiiiiiiis__?
 And ___this___?
 And __**this**__?
@@ -518,7 +527,7 @@ And a numbered list!
                     outputLineHTML = `<p>${markLine}</p>`;
 
                 if (outputLineHTML == "<p></p>")
-                    continue;
+                    outputLineHTML = "<br>";
 
                 var whiteSpaceVisibleLine = outputLineHTML.replace(/ /g, "·").replace(/\n/g, "↵\n");
                 // print markLine as raw text, showing whitespace characters
@@ -590,7 +599,7 @@ And a numbered list!
                 "spoiler": {
                     "regex": /\|\|.{1,}\|\|/g,
                     "change": "||",
-                    "replace": `<span class="spoiler">$1</span>`
+                    "replace": `<span class="spoiler hidden" onclick="toggleSpoiler(this)">$1</span>`
                 }
             };
 
@@ -611,9 +620,9 @@ And a numbered list!
             let lines = target.split("\n");
 
             for (var line in lines) {
-                // if the line is empty, skip it
-                if (lines[line] == "" || lines[line] == "\n" || lines[line] == " ")
-                    continue;
+                // // if the line is empty, skip it
+                // if (lines[line] == "" || lines[line] == "\n" || lines[line] == " ")
+                //     continue;
 
                 // if the line contains a colon after a "
                 if (lines[line].includes('":')) {
@@ -709,6 +718,10 @@ And a numbered list!
 
                 htmlPreview.appendChild(el);
             }
+        }
+
+        function toggleSpoiler(target) {
+            target.classList.toggle("hidden");
         }
 
         // Share functions
