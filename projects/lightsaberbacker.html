@@ -28,21 +28,27 @@
             justify-content: space-between;
         }
 
+        .info
+        {
+            width: 100%;
+        }
+
         main {
             display: flex;
             flex-direction: column;
             align-items: center;
 
+            max-width: 545.6px;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            align-items: left;
         }
 
         input[type="text"],
         input[type="submit"],
+        input[type="button"],
         select {
             width: 100%;
 
@@ -56,6 +62,23 @@
             border: 1px solid #000;
             margin-bottom: 1rem;
         }
+        
+        input[type="button"]
+        {
+            background-color: #000;
+            color: #fff;
+            border: none;
+
+            cursor: pointer;
+        }
+
+        .sidebyside {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
     </style>
 </head>
 
@@ -66,6 +89,7 @@
         <div id="info">
             <h1 id="title">Lightsaber Backer Code Generator</h1>
             <p>Enter your order number and country to generate your backer code.</p>
+            <p>If your code still doesn't work, and you have entered accurate information, please reach out at the support address in your order confirmation email.</p>
 
             <p><br></p>
         </div>
@@ -79,7 +103,10 @@
                 <option value="" disabled selected>Select Country</option>
             </select>
             <label for="backerCode">Backer Code</label>
-            <input type="text" name="backerCode" id="backerCode" placeholder="Backer Code" readonly>
+            <div class="sidebyside">
+                <input type="text" name="backerCode" id="backerCode" placeholder="Backer Code" readonly>
+                <input type="button" value="Copy" id="copyButton" onclick="copyToClipboard()">
+            </div>
         </form>
     </main>
 
@@ -368,6 +395,32 @@
     populateCountrySelect();
 
     checkEmbed();
+
+    function copyToClipboard() {
+        var codeText = document.getElementById("backerCode");
+        var copyButton = document.getElementById("copyButton");
+
+        var code = codeText.value;
+        if (code == "") {
+            changeValueAndReturnToNormal(copyButton, "No code to copy!");
+            return;
+        }
+        else if (code.indexOf("#") == -1 || code.indexOf("#") == 0 || code.indexOf("#") == code.length - 1) {
+            changeValueAndReturnToNormal(copyButton, "Invalid code!");
+            return;
+        }
+        navigator.clipboard.writeText(code);
+
+        changeValueAndReturnToNormal(copyButton, "Copied!");
+    }
+
+    function changeValueAndReturnToNormal(element, value, time=1000) {
+        var previousValue = element.value;
+        element.value = value;
+        setTimeout(function () {
+            element.value = previousValue;
+        }, time);
+    }
 
     function checkEmbed() {
         var url = window.location.href;
