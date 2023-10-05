@@ -400,6 +400,7 @@
         var codeText = document.getElementById("backerCode");
         var copyButton = document.getElementById("copyButton");
 
+
         var code = codeText.value;
         if (code == "") {
             changeValueAndReturnToNormal(copyButton, "No code to copy!");
@@ -409,7 +410,10 @@
             changeValueAndReturnToNormal(copyButton, "Invalid code!");
             return;
         }
-        navigator.clipboard.writeText(code);
+
+        // copy to the clipboard using execCommand("copy") to get around the security restrictions
+        codeText.select();
+        document.execCommand("copy");
 
         changeValueAndReturnToNormal(copyButton, "Copied!");
     }
