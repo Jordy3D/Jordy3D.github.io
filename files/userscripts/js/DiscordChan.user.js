@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         >greentext
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.3.1
 // @description  >not having greentext on Discord
 // @author       Bane
 // @match        https://discord.com/*
@@ -9,6 +9,20 @@
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
 // @grant        none
 // ==/UserScript==
+
+
+// Changelog
+// 1.0.0
+// - Add 4chan inspired greentext to Discord messages
+// 1.1.0
+// - Modified CSS
+// - Modified greentext detection and parsing
+// 1.2.0
+// - Decreased check interval to 200ms
+// 1.3.0
+// - Removed jQuery dependency
+// 1.3.1
+// - Fixed bug where headers would not be coloured
 
 (function () {
     'use strict';
@@ -58,17 +72,18 @@ function addGreenTextCSS() {
         .chanSolo { border-radius: var(--chanRadius); }
 
         /*Message Section*/
-        .chanMessage
+        .chanMessage, .chanMessage :is(p, span, h1, h2, h3, h4, h5, h6, ul, ol, li)
         {
             color: #7e9348;
             font-family: arial;
-            font-weight: 400;
+            
             background: #f4e9e5;
 
             margin-top: 0;
 
             max-width: 600px;
         }
+
         .chanMessageContent
         {
             color: inherit;
